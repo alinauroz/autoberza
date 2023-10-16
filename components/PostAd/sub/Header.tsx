@@ -1,7 +1,8 @@
 import React from 'react';
+import '@/styles/postAd.css';
 
 const Header = () => {
-  return <div>Header</div>;
+  return <div className="">Header</div>;
 };
 
 export default Header;
