@@ -58,7 +58,7 @@
 .ad-type-card__body__amount {
   text-align: center;
   font-size: 56px;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .ad-type-card__body__features .feature-item {
@@ -76,7 +76,40 @@ Extra large 	xl 	≥1200px
 Extra extra large 	xxl 	≥1400px */
 
 @media screen and (max-width: 768px) {
-  .ad-type-wrapper{
-    background-color: #f000;
+  .ad-type-wrapper {
+    width: 95%;
+  }
+  .ad-types-cards {
+    gap: 10px;
+  }
+  .ad-type-card__header {
+    font-size: 14px;
+    height: 40px;
+  }
+  .ad-types-cards .ad-type-card {
+    min-width: 173px;
+  }
+  .ad-type-card__body {
+    padding: 0 20px;
+    height: calc(100% - 50px - 40px - 40px);
+  }
+  .ad-type-card__body__amount {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .ad-type-card__body__features .feature-item {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  .ad-type-wrapper .ad-type-section-header {
+    width: 100% !important;
+    margin-bottom: 24px;
+  }
+  .post-ad-section-heading {
+    font-size: 16px;
+  }
+  .ad-type-card__footer > button {
+    font-size: 12px;
+    padding: 10px 35px !important;
   }
 }
