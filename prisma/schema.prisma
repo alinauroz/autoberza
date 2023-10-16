@@ -28,3 +28,8 @@ model User {
 
   isAdmin             Boolean   @default(false)
 }
+model FormFields {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  category      String    @unique
+  fields        Json
+}
