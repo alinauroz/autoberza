@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import '@/styles/tempPostAd.css';
 import '@/styles/postAd.css';
@@ -36,15 +37,41 @@ const cardsData = [
 ];
 
 const AdType = () => {
+  const [isLeftScrolled, setIsLeftScrolled] = React.useState(false);
+
   return (
     <div className="ad-type-wrapper">
       <div className="ad-type-section-header">
         <div className="post-ad-section-heading">
           <span>CHOOSE THE TYPE OF AD</span>
         </div>
+        <div
+          className={`ad-cards-scroll-controls scrolled-${
+            isLeftScrolled ? 'left' : 'right'
+          }`}
+        >
+          <div
+            className="ad-cards-scroll-controls__left"
+            onClick={() => {
+              setIsLeftScrolled(true);
+            }}
+          >
+            <div className="arrow-icon"></div>
+          </div>
+          <div
+            className="ad-cards-scroll-controls__right"
+            onClick={() => {
+              setIsLeftScrolled(false);
+            }}
+          >
+            <div className="arrow-icon"></div>
+          </div>
+        </div>
       </div>
 
-      <div className="ad-types-cards">
+      <div
+        className={`ad-types-cards cards-${isLeftScrolled ? 'left' : 'right'}`}
+      >
         {cardsData.map(({ amount, featureList, title }, i) => {
           return (
             <div className="ad-type-card" key={i}>

@@ -17,6 +17,13 @@
   /* /temp styles */
 }
 
+.ad-type-wrapper .ad-type-section-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .ad-type-section-header {
   margin-bottom: 40px;
 }
@@ -67,6 +74,48 @@
   margin-bottom: 5px;
 }
 
+.ad-cards-scroll-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  display: none;
+}
+
+.arrow-icon {
+  width: 15px;
+  height: 15px;
+  border-bottom: 2px solid #000;
+  border-left: 2px solid #000;
+  transform: rotate(45deg);
+}
+
+.ad-cards-scroll-controls > div {
+  padding: 10px 5px 10px 15px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.ad-cards-scroll-controls__right {
+  padding: 10px 15px 10px 5px !important;
+}
+.ad-cards-scroll-controls > div:hover {
+  background-color: #0001;
+}
+.ad-cards-scroll-controls > div:active {
+  background-color: #0002;
+}
+
+.ad-cards-scroll-controls__right .arrow-icon {
+  transform: rotate(225deg);
+}
+
+.scrolled-left .ad-cards-scroll-controls__right .arrow-icon {
+  border-color: #00c489;
+}
+.scrolled-right .ad-cards-scroll-controls__left .arrow-icon {
+  border-color: #00c489;
+}
+
 /* Breakpoint 	Class infix 	Dimensions
 X-Small 	None 	<576px
 Small 	sm 	≥576px
@@ -76,18 +125,26 @@ Extra large 	xl 	≥1200px
 Extra extra large 	xxl 	≥1400px */
 
 @media screen and (max-width: 768px) {
+  .ad-cards-scroll-controls {
+    display: flex;
+  }
   .ad-type-wrapper {
     width: 95%;
+    overflow-x: hidden;
   }
   .ad-types-cards {
     gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cards-left .ad-type-card:nth-child(3) {
+    display: none;
+  }
+  .cards-right .ad-type-card:nth-child(1) {
+    display: none;
   }
   .ad-type-card__header {
     font-size: 14px;
     height: 40px;
-  }
-  .ad-types-cards .ad-type-card {
-    min-width: 173px;
   }
   .ad-type-card__body {
     padding: 0 20px;
@@ -102,7 +159,6 @@ Extra extra large 	xxl 	≥1400px */
     margin-bottom: 2px;
   }
   .ad-type-wrapper .ad-type-section-header {
-    width: 100% !important;
     margin-bottom: 24px;
   }
   .post-ad-section-heading {
