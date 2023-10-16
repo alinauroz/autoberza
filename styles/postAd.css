@@ -25,7 +25,7 @@
 }
 
 .post-ad-upload-files-wrapper-container {
-  padding: 20px 0;
+  padding: 50px 0;
   width: 70%;
   margin: 0 auto;
 
@@ -36,11 +36,14 @@
 .post-ad-upload-files-wrapper-heading {
   font-size: 32px;
   font-weight: 500;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .post-ad-upload-files-wrapper-uploading {
   border-radius: 4px;
   border: 1px dashed #00c489;
+  /* height: 400px; */
 }
 
 .photo-adding-button {
@@ -62,4 +65,66 @@
   font-size: 12px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.adding-pictures {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.adding-pictures-limit {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+}
+
+.adding-pictures-text {
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 1);
+}
+
+.small-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.adding-pictures-2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.dynamic-part {
+  background-color: gray;
+  height: 300px;
+  font-size: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pricing {
+  background-color: lightcyan;
+  height: 300px;
+  font-size: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adtype {
+  background-color: lightgreen;
+  height: 300px;
+  font-size: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
