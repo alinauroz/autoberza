@@ -1,0 +1,52 @@
+.post-ad-page-wrapper {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+.post-ad-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.header-heading {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.header-text {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.post-ad-upload-container {
+  background-color: white;
+}
+
+.post-ad-upload-files-wrapper-container {
+  padding: 20px 0;
+  width: 70%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.post-ad-upload-files-wrapper-heading {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.post-ad-upload-files-wrapper-uploading {
+  /* font-size: 40px;
+  font-weight: 700; */
+  border-radius: 4px;
+  border: 1px dashed #00c489;
+}
+
+.photo-adding-button {
+  width: 40%;
+  margin: 30px auto;
+  background-color: rgb(43, 255, 255);
+}

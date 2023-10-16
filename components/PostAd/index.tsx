@@ -11,7 +11,9 @@ import Dynamic from './sub/Dynamic';
 const PostAd = () => {
   return (
     <div className="post-ad-page-wrapper">
-      <Nav />
+      <div className="navbar">
+        <Nav />
+      </div>
       <Header />
       <UploadFile />
       <Dynamic />
