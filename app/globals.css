@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: rgb(247, 247, 247);
+}
 * {
   font-family: Nunito, sans-serif;
 }
