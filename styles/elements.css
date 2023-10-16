@@ -142,3 +142,73 @@
 .menu-item-active {
   border-color: #00c489;
 }
+
+.dd-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dd-title {
+  background-color: #fff;
+  width: 100%;
+  box-shadow: 0px 1px 4px 2px #00000017;
+  border-radius: 16px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+}
+
+.dd-btn-container {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  transition: all 0.1s ease-in-out;
+}
+
+.dd-btn-container:hover {
+  background-color: #0001;
+}
+
+.dd-btn-container:active {
+  background-color: #0003;
+}
+
+.dropdown-menu {
+  background-color: #ffffff;
+  position: absolute;
+  left: 0%;
+  top: 75px;
+  border-radius: 8px;
+  box-shadow: 0px 1px 4px 2px #00000017;
+  min-width: 100px;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 3;
+  /* height: 0; */
+}
+
+.dropdown-menu-item {
+  padding: 15px 10px;
+  color: #888;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdown-menu-item:hover {
+  color: #000;
+  background-color: #8881;
+}
+
+.dropdown-menu-item:not(:last-child) {
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.171);
+}

@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import '@/styles/tempPostAd.css';
 import '@/styles/postAd.css';
 import Button from '@/components/Elements/Button';
 

@@ -1,9 +1,8 @@
 'use client';
 import { ReactElement, useState } from 'react';
-import Input from './Input';
 import downBtn from '@/public/assets/common/dd-icon-dark-filled.svg';
 import useClickOutside from '@/utils/useClickOutside';
-import '@/styles/tempElements.css';
+import '@/styles/elements.css';
 import Image from 'next/image';
 
 export interface LV {
