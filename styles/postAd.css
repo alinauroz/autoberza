@@ -128,3 +128,59 @@
   align-items: center;
   justify-content: center;
 }
+
+.ad-type-section-header {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.contact {
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  font-size: 25px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.contact-info {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 100px;
+  row-gap: 60px;
+}
+
+.label-input {
+  position: relative;
+}
+
+.label-text {
+  position: absolute;
+  background-color: rgb(255, 254, 254);
+  padding: 5px 10px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 16px;
+  top: -10px;
+  left: 1px;
+}
+
+.contact-button {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.footer {
+  background-color: rgb(178, 201, 159);
+  height: 300px;
+  font-size: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
