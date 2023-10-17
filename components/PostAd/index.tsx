@@ -17,6 +17,7 @@ import { GET_FORMS, IForm } from '../AdminPanel/Forms';
 import Loading from '../Elements/Loading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
+import ChooseCateogry from './sub/ChooseCategory';
 /*
 const data: DynamicSectionsResponse[] = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
@@ -54,6 +55,8 @@ const PostAd = () => {
     (f: IForm) => f.category === searchParams.get('category')
   );
 
+  const categories = forms?.forms?.map((f: IForm) => ({ text: f.category }));
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.target as HTMLFormElement);
@@ -65,6 +68,22 @@ const PostAd = () => {
     return (
       <div className="w-full h-screen flex justify-center items-center">
         <Loading />
+      </div>
+    );
+  }
+
+  if (!form) {
+    return (
+      <div className="post-ad-page-wrapper">
+        <div className="navbar">
+          <Nav
+            style={{
+              padding: '20px 35px',
+            }}
+          />
+        </div>
+        <ChooseCateogry categories={categories || []} />
+        <Footer />
       </div>
     );
   }

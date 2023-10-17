@@ -11,6 +11,7 @@ import { gql, useMutation } from 'urql';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -42,7 +43,7 @@ const Login = () => {
             toast.error(data.login.error);
           } else {
             Cookies.set('token', data.login.token);
-            router.push('/');
+            router.push('/post-ad');
           }
         });
       }
@@ -86,10 +87,14 @@ const Login = () => {
             <p className="checkbox-text">Keep me signed in</p>
           </div>
           <Button text="Login" type="submit" loading={fetching} />
-          <p className="forgot-password">Forgot Password?</p>
+          <p className="forgot-password">
+            <Link href="/forgot-password">Forgot Password?</Link>
+          </p>
           <p className="account-info">
             Don&apos;t have an account?{' '}
-            <span className="login-btn">Sign Up</span>
+            <Link href="/signup">
+              <span className="login-btn">Sign Up</span>
+            </Link>
           </p>
         </div>
       </div>
