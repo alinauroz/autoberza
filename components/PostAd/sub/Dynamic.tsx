@@ -2,7 +2,6 @@
 import { DynamicSectionsResponse } from '@/types';
 import React from 'react';
 import '@/styles/postAd.css';
-import './tempStyles.css';
 import Input from '@/components/Elements/Input';
 import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
 
