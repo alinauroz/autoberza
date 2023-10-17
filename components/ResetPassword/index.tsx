@@ -2,9 +2,15 @@
 
 import fdtojson from '@/utils/fdtojson';
 import gql from 'graphql-tag';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { useMutation } from 'urql';
+import Input from '../Elements/Input';
+import Button from '../Elements/Button';
+import Header from '../Header/Header';
+import Footer from '../PostAd/sub/Footer';
+import '@/styles/verification.css';
+import { toast } from 'react-hot-toast';
 
 const RESET_PASSWORD = gql`
   mutation ResetPassword($password: String!, $token: String!) {
@@ -18,6 +24,7 @@ const RESET_PASSWORD = gql`
 function ResetPassword({}) {
   const [{ fetching }, resetPassword] = useMutation(RESET_PASSWORD);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,9 +36,15 @@ function ResetPassword({}) {
         resetPassword({
           token: searchParams.get('token'),
           password,
+        }).then((d) => {
+          if (d.error) {
+            return toast.error(d.error.graphQLErrors[0].message);
+          }
+          toast.success('Password updated');
+          router.push('/login');
         });
       } else {
-        alert('Password does not match');
+        toast.error('Password does not match');
       }
     } catch (err) {
     } finally {
@@ -39,18 +52,35 @@ function ResetPassword({}) {
     }
   };
 
-  if (fetching) return 'Updating...';
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="password" name="password" placeholder="Password" />
-      <input
-        type="password"
-        name="confirmPassword"
-        placeholder="Confirm Password"
-      />
-      <input type="submit" />
-    </form>
+    <div className="container-verification">
+      <div className="header">
+        <Header />
+      </div>
+      <div>
+        <form onSubmit={handleSubmit} className="verification">
+          <div>
+            <div className="heading">Update Password</div>
+            <p className="my-2">
+              To update your password, enter your new password and confirm
+              password.
+            </p>
+          </div>
+          <div>
+            <Input placeholder="New Password" name="password" type="password" />
+            <div className="my-2" />
+            <Input
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              type="password"
+            />
+          </div>
+          <div className="verification-btn">
+            <Button text="Update" type="submit" loading={fetching} />
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
 
