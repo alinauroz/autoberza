@@ -9,6 +9,7 @@ import Footer from './sub/Footer';
 import Dynamic from './sub/Dynamic';
 
 import { DynamicSectionsResponse } from '@/types';
+import AdLocation from './sub/AdLocation';
 
 const data: DynamicSectionsResponse[] = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
@@ -49,6 +50,7 @@ const PostAd = () => {
       <Header />
       <UploadFile />
       <Dynamic data={data} />
+      <AdLocation />
       <AdPrice />
       <AdType />
       <Contact />

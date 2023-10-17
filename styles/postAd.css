@@ -402,3 +402,15 @@ Extra extra large 	  xxl 	        ≥1400px
   text-align: center;
   padding-bottom: 20px;
 }
+
+.ad-locations {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+@media screen and (max-width: 576px) {
+  .ad-locations {
+    grid-template-columns: 1fr;
+  }
+}
