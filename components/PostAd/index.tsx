@@ -8,6 +8,34 @@ import Contact from './sub/Contact';
 import Footer from './sub/Footer';
 import Dynamic from './sub/Dynamic';
 
+import { DynamicSectionsResponse } from '@/types';
+
+const data: DynamicSectionsResponse[] = [
+  { type: 'checkbox', label: 'Airbags', section: 'Security' },
+  { type: 'text', label: 'Price', section: 'Security' },
+  { type: 'checkbox', label: 'Learned', section: 'Basic' },
+  {
+    type: 'select',
+    label: 'Year',
+    section: 'Basic',
+    options: ['2001', '2002', '2003', '2204', '2005'],
+  },
+  {
+    type: 'text',
+    label: 'Power Info',
+    section: 'Additional',
+    addon: 'KM',
+  },
+  {
+    type: 'select',
+    label: 'Type',
+    section: 'Additional',
+    options: ['Basic', 'Gold', 'Premium'],
+  },
+  { type: 'checkbox', label: 'Wheels', section: 'Security' },
+  { type: 'text', label: 'Other Info', section: 'Additional' },
+];
+
 const PostAd = () => {
   return (
     <div className="post-ad-page-wrapper">
@@ -20,7 +48,7 @@ const PostAd = () => {
       </div>
       <Header />
       <UploadFile />
-      <Dynamic />
+      <Dynamic data={data} />
       <AdPrice />
       <AdType />
       <Contact />
