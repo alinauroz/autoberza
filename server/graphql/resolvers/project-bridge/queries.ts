@@ -1,2 +1,7 @@
 // Project Queries here
-export default {};
+
+import * as fieldQueries from '../queries/fields.query';
+
+export default {
+  ...fieldQueries,
+};

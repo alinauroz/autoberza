@@ -1,8 +1,8 @@
 import React from 'react';
-import Users from './Users';
+import Forms from './Forms';
 
 function AdminPanel() {
-  return <Users />;
+  return <Forms />;
 }
 
 export default AdminPanel;

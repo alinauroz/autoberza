@@ -8,9 +8,10 @@ const projectTypedefs = `
       id: String
       category: String
       fields: JSON
+      createdOn: Date
     }
     type Query {
-      sampleQuery: String
+      forms: [Form]
     }
     type Mutation {
       createFieldForm (
