@@ -3,6 +3,7 @@ import React from 'react';
 import Photos from '@/public/assets/common/photos.svg';
 import TickGood from '@/public/assets/common/tick-good.svg';
 import Button from '@/components/Elements/Button';
+import UploadComponent from '@/components/Elements/UploadComponent';
 
 const UploadFile = () => {
   return (
@@ -16,13 +17,7 @@ const UploadFile = () => {
             <div className="photo-adding-button">
               <Image src={Photos} alt="" className="photo-img" />
               <div className="adding-photos-with-limit">
-                <Button
-                  text="+Add photos"
-                  style={{
-                    padding: '10px 30px',
-                    borderRadius: '4px',
-                  }}
-                />
+                <UploadComponent onUpload={() => ''} />
                 <p className="limit-text">(Max limit 5 MB per image)</p>
               </div>
             </div>

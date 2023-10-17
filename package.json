@@ -30,6 +30,7 @@
     "@types/react-dom": "18.2.8",
     "autoprefixer": "10.4.16",
     "bcrypt": "^5.1.1",
+    "cloudinary-react": "^1.8.1",
     "cross-env": "^7.0.3",
     "csvtojson": "^2.0.10",
     "eslint": "8.50.0",

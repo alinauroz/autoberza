@@ -6,11 +6,12 @@ interface Props {
   style?: React.CSSProperties;
   type?: 'button' | 'submit' | 'reset';
   loading?: boolean;
+  onClick?: () => void;
 }
 
-const Button = ({ text, style, type, loading }: Props) => {
+const Button = ({ text, style, type, loading, onClick }: Props) => {
   return (
-    <button className="btn" style={style} type={type}>
+    <button className="btn" style={style} type={type} onClick={onClick}>
       {loading ? '...' : text}
     </button>
   );
