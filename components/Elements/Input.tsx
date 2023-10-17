@@ -8,12 +8,21 @@ interface Props {
   // icon?: string;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  addon?: string;
 }
 
-const Input = ({ label, placeholder, style, type, onFocus, onBlur }: Props) => {
+const Input = ({
+  label,
+  placeholder,
+  style,
+  type,
+  onFocus,
+  onBlur,
+  addon,
+}: Props) => {
   return (
     <div className="inputs">
-      <label className="label">{label}</label>
+      {label && <label className="label">{label}</label>}
       <input
         className="input-field"
         type={type}
@@ -22,6 +31,7 @@ const Input = ({ label, placeholder, style, type, onFocus, onBlur }: Props) => {
         onFocus={onFocus}
         onBlur={onBlur}
       />
+      {addon && <div className="addon">{addon}</div>}
     </div>
   );
 };

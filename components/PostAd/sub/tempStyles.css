@@ -2,3 +2,32 @@
   width: 90%;
   margin: 30px auto;
 }
+
+.section-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-conatiner .post-ad-section-heading {
+  margin-bottom: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .section-body {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .section-body {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
