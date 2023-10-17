@@ -34,3 +34,25 @@ model FormFields {
   fields        Json
   createdOn     DateTime  @default(now())
 }
+
+model Ad {
+  id                  String    @id @default(auto()) @map("_id") @db.ObjectId
+
+  submittedBy         String
+  isApproved          Boolean   @default(false)
+  subscriptionType    String?
+  subscriptionDate    DateTime?
+
+  price               Int
+  discountedPrice      Int?
+
+  country             String
+  city                String
+  location            String
+
+  photos              String[]
+
+  details             Json
+
+  createdOn           DateTime  @default(now())
+}
