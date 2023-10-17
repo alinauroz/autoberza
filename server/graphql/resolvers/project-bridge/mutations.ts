@@ -1,2 +1,6 @@
 // Project mutations here
-export default {};
+import * as fieldsMutations from '../mutations/fields.mutation';
+
+export default {
+  ...fieldsMutations,
+};

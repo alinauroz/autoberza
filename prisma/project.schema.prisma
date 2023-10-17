@@ -17,3 +17,10 @@ datasource db {
 // ..
 // .
 // Skip first 20 lines
+
+model FormFields {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  category      String    @unique
+  fields        Json
+  createdOn     DateTime  @default(now())
+}

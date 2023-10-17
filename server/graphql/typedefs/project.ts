@@ -1,11 +1,32 @@
 /* Project related typedefs */
 
 const projectTypedefs = `
+    scalar JSON
+    scalar JSONObject
+
+    type Form {
+      id: String
+      category: String
+      fields: JSON
+      createdOn: Date
+    }
     type Query {
-      sampleQuery: String
+      forms: [Form]
+      users: [User]
     }
     type Mutation {
-        sampleMutation: String
+      createFieldForm (
+        category: String!
+        fields: JSON!
+      ): Form
+      updateFieldForm (
+        id: String!
+        category: String
+        fields: JSON
+      ): Form
+      deleteFieldForm (
+        id: String!
+      ): Form
     }
 `;
 
