@@ -215,6 +215,7 @@
   font-size: 14px;
   top: -10px;
   left: 1px;
+  z-index: 10;
 }
 
 .contact-button {
@@ -484,7 +485,6 @@ Extra extra large 	  xxl 	        ≥1400px
     padding: 10px 20px;
   }
 }
-
 
 .list-contaier {
   display: flex;
