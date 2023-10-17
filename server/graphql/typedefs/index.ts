@@ -36,6 +36,7 @@ const typeDefs = gql`
       name: String!
       email: String!
       address: String
+      phone: String
       state: String
       country: String
       password: String!

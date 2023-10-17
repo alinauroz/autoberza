@@ -5,10 +5,11 @@ interface Props {
   placeholder?: string;
   style?: React.CSSProperties;
   type?: string;
+  name?: string;
   // icon?: string;
 }
 
-const Input = ({ label, placeholder, style, type }: Props) => {
+const Input = ({ label, placeholder, style, type, name }: Props) => {
   return (
     <div className="inputs">
       <label className="label">{label}</label>
@@ -17,6 +18,7 @@ const Input = ({ label, placeholder, style, type }: Props) => {
         type={type}
         placeholder={placeholder}
         style={style}
+        name={name}
       />
     </div>
   );
