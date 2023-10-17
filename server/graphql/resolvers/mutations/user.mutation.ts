@@ -110,6 +110,7 @@ export const sendVerificationEmail = async (
 ) => {
   const user = await prisma.user.findUnique({ where: { email } });
   if (user && !user.isEmailVerified) {
+    console.log('Sending...');
     await sendVerification(email);
   }
   return { message: VERIFICATION_EMAIL_SENT };

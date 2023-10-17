@@ -6,10 +6,22 @@ interface Props {
   style?: React.CSSProperties;
   type?: string;
   name?: string;
+  value?: string;
+  defaultValue?: string;
+  required?: boolean;
   // icon?: string;
 }
 
-const Input = ({ label, placeholder, style, type, name }: Props) => {
+const Input = ({
+  label,
+  placeholder,
+  style,
+  type,
+  name,
+  value,
+  defaultValue,
+  required,
+}: Props) => {
   return (
     <div className="inputs">
       <label className="label">{label}</label>
@@ -19,6 +31,9 @@ const Input = ({ label, placeholder, style, type, name }: Props) => {
         placeholder={placeholder}
         style={style}
         name={name}
+        value={value}
+        defaultValue={defaultValue}
+        required={required}
       />
     </div>
   );
