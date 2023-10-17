@@ -6,7 +6,7 @@ import Button from '@/components/Elements/Button';
 const Contact = () => {
   return (
     <div className="contact-wrapper">
-      <div className="ad-type-section-header">
+      <div className="ad-contact-section-header">
         <div className="post-ad-section-heading">
           <span>CONTACT INFORMATION</span>
         </div>
@@ -26,6 +26,7 @@ const Contact = () => {
             style={{
               textTransform: 'uppercase',
               fontWeight: '700',
+              borderRadius: '5px',
             }}
           />
         </div>

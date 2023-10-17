@@ -18,6 +18,7 @@
 
 .section-conatiner .post-ad-section-heading {
   margin-bottom: 24px;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
