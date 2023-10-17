@@ -7,6 +7,7 @@
 
 .verification {
   padding: 10px 20px;
+  position: relative;
 
   @media only screen and (min-width: 992px) {
     width: 45%;
@@ -35,14 +36,14 @@
 }
 
 .verification-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 30px;
-  gap: 10px;
+  margin-top: 60px;
 }
-p {
-  font-size: 22px;
+
+.send-again {
+  margin-top: 30px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.2;
+  position: absolute;
+  right: 5%;
 }

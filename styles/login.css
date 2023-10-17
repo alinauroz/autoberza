@@ -4,16 +4,12 @@
   background-color: #f0f0f0;
   height: 100vh;
 
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-  }
-
   @media only screen and (max-width: 576px) {
     width: 100%;
   }
 }
 
-.info {
+.info-through {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -21,8 +17,7 @@
   font-weight: 800;
   cursor: pointer;
 }
-
-.email {
+.active {
   border-bottom: 2.5px solid #00c489;
 }
 
