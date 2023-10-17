@@ -49,8 +49,17 @@ const UPDATE_STAFF_STATUS = gql`
   }
 `;
 
+const DELETE_FORM = gql`
+  mutation DeleteFieldForm($id: String!) {
+    deleteFieldForm(id: $id) {
+      id
+    }
+  }
+`;
+
 function Forms() {
   const [{ fetching, data }] = useQuery({ query: GET_FORMS });
+  const [{ fetching: deleting }, deleteForm] = useMutation(DELETE_FORM);
   const [{ fetching: updatingAdminStatus }, updateAdminStatus] =
     useMutation(UPDATE_ADMIN_STATUS);
   const [{ fetching: updatingStaffStatus }, updateStaffStatus] =
@@ -111,6 +120,19 @@ function Forms() {
                         }}
                       >
                         Update
+                      </button>
+                      <button
+                        className="ml-2 bg-red-600 p-1 px-2 text-white border-0 font-medium rounded-md"
+                        onClick={() => {
+                          if (
+                            confirm(
+                              'Are you sure you want to delete this form?'
+                            )
+                          )
+                            deleteForm({ id: form.id });
+                        }}
+                      >
+                        Delete
                       </button>
                     </Td>
                   </Tr>
