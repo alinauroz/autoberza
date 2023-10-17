@@ -12,7 +12,11 @@ const PostAd = () => {
   return (
     <div className="post-ad-page-wrapper">
       <div className="navbar">
-        <Nav />
+        <Nav
+          style={{
+            padding: '20px 60px',
+          }}
+        />
       </div>
       <Header />
       <UploadFile />
