@@ -12,6 +12,7 @@ const projectTypedefs = `
     }
     type Query {
       forms: [Form]
+      users: [User]
     }
     type Mutation {
       createFieldForm (

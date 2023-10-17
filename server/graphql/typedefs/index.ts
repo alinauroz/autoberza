@@ -12,6 +12,8 @@ const typeDefs = gql`
     state: String
     country: String
     isAdmin: Boolean
+    phone: String
+    isEmailVerified: Boolean
   }
 
   type LoginResponse {

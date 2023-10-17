@@ -33,26 +33,12 @@ export interface IUser {
 const GET_USERS = gql`
   query Users {
     users {
-      categoryPreference
-      chatId
-      cover
-      citizenship
-      dob
-      experience
-      gender
-      group
-      hp
       id
       isAdmin
-      isStaff
-      locationPreference
       name
       phone
-      qualification
-      race
-      typePreference
-      username
       email
+      isEmailVerified
     }
   }
 `;
@@ -60,9 +46,7 @@ const GET_USERS = gql`
 const UPDATE_ADMIN_STATUS = gql`
   mutation Mutation($userId: String!, $status: Boolean) {
     updateAdminStatus(userId: $userId, status: $status) {
-      chatId
       id
-      isStaff
       isAdmin
     }
   }
@@ -71,9 +55,7 @@ const UPDATE_ADMIN_STATUS = gql`
 const UPDATE_STAFF_STATUS = gql`
   mutation Mutation($userId: String!, $status: Boolean) {
     updateStaffStatus(userId: $userId, status: $status) {
-      chatId
       id
-      isStaff
       isAdmin
     }
   }
@@ -128,11 +110,7 @@ function Users() {
             <Table className="!text-sm">
               <Tr>
                 <Th>Name</Th>
-                <Th>Username</Th>
                 <Th>Email</Th>
-                <Th>Year</Th>
-                <Th>Gender</Th>
-                <Th>Group</Th>
                 <Th>Phone</Th>
                 <Th>{null}</Th>
               </Tr>
@@ -140,16 +118,10 @@ function Users() {
                 return (
                   <Tr key={user.id}>
                     <Td>
-                      <TuitorBadge />
                       {user.isAdmin && <AdminBadge />}
-                      {user.isStaff && <StaffBadge />}
                       {user.name}
                     </Td>
-                    <Td>{user.username}</Td>
                     <Td>{user.email}</Td>
-                    <Td>{user.experience}</Td>
-                    <Td>{user.gender}</Td>
-                    <Td>{user.group}</Td>
                     <Td>{user.phone}</Td>
                     <Td>
                       <button
@@ -176,13 +148,6 @@ function Users() {
           style={{ width: 500, maxHeight: '75vh', overflow: 'auto' }}
           className="bg-white shadow-sm rounded-lg mt-2 p-2"
         >
-          <div>
-            <img
-              src={`./bot-images/i-${userDetails?.chatId}.jpg`}
-              className="h-28 w-28"
-            />
-          </div>
-
           <div className="mt-2 border-b pb-2">
             <p className="text-sm font-medium text-gray-600">Name</p>
             <p className="">{userDetails?.name}</p>
@@ -196,92 +161,6 @@ function Users() {
             <p className="">{userDetails?.email}</p>
           </div>
           <div className="grid grid-cols-2">
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">Gender</p>
-              <p className="">{userDetails?.gender}</p>
-            </div>
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">Group</p>
-              <p className="">{userDetails?.group}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">Experience</p>
-              <p className="">{userDetails?.experience}</p>
-            </div>
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">Citizenship</p>
-              <p className="">{userDetails?.citizenship}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">
-                Location Preference
-              </p>
-              <p className="">{userDetails?.locationPreference}</p>
-            </div>
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">
-                Job Type Preference
-              </p>
-              <p className="">{userDetails?.typePreference?.join(', ')}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">
-                Job Preference
-              </p>
-              <p className="">{userDetails?.categoryPreference?.join(', ')}</p>
-            </div>
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">HP</p>
-              <p className="">{userDetails?.hp}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">Qualification</p>
-              <p className="">{userDetails?.qualification}</p>
-            </div>
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">Experience</p>
-              <p className="">{userDetails?.experience}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2">
-            <div className="mt-2 pb-2 border-b">
-              <p className="text-sm font-medium text-gray-600">Staff</p>
-              <div className="mt-2">
-                {userDetails?.isStaff ? (
-                  <button
-                    onClick={() =>
-                      updateStaffStatus({
-                        status: false,
-                        userId: userDetails?.id,
-                      })
-                    }
-                    className="border bg-white border-1 px-2 py-1 font-medium"
-                  >
-                    Remove Staff Role
-                  </button>
-                ) : (
-                  <button
-                    onClick={() =>
-                      updateStaffStatus({
-                        status: true,
-                        userId: userDetails?.id,
-                      })
-                    }
-                    className="border bg-white border-1 px-2 py-1 font-medium"
-                  >
-                    Add Staff Role
-                  </button>
-                )}
-              </div>
-            </div>
             <div className="mt-2 pb-2 border-b">
               <p className="text-sm font-medium text-gray-600">Admin</p>
               <div className="mt-2">
