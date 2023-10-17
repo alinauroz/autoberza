@@ -1,12 +1,46 @@
 import Input from '@/components/Elements/Input';
 import React, { useState } from 'react';
 import csv from 'csvtojson';
+import { gql, useMutation } from 'urql';
+import fdtojson from '@/utils/fdtojson';
+import Button from '@/components/Elements/Button';
+import { toast } from 'react-hot-toast';
+import { IForm } from '.';
 
-function AddEditForm() {
+const CREATE_FORM = gql`
+  mutation CreateFieldForm($category: String!, $fields: JSON!) {
+    createFieldForm(category: $category, fields: $fields) {
+      category
+      fields
+      id
+    }
+  }
+`;
+
+export const UPDATE_FORM = gql`
+  mutation Mutation($id: String!, $category: String, $fields: JSON) {
+    updateFieldForm(id: $id, category: $category, fields: $fields) {
+      category
+      createdOn
+      fields
+      id
+    }
+  }
+`;
+
+function AddEditForm({
+  onDone,
+  prefill,
+}: {
+  onDone: () => void;
+  prefill?: IForm;
+}) {
   const [fields, setFields] = useState<unknown>([]);
+  const [{ fetching: creating }, createForm] = useMutation(CREATE_FORM);
+  const [{ fetching: updating }, updateForm] = useMutation(UPDATE_FORM);
 
   const parseFields = (data: unknown[]) => {
-    const fields = [];
+    const fields: unknown[] = [];
     data.forEach((csvRow) => {
       const row = JSON.parse(JSON.stringify(csvRow));
       switch (row['Type']) {
@@ -43,6 +77,7 @@ function AddEditForm() {
           console.log('Error', row);
         }
       }
+      setFields(fields);
     });
   };
 
@@ -56,20 +91,40 @@ function AddEditForm() {
           const text = event.target.result as string;
           csv()
             .fromString(text.trim())
-            .then((fields) => setFields(fields));
+            .then((fields) => parseFields(fields));
         }
       };
       reader.readAsText(file);
     }
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const fd = new FormData(e.target as HTMLFormElement);
+    const variables = fdtojson(fd);
+    variables.fields = fields;
+    if (prefill) {
+      variables.id = prefill.id;
+      updateForm(variables).then((d) => {
+        toast.success('Form created');
+        onDone();
+      });
+    } else {
+      createForm(variables).then((d) => {
+        toast.success('Form created');
+        onDone();
+      });
+    }
+  };
+
   return (
     <div className="w-full">
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input
           name="category"
           label="Category"
           placeholder="Category"
+          defaultValue={prefill?.category}
           required
         />
         <div className="inputs">
@@ -80,6 +135,10 @@ function AddEditForm() {
             type="file"
           />
         </div>
+        <Button
+          text={prefill ? 'Update' : 'Create'}
+          loading={creating || updating}
+        />
       </form>
     </div>
   );

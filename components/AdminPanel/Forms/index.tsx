@@ -58,6 +58,7 @@ function Forms() {
 
   const [showAdd, setShowAdd] = useState(false);
   const [formDetailsId, setFormDetailsId] = useState('');
+  const [editPrefill, setEditPrefill] = useState<IForm>();
 
   const userDetails = useMemo(() => {
     return data?.forms?.find((u: IForm) => u.id === formDetailsId);
@@ -104,7 +105,10 @@ function Forms() {
                       </button>
                       <button
                         className="ml-2 bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md"
-                        onClick={() => setFormDetailsId(form?.id || '')}
+                        onClick={() => {
+                          setShowAdd(true);
+                          setEditPrefill(form);
+                        }}
                       >
                         Update
                       </button>
@@ -135,13 +139,13 @@ function Forms() {
             Add Form
           </p>
         }
-        onClose={() => setFormDetailsId('')}
+        onClose={() => setShowAdd(false)}
       >
         <div
           style={{ width: 500, maxHeight: '75vh', overflow: 'auto' }}
           className="bg-white shadow-sm rounded-lg mt-4 p-2"
         >
-          <AddEditForm />
+          <AddEditForm onDone={() => setShowAdd(false)} prefill={editPrefill} />
         </div>
       </ModalComponent>
     </>
