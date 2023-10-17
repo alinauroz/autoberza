@@ -1,11 +1,13 @@
-import Logo from '@/components/Elements/Logo';
+'use client';
 import ButtonGroup from '@/components/Elements/ButtonGroup';
 import Dropdown from '@/public/assets/common/dropdown-icon.svg';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Facebook from '@/public/assets/common/facebok.svg';
 import Instagram from '@/public/assets/common/instagram.svg';
 import Twitter from '@/public/assets/common/twitter.svg';
+import LogoImg from '@/public/assets/common/logo.svg';
+import FooterDropdown from '@/public/assets/common/footerDropdown.svg';
 
 const footerMenus = [
   {
@@ -54,16 +56,19 @@ const footerMenus = [
 ];
 
 const Footer = () => {
+  const [isActive, setIsActive] = useState('');
+
+  const handleNavItems = (item: string) => {
+    item === isActive ? setIsActive('') : setIsActive(item);
+  };
+
   return (
     <div>
       <div className="footer">
         <div className="footer-logo-profile">
-          <Logo
-            style={{
-              width: '210px',
-              cursor: 'pointer',
-            }}
-          />
+          <div className="footer-logo">
+            <Image src={LogoImg} alt="" className="footer-logo-img" />
+          </div>
           <div className="social-media-profiles">
             <Image src={Facebook} alt="" />
             <Image src={Instagram} alt="" />
@@ -78,27 +83,39 @@ const Footer = () => {
                 <div className="list-items">
                   {footerMenu.items.map(([text, link], index) => {
                     return (
-                      <div key={index} className="list-contaier">
+                      <div
+                        key={index}
+                        className={`list-contaier ${
+                          isActive != footerMenu.title && 'list-container-media'
+                        }`}
+                      >
                         <div className="bullet"></div>
                         <a href={link}>{text}</a>
                       </div>
                     );
                   })}
                 </div>
+                <Image
+                  src={FooterDropdown}
+                  alt=""
+                  className="footer-dropdown-img"
+                  onClick={() => handleNavItems(footerMenu.title)}
+                />
               </div>
             );
           })}
         </div>
-
-        <ButtonGroup
-          text="Post an Ad"
-          icon={Dropdown}
-          style={{
-            fontSize: '22px',
-            padding: '10px 30px',
-            paddingRight: '45px',
-          }}
-        />
+        <div className="footer-btn">
+          <ButtonGroup
+            text="Post an Ad"
+            icon={Dropdown}
+            style={{
+              fontSize: '22px',
+              padding: '10px 30px',
+              paddingRight: '45px',
+            }}
+          />
+        </div>
       </div>
       <div className="footer-copyright">
         Copyright 2020-2023 © AssurIles.com All Rights Reserved

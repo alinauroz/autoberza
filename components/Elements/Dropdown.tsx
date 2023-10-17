@@ -17,6 +17,7 @@ interface Props {
   conatinerClass?: string;
   containerStyles?: React.CSSProperties;
   name: string;
+  img?: string;
 }
 
 const DropDownMenu = ({
@@ -26,6 +27,7 @@ const DropDownMenu = ({
   conatinerClass,
   containerStyles,
   name,
+  img,
 }: Props) => {
   const [isDDActive, setIsDDActive] = useState(false);
   const [searchStr, setSearchStr] = useState('');
@@ -61,7 +63,7 @@ const DropDownMenu = ({
           backgroundColor: isDDActive ? '#0001' : '',
         }}
       >
-        <Image src={downBtn} alt="" />
+        <Image src={img ? img : downBtn} alt="" style={containerStyles} />
       </div>
 
       {isDDActive && (

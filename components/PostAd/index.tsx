@@ -14,7 +14,7 @@ const PostAd = () => {
       <div className="navbar">
         <Nav
           style={{
-            padding: '20px 60px',
+            padding: '20px 35px',
           }}
         />
       </div>

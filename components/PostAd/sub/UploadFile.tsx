@@ -14,7 +14,7 @@ const UploadFile = () => {
           </div>
           <div className="post-ad-upload-files-wrapper-uploading">
             <div className="photo-adding-button">
-              <Image src={Photos} alt="" />
+              <Image src={Photos} alt="" className="photo-img" />
               <div className="adding-photos-with-limit">
                 <Button
                   text="+Add photos"

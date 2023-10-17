@@ -12,7 +12,9 @@ const LabelledInput = ({ labelText }: Props) => {
       <Input
         style={{
           border: '0.5px solid #5E6762',
-          height: '56px',
+          height: '40px',
+          backgroundColor: '#F4F4F4',
+          borderRadius: '5px',
         }}
       />
     </div>
