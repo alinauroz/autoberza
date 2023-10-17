@@ -16,7 +16,7 @@ export interface IForm {
   createdOn: string;
 }
 
-const GET_FORMS = gql`
+export const GET_FORMS = gql`
   query Forms {
     forms {
       id

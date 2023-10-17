@@ -49,7 +49,7 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                 if (el.type === 'checkbox') {
                   return (
                     <div key={elIndex} className="checkbox-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" name={el.name} />
                       <label>{el.label}</label>
                     </div>
                   );
@@ -63,6 +63,7 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                           margin: 0,
                         }}
                         addon={el.addon}
+                        name={el.name}
                       />
                     </div>
                   );
