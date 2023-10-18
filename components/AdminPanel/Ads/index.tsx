@@ -73,7 +73,7 @@ function Ads() {
             <Tr key={ad.id}>
               <Td>{ad.title}</Td>
               <Td>{ad.isApproved ? 'Approved' : 'Not Approved'}</Td>
-              <Td></Td>
+              <Td>{null}</Td>
               <Td>{moment(new Date(ad.createdOn)).format('DD.MMM.YYYY')}</Td>
               <Td>
                 <button className="bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md">
