@@ -1,11 +1,59 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import Photos from '@/public/assets/common/photos.svg';
 import TickGood from '@/public/assets/common/tick-good.svg';
 import Button from '@/components/Elements/Button';
 import UploadComponent from '@/components/Elements/UploadComponent';
 
 const UploadFile = () => {
+  const [links, setLinks] = useState<string[]>([]);
+
+  if (links.length > 0) {
+    return (
+      <div className="post-ad-upload-container">
+        <div className="post-ad-upload-files-wrapper">
+          <div className="post-ad-upload-files-wrapper-container my-4">
+            <div className="post-ad-upload-files-wrapper-heading">
+              Upload Photos
+            </div>
+            <div className="post-ad-upload-files-wrapper-uploading p-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {links.map((link, index) => (
+                  <div
+                    key={link}
+                    className="flex-wrap w-48 h-48 rounded-md"
+                    style={{
+                      background: `url(${link})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                  >
+                    <span
+                      className="float-right m-2 drop-shadow-md cursor-pointer"
+                      onClick={() => {
+                        setLinks(links.filter((l, i) => i !== index));
+                      }}
+                    >
+                      ✕
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="py-4 flex justify-center items-center">
+                <UploadComponent
+                  onUpload={(file: { url: string }) => {
+                    links.push(file.url);
+                    setLinks([...links]);
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="post-ad-upload-container">
       <div className="post-ad-upload-files-wrapper">
@@ -17,7 +65,13 @@ const UploadFile = () => {
             <div className="photo-adding-button">
               <Image src={Photos} alt="" className="photo-img" />
               <div className="adding-photos-with-limit">
-                <UploadComponent onUpload={() => ''} />
+                <UploadComponent
+                  onUpload={(file: { url: string }) => {
+                    links.push(file.url);
+                    setLinks([...links]);
+                  }}
+                />
+                <input type="hidden" name="photos" value={links.join('|')} />
                 <p className="limit-text">(Max limit 5 MB per image)</p>
               </div>
             </div>
