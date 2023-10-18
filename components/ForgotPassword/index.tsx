@@ -11,21 +11,21 @@ import Button from '../Elements/Button';
 import '@/styles/verification.css';
 
 const SEND_VERIFICATION_EMAIL = gql`
-  mutation SEND_VERIFICATION($email: String!) {
-    sendVerificationEmail(email: $email) {
+  mutation Mutation($email: String!) {
+    sendResetPasswordLink(email: $email) {
       message
     }
   }
 `;
 
-function Verification({}) {
+function ForgotPassword({}) {
   const searchParams = useSearchParams();
   const [{ fetching }, send] = useMutation(SEND_VERIFICATION_EMAIL);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email } = fdtojson(new FormData(e.target as HTMLFormElement));
-    send({ email }).then(() => toast.success('Verification email sent'));
+    send({ email }).then(() => toast.success('Password reset email sent'));
   };
 
   return (
@@ -35,11 +35,9 @@ function Verification({}) {
           <Header />
         </div>
         <div className="verification">
-          <div className="heading">Email Verification!</div>
+          <div className="heading">Forgot Password</div>
           <p className="my-2">
-            A verification email has been sent to your email address. Check your
-            inbox. If you have not received any email, try resending
-            verification email.
+            Enter your email to receive a reset password link.
           </p>
           <div>
             <Input
@@ -50,7 +48,7 @@ function Verification({}) {
             />
           </div>
           <div className="verification-btn">
-            <Button text="Send Again" type="submit" loading={fetching} />
+            <Button text="Send" type="submit" loading={fetching} />
           </div>
         </div>
       </div>
@@ -58,4 +56,4 @@ function Verification({}) {
   );
 }
 
-export default Verification;
+export default ForgotPassword;
