@@ -139,11 +139,12 @@
 .contact {
   width: 100%;
   margin: 0 auto;
-  background-color: #f4f4f4;
+  background-color: #fff;
   font-size: 25px;
-  padding-top: 30px;
+  padding-top: 40px;
   padding-bottom: 30px;
   position: relative;
+  margin-top: 24px;
 }
 
 .contact-info {
