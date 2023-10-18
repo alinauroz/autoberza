@@ -18,6 +18,7 @@ const UploadFile = () => {
             </div>
             <div className="post-ad-upload-files-wrapper-uploading p-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <input type="hidden" name="photos" value={links.join('|')} />
                 {links.map((link, index) => (
                   <div
                     key={link}
