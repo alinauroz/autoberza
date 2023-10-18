@@ -5,12 +5,14 @@ interface Props {
   labelText: string;
   isDisabled?: boolean;
   labelStyles?: React.CSSProperties;
+  value?: string;
 }
 
 const LabelledInput = ({
   labelText,
   isDisabled = false,
   labelStyles,
+  value,
 }: Props) => {
   return (
     <div className="label-input">
@@ -26,6 +28,7 @@ const LabelledInput = ({
           fontSize: '18px',
           paddingTop: '25px',
         }}
+        value={value}
         disabled={isDisabled}
       />
     </div>

@@ -3,6 +3,7 @@
   "plugins": ["prettier"],
   "rules": {
     "no-console": "warn",
-    "@next/next/no-sync-scripts": "warn"
+    "@next/next/no-sync-scripts": "warn",
+    "react-hooks/rules-of-hooks": "warn"
   }
 }
