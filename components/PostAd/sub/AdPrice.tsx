@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
-import EuroImg from '@/public/assets/common/Euro.svg';
 import Input from '@/components/Elements/Input';
 
 const AdPrice = () => {
@@ -21,7 +20,6 @@ const AdPrice = () => {
             <Input
               placeholder="Price"
               style={{
-                // height: '50px',
                 borderRadius: '15px',
                 border: 'none',
                 boxShadow: '0px 0 4px 2px #00000017',
