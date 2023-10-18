@@ -49,6 +49,7 @@ function AddEditForm({
             type: 'checkbox',
             label: row['Name'],
             section: row['Section'],
+            name: row['Id'],
           };
           fields.push(field);
           break;
@@ -59,6 +60,7 @@ function AddEditForm({
             label: row['Name'],
             section: row['Section'],
             options: row['Options'].split(';'),
+            name: row['Id'],
           };
           fields.push(field);
           break;
@@ -69,14 +71,17 @@ function AddEditForm({
             label: row['Name'],
             section: row['Section'],
             placeholder: row['Placeholder'],
+            addon: row['Addon'],
+            name: row['Id'],
           };
           fields.push(field);
           break;
         }
         default: {
-          console.log('Error', row);
+          //console.log('Error', row);
         }
       }
+      console.log(fields);
       setFields(fields);
     });
   };

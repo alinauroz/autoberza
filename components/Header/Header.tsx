@@ -5,9 +5,13 @@ import MenuBar from '@/public/assets/common/menu-burger.svg';
 import Dropdown from '@/public/assets/common/dropdown-icon.svg';
 import Image from 'next/image';
 
-const Header = () => {
+interface Props {
+  style?: React.CSSProperties;
+}
+
+const Header = ({ style }: Props) => {
   return (
-    <div className="header">
+    <div className="header" style={style}>
       <div className="logo-panel">
         <Image src={MenuBar} alt="" className="menu" />
         <Logo />
