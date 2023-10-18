@@ -37,14 +37,20 @@ const Dynamic: React.FC<Props> = ({ data }) => {
     <div className="dynamic-part-wrapper">
       {sectionTitles.map((sectionTitle, i) => {
         const currentSectionElements = processedData[sectionTitle];
-
+        const isBasicSection = sectionTitle.toLowerCase() === 'basic';
         return (
           <div className="section-conatiner" key={i}>
             <div className="post-ad-section-heading">
               <span>{sectionTitle}</span>
             </div>
 
-            <div className="section-body">
+            <div
+              className="section-body"
+              style={{
+                backgroundColor: isBasicSection ? '#fff0' : '#fff',
+                padding: isBasicSection ? '0 5%' : '24px 5%',
+              }}
+            >
               {currentSectionElements.map((el, elIndex) => {
                 if (el.type === 'checkbox') {
                   return (
@@ -61,6 +67,8 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                         style={{
                           height: '65px',
                           margin: 0,
+                          boxShadow: '0px 1px 4px 2px #00000017',
+                          border: 'none',
                         }}
                         addon={el.addon}
                         name={el.name}

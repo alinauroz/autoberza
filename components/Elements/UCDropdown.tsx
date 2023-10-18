@@ -52,6 +52,7 @@ const UCDropDownMenu = ({
         style={{
           color: typeof selectedLV?.label === 'undefined' ? '#444' : '#000',
         }}
+        onClick={handlerDropdown}
       >
         {selectedLV?.label || name}
       </div>
