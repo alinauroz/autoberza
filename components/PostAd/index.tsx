@@ -10,7 +10,6 @@ import Contact from './sub/Contact';
 import Footer from './sub/Footer';
 import Dynamic from './sub/Dynamic';
 
-import { DynamicSectionsResponse } from '@/types';
 import AdLocation from './sub/AdLocation';
 import { useQuery } from 'urql';
 import { GET_FORMS, IForm } from '../AdminPanel/Forms';
@@ -18,33 +17,7 @@ import Loading from '../Elements/Loading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
 import ChooseCateogry from './sub/ChooseCategory';
-/*
-const data: DynamicSectionsResponse[] = [
-  { type: 'checkbox', label: 'Airbags', section: 'Security' },
-  { type: 'text', label: 'Price', section: 'Security' },
-  { type: 'checkbox', label: 'Learned', section: 'Basic' },
-  {
-    type: 'select',
-    label: 'Year',
-    section: 'Basic',
-    options: ['2001', '2002', '2003', '2204', '2005'],
-  },
-  {
-    type: 'text',
-    label: 'Power Info',
-    section: 'Additional',
-    addon: 'KM',
-  },
-  {
-    type: 'select',
-    label: 'Type',
-    section: 'Additional',
-    options: ['Basic', 'Gold', 'Premium'],
-  },
-  { type: 'checkbox', label: 'Wheels', section: 'Security' },
-  { type: 'text', label: 'Other Info', section: 'Additional' },
-];
-*/
+
 const PostAd = () => {
   const router = useRouter();
   const searchParams = useSearchParams();

@@ -32,6 +32,7 @@ model Ad {
   isApproved          Boolean   @default(false)
   subscriptionType    String?
   subscriptionDate    DateTime?
+  title               String
 
   price               Int
   discountedPrice     Int?

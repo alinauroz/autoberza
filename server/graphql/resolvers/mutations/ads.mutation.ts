@@ -14,6 +14,7 @@ export const createAd = isLoggedIn(
       location,
       details,
       photos,
+      title,
     }: Prisma.Ad,
     { user }: IGqlContext
   ) => {
@@ -31,6 +32,7 @@ export const createAd = isLoggedIn(
         price,
         discountedPrice,
         photos,
+        title,
       },
     });
 
@@ -50,6 +52,7 @@ export const updateAd = isLoggedIn(
       location,
       details,
       photos,
+      title,
     }: Prisma.Ad
   ) => {
     if (details === null) {
@@ -66,6 +69,7 @@ export const updateAd = isLoggedIn(
         price,
         discountedPrice,
         photos,
+        title,
       },
     });
 
