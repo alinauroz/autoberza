@@ -17,6 +17,7 @@ import Loading from '../Elements/Loading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
 import ChooseCateogry from './sub/ChooseCategory';
+import { toast } from 'react-hot-toast';
 
 const CREATE_AD = gql`
   mutation CreateAd(
@@ -84,6 +85,10 @@ const PostAd = () => {
       }
     }
 
+    if (!json.country) {
+      toast.error('Country is required');
+    }
+
     createAd({
       details: json,
 
@@ -95,8 +100,14 @@ const PostAd = () => {
       location: json.location,
       photos: json.photos.split('|'),
       description: json.description,
+    }).then(({ data, error }) => {
+      if (error?.graphQLErrors[0].message) {
+        toast.error(error?.graphQLErrors[0].message);
+      } else {
+        toast.success('Ad posted');
+        router.push('/post-ad');
+      }
     });
-    console.log('JSON', json);
   };
 
   if (fetching) {
@@ -139,7 +150,7 @@ const PostAd = () => {
         <AdLocation />
         <AdPrice />
         <AdType />
-        <Contact />
+        <Contact creating={creating} />
       </form>
       <Footer />
     </div>

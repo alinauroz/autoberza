@@ -21,6 +21,7 @@ const AdPrice = () => {
                 border: 'none',
                 boxShadow: '0px 0 4px 2px #00000017',
               }}
+              required
               name="price"
             />
           </div>

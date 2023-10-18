@@ -56,6 +56,7 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                   <Input
                     placeholder="Title"
                     name="title"
+                    required
                     style={{
                       height: '65px',
                       margin: 0,

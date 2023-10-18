@@ -43,6 +43,7 @@ const AdLocation = () => {
         <Input
           placeholder="City"
           name="city"
+          required
           style={{
             height: '65px',
             margin: 0,
@@ -53,6 +54,7 @@ const AdLocation = () => {
         <Input
           placeholder="Location"
           name="location"
+          required
           style={{
             height: '65px',
             margin: 0,

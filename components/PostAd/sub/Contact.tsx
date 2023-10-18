@@ -3,7 +3,7 @@ import LabelledInput from './LabelledInput';
 import Button from '@/components/Elements/Button';
 import { get } from '@/utils/storage';
 
-const Contact = () => {
+const Contact = ({ creating }: { creating: boolean }) => {
   const user = useMemo(() => {
     return get('user');
   }, []);
@@ -40,7 +40,8 @@ const Contact = () => {
         </div>
         <div className="contact-button">
           <Button
-            text="send an add"
+            text="Submit"
+            loading={creating}
             style={{
               textTransform: 'uppercase',
               fontWeight: '700',
