@@ -24,11 +24,13 @@ const projectTypedefs = `
       location: String
       photos: [String]
       details: JSON
+      createdOn: Date
     }
 
     type Query {
       forms: [Form]
       users: [User]
+      ads: [Ad]
     }
     type Mutation {
       createFieldForm (
@@ -64,6 +66,7 @@ const projectTypedefs = `
         location: String
         photos: [String]
         details: JSON
+        isApproved: Boolean
       ): Ad
     }
 `;

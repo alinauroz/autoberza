@@ -53,6 +53,7 @@ export const updateAd = isLoggedIn(
       details,
       photos,
       title,
+      isApproved,
     }: Prisma.Ad
   ) => {
     if (details === null) {
@@ -70,6 +71,7 @@ export const updateAd = isLoggedIn(
         discountedPrice,
         photos,
         title,
+        isApproved,
       },
     });
 
