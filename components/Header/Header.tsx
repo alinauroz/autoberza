@@ -8,6 +8,7 @@ import Dropdown from '@/public/assets/common/dropdown-icon.svg';
 import Image from 'next/image';
 import { isLoggedIn } from '@/utils/auth';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
 
 interface Props {
   style?: React.CSSProperties;
@@ -22,7 +23,7 @@ const Header = ({ style }: Props) => {
         <Image src={MenuBar} alt="" className="menu" />
         <Logo />
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-4">
         <span className="text-white">
           <p className="p-2">
             {loggedIn ? (
@@ -36,9 +37,14 @@ const Header = ({ style }: Props) => {
                 Log Out
               </span>
             ) : (
-              <>
-                <span>Log iN </span> <span>Sign Up </span>
-              </>
+              <div className="flex gap-4">
+                <span>
+                  <Link href="/login">Log In</Link>
+                </span>
+                <span>
+                  <Link href="/signup">Sign Up</Link>
+                </span>
+              </div>
             )}
           </p>
         </span>
