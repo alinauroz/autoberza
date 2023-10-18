@@ -1,3 +1,6 @@
+import { isLoggedIn } from '@/utils/auth';
+import Cookies from 'js-cookie';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -9,6 +12,15 @@ function Layout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const loggedIn = isLoggedIn();
+
+  if (!loggedIn) {
+    return (
+      <p className="m-12">
+        <Link href="/login">Click here to login To access Admin Panel</Link>
+      </p>
+    );
+  }
 
   return (
     <>
@@ -129,7 +141,15 @@ function Layout({
                     d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                   />
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Log Out</span>
+                <span
+                  className="flex-1 ml-3 whitespace-nowrap"
+                  onClick={() => {
+                    Cookies.remove('token');
+                    window.location.reload();
+                  }}
+                >
+                  Log Out
+                </span>
               </a>
             </li>
           </ul>
