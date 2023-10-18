@@ -12,12 +12,21 @@ import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
+import { set } from '@/utils/storage';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       error
       token
+      user {
+        email
+        name
+        id
+        phone
+        isAdmin
+        phone
+      }
     }
   }
 `;
@@ -56,6 +65,7 @@ const Login = () => {
             toast.error(data.login.error);
           } else {
             Cookies.set('token', data.login.token);
+            set('user', data.login.user);
             router.push('/post-ad');
           }
         });
