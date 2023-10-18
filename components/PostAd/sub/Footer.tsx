@@ -8,6 +8,7 @@ import Instagram from '@/public/assets/common/instagram.svg';
 import Twitter from '@/public/assets/common/twitter.svg';
 import LogoImg from '@/public/assets/common/logo.svg';
 import FooterDropdown from '@/public/assets/common/footerDropdown.svg';
+import Link from 'next/link';
 
 const footerMenus = [
   {
@@ -106,15 +107,17 @@ const Footer = () => {
           })}
         </div>
         <div className="footer-btn">
-          <ButtonGroup
-            text="Post an Ad"
-            icon={Dropdown}
-            style={{
-              fontSize: '22px',
-              padding: '10px 30px',
-              paddingRight: '45px',
-            }}
-          />
+          <Link href="/post-ad">
+            <ButtonGroup
+              text="Post an Ad"
+              icon={Dropdown}
+              style={{
+                fontSize: '22px',
+                padding: '10px 30px',
+                paddingRight: '45px',
+              }}
+            />
+          </Link>
         </div>
       </div>
       <div className="footer-copyright">
