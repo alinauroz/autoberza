@@ -17,8 +17,8 @@ const projectTypedefs = `
       submittedByUser: User
       isApproved: Boolean
       title: String
-      price: String
-      discountedPrice: String
+      price: Int
+      discountedPrice: Int
       country: String
       city: String
       location: String
@@ -46,8 +46,8 @@ const projectTypedefs = `
 
       createAd(
         title: String
-        price: String
-        discountedPrice: String
+        price: Int
+        discountedPrice: Int
         country: String
         city: String
         location: String
@@ -57,8 +57,8 @@ const projectTypedefs = `
       updateAd(
         id: String!
         title: String
-        price: String
-        discountedPrice: String
+        price: Int
+        discountedPrice: Int
         country: String
         city: String
         location: String

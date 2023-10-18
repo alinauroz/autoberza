@@ -21,16 +21,18 @@ const AdPrice = () => {
                 border: 'none',
                 boxShadow: '0px 0 4px 2px #00000017',
               }}
+              name="price"
             />
           </div>
           <div className="price-input">
             <Input
-              placeholder="Discount Price"
+              placeholder="Discounted Price"
               style={{
                 borderRadius: '15px',
                 border: 'none',
                 boxShadow: '0px 0 4px 2px #00000017',
               }}
+              name="discountedPrice"
             />
           </div>
           {false && (
@@ -64,7 +66,10 @@ const AdPrice = () => {
           <p className="price-description-detail-heading">
             Ad Description <span className="steric">*</span>
           </p>
-          <textarea className="price-description-detail-text" />
+          <textarea
+            name="description"
+            className="price-description-detail-text"
+          />
         </div>
       </div>
     </div>

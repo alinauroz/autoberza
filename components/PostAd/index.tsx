@@ -21,8 +21,8 @@ import ChooseCateogry from './sub/ChooseCategory';
 const CREATE_AD = gql`
   mutation CreateAd(
     $title: String
-    $price: String
-    $discountedPrice: String
+    $price: Int
+    $discountedPrice: Int
     $country: String
     $city: String
     $location: String
@@ -78,8 +78,14 @@ const PostAd = () => {
     const fd = new FormData(e.target as HTMLFormElement);
     const json = fdtojson(fd);
 
+    for (let x in json) {
+      if (json[x] === 'on') {
+        json[x] = true;
+      }
+    }
+
     createAd({
-      detail: json,
+      details: json,
 
       title: json.title,
       price: parseInt(json.price) * 100,
@@ -88,6 +94,7 @@ const PostAd = () => {
       city: json.city,
       location: json.location,
       photos: json.photos.split('|'),
+      description: json.description,
     });
     console.log('JSON', json);
   };
