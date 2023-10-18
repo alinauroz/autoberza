@@ -9,6 +9,7 @@ import Header from '../Header/Header';
 import Input from '../Elements/Input';
 import Button from '../Elements/Button';
 import '@/styles/verification.css';
+import { useEffect } from 'react';
 
 const SEND_VERIFICATION_EMAIL = gql`
   mutation SEND_VERIFICATION($email: String!) {
@@ -27,6 +28,12 @@ function Verification({}) {
     const { email } = fdtojson(new FormData(e.target as HTMLFormElement));
     send({ email }).then(() => toast.success('Verification email sent'));
   };
+
+  useEffect(() => {
+    if (searchParams.get('email')) {
+      send({ email: searchParams.get('email') });
+    }
+  }, [searchParams]);
 
   return (
     <form onSubmit={handleSubmit}>

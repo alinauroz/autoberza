@@ -3,7 +3,7 @@ import LabelledInput from './LabelledInput';
 import Button from '@/components/Elements/Button';
 import { get } from '@/utils/storage';
 
-const Contact = () => {
+const Contact = ({ creating }: { creating: boolean }) => {
   const user = useMemo(() => {
     return get('user');
   }, []);
@@ -20,17 +20,28 @@ const Contact = () => {
       </div>
       <div className="contact">
         <div className="contact-info">
-          <LabelledInput isDisabled value={user?.name} labelText="Name" />
-          <LabelledInput
-            isDisabled
-            value={user?.phone}
-            labelText="Phone Number"
-          />
-          <LabelledInput isDisabled value={user?.email} labelText="Email" />
+          {[
+            { label: 'Name', value: user?.name || '' },
+            { label: 'Phone Number', value: user?.phone || '' },
+            { label: 'Email', value: user?.email || '' },
+          ].map(({ label, value }, i) => {
+            return (
+              <LabelledInput
+                key={i}
+                isDisabled
+                value={value}
+                labelText={label}
+                labelStyles={{
+                  backgroundColor: '#fff',
+                }}
+              />
+            );
+          })}
         </div>
         <div className="contact-button">
           <Button
-            text="send an add"
+            text="Submit"
+            loading={creating}
             style={{
               textTransform: 'uppercase',
               fontWeight: '700',

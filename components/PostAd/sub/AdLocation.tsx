@@ -1,5 +1,6 @@
 'use client';
 import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
+import Input from '@/components/Elements/Input';
 import React from 'react';
 
 const AdLocation = () => {
@@ -38,17 +39,28 @@ const AdLocation = () => {
           selectedLV={country}
           setSelectedLV={setCountry}
         />
-        <DropDownMenu
-          name="Grad"
-          options={tempGradsLV}
-          selectedLV={grad}
-          setSelectedLV={setGrad}
+        <input type="hidden" value={country?.value} name="country" />
+        <Input
+          placeholder="City"
+          name="city"
+          required
+          style={{
+            height: '65px',
+            margin: 0,
+            boxShadow: '0px 1px 4px 2px #00000017',
+            border: 'none',
+          }}
         />
-        <DropDownMenu
-          name="Location"
-          options={tempLocationsLV}
-          selectedLV={location}
-          setSelectedLV={setLocation}
+        <Input
+          placeholder="Location"
+          name="location"
+          required
+          style={{
+            height: '65px',
+            margin: 0,
+            boxShadow: '0px 1px 4px 2px #00000017',
+            border: 'none',
+          }}
         />
       </div>
     </div>

@@ -51,7 +51,7 @@ const SignUp = () => {
         toast.error('Unknown error');
       } else {
         toast.success('Registration successful');
-        router.push('/email-verification');
+        router.push('/email-verification?email=' + json.email);
       }
     });
   };

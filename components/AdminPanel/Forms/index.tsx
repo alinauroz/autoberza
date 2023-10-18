@@ -106,11 +106,13 @@ function Forms() {
                       {moment(new Date(form.createdOn)).format('DD.MMM.YYYY')}
                     </Td>
                     <Td>
-                      <button
-                        className="bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md"
-                        onClick={() => setFormDetailsId(form?.id || '')}
-                      >
-                        View
+                      <button className="bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md">
+                        <a
+                          href={`/post-ad?category=${form.category}`}
+                          target="_blank"
+                        >
+                          View
+                        </a>
                       </button>
                       <button
                         className="ml-2 bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md"

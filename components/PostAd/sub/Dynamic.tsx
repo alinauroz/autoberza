@@ -45,12 +45,27 @@ const Dynamic: React.FC<Props> = ({ data }) => {
             </div>
 
             <div
-              className="section-body"
+              className="section-body grid-cols-1 md:grid-cols-4"
               style={{
                 backgroundColor: isBasicSection ? '#fff0' : '#fff',
                 padding: isBasicSection ? '0 5%' : '24px 5%',
               }}
             >
+              {isBasicSection && (
+                <div className="md:col-span-4">
+                  <Input
+                    placeholder="Title"
+                    name="title"
+                    required
+                    style={{
+                      height: '65px',
+                      margin: 0,
+                      boxShadow: '0px 1px 4px 2px #00000017',
+                      border: 'none',
+                    }}
+                  />
+                </div>
+              )}
               {currentSectionElements.map((el, elIndex) => {
                 if (el.type === 'checkbox') {
                   return (
