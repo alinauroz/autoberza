@@ -9,6 +9,7 @@ import { gql, useMutation } from 'urql';
 import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
 import { toast } from 'react-hot-toast';
+import { get, set } from '@/utils/storage';
 
 const PHONE_OTP_LOGIN = gql`
   mutation Mutation($otp: String, $phoneNo: String) {
@@ -19,6 +20,9 @@ const PHONE_OTP_LOGIN = gql`
         email
         name
         id
+        phone
+        isAdmin
+        phone
       }
     }
   }
@@ -40,6 +44,7 @@ const Index = () => {
       } else if (data.error) {
         toast.error(data.error);
       } else {
+        set('user', data.phoneOtpLogin.user);
         router.push('/post-ad');
       }
     });
