@@ -1,6 +1,5 @@
 import React from 'react';
 import LabelledInput from './LabelledInput';
-import Input from '@/components/Elements/Input';
 import Button from '@/components/Elements/Button';
 
 const Contact = () => {

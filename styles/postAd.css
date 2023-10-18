@@ -611,8 +611,7 @@ Extra extra large 	  xxl 	        ≥1400px
 }
 
 .section-conatiner {
-  width: 90%;
-  margin: 30px auto;
+  padding: 30px 5%;
 }
 
 .section-body {

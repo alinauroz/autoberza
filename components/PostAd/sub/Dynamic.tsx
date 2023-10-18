@@ -39,7 +39,14 @@ const Dynamic: React.FC<Props> = ({ data }) => {
         const currentSectionElements = processedData[sectionTitle];
 
         return (
-          <div className="section-conatiner" key={i}>
+          <div
+            className="section-conatiner"
+            key={i}
+            style={{
+              backgroundColor:
+                sectionTitle.toLowerCase() === 'basic' ? '#fff0' : '#fff',
+            }}
+          >
             <div className="post-ad-section-heading">
               <span>{sectionTitle}</span>
             </div>
@@ -61,6 +68,8 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                         style={{
                           height: '65px',
                           margin: 0,
+                          boxShadow: '0px 1px 4px 2px #00000017',
+                          border: 'none',
                         }}
                         addon={el.addon}
                         name={el.name}
