@@ -152,6 +152,7 @@ export const sendPhoneOtp = async (
     throw new Error(PHONE_DOES_NOT_EXIST);
   }
   const otp = getRandomNumber();
+  console.log(otp);
   await prisma.user.update({
     where: { phone: phoneNo },
     data: {
