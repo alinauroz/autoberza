@@ -20,13 +20,23 @@ const Contact = () => {
       </div>
       <div className="contact">
         <div className="contact-info">
-          <LabelledInput isDisabled value={user?.name} labelText="Name" />
-          <LabelledInput
-            isDisabled
-            value={user?.phone}
-            labelText="Phone Number"
-          />
-          <LabelledInput isDisabled value={user?.email} labelText="Email" />
+          {[
+            { label: 'Name', value: user?.name || '' },
+            { label: 'Phone Number', value: user?.phone || '' },
+            { label: 'Email', value: user?.email || '' },
+          ].map(({ label, value }, i) => {
+            return (
+              <LabelledInput
+                key={i}
+                isDisabled
+                value={value}
+                labelText={label}
+                labelStyles={{
+                  backgroundColor: '#fff',
+                }}
+              />
+            );
+          })}
         </div>
         <div className="contact-button">
           <Button
