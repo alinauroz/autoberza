@@ -4,9 +4,10 @@ import React from 'react';
 interface Props {
   labelText: string;
   isDisabled?: boolean;
+  value?: string;
 }
 
-const LabelledInput = ({ labelText, isDisabled = false }: Props) => {
+const LabelledInput = ({ labelText, value, isDisabled = false }: Props) => {
   return (
     <div className="label-input">
       <div className="label-text">{labelText}</div>
@@ -19,6 +20,7 @@ const LabelledInput = ({ labelText, isDisabled = false }: Props) => {
           fontSize: '18px',
           paddingTop: '25px',
         }}
+        value={value}
         disabled={isDisabled}
       />
     </div>
