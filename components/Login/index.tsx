@@ -13,6 +13,8 @@ import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { set } from '@/utils/storage';
+import Footer from '../PostAd/sub/Footer';
+import '../../styles/postAd.css';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -130,6 +132,7 @@ const Login = () => {
             </Link>
           </p>
         </div>
+        <Footer />
       </div>
     </form>
   );

@@ -9,6 +9,8 @@ import { gql, useMutation } from 'urql';
 import fdtojson from '@/utils/fdtojson';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import Footer from '../PostAd/sub/Footer';
+import '../../styles/postAd.css';
 
 const REGISTER = gql`
   mutation RegisterUser(
@@ -86,6 +88,7 @@ const SignUp = () => {
             Already have an account? <span className="login-btn">Login</span>
           </p>
         </div>
+        <Footer />
       </div>
     </form>
   );
