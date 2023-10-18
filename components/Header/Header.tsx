@@ -20,12 +20,12 @@ const Header = ({ style }: Props) => {
   return (
     <div className="header" style={style}>
       <div className="logo-panel">
-        <Image src={MenuBar} alt="" className="menu" />
+        {false && <Image src={MenuBar} alt="" className="menu" />}
         <Logo />
       </div>
       <div className="flex gap-4">
-        <div className="text-white">
-          <div className="p-2">
+        <div className="text-sm md:text-normal text-white">
+          <div className="p-1.5 md:p-2">
             {loggedIn ? (
               <span
                 className="cursor-pointer"
@@ -41,7 +41,7 @@ const Header = ({ style }: Props) => {
                 <span>
                   <Link href="/login">Log In</Link>
                 </span>
-                <span>
+                <span className="hidden md:flex">
                   <Link href="/signup">Sign Up</Link>
                 </span>
               </div>
