@@ -13,6 +13,7 @@ interface Props {
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   addon?: string;
+  disabled?: boolean;
 }
 
 const Input = ({
@@ -27,10 +28,11 @@ const Input = ({
   value,
   defaultValue,
   required,
+  disabled = false,
 }: Props) => {
   return (
     <div className="inputs">
-      {label && <label className="label">{label}</label>}
+      {label && <label className="inputs__label">{label}</label>}
       <input
         className="input-field"
         type={type}
@@ -42,6 +44,7 @@ const Input = ({
         value={value}
         defaultValue={defaultValue}
         required={required}
+        disabled={disabled}
       />
       {addon && <div className="addon">{addon}</div>}
     </div>

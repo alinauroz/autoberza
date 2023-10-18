@@ -3,7 +3,7 @@ import { DynamicSectionsResponse } from '@/types';
 import React from 'react';
 import '@/styles/postAd.css';
 import Input from '@/components/Elements/Input';
-import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
+import UCDropdown from '@/components/Elements/UCDropdown';
 
 interface Props {
   data: DynamicSectionsResponse[];
@@ -14,8 +14,6 @@ type ProcessedData = { [x: string]: DynamicSectionsResponse[] };
 const Dynamic: React.FC<Props> = ({ data }) => {
   const [processedData, setProcessedData] = React.useState<ProcessedData>();
 
-  const [tempLV, setTempLV] = React.useState<LV>();
-
   React.useEffect(() => {
     const allSections = Array.from(new Set(data.map((e) => e.section)));
     let temp: ProcessedData = {};
@@ -23,6 +21,8 @@ const Dynamic: React.FC<Props> = ({ data }) => {
     allSections.forEach((sectionTitle) => {
       temp[sectionTitle] = data.filter((d) => d.section === sectionTitle);
     });
+
+    console.log('{{temp}}', temp);
 
     setProcessedData({ ...temp });
   }, [data]);
@@ -73,12 +73,10 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                     label: e,
                   }));
                   return (
-                    <DropDownMenu
+                    <UCDropdown
                       key={elIndex}
                       name={el.label}
                       options={options}
-                      selectedLV={tempLV}
-                      setSelectedLV={setTempLV}
                     />
                   );
                 }

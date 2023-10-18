@@ -13,12 +13,12 @@ const Contact = () => {
       </div>
       <div className="contact">
         <div className="contact-info">
-          <LabelledInput labelText="Name" />
-          <LabelledInput labelText="Phone Number" />
-          <LabelledInput labelText="Email" />
-          <LabelledInput labelText="Location" />
-          <LabelledInput labelText="Grad" />
-          <LabelledInput labelText="Country" />
+          <LabelledInput isDisabled labelText="Name" />
+          <LabelledInput isDisabled labelText="Phone Number" />
+          <LabelledInput isDisabled labelText="Email" />
+          <LabelledInput isDisabled labelText="Location" />
+          <LabelledInput isDisabled labelText="Grad" />
+          <LabelledInput isDisabled labelText="Country" />
         </div>
         <div className="contact-button">
           <Button
