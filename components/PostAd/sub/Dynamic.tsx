@@ -37,21 +37,20 @@ const Dynamic: React.FC<Props> = ({ data }) => {
     <div className="dynamic-part-wrapper">
       {sectionTitles.map((sectionTitle, i) => {
         const currentSectionElements = processedData[sectionTitle];
-
+        const isBasicSection = sectionTitle.toLowerCase() === 'basic';
         return (
-          <div
-            className="section-conatiner"
-            key={i}
-            style={{
-              backgroundColor:
-                sectionTitle.toLowerCase() === 'basic' ? '#fff0' : '#fff',
-            }}
-          >
+          <div className="section-conatiner" key={i}>
             <div className="post-ad-section-heading">
               <span>{sectionTitle}</span>
             </div>
 
-            <div className="section-body">
+            <div
+              className="section-body"
+              style={{
+                backgroundColor: isBasicSection ? '#fff0' : '#fff',
+                padding: isBasicSection ? '0 5%' : '24px 5%',
+              }}
+            >
               {currentSectionElements.map((el, elIndex) => {
                 if (el.type === 'checkbox') {
                   return (
