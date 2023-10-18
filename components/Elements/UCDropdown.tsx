@@ -16,6 +16,7 @@ interface Props {
   containerStyles?: React.CSSProperties;
   name: string;
   img?: string;
+  id?: string;
 }
 
 const UCDropDownMenu = ({
@@ -24,6 +25,7 @@ const UCDropDownMenu = ({
   containerStyles,
   name,
   img,
+  id,
 }: Props) => {
   const [isDDActive, setIsDDActive] = useState(false);
   const [searchStr, setSearchStr] = useState('');
@@ -53,6 +55,7 @@ const UCDropDownMenu = ({
       >
         {selectedLV?.label || name}
       </div>
+      <input type="hidden" name={id} value={selectedLV?.value} />
       <div
         onClick={handlerDropdown}
         className="dd-btn-container"

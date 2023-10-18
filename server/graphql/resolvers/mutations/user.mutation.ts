@@ -152,6 +152,7 @@ export const sendPhoneOtp = async (
     throw new Error(PHONE_DOES_NOT_EXIST);
   }
   const otp = getRandomNumber();
+  console.log(otp);
   await prisma.user.update({
     where: { phone: phoneNo },
     data: {
@@ -159,6 +160,17 @@ export const sendPhoneOtp = async (
       phoneOtpDoC: new Date(),
     },
   });
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWWILIO_ACCOUNT_TOKEN;
+  const client = require('twilio')(accountSid, authToken);
+  client.messages.create({
+    body: `Your one time password is ${otp}`,
+    to: '+12345678901',
+    //from: '+12345678901',
+  });
+  return {
+    status: SUCCESS,
+  };
 };
 
 type PhoneLoginArgs = { phoneNo: string; otp: string };
@@ -173,7 +185,11 @@ export const phoneOtpLogin = async (
     },
   });
   if (user) {
-    console.log(user);
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
+    return {
+      user,
+      token,
+    };
   } else {
     throw new Error(INCORRECT_OTP);
   }

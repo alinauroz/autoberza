@@ -22,8 +22,21 @@ const LOGIN = gql`
   }
 `;
 
+const PHONE_LOGIN = gql`
+  mutation Mutation($phoneNo: String) {
+    sendPhoneOtp(phoneNo: $phoneNo) {
+      message
+      status
+    }
+  }
+`;
+
 const Login = () => {
-  const [{ fetching, error, data }, login] = useMutation(LOGIN);
+  const [{ fetching: emailFetching, error, data }, login] = useMutation(LOGIN);
+  const [{ fetching: phoneFetching }, sendOtp] = useMutation(PHONE_LOGIN);
+
+  const fetching = emailFetching || phoneFetching;
+
   const [loginMenuIndex, setLoginMenuIndex] = useState(0);
   const router = useRouter();
 
@@ -44,6 +57,16 @@ const Login = () => {
           } else {
             Cookies.set('token', data.login.token);
             router.push('/post-ad');
+          }
+        });
+      } else if (loginMenuIndex === 1) {
+        const { phoneNo } = fdtojson(new FormData(e.target as HTMLFormElement));
+        sendOtp({ phoneNo }).then(({ data, error }) => {
+          if (error) {
+            toast.error(error.graphQLErrors[0].message || 'Unknown error');
+          } else {
+            toast.success('Otp sent');
+            router.push('/otp-verification?phoneNo=' + phoneNo);
           }
         });
       }

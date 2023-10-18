@@ -86,6 +86,7 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                       key={elIndex}
                       name={el.label}
                       options={options}
+                      id={el.name}
                     />
                   );
                 }
