@@ -168,6 +168,9 @@ export const sendPhoneOtp = async (
     to: '+12345678901',
     //from: '+12345678901',
   });
+  return {
+    status: SUCCESS,
+  };
 };
 
 type PhoneLoginArgs = { phoneNo: string; otp: string };
@@ -182,7 +185,11 @@ export const phoneOtpLogin = async (
     },
   });
   if (user) {
-    console.log(user);
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
+    return {
+      user,
+      token,
+    };
   } else {
     throw new Error(INCORRECT_OTP);
   }

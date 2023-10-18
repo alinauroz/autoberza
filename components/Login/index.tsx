@@ -61,7 +61,14 @@ const Login = () => {
         });
       } else if (loginMenuIndex === 1) {
         const { phoneNo } = fdtojson(new FormData(e.target as HTMLFormElement));
-        sendOtp({ phoneNo });
+        sendOtp({ phoneNo }).then(({ data, error }) => {
+          if (error) {
+            toast.error(error.graphQLErrors[0].message || 'Unknown error');
+          } else {
+            toast.success('Otp sent');
+            router.push('/otp-verification?phoneNo=' + phoneNo);
+          }
+        });
       }
     } catch (err) {
       console.log(err);
