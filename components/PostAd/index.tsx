@@ -18,6 +18,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
 import ChooseCateogry from './sub/ChooseCategory';
 import { toast } from 'react-hot-toast';
+import { isLoggedIn } from '@/utils/auth';
+import Link from 'next/link';
+import Button from '../Elements/Button';
 
 const CREATE_AD = gql`
   mutation CreateAd(
@@ -64,6 +67,7 @@ const CREATE_AD = gql`
 const PostAd = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const loggedIn = isLoggedIn();
 
   const [{ fetching, data: forms }] = useQuery({ query: GET_FORMS });
   const [{ fetching: creating }, createAd] = useMutation(CREATE_AD);
@@ -109,6 +113,32 @@ const PostAd = () => {
       }
     });
   };
+
+  if (!loggedIn) {
+    return (
+      <div className="post-ad-page-wrapper">
+        <div className="navbar">
+          <Nav
+            style={{
+              padding: '20px 35px',
+            }}
+          />
+        </div>
+        <div className="min-h-screen flex justify-center items-center flex-col gap-5">
+          <span>To post an ad, you need an account</span>
+          <span className="flex gap-4">
+            <Link href="/login">
+              <Button text="Login" />
+            </Link>
+            <Link href="/signup">
+              <Button text="Sign Up" />
+            </Link>
+          </span>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (fetching) {
     return (
