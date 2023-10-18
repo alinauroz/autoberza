@@ -10,6 +10,22 @@ const projectTypedefs = `
       fields: JSON
       createdOn: Date
     }
+
+    type Ad {
+      id: String
+      submittedBy: String
+      submittedByUser: User
+      isApproved: Boolean
+      title: String
+      price: String
+      discountedPrice: String
+      country: String
+      city: String
+      location: String
+      photos: [String]
+      details: JSON
+    }
+
     type Query {
       forms: [Form]
       users: [User]
@@ -27,6 +43,28 @@ const projectTypedefs = `
       deleteFieldForm (
         id: String!
       ): Form
+
+      createAd(
+        title: String
+        price: String
+        discountedPrice: String
+        country: String
+        city: String
+        location: String
+        photos: [String]
+        details: JSON
+      ): Ad
+      updateAd(
+        id: String!
+        title: String
+        price: String
+        discountedPrice: String
+        country: String
+        city: String
+        location: String
+        photos: [String]
+        details: JSON
+      ): Ad
     }
 `;
 
