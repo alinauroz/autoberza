@@ -7,6 +7,8 @@ import MenuBar from '@/public/assets/common/menu-burger.svg';
 import Dropdown from '@/public/assets/common/dropdown-icon.svg';
 import Image from 'next/image';
 import { isLoggedIn } from '@/utils/auth';
+import Cookies from 'js-cookie';
+import Link from 'next/link';
 
 interface Props {
   style?: React.CSSProperties;
@@ -20,12 +22,35 @@ const Header = ({ style }: Props) => {
       <div className="logo-panel">
         <Image src={MenuBar} alt="" className="menu" />
         <Logo />
-        <span className="float-right text-white">
-          <p>{loggedIn ? <span>Log Out</span> : <span>Log iN </span>}</p>
-        </span>
       </div>
-      <div>
-        <ButtonGroup text="Post an Ad" icon={Dropdown} />
+      <div className="flex gap-4">
+        <div className="text-white">
+          <div className="p-2">
+            {loggedIn ? (
+              <span
+                className="cursor-pointer"
+                onClick={() => {
+                  Cookies.remove('token');
+                  window.location.reload();
+                }}
+              >
+                Log Out
+              </span>
+            ) : (
+              <div className="flex gap-4">
+                <span>
+                  <Link href="/login">Log In</Link>
+                </span>
+                <span>
+                  <Link href="/signup">Sign Up</Link>
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+        <Link href="/post-ad">
+          <ButtonGroup type="button" text="Post an Ad" icon={Dropdown} />
+        </Link>
       </div>
     </div>
   );
