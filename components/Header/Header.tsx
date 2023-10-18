@@ -24,8 +24,8 @@ const Header = ({ style }: Props) => {
         <Logo />
       </div>
       <div className="flex gap-4">
-        <span className="text-white">
-          <p className="p-2">
+        <div className="text-white">
+          <div className="p-2">
             {loggedIn ? (
               <span
                 className="cursor-pointer"
@@ -46,9 +46,11 @@ const Header = ({ style }: Props) => {
                 </span>
               </div>
             )}
-          </p>
-        </span>
-        <ButtonGroup text="Post an Ad" icon={Dropdown} />
+          </div>
+        </div>
+        <Link href="/post-ad">
+          <ButtonGroup type="button" text="Post an Ad" icon={Dropdown} />
+        </Link>
       </div>
     </div>
   );
