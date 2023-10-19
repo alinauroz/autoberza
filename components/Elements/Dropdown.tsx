@@ -1,5 +1,5 @@
 'use client';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import downBtn from '@/public/assets/common/dd-icon-dark-filled.svg';
 import useClickOutside from '@/utils/useClickOutside';
 import '@/styles/elements.css';
@@ -18,6 +18,7 @@ interface Props {
   containerStyles?: React.CSSProperties;
   name: string;
   img?: string;
+  isDisabled?: boolean;
 }
 
 const DropDownMenu = ({
@@ -25,12 +26,17 @@ const DropDownMenu = ({
   selectedLV,
   setSelectedLV,
   conatinerClass,
-  containerStyles,
+  containerStyles = {},
   name,
   img,
+  isDisabled = false,
 }: Props) => {
   const [isDDActive, setIsDDActive] = useState(false);
   const [searchStr, setSearchStr] = useState('');
+
+  useEffect(() => {
+    if (isDisabled) setIsDDActive(false);
+  }, [isDisabled]);
 
   const handleCloseDD = () => {
     setIsDDActive(false);
@@ -39,6 +45,10 @@ const DropDownMenu = ({
   const ddRef = useClickOutside(handleCloseDD);
 
   const handlerDropdown = () => {
+    if (isDisabled) {
+      setIsDDActive(false);
+      return;
+    }
     setIsDDActive(!isDDActive);
   };
 
@@ -46,7 +56,11 @@ const DropDownMenu = ({
     <div
       className={'dd-wrapper ' + conatinerClass}
       ref={ddRef}
-      style={containerStyles}
+      style={{
+        ...containerStyles,
+        opacity: isDisabled ? '0.5' : '1',
+        pointerEvents: isDisabled ? 'none' : undefined,
+      }}
     >
       <div
         className="dd-title"
