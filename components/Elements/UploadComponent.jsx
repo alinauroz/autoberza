@@ -7,7 +7,8 @@ function UploadComponent ({ onUpload }) {
     const uploadWidget = useMemo(() => {
         return window.cloudinary.createUploadWidget({
             cloudName: 'dq4anbcep', 
-            uploadPreset: 'ml_default'
+            uploadPreset: 'ml_default',
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             }, (error, result) => { 
               if (!error && result && result.event === "success") { 
                 console.log('Done! Here is the image info: ', result.info); 

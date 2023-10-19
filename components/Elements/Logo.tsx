@@ -9,7 +9,12 @@ interface Props {
 const Logo = ({ style }: Props) => {
   return (
     <div className="logo" style={style}>
-      <Image src={LogoImg} alt="" className="logo-img" style={style} />
+      <Image
+        src={LogoImg}
+        alt=""
+        className="logo-img"
+        style={{ ...style, height: 48, width: 160 }}
+      />
     </div>
   );
 };
