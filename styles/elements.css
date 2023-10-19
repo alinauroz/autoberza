@@ -18,6 +18,10 @@
   gap: 30px;
 }
 
+.logo-img {
+  width: 90px;
+}
+
 .nav-option {
   background-color: black;
   color: white;
