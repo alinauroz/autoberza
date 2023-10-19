@@ -58,6 +58,7 @@ function Ads() {
         <div>
           <p className="font-bold">Is Approved</p>
           <select
+            className="p-2"
             onChange={(e) => {
               if (e.target.value === 'all') {
                 delete variables.isApproved;
@@ -74,10 +75,11 @@ function Ads() {
             <option value="false">Not Approved</option>
           </select>
         </div>
-        <div>
-          <p>Start From</p>
+        <div style={{ marginLeft: 20 }}>
+          <p className="font-bold">Start From</p>
           <input
             type="date"
+            className="p-2"
             onChange={(e) => {
               const dateAfter = parseInt(
                 new Date(e.target.value).getTime() / 1000 + ''
