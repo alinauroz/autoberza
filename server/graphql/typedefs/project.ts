@@ -30,7 +30,10 @@ const projectTypedefs = `
     type Query {
       forms: [Form]
       users: [User]
-      ads: [Ad]
+      ads(
+        dateAfter: Int
+        isApproved: Boolean
+      ): [Ad]
     }
     type Mutation {
       createFieldForm (
