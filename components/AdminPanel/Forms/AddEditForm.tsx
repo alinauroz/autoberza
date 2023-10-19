@@ -65,6 +65,32 @@ function AddEditForm({
           fields.push(field);
           break;
         }
+        case 'DoubleDropdown': {
+          const doubleOptions: { [x: string]: string[] } = {};
+
+          row['Options'].split(';').forEach((option: string) => {
+            const [a, b] = option.split(':');
+            if (doubleOptions[a]) {
+              doubleOptions[a].push(b);
+            } else {
+              doubleOptions[a] = [b];
+            }
+          });
+
+          const field = {
+            type: 'doubledropdown',
+
+            label: row['Name'].split(';')[0],
+            label2: row['Name'].split(';')[1],
+            id: row['Id'].split(';')[0],
+            id2: row['Id'].split(';')[1],
+            doubleOptions,
+
+            section: row['Section'],
+          };
+          fields.push(field);
+          break;
+        }
         case 'Freetext': {
           const field = {
             type: 'text',
