@@ -22,11 +22,12 @@ const UploadFile = () => {
                 {links.map((link, index) => (
                   <div
                     key={link}
-                    className="flex-wrap w-48 h-48 rounded-md"
+                    className="flex-wrap h-32 w-full md:w-48 md:h-48 rounded-md"
                     style={{
                       background: `url(${link})`,
-                      backgroundSize: 'cover',
+                      backgroundSize: 'contain',
                       backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
                     }}
                   >
                     <span
