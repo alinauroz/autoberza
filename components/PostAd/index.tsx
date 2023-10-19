@@ -130,7 +130,7 @@ const PostAd = () => {
             <Link href="/login">
               <Button text="Login" />
             </Link>
-            <Link href="/signup">
+            <Link href="/register">
               <Button text="Sign Up" />
             </Link>
           </span>

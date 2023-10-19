@@ -42,7 +42,7 @@ const Header = ({ style }: Props) => {
                   <Link href="/login">Log In</Link>
                 </span>
                 <span className="hidden md:flex">
-                  <Link href="/signup">Sign Up</Link>
+                  <Link href="/register">Sign Up</Link>
                 </span>
               </div>
             )}
