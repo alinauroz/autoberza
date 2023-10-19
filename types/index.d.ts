@@ -5,6 +5,18 @@ export interface IGqlContext {
   isAdmin?: boolean;
 }
 
+export interface DoubleDropdown {
+  type: 'DoubleDropdown';
+  doubleOptions: {
+    [x: string]: string[];
+  };
+  label: string;
+  label2: string;
+  id: string;
+  id2: string;
+  section: string;
+}
+
 export type DynamicSectionsResponse =
   | {
       type: 'checkbox';
@@ -25,4 +37,5 @@ export type DynamicSectionsResponse =
       section: string;
       options: string[];
       name: string;
-    };
+    }
+  | DoubleDropdown;
