@@ -26,10 +26,6 @@ const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData }) => {
     }));
   }, [selectedFirst]);
 
-  React.useEffect(() => {
-    console.log('{{{{DoubleDropdownData}}}}', DoubleDropdownData);
-  }, [DoubleDropdownData]);
-
   return (
     <>
       <DropDownMenu
