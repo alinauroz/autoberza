@@ -3,10 +3,11 @@ import prisma from '@/prisma/prisma';
 type FilterArgs = {
   isApproved: boolean;
   dateAfter: number;
+  id: string;
 };
 export const ads = async (
   _: unknown,
-  { dateAfter, isApproved }: FilterArgs
+  { dateAfter, isApproved, id }: FilterArgs
 ) => {
   return prisma.ad.findMany({
     where: {

@@ -121,7 +121,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-copyright">
-        Copyright 2020-2023 © AssurIles.com All Rights Reserved
+        Copyright 2020-2023 © Autoberza.me All Rights Reserved
       </div>
     </div>
   );

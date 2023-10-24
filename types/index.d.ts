@@ -39,3 +39,5 @@ export type DynamicSectionsResponse =
       name: string;
     }
   | DoubleDropdown;
+
+declare module 'graphql-client';

@@ -33,6 +33,7 @@ const projectTypedefs = `
       ads(
         dateAfter: Int
         isApproved: Boolean
+        id: String
       ): [Ad]
     }
     type Mutation {
