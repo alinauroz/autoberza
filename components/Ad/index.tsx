@@ -1,6 +1,7 @@
 import { ssClient } from '@/utils/urqlClient';
 import React from 'react';
 import { IForm } from '../AdminPanel/Forms';
+import separateSectionFields from '@/utils/separateSectionFields';
 
 interface IProps {
   id: string;
@@ -60,9 +61,40 @@ const getServerSideProps = async (id: string) => {
 };
 
 async function Ad({ id }: IProps) {
-  const { data } = await getServerSideProps(id);
+  const { data, form } = await getServerSideProps(id);
 
-  return <>: {data.title}</>;
+  const sections = separateSectionFields(form?.fields);
+  return (
+    <div className="p-8">
+      <p>
+        PRINT DYNAMIC FIELDS BELOW, MAKE A SEPARATE COMPONENT. IM JUST WRITING
+        CODE HERE FOR DEMO
+      </p>
+      {Object.keys(sections).map((section) => {
+        return (
+          <div className="my-4" key={section}>
+            <p className="text-2xl font-medium">{section}</p>
+            <p className="my-2">
+              Section has <b>fields</b> property. For example, to print details
+              of this section, do following:
+            </p>
+            <div className="grid grid-cols-4 gap-4">
+              {sections[section].map(
+                (field: { label: string; name: string }) => {
+                  return (
+                    <span className="my-2" key={field.name}>
+                      <p className="font-bold">{field.label}</p>
+                      {data.details[field.name]}
+                    </span>
+                  );
+                }
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default Ad;

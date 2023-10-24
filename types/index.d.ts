@@ -15,6 +15,7 @@ export interface DoubleDropdown {
   id: string;
   id2: string;
   section: string;
+  name: string;
 }
 
 export type DynamicSectionsResponse =
