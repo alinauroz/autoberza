@@ -62,7 +62,7 @@ const getServerSideProps = async (id: string) => {
 async function Ad({ id }: IProps) {
   const { data } = await getServerSideProps(id);
 
-  return <>Data is: {data.title}</>;
+  return <>: {data.title}</>;
 }
 
 export default Ad;
