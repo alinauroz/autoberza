@@ -37,7 +37,7 @@ const SearchPage = () => {
         <div className={`w-full ${showFilter ? 'hidden' : ''}`}>
           <HeroSection setShowFilter={setShowFilter} />
           <Card />
-          {/* <Card /> */}
+          <Card />
           <NextPage />
         </div>
       </div>
