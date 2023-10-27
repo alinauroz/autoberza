@@ -66,7 +66,7 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
           <div key={i} className="">
             <div
               onClick={() => handleNavItems(fieldTitle)}
-              className={`bg-white flex items-center justify-between px-4 cursor-pointer ${
+              className={`bg-white flex items-center justify-between px-4 py-3 cursor-pointer ${
                 isActive ? 'border-b' : 'hidden'
               }`}
             >
