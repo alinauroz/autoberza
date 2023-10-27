@@ -3,7 +3,11 @@ import Image from 'next/image';
 import DropdownIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
 import React from 'react';
 
-const HeroSection = () => {
+const HeroSection = ({
+  setShowFilter,
+}: {
+  setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div>
       <div className="flex items-center px-4 pt-6 justify-between">
@@ -17,6 +21,7 @@ const HeroSection = () => {
         </p>
         <div className="lg:hidden">
           <Button
+            onClick={() => setShowFilter(true)}
             text="Choose Filters"
             style={{
               width: '136px',

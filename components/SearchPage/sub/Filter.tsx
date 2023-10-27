@@ -5,27 +5,17 @@ import Image from 'next/image';
 import React from 'react';
 import DropdwonIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
 
-// const data = [
-//   { type: 'checkbox', label: 'Airbags', section: 'Security' },
-//   {
-//     type: 'select',
-//     label: 'Year',
-//     section: 'Basic',
-//     options: ['2001', '2002', '2003', '2204', '2005'],
-//   },
-//   { type: 'text', label: 'Other Info', section: 'Additional' },
-//   { type: 'text', label: 'Power Info', section: 'Additional', addon: 'KM' },
-// ];
+type ProcessedData = { [x: string]: DynamicFiltersResponse[] };
 
 interface Props {
   data: DynamicFiltersResponse[];
+  setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
+  showFilter: boolean;
 }
 
-type ProcessedData = { [x: string]: DynamicFiltersResponse[] };
-
-const FilterComp = ({ data }: Props) => {
+const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
   const [processedData, setProcessedData] = React.useState<ProcessedData>();
-  const [isActive, setIsActive] = React.useState('');
+  const [isActive, setIsActive] = React.useState<any>([]);
 
   React.useEffect(() => {
     const allSections = Array.from(new Set(data.map((e) => e.label)));
@@ -43,17 +33,38 @@ const FilterComp = ({ data }: Props) => {
 
   if (!processedData) return;
 
-  // const handleNavItems = () => {
-  //   fieldTitles === isActive ? setIsActive('') : setIsActive(fieldTitles);
-  // };
+  const handleNavItems = (fieldTitle: string) => {
+    let arr = [...isActive];
+    isActive.includes(fieldTitle)
+      ? (arr = isActive.filter((item: string) => fieldTitle != item))
+      : arr.push(fieldTitle);
+    setIsActive(arr);
+  };
 
   return (
-    <div className="mt-4">
+    <div
+      className={`lg:block lg:w-1/2 sm:w-full sm:absolute lg:static top-[68px] ${
+        !showFilter ? 'hidden' : ''
+      }`}
+      style={{
+        height: 'calc(100vh - 68px)',
+      }}
+    >
+      <button
+        onClick={() => {
+          setShowFilter(false);
+        }}
+      >
+        Close
+      </button>
       {fieldTitles.map((fieldTitle, i) => {
         const currentSectionElements = processedData[fieldTitle];
         return (
           <div key={i} className="">
-            <div className="border-b bg-white border-gray-300 flex items-center justify-between px-4 py-2 cursor-pointer">
+            <div
+              onClick={() => handleNavItems(fieldTitle)}
+              className={`border-b bg-white border-gray-300 flex items-center justify-between px-4 py-2 cursor-pointer`}
+            >
               <span
                 // onClick={handleNavItems}
                 className="text-lg py-2 font-semibold"
@@ -63,7 +74,11 @@ const FilterComp = ({ data }: Props) => {
               <Image src={DropdwonIcon} alt="" className="w-[13px]" />
             </div>
 
-            <div className="bg-white px-6 text-md pt-2">
+            <div
+              className={`bg-white px-6 text-md pt-2 ${
+                !isActive.includes(fieldTitle) && 'hidden'
+              }`}
+            >
               {currentSectionElements.map((filterObj, elIndex) => {
                 if (filterObj.type === 'checkbox') {
                   return (
@@ -77,23 +92,22 @@ const FilterComp = ({ data }: Props) => {
                     <div key={elIndex}>
                       {filterObj.options.map((years, yearsIndex) => {
                         return (
-                          <div className="flex items-center gap-2 pt-2">
-                            <input
-                              key={yearsIndex}
-                              type="checkbox"
-                              className=""
-                            />
+                          <div
+                            key={yearsIndex}
+                            className="flex items-center gap-2 pt-2"
+                          >
+                            <input type="checkbox" className="" />
                             {years}
                           </div>
                         );
                       })}
-                      <label key={elIndex} htmlFor=""></label>
+                      <label htmlFor=""></label>
                     </div>
                   );
                 } else if (filterObj.type === 'text') {
                   return (
                     <div key={elIndex} className="py-2 flex items-center gap-3">
-                      <p className="pb-1 leading-3" key={elIndex}>
+                      <p className="pb-1 leading-3">
                         Min{' '}
                         <span className="text-[10px] pl-0.5 font-black">
                           {filterObj.addon}
@@ -105,7 +119,7 @@ const FilterComp = ({ data }: Props) => {
                           borderRadius: '5px',
                         }}
                       />
-                      <p className="pb-1 leading-3" key={elIndex}>
+                      <p className="pb-1 leading-3">
                         Max{' '}
                         <span className="text-[10px] pl-0.5 font-black">
                           {filterObj.addon}

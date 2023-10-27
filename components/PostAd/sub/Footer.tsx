@@ -56,7 +56,7 @@ const footerMenus = [
   },
 ];
 
-const Footer = () => {
+const Footer = ({ containerClass }: { containerClass?: string }) => {
   const [isActive, setIsActive] = useState('');
 
   const handleNavItems = (item: string) => {
@@ -64,7 +64,7 @@ const Footer = () => {
   };
 
   return (
-    <div>
+    <div className={containerClass}>
       <div className="footer">
         <div className="footer-logo-profile">
           <div className="footer-logo">

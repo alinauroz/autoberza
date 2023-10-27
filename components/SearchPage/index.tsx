@@ -22,28 +22,26 @@ const data: DynamicFiltersResponse[] = [
 ];
 
 const SearchPage = () => {
-  const [isActive, setIsActive] = React.useState('');
-
-  const handleNavItems = () => {};
+  const [showFilter, setShowFilter] = React.useState(false);
 
   return (
     <div>
       <Header />
       <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:mx-12">
-        <div
-          onClick={handleNavItems}
-          className="filter-section hidden lg:block w-1/2 "
-        >
-          <FilterComp data={data} />
-        </div>
-        <div className="w-full">
-          <HeroSection />
+        <FilterComp
+          data={data}
+          setShowFilter={setShowFilter}
+          showFilter={showFilter}
+        />
+
+        <div className={`w-full ${showFilter ? 'hidden' : ''}`}>
+          <HeroSection setShowFilter={setShowFilter} />
           <Card />
           {/* <Card /> */}
           <NextPage />
         </div>
       </div>
-      <Footer />
+      <Footer containerClass={`${showFilter ? 'hidden' : ''}`} />
     </div>
   );
 };
