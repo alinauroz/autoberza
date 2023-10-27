@@ -22,11 +22,18 @@ const data: DynamicFiltersResponse[] = [
 ];
 
 const SearchPage = () => {
+  const [isActive, setIsActive] = React.useState('');
+
+  const handleNavItems = () => {};
+
   return (
     <div>
       <Header />
       <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:mx-12">
-        <div className="filter-section hidden lg:block w-1/2 ">
+        <div
+          onClick={handleNavItems}
+          className="filter-section hidden lg:block w-1/2 "
+        >
           <FilterComp data={data} />
         </div>
         <div className="w-full">
