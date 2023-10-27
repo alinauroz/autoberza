@@ -4,6 +4,7 @@ import { DynamicFiltersResponse } from '@/types';
 import Image from 'next/image';
 import React from 'react';
 import DropdwonIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
+import Button from '@/components/Elements/Button';
 
 type ProcessedData = { [x: string]: DynamicFiltersResponse[] };
 
@@ -43,7 +44,7 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
 
   return (
     <div
-      className={`lg:block lg:w-1/2 sm:w-full sm:absolute lg:static top-[68px] ${
+      className={`lg:block lg:w-1/2 sm:w-full sm:absolute lg:mt-1.5 mx-4 lg:mx-0 lg:static top-[68px] ${
         !showFilter ? 'hidden' : ''
       }`}
       style={{
@@ -51,11 +52,13 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
       }}
     >
       <button
+        className="flex justify-between text-gray-600 font-bold w-full px-4 py-4 mb-2 lg:hidden"
         onClick={() => {
           setShowFilter(false);
         }}
       >
-        Close
+        Filters
+        <p className="font-semibold text-2xl text-gray-500">x</p>
       </button>
       {fieldTitles.map((fieldTitle, i) => {
         const currentSectionElements = processedData[fieldTitle];
@@ -63,19 +66,20 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
           <div key={i} className="">
             <div
               onClick={() => handleNavItems(fieldTitle)}
-              className={`border-b bg-white border-gray-300 flex items-center justify-between px-4 py-2 cursor-pointer`}
+              className={`bg-white flex items-center justify-between px-4 cursor-pointer ${
+                isActive ? 'border-b' : 'hidden'
+              }`}
             >
-              <span
-                // onClick={handleNavItems}
-                className="text-lg py-2 font-semibold"
-              >
-                {fieldTitle}
-              </span>
-              <Image src={DropdwonIcon} alt="" className="w-[13px]" />
+              <span className="text-md py-2 font-semibold">{fieldTitle}</span>
+              <Image
+                src={DropdwonIcon}
+                alt=""
+                className="w-[10px] lg:w-[13px]"
+              />
             </div>
 
             <div
-              className={`bg-white px-6 text-md pt-2 ${
+              className={`bg-white px-6 text-md border-b py-3 ${
                 !isActive.includes(fieldTitle) && 'hidden'
               }`}
             >
@@ -101,7 +105,6 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
                           </div>
                         );
                       })}
-                      <label htmlFor=""></label>
                     </div>
                   );
                 } else if (filterObj.type === 'text') {
@@ -140,6 +143,18 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
           </div>
         );
       })}
+      <div className="lg:hidden bg-white">
+        <Button
+          text="Apply Filters"
+          style={{
+            height: '50px',
+            fontSize: '14px',
+            borderRadius: '8px',
+            marginTop: '-3px',
+            marginLeft: '-0.5px',
+          }}
+        />
+      </div>
     </div>
   );
 };

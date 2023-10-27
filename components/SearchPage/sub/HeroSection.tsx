@@ -10,12 +10,8 @@ const HeroSection = ({
 }) => {
   return (
     <div>
-      <div className="flex items-center px-4 pt-6 justify-between">
-        {/* <p className="font-semibold lg:hidden">
-          <span className="font-bold">1243 Cars in</span> podgorica <br /> with
-          search options
-        </p> */}
-        <p className="font-semibold w-6/12 lg:text-3xl lg:w-full">
+      <div className="flex items-center px-4 pt-4 lg:pt-0 justify-between">
+        <p className="font-semibold w-1/2 lg:text-3xl lg:w-full">
           <span className="font-bold">1243 Cars in</span> podgorica with search
           options
         </p>

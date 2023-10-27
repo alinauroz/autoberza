@@ -27,7 +27,7 @@ const SearchPage = () => {
   return (
     <div>
       <Header />
-      <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:mx-12">
+      <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:pt-6 lg:mx-12">
         <FilterComp
           data={data}
           setShowFilter={setShowFilter}
