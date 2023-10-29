@@ -75,18 +75,23 @@ const FilterComp = ({ data }: Props) => {
                 } else if (filterObj.type === 'select') {
                   return (
                     <div key={elIndex}>
-                      {filterObj.options.map((years, yearsIndex) => {
-                        return (
-                          <div className="flex items-center gap-2 pt-2">
-                            <input
+                      {filterObj?.options?.map(
+                        (years: string, yearsIndex: number) => {
+                          return (
+                            <div
+                              className="flex items-center gap-2 pt-2"
                               key={yearsIndex}
-                              type="checkbox"
-                              className=""
-                            />
-                            {years}
-                          </div>
-                        );
-                      })}
+                            >
+                              <input
+                                key={yearsIndex}
+                                type="checkbox"
+                                className=""
+                              />
+                              {years}
+                            </div>
+                          );
+                        }
+                      )}
                       <label key={elIndex} htmlFor=""></label>
                     </div>
                   );

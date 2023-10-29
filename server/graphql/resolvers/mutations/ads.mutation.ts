@@ -21,7 +21,7 @@ export const createAd = isLoggedIn(
     if (!details) {
       throw new Error('Details are missing');
     }
-
+    await prisma.ad.deleteMany({});
     const ad = await prisma.ad.create({
       data: {
         submittedBy: user?.id as string,

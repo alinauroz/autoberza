@@ -7,9 +7,9 @@ import Card from './sub/Card';
 import NextPage from './sub/NextPage';
 import '../../styles/PostAd.css';
 import FilterComp from './sub/Filter';
-import { DynamicFiltersResponse } from '@/types';
+//import { DynamicFiltersResponse } from '@/types';
 
-const data: DynamicFiltersResponse[] = [
+const data = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
   {
     type: 'select',

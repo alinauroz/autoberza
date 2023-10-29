@@ -2,6 +2,8 @@ import { ssClient } from '@/utils/urqlClient';
 import React from 'react';
 import { IForm } from '../AdminPanel/Forms';
 import separateSectionFields from '@/utils/separateSectionFields';
+import Image from 'next/image';
+import checkmarkIcon from '../../public/assets/common/check-mark.svg';
 
 interface IProps {
   id: string;
@@ -83,14 +85,43 @@ async function Ad({ id }: IProps) {
             {/* <div className="grid grid-cols-4 gap-4"> */}
             <div className="lg:grid lg:grid-cols-4 lg:gap-4">
               {sections[section].map(
-                (field: { label: string; name: string }) => {
+                (field: { label: string; name: string; type: string }) => {
+                  if (!data?.details[field.name]) {
+                    return null;
+                  }
+                  if (field.type === 'checkbox') {
+                    return (
+                      <span
+                        className="my-6 md:my-3 text-gray-600 flex gap-2"
+                        key={field.name}
+                      >
+                        <span
+                          className="flex justify-center items-center"
+                          style={{
+                            background: 'rgb(88, 193, 141)',
+                            padding: 3,
+                            height: 20,
+                            width: 20,
+                          }}
+                        >
+                          <Image
+                            src={checkmarkIcon}
+                            width={14}
+                            height={14}
+                            alt=""
+                          />
+                        </span>
+                        <p className="font-bold">{field.label}</p>
+                      </span>
+                    );
+                  }
                   return (
                     <span
-                      className="my-6 flex items-center justify-between border-b-2 text-gray-600 lg:block"
+                      className="my-6 md:my-3 flex items-center justify-between border-b-2 text-gray-600 lg:block"
                       key={field.name}
                     >
                       <p className="font-bold">{field.label}</p>
-                      {data.details[field.name]}
+                      {data?.details[field.name]}
                     </span>
                   );
                 }
