@@ -4,6 +4,7 @@ import { IForm } from '../AdminPanel/Forms';
 import separateSectionFields from '@/utils/separateSectionFields';
 import Image from 'next/image';
 import checkmarkIcon from '../../public/assets/common/check-mark.svg';
+import Images from './Images';
 
 interface IProps {
   id: string;
@@ -68,6 +69,11 @@ async function Ad({ id }: IProps) {
   const sections = separateSectionFields(form?.fields);
   return (
     <div className="p-8">
+      <div className="md:grid md:grid-cols-4">
+        <div className="col-span-3">
+          <Images photos={data.photos || []} />
+        </div>
+      </div>
       {/* <p>
         PRINT DYNAMIC FIELDS BELOW, MAKE A SEPARATE COMPONENT. IM JUST WRITING
         CODE HERE FOR DEMO
