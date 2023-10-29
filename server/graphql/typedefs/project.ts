@@ -25,6 +25,7 @@ const projectTypedefs = `
       photos: [String]
       details: JSON
       createdOn: Date
+      category: String
     }
 
     type Query {
@@ -37,7 +38,10 @@ const projectTypedefs = `
 
         minPrice: Int,
         maxPrice: Int,
-        
+        city: String,
+        country: String,
+        category: String,
+
       ): [Ad]
     }
     type Mutation {
@@ -63,6 +67,7 @@ const projectTypedefs = `
         location: String
         photos: [String]
         details: JSON
+        category: String
       ): Ad
       updateAd(
         id: String!

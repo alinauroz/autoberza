@@ -14,7 +14,16 @@ type FilterArgs = {
 };
 export const ads = async (
   _: unknown,
-  { dateAfter, isApproved, id, minPrice, maxPrice }: FilterArgs
+  {
+    dateAfter,
+    isApproved,
+    id,
+    minPrice,
+    maxPrice,
+    city,
+    country,
+    category,
+  }: FilterArgs
 ) => {
   return prisma.ad.findMany({
     where: {
@@ -24,6 +33,8 @@ export const ads = async (
           gt: new Date(dateAfter * 1000),
         },
       }),
+
+      // more filters
       ...((minPrice || maxPrice) && {
         OR: [
           {
@@ -40,6 +51,9 @@ export const ads = async (
           },
         ],
       }),
+      category,
+      city,
+      country,
     },
   });
 };
