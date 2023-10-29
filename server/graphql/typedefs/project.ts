@@ -42,6 +42,8 @@ const projectTypedefs = `
         country: String,
         category: String,
 
+        details: JSON
+
       ): [Ad]
     }
     type Mutation {

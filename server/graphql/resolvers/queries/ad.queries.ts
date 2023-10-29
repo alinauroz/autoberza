@@ -1,4 +1,5 @@
 import prisma from '@/prisma/prisma';
+import { Prisma } from '@prisma/client';
 
 type FilterArgs = {
   isApproved: boolean;
@@ -10,7 +11,7 @@ type FilterArgs = {
   city: string;
   country: string;
   category: string;
-  details: unknown;
+  details: Prisma.JsonFilter;
 };
 export const ads = async (
   _: unknown,
@@ -23,9 +24,10 @@ export const ads = async (
     city,
     country,
     category,
+    details,
   }: FilterArgs
 ) => {
-  return prisma.ad.findMany({
+  const ads = await prisma.ad.findMany({
     where: {
       isApproved,
       ...(dateAfter && {
@@ -56,4 +58,21 @@ export const ads = async (
       country,
     },
   });
+
+  let filteredAds = ads;
+  if (details) {
+    filteredAds = ads.filter((ad) => {
+      for (let field in details) {
+        if (
+          (details as { [x: string]: string })[field] !==
+          (ad.details as { [x: string]: string })[field]
+        ) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }
+
+  return filteredAds;
 };
