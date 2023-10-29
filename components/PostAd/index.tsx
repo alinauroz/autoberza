@@ -32,6 +32,7 @@ const CREATE_AD = gql`
     $location: String
     $photos: [String]
     $details: JSON
+    $category: String
   ) {
     createAd(
       title: $title
@@ -42,6 +43,7 @@ const CREATE_AD = gql`
       location: $location
       photos: $photos
       details: $details
+      category: $category
     ) {
       city
       id
@@ -104,6 +106,7 @@ const PostAd = () => {
       location: json.location,
       photos: json.photos.split('|'),
       description: json.description,
+      category: searchParams.get('category'),
     }).then(({ data, error }) => {
       if (error?.graphQLErrors[0].message) {
         toast.error(error?.graphQLErrors[0].message);

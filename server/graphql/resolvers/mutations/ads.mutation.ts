@@ -15,13 +15,13 @@ export const createAd = isLoggedIn(
       details,
       photos,
       title,
+      category,
     }: Prisma.Ad,
     { user }: IGqlContext
   ) => {
     if (!details) {
       throw new Error('Details are missing');
     }
-    await prisma.ad.deleteMany({});
     const ad = await prisma.ad.create({
       data: {
         submittedBy: user?.id as string,
@@ -33,6 +33,7 @@ export const createAd = isLoggedIn(
         discountedPrice,
         photos,
         title,
+        category,
       },
     });
 
