@@ -15,24 +15,26 @@ export interface IAd {
 const GET_ADS = gql`
   query Query($dateAfter: Int, $isApproved: Boolean) {
     ads(dateAfter: $dateAfter, isApproved: $isApproved) {
-      city
-      country
-      details
-      discountedPrice
-      id
-      isApproved
-      location
-      photos
-      price
-      submittedBy
-      submittedByUser {
+      data {
+        city
         country
-        email
-        name
-        phone
+        details
+        discountedPrice
+        id
+        isApproved
+        location
+        photos
+        price
+        submittedBy
+        submittedByUser {
+          country
+          email
+          name
+          phone
+        }
+        title
+        createdOn
       }
-      title
-      createdOn
     }
   }
 `;
@@ -102,7 +104,7 @@ function Ads() {
             <Th>Created On</Th>
             <th></th>
           </Tr>
-          {data?.ads?.map((ad: IAd) => {
+          {data?.ads?.data?.map((ad: IAd) => {
             return (
               <Tr key={ad.id}>
                 <Td>{ad.title}</Td>

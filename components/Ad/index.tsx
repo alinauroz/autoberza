@@ -12,32 +12,35 @@ interface IProps {
 
 const GET_AD = `
 query Ads($id: String) {
-    ads(id: $id) {
-      city
+  ads(id: $id) {
+    data {
+    city
+    country
+    createdOn
+    details
+    discountedPrice
+    id
+    isApproved
+    location
+    photos
+    price
+    submittedBy
+    title
+    category
+    submittedByUser {
+      address
       country
-      createdOn
-      details
-      discountedPrice
+      email
       id
-      isApproved
-      location
-      photos
-      price
-      submittedBy
-      title
-      submittedByUser {
-        address
-        country
-        email
-        id
-        isAdmin
-        isEmailVerified
-        name
-        phone
-        state
-      }
+      isAdmin
+      isEmailVerified
+      name
+      phone
+      state
     }
-  }`;
+  }
+  }
+}`;
 
 export const GET_FORMS = `
   query Forms {
@@ -51,11 +54,11 @@ export const GET_FORMS = `
 `;
 
 const getServerSideProps = async (id: string) => {
-  const { data: response } = await ssClient.query(GET_AD, { id });
-  const ad = response?.ads?.[0];
+  const { data: response, error } = await ssClient.query(GET_AD, { id });
+  const ad = response?.ads?.data[0];
   const { data: formResponse } = await ssClient.query(GET_FORMS);
   const form = formResponse?.forms?.find(
-    (form: IForm) => form.category === 'Car'
+    (form: IForm) => form.category === ad.category
   );
   return {
     data: ad,

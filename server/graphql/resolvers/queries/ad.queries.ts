@@ -1,4 +1,5 @@
 import prisma from '@/prisma/prisma';
+import { IGqlContext } from '@/types';
 import { Prisma } from '@prisma/client';
 
 type FilterArgs = {
@@ -74,5 +75,15 @@ export const ads = async (
     });
   }
 
-  return filteredAds;
+  return {
+    data: filteredAds,
+  };
+};
+
+export const myAds = async (
+  _1: unknown,
+  _2: unknown,
+  { user }: IGqlContext
+) => {
+  return prisma.ad.findMany({ where: { submittedBy: user?.id } });
 };
