@@ -34,6 +34,10 @@ const projectTypedefs = `
         dateAfter: Int
         isApproved: Boolean
         id: String
+
+        minPrice: Int,
+        maxPrice: Int,
+        
       ): [Ad]
     }
     type Mutation {

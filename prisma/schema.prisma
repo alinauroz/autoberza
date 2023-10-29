@@ -42,7 +42,7 @@ model Ad {
   isApproved          Boolean   @default(false)
   subscriptionType    String?
   subscriptionDate    DateTime?
-  title               String?
+  title               String
 
   price               Int
   discountedPrice     Int?
@@ -50,6 +50,7 @@ model Ad {
   country             String
   city                String
   location            String
+  category            String?
 
   photos              String[]
 
