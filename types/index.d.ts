@@ -41,12 +41,23 @@ export type DynamicSectionsResponse =
     }
   | DoubleDropdown;
 
-export type DynamicFiltersResponse = {
-  type: string;
-  label: string;
-  section: string;
-  options?: string[];
-  addon?: string;
-};
+export type DynamicFiltersResponse =
+  | {
+      type: 'checkbox';
+      label: string;
+      section: string;
+    }
+  | {
+      type: 'text';
+      label: string;
+      section: string;
+      addon?: string;
+    }
+  | {
+      type: 'select';
+      label: string;
+      section: string;
+      options: string[];
+    };
 
 declare module 'graphql-client';

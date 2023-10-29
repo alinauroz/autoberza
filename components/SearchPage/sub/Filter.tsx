@@ -4,28 +4,19 @@ import { DynamicFiltersResponse } from '@/types';
 import Image from 'next/image';
 import React from 'react';
 import DropdwonIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
-
-// const data = [
-//   { type: 'checkbox', label: 'Airbags', section: 'Security' },
-//   {
-//     type: 'select',
-//     label: 'Year',
-//     section: 'Basic',
-//     options: ['2001', '2002', '2003', '2204', '2005'],
-//   },
-//   { type: 'text', label: 'Other Info', section: 'Additional' },
-//   { type: 'text', label: 'Power Info', section: 'Additional', addon: 'KM' },
-// ];
-
-interface Props {
-  data: DynamicFiltersResponse[];
-}
+import Button from '@/components/Elements/Button';
 
 type ProcessedData = { [x: string]: DynamicFiltersResponse[] };
 
-const FilterComp = ({ data }: Props) => {
+interface Props {
+  data: DynamicFiltersResponse[];
+  setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
+  showFilter: boolean;
+}
+
+const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
   const [processedData, setProcessedData] = React.useState<ProcessedData>();
-  const [isActive, setIsActive] = React.useState('');
+  const [isActive, setIsActive] = React.useState<any>([]);
 
   React.useEffect(() => {
     const allSections = Array.from(new Set(data.map((e) => e.label)));
@@ -43,27 +34,55 @@ const FilterComp = ({ data }: Props) => {
 
   if (!processedData) return;
 
-  // const handleNavItems = () => {
-  //   fieldTitles === isActive ? setIsActive('') : setIsActive(fieldTitles);
-  // };
+  const handleNavItems = (fieldTitle: string) => {
+    let arr = [...isActive];
+    isActive.includes(fieldTitle)
+      ? (arr = isActive.filter((item: string) => fieldTitle != item))
+      : arr.push(fieldTitle);
+    setIsActive(arr);
+  };
 
   return (
-    <div className="mt-4">
+    <div
+      className={`lg:block lg:w-1/2 sm:w-full sm:absolute lg:mt-1.5 mx-4 lg:mx-0 lg:static top-[68px] ${
+        !showFilter ? 'hidden' : ''
+      }`}
+      style={{
+        height: 'calc(100vh - 68px)',
+      }}
+    >
+      <button
+        className="flex justify-between text-gray-600 font-bold w-full px-4 py-4 mb-2 lg:hidden"
+        onClick={() => {
+          setShowFilter(false);
+        }}
+      >
+        Filters
+        <p className="font-semibold text-2xl text-gray-500">x</p>
+      </button>
       {fieldTitles.map((fieldTitle, i) => {
         const currentSectionElements = processedData[fieldTitle];
         return (
           <div key={i} className="">
-            <div className="border-b bg-white border-gray-300 flex items-center justify-between px-4 py-2 cursor-pointer">
-              <span
-                // onClick={handleNavItems}
-                className="text-lg py-2 font-semibold"
-              >
-                {fieldTitle}
-              </span>
-              <Image src={DropdwonIcon} alt="" className="w-[13px]" />
+            <div
+              onClick={() => handleNavItems(fieldTitle)}
+              className={`bg-white flex items-center justify-between px-4 py-3 cursor-pointer ${
+                isActive ? 'border-b' : 'hidden'
+              }`}
+            >
+              <span className="text-md py-2 font-semibold">{fieldTitle}</span>
+              <Image
+                src={DropdwonIcon}
+                alt=""
+                className="w-[10px] lg:w-[13px]"
+              />
             </div>
 
-            <div className="bg-white px-6 text-md pt-2">
+            <div
+              className={`bg-white px-6 text-md border-b py-3 ${
+                !isActive.includes(fieldTitle) && 'hidden'
+              }`}
+            >
               {currentSectionElements.map((filterObj, elIndex) => {
                 if (filterObj.type === 'checkbox') {
                   return (
@@ -75,30 +94,23 @@ const FilterComp = ({ data }: Props) => {
                 } else if (filterObj.type === 'select') {
                   return (
                     <div key={elIndex}>
-                      {filterObj?.options?.map(
-                        (years: string, yearsIndex: number) => {
-                          return (
-                            <div
-                              className="flex items-center gap-2 pt-2"
-                              key={yearsIndex}
-                            >
-                              <input
-                                key={yearsIndex}
-                                type="checkbox"
-                                className=""
-                              />
-                              {years}
-                            </div>
-                          );
-                        }
-                      )}
-                      <label key={elIndex} htmlFor=""></label>
+                      {filterObj.options.map((years, yearsIndex) => {
+                        return (
+                          <div
+                            key={yearsIndex}
+                            className="flex items-center gap-2 pt-2"
+                          >
+                            <input type="checkbox" className="" />
+                            {years}
+                          </div>
+                        );
+                      })}
                     </div>
                   );
                 } else if (filterObj.type === 'text') {
                   return (
                     <div key={elIndex} className="py-2 flex items-center gap-3">
-                      <p className="pb-1 leading-3" key={elIndex}>
+                      <p className="pb-1 leading-3">
                         Min{' '}
                         <span className="text-[10px] pl-0.5 font-black">
                           {filterObj.addon}
@@ -110,7 +122,7 @@ const FilterComp = ({ data }: Props) => {
                           borderRadius: '5px',
                         }}
                       />
-                      <p className="pb-1 leading-3" key={elIndex}>
+                      <p className="pb-1 leading-3">
                         Max{' '}
                         <span className="text-[10px] pl-0.5 font-black">
                           {filterObj.addon}
@@ -131,6 +143,18 @@ const FilterComp = ({ data }: Props) => {
           </div>
         );
       })}
+      <div className="lg:hidden bg-white">
+        <Button
+          text="Apply Filters"
+          style={{
+            height: '50px',
+            fontSize: '14px',
+            borderRadius: '8px',
+            marginTop: '-3px',
+            marginLeft: '-0.5px',
+          }}
+        />
+      </div>
     </div>
   );
 };

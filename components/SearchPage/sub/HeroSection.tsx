@@ -3,20 +3,21 @@ import Image from 'next/image';
 import DropdownIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
 import React from 'react';
 
-const HeroSection = () => {
+const HeroSection = ({
+  setShowFilter,
+}: {
+  setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div>
-      <div className="flex items-center px-4 pt-6 justify-between">
-        {/* <p className="font-semibold lg:hidden">
-          <span className="font-bold">1243 Cars in</span> podgorica <br /> with
-          search options
-        </p> */}
-        <p className="font-semibold w-6/12 lg:text-3xl lg:w-full">
+      <div className="flex items-center px-4 pt-4 lg:pt-0 justify-between">
+        <p className="font-semibold w-1/2 lg:text-3xl lg:w-full">
           <span className="font-bold">1243 Cars in</span> podgorica with search
           options
         </p>
         <div className="lg:hidden">
           <Button
+            onClick={() => setShowFilter(true)}
             text="Choose Filters"
             style={{
               width: '136px',

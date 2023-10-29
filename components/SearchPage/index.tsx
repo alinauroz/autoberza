@@ -7,7 +7,7 @@ import Card from './sub/Card';
 import NextPage from './sub/NextPage';
 import '../../styles/PostAd.css';
 import FilterComp from './sub/Filter';
-//import { DynamicFiltersResponse } from '@/types';
+import { DynamicFiltersResponse } from '@/types';
 
 const data = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
@@ -22,28 +22,26 @@ const data = [
 ];
 
 const SearchPage = () => {
-  const [isActive, setIsActive] = React.useState('');
-
-  const handleNavItems = () => {};
+  const [showFilter, setShowFilter] = React.useState(false);
 
   return (
     <div>
       <Header />
-      <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:mx-12">
-        <div
-          onClick={handleNavItems}
-          className="filter-section hidden lg:block w-1/2 "
-        >
-          <FilterComp data={data} />
-        </div>
-        <div className="w-full">
-          <HeroSection />
+      <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:pt-6 lg:mx-12">
+        <FilterComp
+          data={data as DynamicFiltersResponse[]}
+          setShowFilter={setShowFilter}
+          showFilter={showFilter}
+        />
+
+        <div className={`w-full ${showFilter ? 'hidden' : ''}`}>
+          <HeroSection setShowFilter={setShowFilter} />
           <Card />
-          {/* <Card /> */}
+          <Card />
           <NextPage />
         </div>
       </div>
-      <Footer />
+      <Footer containerClass={`${showFilter ? 'hidden' : ''}`} />
     </div>
   );
 };
