@@ -74,6 +74,10 @@ async function Ad({ id }: IProps) {
           <Images photos={data.photos || []} />
         </div>
         <div className="my-2 md:col-span-2">
+          <div>
+            Price: {data.price}
+            City: {data.city}
+          </div>
           <p className="text-lg mb-2 font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
             Seller
           </p>
