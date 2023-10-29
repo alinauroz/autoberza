@@ -68,26 +68,18 @@ async function Ad({ id }: IProps) {
 
   const sections = separateSectionFields(form?.fields);
   return (
-    <div className="p-8">
+    <div className="p-8 md:w-11/12 mx-auto">
       <div className="md:grid md:grid-cols-4">
         <div className="col-span-3">
           <Images photos={data.photos || []} />
         </div>
       </div>
-      {/* <p>
-        PRINT DYNAMIC FIELDS BELOW, MAKE A SEPARATE COMPONENT. IM JUST WRITING
-        CODE HERE FOR DEMO
-      </p> */}
       {Object.keys(sections).map((section) => {
         return (
           <div className="my-4" key={section}>
-            <p className="text-lg font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
+            <p className="text-lg font-medium text-[#00C489] border-b-2 md:border-0 border-gray-600 w-max">
               {section}
             </p>
-            {/* <p className="my-2">
-              Section has <b>fields</b> property. For example, to print details
-              of this section, do following:
-            </p> */}
             {/* <div className="grid grid-cols-4 gap-4"> */}
             <div className="lg:grid lg:grid-cols-4 lg:gap-4">
               {sections[section].map(
@@ -123,7 +115,7 @@ async function Ad({ id }: IProps) {
                   }
                   return (
                     <span
-                      className="my-6 md:my-3 flex items-center justify-between border-b-2 text-gray-600 lg:block"
+                      className="my-6 md:my-3 flex items-center justify-between border-b-2 md:border-0 text-gray-600 lg:block"
                       key={field.name}
                     >
                       <p className="font-bold">{field.label}</p>
