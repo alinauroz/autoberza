@@ -86,40 +86,44 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.target as HTMLFormElement);
-    const json = fdtojson(fd);
+    if (prefill) {
+      alert('Update');
+    } else {
+      const fd = new FormData(e.target as HTMLFormElement);
+      const json = fdtojson(fd);
 
-    for (let x in json) {
-      if (json[x] === 'on') {
-        json[x] = true;
+      for (let x in json) {
+        if (json[x] === 'on') {
+          json[x] = true;
+        }
       }
-    }
 
-    if (!json.country) {
-      toast.error('Country is required');
-    }
-
-    createAd({
-      details: json,
-
-      title: json.title,
-      price: parseInt(json.price) * 100,
-      discountedPrice: parseInt(json.discountedPrice) * 100,
-      country: json.country,
-      city: json.city,
-      location: json.location,
-      photos: json.photos.split('|'),
-      description: json.description,
-      category: searchParams.get('category'),
-    }).then(({ data, error }) => {
-      if (error?.graphQLErrors[0].message) {
-        toast.error(error?.graphQLErrors[0].message);
-        router.push(`/${data.createAd.id}`);
-      } else {
-        toast.success('Ad posted');
-        router.push('/post-ad');
+      if (!json.country) {
+        toast.error('Country is required');
       }
-    });
+
+      createAd({
+        details: json,
+
+        title: json.title,
+        price: parseInt(json.price) * 100,
+        discountedPrice: parseInt(json.discountedPrice) * 100,
+        country: json.country,
+        city: json.city,
+        location: json.location,
+        photos: json.photos.split('|'),
+        description: json.description,
+        category: searchParams.get('category'),
+      }).then(({ data, error }) => {
+        if (error?.graphQLErrors[0].message) {
+          toast.error(error?.graphQLErrors[0].message);
+          router.push(`/${data.createAd.id}`);
+        } else {
+          toast.success('Ad posted');
+          router.push('/post-ad');
+        }
+      });
+    }
   };
 
   if (!loggedIn) {
