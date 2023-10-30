@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React from 'react';
-import BMW from '@/public/assets/common/searchPage/BMW.svg';
 import GasPump from '@/public/assets/common/searchPage/gasPumpIcon.svg';
 import Location from '@/public/assets/common/searchPage/locationIcon.svg';
 import Calendar from '@/public/assets/common/searchPage/calendarIcon.svg';
