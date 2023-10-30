@@ -4,6 +4,7 @@ import { IForm } from '../AdminPanel/Forms';
 import separateSectionFields from '@/utils/separateSectionFields';
 import Image from 'next/image';
 import checkmarkIcon from '../../public/assets/common/check-mark.svg';
+import LocationIcon from '../../public/assets/common/searchPage/locationIcon.svg';
 import Images from './Images';
 
 interface IProps {
@@ -60,6 +61,7 @@ const getServerSideProps = async (id: string) => {
   const form = formResponse?.forms?.find(
     (form: IForm) => form.category === ad.category
   );
+  // console.log('Form', form);
   return {
     data: ad,
     form,
@@ -68,20 +70,55 @@ const getServerSideProps = async (id: string) => {
 
 async function Ad({ id }: IProps) {
   const { data, form } = await getServerSideProps(id);
+  // return null;
 
   const sections = separateSectionFields(form?.fields);
   return (
-    <div className="p-8 md:w-11/12 mx-auto">
-      <div className="md:grid md:grid-cols-6 gap-4">
-        <div className="col-span-4">
+    <div className="lg:p-8 px-4 md:w-11/12 mx-auto">
+      <div className="hidden lg:block font-bold text-xl text-gray-800 mb-8 pl-[84px] ">
+        {data.title}
+      </div>
+      <div className="md:grid md:grid-cols-6 md:gap-4">
+        <div className="lg:col-span-4">
           <Images photos={data.photos || []} />
         </div>
-        <div className="my-2 md:col-span-2">
-          <div>
-            Price: {data.price}
-            City: {data.city}
+        <div className="md:col-span-2 lg:bg-white lg:px-4 lg:py-2 lg:shadow lg:shadow-gray-400 mb-6 /4">
+          <div className="flex flex-col lg:mb-10 lg:mt-4 mb-4">
+            <div className="font-bold text-xl text-gray-800 lg:hidden flex justify-between mb-6">
+              {data.title}
+              <div className="flex items-center gap-2 mr-2">
+                <Image
+                  src={LocationIcon}
+                  alt=""
+                  className="w-[15px] mb-[1px]"
+                />
+                <span className="text-lg text-gray-500">{data.city}</span>
+              </div>
+            </div>
+            <div className="flex lg:justify-between lg:items-center gap-2 lg:border-b-2 lg:border-gray-300 mb-4">
+              <p className="text-md font-semibold text-gray-600 mb-2 lg:block hidden">
+                Price:
+              </p>
+
+              {data.discountedPrice ? (
+                <div>
+                  <div className="text-md font-bold text-gray-500 line-through">
+                    {data.price}€
+                  </div>
+                  <div className="text-md font-bold ">
+                    {data.discountedPrice / 100}€
+                  </div>
+                </div>
+              ) : (
+                <div className="text-md font-bold">{data.price}</div>
+              )}
+            </div>
+            <div className="lg:flex flex lg:justify-between justify-between gap-6 border-b-2 border-gray-300 hidden">
+              <p className="text-md font-semibold text-gray-600 mb-2 ">City:</p>
+              <span className="text-md font-bold">{data.city}</span>
+            </div>
           </div>
-          <p className="text-lg mb-2 font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
+          <p className="text-lg lg:mb-4 mb-4 font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
             Seller
           </p>
           <p className="font-bold text-xl text-gray-800">
@@ -122,12 +159,12 @@ async function Ad({ id }: IProps) {
       </div>
       {Object.keys(sections).map((section) => {
         return (
-          <div className="my-4" key={section}>
+          <div className="my-4 " key={section}>
             <p className="text-lg font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
               {section}
             </p>
             {/* <div className="grid grid-cols-4 gap-4"> */}
-            <div className="lg:grid lg:grid-cols-4 lg:gap-4">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-x-10 lg:w-[60%]">
               {sections[section].map(
                 (field: { label: string; name: string; type: string }) => {
                   if (!data?.details[field.name]) {
@@ -161,7 +198,7 @@ async function Ad({ id }: IProps) {
                   }
                   return (
                     <span
-                      className="my-6 md:my-3 flex items-center justify-between border-b-2 md:border-0 text-gray-600 lg:block"
+                      className="my-6 md:my-3 lg:flex flex items-center justify-between border-b-2 text-gray-600 lg:block"
                       key={field.name}
                     >
                       <p className="font-bold">{field.label}</p>
