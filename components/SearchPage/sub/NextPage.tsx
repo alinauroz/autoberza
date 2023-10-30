@@ -1,28 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NextIcon from '@/public/assets/common/searchPage/nextIcon.svg';
 import LastIcon from '@/public/assets/common/searchPage/lastIcon.svg';
 import Image from 'next/image';
 
-const NextPage = () => {
+const NextPage = ({
+  count,
+  take,
+  selected,
+  setSelected,
+}: {
+  count: number;
+  take: number;
+  selected: number;
+  setSelected: (x: number) => void;
+}) => {
+  const length = Math.ceil(count / take);
+
   return (
     <div className="bg-white mx-4 my-4 py-6 rounded-md">
-      <div className="flex items-center justify-center gap-2 ">
-        <div className="font-normal text-[#00C489] cursor-pointer lg:text-lg">
-          1
-        </div>
-        <div className="font-normal cursor-pointer lg:text-lg">2</div>
-        <div className="font-normal cursor-pointer lg:text-lg">3</div>
-        <div className="font-normal cursor-pointer lg:text-lg">4</div>
-        <div className="font-normal cursor-pointer lg:text-lg">5</div>
-        <div className="font-normal cursor-pointer lg:text-lg">...</div>
-        <div className="flex items-center gap-1 cursor-pointer lg:text-lg">
-          <p>Next</p>
-          <Image src={NextIcon} alt="" />
-        </div>
-        <div className="flex items-center gap-1 cursor-pointer lg:text-lg">
-          <p>Last</p>
-          <Image src={LastIcon} alt="" />
-        </div>
+      <div className="flex items-center justify-center gap-4 ">
+        {new Array(length).fill(0).map((_, index) => {
+          return (
+            <div
+              key={index}
+              onClick={() => {
+                setSelected(index);
+              }}
+              className={
+                'cursor-pointer lg:text-lg font-bold ' +
+                (selected === index ? 'text-[#00C489]' : '')
+              }
+            >
+              {index + 1}
+            </div>
+          );
+        })}
+        {false && (
+          <>
+            <div className="flex items-center gap-1 cursor-pointer lg:text-lg">
+              <p>Next</p>
+              <Image src={NextIcon} alt="" />
+            </div>
+            <div className="flex items-center gap-1 cursor-pointer lg:text-lg">
+              <p>Last</p>
+              <Image src={LastIcon} alt="" />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

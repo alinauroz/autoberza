@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React from 'react';
-import BMW from '@/public/assets/common/searchPage/BMW.svg';
 import GasPump from '@/public/assets/common/searchPage/gasPumpIcon.svg';
 import Location from '@/public/assets/common/searchPage/locationIcon.svg';
 import Calendar from '@/public/assets/common/searchPage/calendarIcon.svg';
@@ -8,19 +7,17 @@ import SpeedMeter from '@/public/assets/common/searchPage/speedMeterIcon.svg';
 import ArrowIcon from '@/public/assets/common/searchPage/ArrowIcon.svg';
 import Button from '@/components/Elements/Button';
 
-const Card = () => {
+const Card = ({ ad }: { ad: any }) => {
   return (
     <div className="bg-white mx-4 mt-4 rounded-md ">
       <div className="p-2 flex gap-4 lg:h-[246px]">
-        <Image src={BMW} alt="" className="w-[220px] lg:w-[306px]" />
+        <Image src={ad.photos?.[0]} alt="" className="w-[220px] lg:w-[306px]" />
         <div className="flex flex-col justify-between lg:w-full">
           <div className="lg:flex lg:items-center lg:justify-between lg:pr-8">
-            <p className="text-xs font-bold lg:text-2xl">
-              BMW - Golf 5 - 2.0 TDI
-            </p>
+            <p className="text-xs font-bold lg:text-2xl">{ad.title}</p>
             <div className="flex items-center gap-2 hidden lg:flex">
               <Image src={Location} alt="" className="" />
-              <p className="text-xs text-gray-600 lg:text-lg">Podgorica</p>
+              <p className="text-xs text-gray-600 lg:text-lg">{ad.city}</p>
             </div>
           </div>
           <div className="flex flex-col justify-between gap-4">
