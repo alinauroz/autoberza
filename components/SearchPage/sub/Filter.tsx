@@ -67,7 +67,7 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
             <div
               onClick={() => handleNavItems(fieldTitle)}
               className={`bg-white flex items-center justify-between px-4 py-3 cursor-pointer ${
-                isActive ? 'border-b' : 'hidden'
+                isActive ? 'border-t' : 'hidden'
               }`}
             >
               <span className="text-md py-2 font-semibold">{fieldTitle}</span>
@@ -79,7 +79,7 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
             </div>
 
             <div
-              className={`bg-white px-6 text-md border-b py-3 ${
+              className={`bg-white px-6 text-md py-3 ${
                 !isActive.includes(fieldTitle) && 'hidden'
               }`}
             >
@@ -110,30 +110,12 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
                 } else if (filterObj.type === 'text') {
                   return (
                     <div key={elIndex} className="py-2 flex items-center gap-3">
-                      <p className="pb-1 leading-3">
-                        Min{' '}
-                        <span className="text-[10px] pl-0.5 font-black">
+                      <div className="flex items-center relative w-full">
+                        <Input />
+                        <div className="absolute right-2 text-sm font-bold">
                           {filterObj.addon}
-                        </span>{' '}
-                      </p>
-                      <Input
-                        style={{
-                          height: '50px',
-                          borderRadius: '5px',
-                        }}
-                      />
-                      <p className="pb-1 leading-3">
-                        Max{' '}
-                        <span className="text-[10px] pl-0.5 font-black">
-                          {filterObj.addon}
-                        </span>{' '}
-                      </p>
-                      <Input
-                        style={{
-                          height: '50px',
-                          borderRadius: '5px',
-                        }}
-                      />
+                        </div>
+                      </div>
                     </div>
                   );
                 }
@@ -150,7 +132,7 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
             height: '50px',
             fontSize: '14px',
             borderRadius: '8px',
-            marginTop: '-3px',
+            marginTop: '24px',
             marginLeft: '-0.5px',
           }}
         />
