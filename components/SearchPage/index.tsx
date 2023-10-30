@@ -34,8 +34,8 @@ const GET_FILTERS = gql`
 `;
 
 const GET_ADS = gql`
-  query Query($isApproved: Boolean, $take: Int) {
-    ads(isApproved: $isApproved, take: $take) {
+  query Query($isApproved: Boolean, $take: Int, $skip: Int) {
+    ads(isApproved: $isApproved, take: $take, skip: $skip) {
       data {
         city
         country
