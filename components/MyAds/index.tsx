@@ -8,6 +8,15 @@ import '../../styles/postAd.css';
 import Loading from '../Elements/Loading';
 import moment from 'moment';
 import Link from 'next/link';
+import MyAdCard from './sub/MyAdCard';
+import Image from 'next/image';
+import ToyotaCar from '@/public/assets/common/searchPage/Toyota-Corolla-Altis-Interior-92972_yzntls.webp';
+import Location from '@/public/assets/common/searchPage/locationIcon.svg';
+import GasPump from '@/public/assets/common/searchPage/gasPumpIcon.svg';
+import Calendar from '@/public/assets/common/searchPage/calendarIcon.svg';
+import SpeedMeter from '@/public/assets/common/searchPage/speedMeterIcon.svg';
+import ArrowIcon from '@/public/assets/common/searchPage/ArrowIcon.svg';
+import Button from '@/components/Elements/Button';
 
 const GET_MY_ADS = gql`
   query MyAds {
@@ -41,38 +50,75 @@ function MyAds() {
       <div className="w-screen">
         <Header />
       </div>
-      <div className="w-11/12 mx-auto my-12">
-        <p className="text-2xl">Your Ads</p>
+      <div className="w-11/12 mx-auto my-12 ">
+        <p className="text-2xl font-bold">Your Ads</p>
         {fetching ? (
           <div className="h-96 w-full flex justify-center items-center">
             <Loading />
           </div>
         ) : (
-          <div className="w-full">
+          <div className="w-full  ">
             {ads.map((ad: any) => (
-              <div key={ad.id}>
-                <p>{ad.title}</p>
-                <p>
-                  Created on:{' '}
-                  {moment(new Date(ad.createdOn)).format('DD MMM YYYY')}
-                </p>
-                <div>
-                  <Link href={`/edit-ad?id=${ad.id}`}>
-                    <button>Edit</button>
-                  </Link>
-                  <button
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          'Are you sure you want to delete this ad'
-                        )
-                      ) {
-                        window.alert('Delete it');
-                      }
+              <div key={ad.id} className="mb-4">
+                <div className="bg-white p-4 flex gap-6">
+                  <Image
+                    src={ad.photos[0]}
+                    alt=""
+                    width={236}
+                    height={130}
+                    className="rounded-md lg:w-[400px] h-[120] lg:h-[230px]"
+                  />
+                  {/* <div
+                    className="w-[406px] lg:w-[306px]"
+                    style={{
+                      backgroundImage: `url(${ad.photos?.[0]})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
                     }}
-                  >
-                    Delete
-                  </button>
+                  ></div> */}
+                  <div className="flex flex-col justify-between w-full">
+                    <div>
+                      <div className="flex justify-between">
+                        <p className="lg:text-lg font-bold text-md ">
+                          {ad.title}
+                        </p>
+                        <div className="flex items-center gap-2 hidden lg:flex">
+                          <Image src={Location} alt="" className="w-3" />
+                          <p className="text-xs font-semibold text-gray-600 lg:text-base">
+                            {ad.city}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-gray-600 text-sm">
+                        Created on:{' '}
+                        {moment(new Date(ad.createdOn)).format('DD MMM YYYY')}
+                      </p>
+                    </div>
+                    <div className="text-md font-semibold flex flex-col text-gray-500 gap-2">
+                      <p className="text-sm">{ad.category}</p>
+                    </div>
+                    <div className="mb-1 flex justify-between w-full">
+                      <Link href={`/edit-ad?id=${ad.id}`}>
+                        <button className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-4 py-1">
+                          Edit
+                        </button>
+                      </Link>
+                      <button
+                        className="bg-red-600 hover:bg-red-700 active:bg-red-800 lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-4 py-1"
+                        onClick={() => {
+                          if (
+                            window.confirm(
+                              'Are you sure you want to delete this ad'
+                            )
+                          ) {
+                            window.alert('Delete it');
+                          }
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
