@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import HeroSection from './sub/HeroSection';
@@ -34,8 +34,8 @@ const GET_FILTERS = gql`
 `;
 
 const GET_ADS = gql`
-  query Query($isApproved: Boolean, $take: Int, $skip: Int) {
-    ads(isApproved: $isApproved, take: $take, skip: $skip) {
+  query Query($isApproved: Boolean, $take: Int, $skip: Int, $details: JSON) {
+    ads(isApproved: $isApproved, take: $take, skip: $skip, details: $details) {
       data {
         city
         country
@@ -63,6 +63,7 @@ const GET_ADS = gql`
 
 const SearchPage = () => {
   const [showFilter, setShowFilter] = React.useState(false);
+  const [variables, setVariables] = useState<any>({});
   const [page, setPage] = useState(0);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
     query: GET_FILTERS,
@@ -71,6 +72,7 @@ const SearchPage = () => {
     query: GET_ADS,
     variables: {
       //isApproved: true,
+      details: variables,
       take,
       skip: page * take,
     },
@@ -82,6 +84,10 @@ const SearchPage = () => {
   }, [filterResponse]);
   const ads = adResponse?.ads?.data || [];
   const count = adResponse?.ads?.count || 0;
+
+  useEffect(() => {
+    console.log('Variables', variables);
+  }, [variables]);
 
   return (
     <div>
@@ -101,6 +107,8 @@ const SearchPage = () => {
             data={filters as DynamicFiltersResponse[]}
             setShowFilter={setShowFilter}
             showFilter={showFilter}
+            variables={variables}
+            setVariables={setVariables}
           />
         )}
 

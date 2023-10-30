@@ -76,7 +76,11 @@ export const ads = async (
   if (details) {
     filteredAds = ads.filter((ad) => {
       for (let field in details) {
-        if (
+        if (Array.isArray((details as any)[field])) {
+          return (
+            (details as any)[field].indexOf((ad.details as any)[field]) !== -1
+          );
+        } else if (
           (details as { [x: string]: string })[field] !==
           (ad.details as { [x: string]: string })[field]
         ) {
