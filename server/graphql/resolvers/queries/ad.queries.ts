@@ -95,5 +95,8 @@ export const myAds = async (
 type AdFilterArgs = { category: string };
 export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
   const forms = await prisma.formFields.findMany({ where: { category } });
-  const fields = forms.map((form) => form.fields);
+  const fields = forms.map((form) => form.fields).flat();
+  return {
+    filters: fields.slice(0, 10),
+  };
 };

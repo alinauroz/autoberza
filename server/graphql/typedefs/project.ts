@@ -34,6 +34,10 @@ const projectTypedefs = `
       count: Int,
     }
 
+    type AdFilterResponse {
+      filters: JSON
+    }
+
     type Query {
       forms: [Form]
       users: [User]
@@ -52,7 +56,7 @@ const projectTypedefs = `
 
       ): AdResponse
       myAds: AdResponse
-      adFilters(category: String): String
+      adFilters(category: String): AdFilterResponse
     }
     type Mutation {
       createFieldForm (
