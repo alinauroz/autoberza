@@ -21,6 +21,7 @@ const projectTypedefs = `
       discountedPrice: Int
       country: String
       city: String
+      description: String
       location: String
       photos: [String]
       details: JSON
@@ -76,6 +77,7 @@ const projectTypedefs = `
         photos: [String]
         details: JSON
         category: String
+        description: String
       ): Ad
       updateAd(
         id: String!

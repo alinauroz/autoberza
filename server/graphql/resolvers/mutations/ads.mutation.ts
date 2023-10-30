@@ -12,6 +12,7 @@ export const createAd = isLoggedIn(
       country,
       city,
       location,
+      description,
       details,
       photos,
       title,
@@ -34,6 +35,7 @@ export const createAd = isLoggedIn(
         photos,
         title,
         category,
+        description,
       },
     });
 

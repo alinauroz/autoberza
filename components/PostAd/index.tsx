@@ -33,6 +33,7 @@ const CREATE_AD = gql`
     $photos: [String]
     $details: JSON
     $category: String
+    $description: String
   ) {
     createAd(
       title: $title
@@ -43,6 +44,7 @@ const CREATE_AD = gql`
       location: $location
       photos: $photos
       details: $details
+      description: $description
       category: $category
     ) {
       city
@@ -66,7 +68,7 @@ const CREATE_AD = gql`
   }
 `;
 
-const PostAd = () => {
+const PostAd = ({ prefill }: { prefill?: any }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const loggedIn = isLoggedIn();
@@ -75,7 +77,9 @@ const PostAd = () => {
   const [{ fetching: creating }, createAd] = useMutation(CREATE_AD);
 
   const form = forms?.forms?.find(
-    (f: IForm) => f.category === searchParams.get('category')
+    (f: IForm) =>
+      f.category === searchParams.get('category') ||
+      f.category === prefill?.category
   );
 
   const categories = forms?.forms?.map((f: IForm) => ({ text: f.category }));
@@ -178,10 +182,10 @@ const PostAd = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <Header />
-        <UploadFile />
+        <UploadFile prefill={prefill} />
         <Dynamic data={form.fields} />
-        <AdLocation />
-        <AdPrice />
+        <AdLocation prefill={prefill} />
+        <AdPrice prefill={prefill} />
         <AdType />
         <Contact creating={creating} />
       </form>

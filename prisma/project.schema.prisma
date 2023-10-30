@@ -41,6 +41,7 @@ model Ad {
   city                String
   location            String
   category            String?
+  description         String?
 
   photos              String[]
 

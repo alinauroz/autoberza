@@ -2,11 +2,10 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import Photos from '@/public/assets/common/photos.svg';
 import TickGood from '@/public/assets/common/tick-good.svg';
-import Button from '@/components/Elements/Button';
 import UploadComponent from '@/components/Elements/UploadComponent';
 
-const UploadFile = () => {
-  const [links, setLinks] = useState<string[]>([]);
+const UploadFile = ({ prefill }: { prefill: any }) => {
+  const [links, setLinks] = useState<string[]>(prefill?.photos || []);
 
   if (links.length > 0) {
     return (
