@@ -108,7 +108,18 @@ type AdFilterArgs = { category: string };
 export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
   const forms = await prisma.formFields.findMany({ where: { category } });
   const fields = forms.map((form) => form.fields).flat();
+  const categories = forms.map((form) => form.category);
+
+  const moreFilters: Prisma.JsonValue = [
+    {
+      name: 'category',
+      type: 'select',
+      options: categories,
+      label: 'Category',
+    },
+  ];
+
   return {
-    filters: fields.slice(0, 10),
+    filters: moreFilters.concat(fields.slice(0, 10)),
   };
 };
