@@ -114,6 +114,7 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
     }).then(({ data, error }) => {
       if (error?.graphQLErrors[0].message) {
         toast.error(error?.graphQLErrors[0].message);
+        router.push(`/${data.createAd.id}`);
       } else {
         toast.success('Ad posted');
         router.push('/post-ad');

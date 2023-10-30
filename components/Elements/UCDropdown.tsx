@@ -35,8 +35,6 @@ const UCDropDownMenu = ({
     options.find((option) => option.value === prefill?.[id as string])
   );
 
-  console.log('Selected', name, selectedLV);
-
   const handleCloseDD = () => {
     setIsDDActive(false);
   };

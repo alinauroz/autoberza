@@ -115,7 +115,11 @@ const Dynamic: React.FC<Props> = ({ data, prefill }) => {
                     );
                   } else if (el.type.toLowerCase() === 'doubledropdown') {
                     return (
-                      <DoubleDropdown key={elIndex} DoubleDropdownData={el} />
+                      <DoubleDropdown
+                        key={elIndex}
+                        DoubleDropdownData={el}
+                        prefill={prefill?.details}
+                      />
                     );
                   }
                   return null;

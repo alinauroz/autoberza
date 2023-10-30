@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DropDownMenu, { LV } from './Dropdown';
 import { DoubleDropdown } from '@/types';
 
 interface Props {
   DoubleDropdownData: DoubleDropdown;
+  prefill?: any;
 }
 
-const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData }) => {
+const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData, prefill }) => {
   const [selectedFirst, setSelectedFirst] = React.useState<LV>();
   const [selectedSecond, setSelectedSecond] = React.useState<LV>();
 
@@ -26,8 +27,31 @@ const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData }) => {
     }));
   }, [selectedFirst]);
 
+  useEffect(() => {
+    if (prefill) {
+      setSelectedFirst(
+        options1.find(
+          (option) => option.value === prefill?.[DoubleDropdownData.id]
+        )
+      );
+      setSelectedSecond(
+        options2.find((option) => option.value === DoubleDropdownData.id2)
+      );
+    }
+  }, [prefill, options1, options2]);
+
   return (
     <>
+      <input
+        type="hidden"
+        name={DoubleDropdownData.id}
+        value={selectedFirst?.value}
+      />
+      <input
+        type="hidden"
+        name={DoubleDropdownData.id2}
+        value={selectedSecond?.value}
+      />
       <DropDownMenu
         name={DoubleDropdownData.label}
         options={options1}
