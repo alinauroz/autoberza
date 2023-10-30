@@ -90,6 +90,8 @@ const projectTypedefs = `
         photos: [String]
         details: JSON
         isApproved: Boolean
+        description: String
+        category: String
       ): Ad
     }
 `;
