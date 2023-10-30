@@ -56,7 +56,7 @@ const FilterComp = ({
         !showFilter ? 'hidden' : ''
       }`}
       style={{
-        height: 'calc(100vh - 68px)',
+        minHeight: 'calc(100vh - 68px)',
       }}
     >
       <button

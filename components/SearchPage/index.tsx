@@ -34,8 +34,20 @@ const GET_FILTERS = gql`
 `;
 
 const GET_ADS = gql`
-  query Query($isApproved: Boolean, $take: Int, $skip: Int, $details: JSON) {
-    ads(isApproved: $isApproved, take: $take, skip: $skip, details: $details) {
+  query Query(
+    $isApproved: Boolean
+    $take: Int
+    $skip: Int
+    $details: JSON
+    $categories: [String]
+  ) {
+    ads(
+      isApproved: $isApproved
+      take: $take
+      skip: $skip
+      details: $details
+      categories: $categories
+    ) {
       data {
         city
         country
@@ -68,11 +80,18 @@ const SearchPage = () => {
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
     query: GET_FILTERS,
   });
+
+  const [normalFilters, detailFilters] = useMemo(() => {
+    const { categories, ...detailFilters } = variables;
+    return [{ categories }, detailFilters];
+  }, [variables]);
+
   const [{ fetching: adsFetching, data: adResponse }] = useQuery({
     query: GET_ADS,
     variables: {
       //isApproved: true,
-      details: variables,
+      ...normalFilters,
+      details: detailFilters,
       take,
       skip: page * take,
     },

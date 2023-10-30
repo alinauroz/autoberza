@@ -13,6 +13,7 @@ type FilterArgs = {
   country: string;
   category: string;
   details: Prisma.JsonFilter;
+  categories: string[];
 
   take: number;
   skip: number;
@@ -30,10 +31,13 @@ export const ads = async (
     category,
     details,
 
+    categories,
+
     take = 10,
     skip = 0,
   }: FilterArgs
 ) => {
+  console.log(categories);
   const where = {
     isApproved,
     id,
@@ -41,6 +45,9 @@ export const ads = async (
       createdOn: {
         gt: new Date(dateAfter * 1000),
       },
+    }),
+    ...(categories && {
+      category: { in: categories },
     }),
 
     // more filters
@@ -60,7 +67,6 @@ export const ads = async (
         },
       ],
     }),
-    category,
     city,
     country,
   };
@@ -116,7 +122,7 @@ export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
 
   const moreFilters: Prisma.JsonValue = [
     {
-      name: 'category',
+      name: 'categories',
       type: 'select',
       options: categories,
       label: 'Category',

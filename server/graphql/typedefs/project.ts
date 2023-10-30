@@ -51,6 +51,7 @@ const projectTypedefs = `
         city: String,
         country: String,
         category: String,
+        categories: [String]
 
         details: JSON
 
