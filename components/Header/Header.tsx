@@ -27,15 +27,20 @@ const Header = ({ style }: Props) => {
         <div className="text-sm md:text-normal text-white">
           <div className="p-1.5 md:p-2">
             {loggedIn ? (
-              <span
-                className="cursor-pointer"
-                onClick={() => {
-                  Cookies.remove('token');
-                  window.location.reload();
-                }}
-              >
-                Log Out
-              </span>
+              <div className="flex gap-4">
+                <Link href="/manage-ads">
+                  <span className="cursor-pointer">Manage Ads</span>
+                </Link>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => {
+                    Cookies.remove('token');
+                    window.location.reload();
+                  }}
+                >
+                  Log Out
+                </span>
+              </div>
             ) : (
               <div className="flex gap-4">
                 <span>
