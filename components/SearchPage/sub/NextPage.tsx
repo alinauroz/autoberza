@@ -3,8 +3,17 @@ import NextIcon from '@/public/assets/common/searchPage/nextIcon.svg';
 import LastIcon from '@/public/assets/common/searchPage/lastIcon.svg';
 import Image from 'next/image';
 
-const NextPage = ({ count, take }: { count: number; take: number }) => {
-  const [selected, setSelected] = useState(0);
+const NextPage = ({
+  count,
+  take,
+  selected,
+  setSelected,
+}: {
+  count: number;
+  take: number;
+  selected: number;
+  setSelected: (x: number) => void;
+}) => {
   const length = Math.ceil(count / take);
 
   return (
@@ -14,6 +23,9 @@ const NextPage = ({ count, take }: { count: number; take: number }) => {
           return (
             <div
               key={index}
+              onClick={() => {
+                setSelected(index);
+              }}
               className={
                 'cursor-pointer lg:text-lg font-bold ' +
                 (selected === index ? 'text-[#00C489]' : '')

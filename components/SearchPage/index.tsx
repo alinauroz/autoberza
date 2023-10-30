@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import HeroSection from './sub/HeroSection';
@@ -63,6 +63,7 @@ const GET_ADS = gql`
 
 const SearchPage = () => {
   const [showFilter, setShowFilter] = React.useState(false);
+  const [page, setPage] = useState(0);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
     query: GET_FILTERS,
   });
@@ -71,6 +72,7 @@ const SearchPage = () => {
     variables: {
       //isApproved: true,
       take,
+      skip: page * take,
     },
   });
 
@@ -104,9 +106,19 @@ const SearchPage = () => {
 
         <div className={`w-full ${showFilter ? 'hidden' : ''}`}>
           <HeroSection setShowFilter={setShowFilter} />
-          {count}
-          {ads?.map((ad: any) => <Card key={ad.id} />)}
-          <NextPage count={count} take={take} />
+          {adsFetching ? (
+            <div className="flex h-72 w-full justify-center items-center">
+              <Loading />
+            </div>
+          ) : (
+            ads?.map((ad: any) => <Card key={ad.id} />)
+          )}
+          <NextPage
+            count={count}
+            take={take}
+            selected={page}
+            setSelected={setPage}
+          />
         </div>
       </div>
       <Footer containerClass={`${showFilter ? 'hidden' : ''}`} />
