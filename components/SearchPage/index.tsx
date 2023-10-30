@@ -105,13 +105,13 @@ const SearchPage = () => {
         )}
 
         <div className={`w-full ${showFilter ? 'hidden' : ''}`}>
-          <HeroSection setShowFilter={setShowFilter} />
+          <HeroSection setShowFilter={setShowFilter} count={count} />
           {adsFetching ? (
             <div className="flex h-72 w-full justify-center items-center">
               <Loading />
             </div>
           ) : (
-            ads?.map((ad: any) => <Card key={ad.id} />)
+            ads?.map((ad: any) => <Card key={ad.id} ad={ad} />)
           )}
           <NextPage
             count={count}
