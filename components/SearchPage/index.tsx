@@ -11,6 +11,8 @@ import { DynamicFiltersResponse } from '@/types';
 import { gql, useQuery } from 'urql';
 import Loading from '../Elements/Loading';
 
+const take = 1;
+
 const data = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
   {
@@ -31,17 +33,53 @@ const GET_FILTERS = gql`
   }
 `;
 
+const GET_ADS = gql`
+  query Query($isApproved: Boolean, $take: Int) {
+    ads(isApproved: $isApproved, take: $take) {
+      data {
+        city
+        country
+        details
+        discountedPrice
+        id
+        isApproved
+        location
+        photos
+        price
+        submittedBy
+        submittedByUser {
+          country
+          email
+          name
+          phone
+        }
+        title
+        createdOn
+      }
+      count
+    }
+  }
+`;
+
 const SearchPage = () => {
   const [showFilter, setShowFilter] = React.useState(false);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
     query: GET_FILTERS,
   });
+  const [{ fetching: adsFetching, data: adResponse }] = useQuery({
+    query: GET_ADS,
+    variables: {
+      //isApproved: true,
+      take,
+    },
+  });
 
   const filters = useMemo(() => {
     const fields = filterResponse?.adFilters?.filters;
-    console.log('Fields', fields);
     return fields;
   }, [filterResponse]);
+  const ads = adResponse?.ads?.data || [];
+  const count = adResponse?.ads?.count || 0;
 
   return (
     <div>
@@ -66,9 +104,9 @@ const SearchPage = () => {
 
         <div className={`w-full ${showFilter ? 'hidden' : ''}`}>
           <HeroSection setShowFilter={setShowFilter} />
-          <Card />
-          <Card />
-          <NextPage />
+          {count}
+          {ads?.map((ad: any) => <Card key={ad.id} />)}
+          <NextPage count={count} take={take} />
         </div>
       </div>
       <Footer containerClass={`${showFilter ? 'hidden' : ''}`} />

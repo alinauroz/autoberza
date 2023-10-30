@@ -54,6 +54,8 @@ const projectTypedefs = `
 
         details: JSON
 
+        take: Int,
+        skip: Int
       ): AdResponse
       myAds: AdResponse
       adFilters(category: String): AdFilterResponse

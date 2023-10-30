@@ -13,6 +13,9 @@ type FilterArgs = {
   country: string;
   category: string;
   details: Prisma.JsonFilter;
+
+  take: number;
+  skip: number;
 };
 export const ads = async (
   _: unknown,
@@ -26,40 +29,48 @@ export const ads = async (
     country,
     category,
     details,
+
+    take = 10,
+    skip = 0,
   }: FilterArgs
 ) => {
-  const ads = await prisma.ad.findMany({
-    where: {
-      isApproved,
-      id,
-      ...(dateAfter && {
-        createdOn: {
-          gt: new Date(dateAfter * 1000),
-        },
-      }),
+  const where = {
+    isApproved,
+    id,
+    ...(dateAfter && {
+      createdOn: {
+        gt: new Date(dateAfter * 1000),
+      },
+    }),
 
-      // more filters
-      ...((minPrice || maxPrice) && {
-        OR: [
-          {
-            price: {
-              ...(minPrice && { gte: minPrice }),
-              ...(maxPrice && { lte: maxPrice }),
-            },
+    // more filters
+    ...((minPrice || maxPrice) && {
+      OR: [
+        {
+          price: {
+            ...(minPrice && { gte: minPrice }),
+            ...(maxPrice && { lte: maxPrice }),
           },
-          {
-            discountedPrice: {
-              ...(minPrice && { gte: minPrice }),
-              ...(maxPrice && { lte: maxPrice }),
-            },
+        },
+        {
+          discountedPrice: {
+            ...(minPrice && { gte: minPrice }),
+            ...(maxPrice && { lte: maxPrice }),
           },
-        ],
-      }),
-      category,
-      city,
-      country,
-    },
+        },
+      ],
+    }),
+    category,
+    city,
+    country,
+  };
+  const ads = await prisma.ad.findMany({
+    where,
+    take,
+    skip,
   });
+
+  const count = await prisma.ad.count({ where });
 
   let filteredAds = ads;
   if (details) {
@@ -78,6 +89,7 @@ export const ads = async (
 
   return {
     data: filteredAds,
+    count,
   };
 };
 
