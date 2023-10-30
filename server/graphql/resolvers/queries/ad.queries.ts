@@ -31,6 +31,7 @@ export const ads = async (
   const ads = await prisma.ad.findMany({
     where: {
       isApproved,
+      id,
       ...(dateAfter && {
         createdOn: {
           gt: new Date(dateAfter * 1000),

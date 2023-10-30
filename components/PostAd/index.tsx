@@ -183,7 +183,7 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
       <form onSubmit={handleSubmit}>
         <Header />
         <UploadFile prefill={prefill} />
-        <Dynamic data={form.fields} />
+        <Dynamic data={form.fields} prefill={prefill} />
         <AdLocation prefill={prefill} />
         <AdPrice prefill={prefill} />
         <AdType />
