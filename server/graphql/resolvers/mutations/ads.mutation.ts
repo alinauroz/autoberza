@@ -12,6 +12,7 @@ export const createAd = isLoggedIn(
       country,
       city,
       location,
+      description,
       details,
       photos,
       title,
@@ -34,6 +35,7 @@ export const createAd = isLoggedIn(
         photos,
         title,
         category,
+        description,
       },
     });
 
@@ -55,6 +57,7 @@ export const updateAd = isLoggedIn(
       photos,
       title,
       isApproved,
+      category,
     }: Prisma.Ad
   ) => {
     if (details === null) {
@@ -73,6 +76,7 @@ export const updateAd = isLoggedIn(
         photos,
         title,
         isApproved,
+        category,
       },
     });
 

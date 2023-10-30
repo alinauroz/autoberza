@@ -3,11 +3,7 @@ import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
 import React from 'react';
 
-const AdLocation = () => {
-  const [country, setCountry] = React.useState<LV>();
-  const [grad, setGrad] = React.useState<LV>();
-  const [location, setLocation] = React.useState<LV>();
-
+const AdLocation = ({ prefill }: { prefill: any }) => {
   const tempCountriesLV: LV[] = [
     { value: 'US', label: 'United States' },
     { value: 'UK', label: 'United Kingdom' },
@@ -25,6 +21,10 @@ const AdLocation = () => {
     { value: 'loc2', label: 'Locaitons 2 Option' },
     { value: 'loc3', label: 'Locaitons 3 Option' },
   ];
+
+  const [country, setCountry] = React.useState<LV | undefined>(
+    tempCountriesLV.find((country) => country.value === prefill?.country)
+  );
 
   return (
     <div className="section-conatiner">
@@ -50,6 +50,7 @@ const AdLocation = () => {
             boxShadow: '0px 1px 4px 2px #00000017',
             border: 'none',
           }}
+          prefill={prefill}
         />
         <Input
           placeholder="Location"
@@ -61,6 +62,7 @@ const AdLocation = () => {
             boxShadow: '0px 1px 4px 2px #00000017',
             border: 'none',
           }}
+          prefill={prefill}
         />
       </div>
     </div>

@@ -11,13 +11,14 @@ interface IProps {
   id: string;
 }
 
-const GET_AD = `
+export const GET_AD = `
 query Ads($id: String) {
   ads(id: $id) {
     data {
     city
     country
     createdOn
+    description
     details
     discountedPrice
     id

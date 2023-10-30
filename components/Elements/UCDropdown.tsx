@@ -17,6 +17,7 @@ interface Props {
   name: string;
   img?: string;
   id?: string;
+  prefill?: any;
 }
 
 const UCDropDownMenu = ({
@@ -26,10 +27,13 @@ const UCDropDownMenu = ({
   name,
   img,
   id,
+  prefill,
 }: Props) => {
   const [isDDActive, setIsDDActive] = useState(false);
   const [searchStr, setSearchStr] = useState('');
-  const [selectedLV, setSelectedLV] = useState<LV>();
+  const [selectedLV, setSelectedLV] = useState<LV | undefined>(
+    options.find((option) => option.value === prefill?.[id as string])
+  );
 
   const handleCloseDD = () => {
     setIsDDActive(false);

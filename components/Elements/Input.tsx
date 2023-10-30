@@ -14,6 +14,7 @@ interface Props {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   addon?: string;
   disabled?: boolean;
+  prefill?: any;
 }
 
 const Input = ({
@@ -29,6 +30,7 @@ const Input = ({
   defaultValue,
   required,
   disabled = false,
+  prefill,
 }: Props) => {
   return (
     <div className="inputs">
@@ -42,7 +44,7 @@ const Input = ({
         onBlur={onBlur}
         name={name}
         value={value}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue || prefill?.[name || '']}
         required={required}
         disabled={disabled}
       />

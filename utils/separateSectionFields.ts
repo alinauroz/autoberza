@@ -5,7 +5,7 @@ export default function separateSectionFields(
 ) {
   const sections: { [section: string]: DynamicSectionsResponse[] } = {};
 
-  fields.forEach((field) => {
+  fields?.forEach((field) => {
     if (sections[field.section || 'Basic']) {
       sections[field.section || 'Basic'].push(field);
     } else {

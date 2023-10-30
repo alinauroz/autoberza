@@ -33,6 +33,7 @@ const CREATE_AD = gql`
     $photos: [String]
     $details: JSON
     $category: String
+    $description: String
   ) {
     createAd(
       title: $title
@@ -43,6 +44,7 @@ const CREATE_AD = gql`
       location: $location
       photos: $photos
       details: $details
+      description: $description
       category: $category
     ) {
       city
@@ -66,16 +68,65 @@ const CREATE_AD = gql`
   }
 `;
 
-const PostAd = () => {
+const UPDATE_AD = gql`
+  mutation UpdateAd(
+    $id: String!
+    $title: String
+    $price: Int
+    $discountedPrice: Int
+    $country: String
+    $city: String
+    $location: String
+    $photos: [String]
+    $details: JSON
+    $description: String
+  ) {
+    updateAd(
+      id: $id
+      title: $title
+      price: $price
+      discountedPrice: $discountedPrice
+      country: $country
+      city: $city
+      location: $location
+      photos: $photos
+      details: $details
+      description: $description
+    ) {
+      city
+      id
+      country
+      details
+      discountedPrice
+      isApproved
+      location
+      photos
+      price
+      submittedBy
+      submittedByUser {
+        id
+        email
+        isAdmin
+        name
+      }
+      title
+    }
+  }
+`;
+
+const PostAd = ({ prefill }: { prefill?: any }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const loggedIn = isLoggedIn();
 
   const [{ fetching, data: forms }] = useQuery({ query: GET_FORMS });
   const [{ fetching: creating }, createAd] = useMutation(CREATE_AD);
+  const [{ fetching: updating }, updateAd] = useMutation(UPDATE_AD);
 
   const form = forms?.forms?.find(
-    (f: IForm) => f.category === searchParams.get('category')
+    (f: IForm) =>
+      f.category === searchParams.get('category') ||
+      f.category === prefill?.category
   );
 
   const categories = forms?.forms?.map((f: IForm) => ({ text: f.category }));
@@ -84,37 +135,58 @@ const PostAd = () => {
     e.preventDefault();
     const fd = new FormData(e.target as HTMLFormElement);
     const json = fdtojson(fd);
-
     for (let x in json) {
       if (json[x] === 'on') {
         json[x] = true;
       }
     }
-
     if (!json.country) {
       toast.error('Country is required');
     }
 
-    createAd({
-      details: json,
+    if (prefill) {
+      updateAd({
+        id: prefill.id,
+        details: json,
+        title: json.title,
+        price: parseInt(json.price) * 100,
+        discountedPrice: parseInt(json.discountedPrice) * 100,
+        country: json.country,
+        city: json.city,
+        location: json.location,
+        photos: json.photos.split('|'),
+        description: json.description,
+        category: searchParams.get('category'),
+      }).then(({ data, error }) => {
+        if (error?.graphQLErrors[0].message) {
+          toast.error(error?.graphQLErrors[0].message);
+        } else {
+          toast.success('Ad updated');
+          router.push(`/ad/${data.updateAd.id}`);
+        }
+      });
+    } else {
+      createAd({
+        details: json,
 
-      title: json.title,
-      price: parseInt(json.price) * 100,
-      discountedPrice: parseInt(json.discountedPrice) * 100,
-      country: json.country,
-      city: json.city,
-      location: json.location,
-      photos: json.photos.split('|'),
-      description: json.description,
-      category: searchParams.get('category'),
-    }).then(({ data, error }) => {
-      if (error?.graphQLErrors[0].message) {
-        toast.error(error?.graphQLErrors[0].message);
-      } else {
-        toast.success('Ad posted');
-        router.push('/post-ad');
-      }
-    });
+        title: json.title,
+        price: parseInt(json.price) * 100,
+        discountedPrice: parseInt(json.discountedPrice) * 100,
+        country: json.country,
+        city: json.city,
+        location: json.location,
+        photos: json.photos.split('|'),
+        description: json.description,
+        category: searchParams.get('category'),
+      }).then(({ data, error }) => {
+        if (error?.graphQLErrors[0].message) {
+          toast.error(error?.graphQLErrors[0].message);
+        } else {
+          toast.success('Ad posted');
+          router.push(`/ad/${data.createAd.id}`);
+        }
+      });
+    }
   };
 
   if (!loggedIn) {
@@ -178,12 +250,12 @@ const PostAd = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <Header />
-        <UploadFile />
-        <Dynamic data={form.fields} />
-        <AdLocation />
-        <AdPrice />
+        <UploadFile prefill={prefill} />
+        <Dynamic data={form.fields} prefill={prefill} />
+        <AdLocation prefill={prefill} />
+        <AdPrice prefill={prefill} />
         <AdType />
-        <Contact creating={creating} />
+        <Contact creating={creating || updating} />
       </form>
       <Footer />
     </div>

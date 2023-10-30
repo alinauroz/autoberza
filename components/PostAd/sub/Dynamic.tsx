@@ -11,11 +11,12 @@ import DoubleDropdown from '@/components/Elements/DoubleDropdown';
 
 interface Props {
   data: DynamicSectionsResponse[];
+  prefill?: any;
 }
 
 type ProcessedData = { [x: string]: DynamicSectionsResponse[] };
 
-const Dynamic: React.FC<Props> = ({ data }) => {
+const Dynamic: React.FC<Props> = ({ data, prefill }) => {
   const [processedData, setProcessedData] = React.useState<ProcessedData>();
 
   React.useEffect(() => {
@@ -65,6 +66,7 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                         boxShadow: '0px 1px 4px 2px #00000017',
                         border: 'none',
                       }}
+                      prefill={prefill?.details}
                     />
                   </div>
                 )}
@@ -72,7 +74,11 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                   if (el.type === 'checkbox') {
                     return (
                       <div key={elIndex} className="checkbox-container">
-                        <input type="checkbox" name={el.name} />
+                        <input
+                          type="checkbox"
+                          name={el.name}
+                          defaultChecked={prefill?.details?.[el.name]}
+                        />
                         <label>{el.label}</label>
                       </div>
                     );
@@ -89,6 +95,7 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                           }}
                           addon={el.addon}
                           name={el.name}
+                          prefill={prefill?.details}
                         />
                       </div>
                     );
@@ -103,11 +110,16 @@ const Dynamic: React.FC<Props> = ({ data }) => {
                         name={el.label}
                         options={options}
                         id={el.name}
+                        prefill={prefill?.details}
                       />
                     );
                   } else if (el.type.toLowerCase() === 'doubledropdown') {
                     return (
-                      <DoubleDropdown key={elIndex} DoubleDropdownData={el} />
+                      <DoubleDropdown
+                        key={elIndex}
+                        DoubleDropdownData={el}
+                        prefill={prefill?.details}
+                      />
                     );
                   }
                   return null;

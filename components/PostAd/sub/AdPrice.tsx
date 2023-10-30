@@ -3,7 +3,7 @@ import React from 'react';
 import DropDownMenu from '@/components/Elements/UCDropdown';
 import Input from '@/components/Elements/Input';
 
-const AdPrice = () => {
+const AdPrice = ({ prefill }: { prefill: any }) => {
   return (
     <div className="ad-price-section-wrapper">
       <div className="ad-type-section-header">
@@ -23,6 +23,7 @@ const AdPrice = () => {
               }}
               required
               name="price"
+              defaultValue={prefill?.price ? prefill?.price / 100 + '' : ''}
             />
           </div>
           <div className="price-input">
@@ -34,6 +35,11 @@ const AdPrice = () => {
                 boxShadow: '0px 0 4px 2px #00000017',
               }}
               name="discountedPrice"
+              defaultValue={
+                prefill?.discountedPrice
+                  ? prefill?.discountedPrice / 100 + ''
+                  : ''
+              }
             />
           </div>
           {false && (
@@ -70,6 +76,7 @@ const AdPrice = () => {
           <textarea
             name="description"
             className="price-description-detail-text"
+            defaultValue={prefill?.description}
           />
         </div>
       </div>
