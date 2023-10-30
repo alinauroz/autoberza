@@ -41,7 +41,7 @@ function MyAds() {
       <div className="w-screen">
         <Header />
       </div>
-      <div className="w-screen w-11/12 mx-auto my-12">
+      <div className="w-11/12 mx-auto my-12">
         <p className="text-2xl">Your Ads</p>
         {fetching ? (
           <div className="h-96 w-full flex justify-center items-center">

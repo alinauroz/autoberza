@@ -91,3 +91,9 @@ export const myAds = async (
     data: ads,
   };
 };
+
+type AdFilterArgs = { category: string };
+export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
+  const forms = await prisma.formFields.findMany({ where: { category } });
+  const fields = forms.map((form) => form.fields);
+};

@@ -52,6 +52,7 @@ const projectTypedefs = `
 
       ): AdResponse
       myAds: AdResponse
+      adFilters(category: String): String
     }
     type Mutation {
       createFieldForm (
