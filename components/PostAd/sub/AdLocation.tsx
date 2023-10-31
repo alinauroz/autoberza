@@ -1,20 +1,11 @@
 'use client';
 import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
-import React from 'react';
+import { cityOptions, countryOptions } from '@/utils/options';
+import React, { useMemo } from 'react';
 
 const AdLocation = ({ prefill }: { prefill: any }) => {
-  const tempCountriesLV: LV[] = [
-    { value: 'US', label: 'United States' },
-    { value: 'UK', label: 'United Kingdom' },
-    { value: 'FR', label: 'France' },
-  ];
-
-  const tempGradsLV: LV[] = [
-    { value: 'grad1', label: 'Grad 1 Option' },
-    { value: 'grad2', label: 'Grad 2 Option' },
-    { value: 'grad3', label: 'Grad 3 Option' },
-  ];
+  const tempCountriesLV: LV[] = countryOptions;
 
   const tempLocationsLV: LV[] = [
     { value: 'loc1', label: 'Locaitons 1 Option' },
@@ -25,6 +16,12 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
   const [country, setCountry] = React.useState<LV | undefined>(
     tempCountriesLV.find((country) => country.value === prefill?.country)
   );
+
+  const tempGradsLV: LV[] = useMemo(() => {
+    if (country)
+      return cityOptions.filter((city) => city.country === country?.value);
+    return [];
+  }, [country]);
 
   return (
     <div className="section-conatiner">

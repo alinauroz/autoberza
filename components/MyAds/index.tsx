@@ -53,15 +53,21 @@ function MyAds() {
         <Header />
       </div>
       <div className="w-11/12 mx-auto my-12 ">
-        <p className="text-2xl font-bold">Your Ads</p>
+        <p className="text-2xl font-bold mb-2">Your Ads</p>
         {fetching ? (
           <div className="h-96 w-full flex justify-center items-center">
             <Loading />
           </div>
+        ) : ads.length === 0 ? (
+          <div className="h-96 flex justify-center items-center">
+            <span className="font-bold text-gray-600">
+              You have not posted any ad
+            </span>
+          </div>
         ) : (
           <div className="w-full  ">
             {ads.map((ad: any) => (
-              <div key={ad.id} className="mb-4">
+              <div key={ad.id} className="my-4 shadow rounded-md">
                 <div className="bg-white p-4 flex gap-6">
                   <Image
                     src={ad.photos[0]}
