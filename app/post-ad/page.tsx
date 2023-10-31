@@ -1,3 +1,5 @@
 import PostAd from '@/components/PostAd';
 
-export default PostAd;
+const Page = () => <PostAd prefill={undefined} />;
+
+export default Page;
