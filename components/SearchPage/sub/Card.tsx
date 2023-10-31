@@ -14,7 +14,7 @@ const Card = ({ ad }: { ad: any }) => {
       <div className="bg-white mx-4 mt-4 rounded-md ">
         <div className="p-2 lg:flex flex flex-col lg:flex-row gap-4 lg:h-[246px]">
           <div
-            className="w-full lg:w-[306px] lg:h-[225px] h-[250px] rounded-md lg:rounded-none"
+            className="w-full lg:w-[506px] lg:h-[225px] h-[250px] rounded-md lg:rounded-none"
             style={{
               background: `url(${ad.photos?.[0]})`,
               backgroundSize: 'cover',
