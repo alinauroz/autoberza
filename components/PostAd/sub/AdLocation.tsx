@@ -44,7 +44,7 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
         <input type="hidden" value={city?.value} name="city" />
         <DropDownMenu
           name="City"
-          options={tempCountriesLV}
+          options={tempGradsLV}
           selectedLV={city}
           setSelectedLV={setCity}
         />

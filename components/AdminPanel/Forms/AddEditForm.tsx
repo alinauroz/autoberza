@@ -50,6 +50,8 @@ function AddEditForm({
             label: row['Name'],
             section: row['Section'],
             name: row['Id'],
+            advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
+            homepageFilter: row['HomepageFilter'].toLowerCase() === 'yes',
           };
           fields.push(field);
           break;
@@ -61,6 +63,8 @@ function AddEditForm({
             section: row['Section'],
             options: row['Options'].split(';'),
             name: row['Id'],
+            advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
+            homepageFilter: row['HomepageFilter'].toLowerCase() === 'yes',
           };
           fields.push(field);
           break;
@@ -85,6 +89,8 @@ function AddEditForm({
             id: row['Id'].split(';')[0],
             id2: row['Id'].split(';')[1],
             doubleOptions,
+            advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
+            homepageFilter: row['HomepageFilter'].toLowerCase() === 'yes',
 
             section: row['Section'],
           };
@@ -99,6 +105,8 @@ function AddEditForm({
             placeholder: row['Placeholder'],
             addon: row['Addon'],
             name: row['Id'],
+            advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
+            homepageFilter: row['HomepageFilter'].toLowerCase() === 'yes',
           };
           fields.push(field);
           break;
@@ -107,7 +115,6 @@ function AddEditForm({
           //console.log('Error', row);
         }
       }
-      console.log(fields);
       setFields(fields);
     });
   };
