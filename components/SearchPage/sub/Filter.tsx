@@ -218,6 +218,10 @@ const FilterComp = ({
                         borderRadius: '10px',
                         marginBottom: '10px',
                       }}
+                      onChange={(key, value) => {
+                        variables[key] = value;
+                        setVariables({ ...variables });
+                      }}
                     />
                   );
                 }
