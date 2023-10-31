@@ -141,7 +141,7 @@ export const updateAdminStatus = adminOnly(
     }
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: { isAdmin: true },
+      data: { isAdmin: status },
     });
     return updatedUser;
   }
