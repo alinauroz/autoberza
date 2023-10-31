@@ -127,6 +127,13 @@ export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
       options: categories,
       label: 'Category',
     },
+    {
+      name: 'minPrice',
+      name2: 'maxPrice',
+      label: 'Price',
+      type: 'minmax',
+      addon: '€',
+    },
   ];
 
   return {
