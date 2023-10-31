@@ -11,7 +11,13 @@ const Card = ({ ad }: { ad: any }) => {
   return (
     <div className="bg-white mx-4 mt-4 rounded-md ">
       <div className="p-2 flex gap-4 lg:h-[246px]">
-        <Image src={ad.photos?.[0]} alt="" className="w-[220px] lg:w-[306px]" />
+        <Image
+          src={ad.photos?.[0]}
+          width={306}
+          height={230}
+          alt=""
+          className="w-[220px] lg:w-[400px] lg:h-[225px]"
+        />
         <div className="flex flex-col justify-between lg:w-full">
           <div className="lg:flex lg:items-center lg:justify-between lg:pr-8">
             <p className="text-xs font-bold lg:text-2xl">{ad.title}</p>
