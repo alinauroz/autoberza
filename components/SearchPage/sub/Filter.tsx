@@ -24,7 +24,9 @@ const FilterComp = ({
   variables,
 }: Props) => {
   const [processedData, setProcessedData] = React.useState<ProcessedData>();
-  const [isActive, setIsActive] = React.useState<any>([]);
+  const [activeFilterTitles, setActiveFilterTitles] = React.useState<string[]>(
+    []
+  );
 
   React.useEffect(() => {
     const allSections = Array.from(new Set(data.map((e) => e.label)));
@@ -43,11 +45,11 @@ const FilterComp = ({
   if (!processedData) return;
 
   const handleNavItems = (fieldTitle: string) => {
-    let arr = [...isActive];
-    isActive.includes(fieldTitle)
-      ? (arr = isActive.filter((item: string) => fieldTitle != item))
+    let arr = [...activeFilterTitles];
+    activeFilterTitles.includes(fieldTitle)
+      ? (arr = activeFilterTitles.filter((item: string) => fieldTitle != item))
       : arr.push(fieldTitle);
-    setIsActive(arr);
+    setActiveFilterTitles(arr);
   };
 
   return (
@@ -70,25 +72,28 @@ const FilterComp = ({
       </button>
       {fieldTitles.map((fieldTitle, i) => {
         const currentSectionElements = processedData[fieldTitle];
+        const isFilterActive = activeFilterTitles.includes(fieldTitle);
         return (
           <div key={i} className="">
             <div
               onClick={() => handleNavItems(fieldTitle)}
               className={`bg-white flex items-center justify-between px-4 py-3 cursor-pointer ${
-                isActive ? 'border-t' : 'hidden'
+                activeFilterTitles ? 'border-t' : 'hidden'
               }`}
             >
               <span className="text-md py-2 font-semibold">{fieldTitle}</span>
               <Image
                 src={DropdwonIcon}
                 alt=""
-                className="w-[10px] lg:w-[13px]"
+                className={`w-[10px] lg:w-[13px] 
+                ${isFilterActive ? 'rotate-180 ' : ''}
+                `}
               />
             </div>
 
             <div
               className={`bg-white px-6 text-md py-3 ${
-                !isActive.includes(fieldTitle) && 'hidden'
+                !isFilterActive && 'hidden'
               }`}
             >
               {currentSectionElements.map((filterObj, elIndex) => {
