@@ -83,3 +83,14 @@ export const updateAd = isLoggedIn(
     return ad;
   }
 );
+
+export const deleteAd = isLoggedIn(
+  async (_: unknown, { id }: { id: string }, { user }: IGqlContext) => {
+    const ad = await prisma.ad.findUnique({ where: { id } });
+    if (ad?.submittedBy === user?.id || user?.isAdmin) {
+      return prisma.ad.delete({ where: { id } });
+    } else {
+      throw new Error('You didnt submit this ad');
+    }
+  }
+);

@@ -101,6 +101,9 @@ const projectTypedefs = `
         description: String
         category: String
       ): Ad
+      deleteAd(
+        id: String!
+      ): Ad
     }
 `;
 

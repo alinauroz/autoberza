@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { gql, useQuery } from 'urql';
+import { gql, useMutation, useQuery } from 'urql';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
@@ -35,8 +35,17 @@ const GET_MY_ADS = gql`
   }
 `;
 
+export const DELETE_AD = gql`
+  mutation DeleteAd($id: String!) {
+    deleteAd(id: $id) {
+      id
+    }
+  }
+`;
+
 function MyAds() {
   const [{ fetching, data: response }] = useQuery({ query: GET_MY_ADS });
+  const [{ fetching: deleting }, deleteAd] = useMutation(DELETE_AD);
   const ads = response?.myAds?.data || [];
   return (
     <div className="h-screen w-screen">
@@ -90,17 +99,18 @@ function MyAds() {
                       </Link>
                       <button
                         className="bg-red-600 hover:bg-red-700 active:bg-red-800 lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-4 py-1"
+                        disabled={deleting}
                         onClick={() => {
                           if (
                             window.confirm(
                               'Are you sure you want to delete this ad'
                             )
                           ) {
-                            window.alert('Delete it');
+                            deleteAd({ id: ad.id });
                           }
                         }}
                       >
-                        Delete
+                        {deleting ? '...' : 'Delete'}
                       </button>
                     </div>
                   </div>
