@@ -23,6 +23,10 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
     return [];
   }, [country]);
 
+  const [city, setCity] = React.useState<LV | undefined>(
+    tempGradsLV.find((country) => country.value === prefill?.city)
+  );
+
   return (
     <div className="section-conatiner">
       <div className="post-ad-section-heading">
@@ -37,17 +41,12 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
           setSelectedLV={setCountry}
         />
         <input type="hidden" value={country?.value} name="country" />
-        <Input
-          placeholder="City"
-          name="city"
-          required
-          style={{
-            height: '65px',
-            margin: 0,
-            boxShadow: '0px 1px 4px 2px #00000017',
-            border: 'none',
-          }}
-          prefill={prefill}
+        <input type="hidden" value={city?.value} name="city" />
+        <DropDownMenu
+          name="City"
+          options={tempCountriesLV}
+          selectedLV={city}
+          setSelectedLV={setCity}
         />
         {false && (
           <Input
