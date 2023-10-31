@@ -59,12 +59,12 @@ export const ads = async (
             ...(maxPrice && { lte: maxPrice }),
           },
         },
-        {
-          discountedPrice: {
-            ...(minPrice && { gte: minPrice }),
-            ...(maxPrice && { lte: maxPrice }),
-          },
-        },
+        //{
+        //  discountedPrice: {
+        //    ...(minPrice && { gte: minPrice }),
+        //    ...(maxPrice && { lte: maxPrice }),
+        //  },
+        //},
       ],
     }),
     city,
