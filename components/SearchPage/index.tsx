@@ -5,7 +5,7 @@ import Footer from '../PostAd/sub/Footer';
 import HeroSection from './sub/HeroSection';
 import Card from './sub/Card';
 import NextPage from './sub/NextPage';
-import '../../styles/PostAd.css';
+import '../../styles/postAd.css';
 import FilterComp from './sub/Filter';
 import { DynamicFiltersResponse } from '@/types';
 import { gql, useQuery } from 'urql';
