@@ -2,7 +2,7 @@
 import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
 import { cityOptions, countryOptions } from '@/utils/options';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 const AdLocation = ({ prefill }: { prefill: any }) => {
   const tempCountriesLV: LV[] = countryOptions;
@@ -26,6 +26,10 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
   const [city, setCity] = React.useState<LV | undefined>(
     tempGradsLV.find((country) => country.value === prefill?.city)
   );
+
+  useEffect(() => {
+    setCity(undefined);
+  }, [country]);
 
   return (
     <div className="section-conatiner">
