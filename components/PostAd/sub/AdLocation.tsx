@@ -52,18 +52,20 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
           }}
           prefill={prefill}
         />
-        <Input
-          placeholder="Location"
-          name="location"
-          required
-          style={{
-            height: '65px',
-            margin: 0,
-            boxShadow: '0px 1px 4px 2px #00000017',
-            border: 'none',
-          }}
-          prefill={prefill}
-        />
+        {false && (
+          <Input
+            placeholder="Location"
+            name="location"
+            required
+            style={{
+              height: '65px',
+              margin: 0,
+              boxShadow: '0px 1px 4px 2px #00000017',
+              border: 'none',
+            }}
+            prefill={prefill}
+          />
+        )}
       </div>
     </div>
   );
