@@ -101,7 +101,18 @@ const FilterComp = ({
                 if (filterObj.type === 'checkbox') {
                   return (
                     <div key={elIndex} className="">
-                      <input type="checkbox" className="mr-2 mb-4" />
+                      <input
+                        type="checkbox"
+                        className="mr-2 mb-4"
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            variables[filterObj.name] = true;
+                          } else if (filterObj.name in variables) {
+                            delete variables[filterObj.name];
+                          }
+                          setVariables({ ...variables });
+                        }}
+                      />
                       <label>{filterObj.label}</label>
                     </div>
                   );
