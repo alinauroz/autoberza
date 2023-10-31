@@ -1,5 +1,6 @@
 import prisma from '@/prisma/prisma';
 import { IGqlContext } from '@/types';
+import { cityOptions, countryOptions } from '@/utils/options';
 import { Prisma } from '@prisma/client';
 
 type FilterArgs = {
@@ -124,6 +125,14 @@ export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
     .filter((f: any) => f.advanceFilter);
   const categories = forms.map((form) => form.category);
 
+  const doubleOptions: { [x: string]: string[] } = {};
+
+  countryOptions.forEach((country) => {
+    doubleOptions[country.label] = cityOptions
+      .filter((city) => city.country === country.value)
+      .map((city) => city.label);
+  });
+
   const moreFilters: Prisma.JsonValue = [
     {
       name: 'categories',
@@ -137,6 +146,14 @@ export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
       label: 'Price',
       type: 'minmax',
       addon: '€',
+    },
+    {
+      type: 'doubledropdown',
+      name: 'country',
+      label: 'Country',
+      name2: 'city',
+      label2: 'City',
+      doubleOptions,
     },
   ];
 
