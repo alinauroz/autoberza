@@ -5,9 +5,16 @@ import { DoubleDropdown } from '@/types';
 interface Props {
   DoubleDropdownData: DoubleDropdown;
   prefill?: any;
+  inputsClass?: string;
+  inputsStyles?: React.CSSProperties;
 }
 
-const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData, prefill }) => {
+const DoubleDropdown: React.FC<Props> = ({
+  DoubleDropdownData,
+  prefill,
+  inputsClass = '',
+  inputsStyles = {},
+}) => {
   const [selectedFirst, setSelectedFirst] = React.useState<LV>();
   const [selectedSecond, setSelectedSecond] = React.useState<LV>();
 
@@ -57,6 +64,8 @@ const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData, prefill }) => {
         options={options1}
         selectedLV={selectedFirst}
         setSelectedLV={setSelectedFirst}
+        inputClass={inputsClass}
+        inputStyles={inputsStyles}
       />
       <DropDownMenu
         name={DoubleDropdownData.label2}
@@ -64,6 +73,8 @@ const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData, prefill }) => {
         selectedLV={selectedSecond}
         setSelectedLV={setSelectedSecond}
         isDisabled={typeof selectedFirst == 'undefined'}
+        inputClass={inputsClass}
+        inputStyles={inputsStyles}
       />
     </>
   );
