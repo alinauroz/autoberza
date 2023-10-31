@@ -53,18 +53,18 @@ function MyAds() {
           <div className="w-full  ">
             {ads.map((ad: any) => (
               <div key={ad.id} className="mb-4">
-                <div className="bg-white p-4 flex gap-6">
+                <div className="bg-white p-4 lg:flex lg:flex-row flex  flex-col gap-6">
                   <Image
                     src={ad.photos[0]}
                     alt=""
                     width={236}
                     height={130}
-                    className="rounded-md lg:w-[400px] h-[120] lg:h-[230px]"
+                    className="rounded-md w-full lg:w-[400px] h-[120] lg:h-[230px]"
                   />
                   <div className="flex flex-col justify-between w-full">
                     <div>
                       <div className="flex justify-between">
-                        <p className="lg:text-lg font-bold text-md ">
+                        <p className="lg:text-lg font-bold text-xl ">
                           {ad.title}
                         </p>
                         <div className="flex items-center gap-2 hidden lg:flex">
@@ -80,16 +80,16 @@ function MyAds() {
                       </p>
                     </div>
                     <div className="text-md font-semibold flex flex-col text-gray-500 gap-2">
-                      <p className="text-sm">{ad.category}</p>
+                      <p className="text-md my-6 lg:my-0">{ad.category}</p>
                     </div>
-                    <div className="mb-1 flex justify-between w-full">
+                    <div className="mb-1 flex justify-between w-full lg:mt-0">
                       <Link href={`/edit-ad?id=${ad.id}`}>
-                        <button className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-4 py-1">
+                        <button className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2">
                           Edit
                         </button>
                       </Link>
                       <button
-                        className="bg-red-600 hover:bg-red-700 active:bg-red-800 lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-4 py-1"
+                        className="bg-red-600 hover:bg-red-700 active:bg-red-800 lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2"
                         onClick={() => {
                           if (
                             window.confirm(
