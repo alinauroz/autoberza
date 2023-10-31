@@ -13,6 +13,7 @@ type FilterArgs = {
   country: string;
   category: string;
   details: Prisma.JsonFilter;
+  categories: string[];
 
   take: number;
   skip: number;
@@ -30,10 +31,13 @@ export const ads = async (
     category,
     details,
 
+    categories,
+
     take = 10,
     skip = 0,
   }: FilterArgs
 ) => {
+  console.log(categories);
   const where = {
     isApproved,
     id,
@@ -41,6 +45,9 @@ export const ads = async (
       createdOn: {
         gt: new Date(dateAfter * 1000),
       },
+    }),
+    ...(categories && {
+      category: { in: categories },
     }),
 
     // more filters
@@ -60,7 +67,6 @@ export const ads = async (
         },
       ],
     }),
-    category,
     city,
     country,
   };
@@ -76,7 +82,11 @@ export const ads = async (
   if (details) {
     filteredAds = ads.filter((ad) => {
       for (let field in details) {
-        if (
+        if (Array.isArray((details as any)[field])) {
+          return (
+            (details as any)[field].indexOf((ad.details as any)[field]) !== -1
+          );
+        } else if (
           (details as { [x: string]: string })[field] !==
           (ad.details as { [x: string]: string })[field]
         ) {
@@ -108,7 +118,25 @@ type AdFilterArgs = { category: string };
 export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
   const forms = await prisma.formFields.findMany({ where: { category } });
   const fields = forms.map((form) => form.fields).flat();
+  const categories = forms.map((form) => form.category);
+
+  const moreFilters: Prisma.JsonValue = [
+    {
+      name: 'categories',
+      type: 'select',
+      options: categories,
+      label: 'Category',
+    },
+    {
+      name: 'minPrice',
+      name2: 'maxPrice',
+      label: 'Price',
+      type: 'minmax',
+      addon: '€',
+    },
+  ];
+
   return {
-    filters: fields.slice(0, 10),
+    filters: moreFilters.concat(fields.slice(0, 10)),
   };
 };

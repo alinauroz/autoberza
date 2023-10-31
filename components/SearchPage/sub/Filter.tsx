@@ -12,9 +12,17 @@ interface Props {
   data: DynamicFiltersResponse[];
   setShowFilter: React.Dispatch<React.SetStateAction<boolean>>;
   showFilter: boolean;
+  setVariables: (x: any) => void;
+  variables: any;
 }
 
-const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
+const FilterComp = ({
+  data,
+  setShowFilter,
+  showFilter,
+  setVariables,
+  variables,
+}: Props) => {
   const [processedData, setProcessedData] = React.useState<ProcessedData>();
   const [activeFilterTitles, setActiveFilterTitles] = React.useState<string[]>(
     []
@@ -50,7 +58,7 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
         !showFilter ? 'hidden' : ''
       }`}
       style={{
-        height: 'calc(100vh - 68px)',
+        minHeight: 'calc(100vh - 68px)',
       }}
     >
       <button
@@ -99,14 +107,34 @@ const FilterComp = ({ data, setShowFilter, showFilter }: Props) => {
                 } else if (filterObj.type === 'select') {
                   return (
                     <div key={elIndex}>
-                      {filterObj.options.map((years, yearsIndex) => {
+                      {filterObj.options.map((value, yearsIndex) => {
                         return (
                           <div
                             key={yearsIndex}
                             className="flex items-center gap-2 pt-2"
                           >
-                            <input type="checkbox" className="" />
-                            {years}
+                            <input
+                              type="checkbox"
+                              className=""
+                              onChange={(e) => {
+                                if (filterObj.name in variables) {
+                                  if (e.target.checked) {
+                                    variables[filterObj.name].push(value);
+                                  } else {
+                                    variables[filterObj.name] = variables[
+                                      filterObj.name
+                                    ].filter((v: string) => v !== value);
+                                  }
+                                } else {
+                                  variables[filterObj.name] = [value];
+                                }
+                                if (variables[filterObj.name].length === 0) {
+                                  delete variables[filterObj.name];
+                                }
+                                setVariables({ ...variables });
+                              }}
+                            />
+                            {value}
                           </div>
                         );
                       })}
