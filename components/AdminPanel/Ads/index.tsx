@@ -13,8 +13,12 @@ export interface IAd {
 }
 
 const GET_ADS = gql`
-  query Query($dateAfter: Int, $isApproved: Boolean) {
-    ads(dateAfter: $dateAfter, isApproved: $isApproved) {
+  query Query($dateAfter: Int, $isApproved: Boolean, $categories: [String]) {
+    ads(
+      dateAfter: $dateAfter
+      isApproved: $isApproved
+      categories: $categories
+    ) {
       data {
         city
         country
@@ -39,6 +43,14 @@ const GET_ADS = gql`
   }
 `;
 
+const GET_FILTERS = gql`
+  query Query {
+    adFilters {
+      filters
+    }
+  }
+`;
+
 const APPROVE = gql`
   mutation Mutation($updateAdId: String!, $isApproved: Boolean) {
     updateAd(id: $updateAdId, isApproved: $isApproved) {
@@ -53,6 +65,14 @@ function Ads() {
 
   const [{ fetching, data }] = useQuery({ query: GET_ADS, variables });
   const [{ fetching: approving }, approve] = useMutation(APPROVE);
+  const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
+    query: GET_FILTERS,
+  });
+
+  const categoryOptions =
+    filterResponse?.adFilters?.filters?.find(
+      (f: any) => f.name === 'categories'
+    )?.options || [];
 
   return (
     <Layout heading="Ads">
@@ -89,6 +109,24 @@ function Ads() {
               setVariables({ ...variables, dateAfter });
             }}
           />
+        </div>
+        <div className="ml-12">
+          <p>Category</p>
+          <select
+            className="p-2"
+            onChange={(e) => {
+              if (e.target.value) {
+                setVariables({ ...variables, categories: [e.target.value] });
+              } else if ('categories' in variables) {
+                delete variables.categories;
+              }
+            }}
+          >
+            <option>All</option>
+            {categoryOptions.map((category: string) => {
+              return <option key={category}>{category}</option>;
+            })}
+          </select>
         </div>
       </div>
       {fetching ? (
