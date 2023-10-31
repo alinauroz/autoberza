@@ -12,9 +12,9 @@ const Card = ({ ad }: { ad: any }) => {
   return (
     <Link href={`/ad/${ad.id}`}>
       <div className="bg-white mx-4 mt-4 rounded-md ">
-        <div className="p-2 flex gap-4 lg:h-[246px]">
+        <div className="p-2 lg:flex flex flex-col lg:flex-row gap-4 lg:h-[246px]">
           <div
-            className="w-[220px] lg:w-[306px]"
+            className="w-full lg:w-[306px] lg:h-[225px] h-[250px] rounded-md lg:rounded-none"
             style={{
               background: `url(${ad.photos?.[0]})`,
               backgroundSize: 'cover',
@@ -23,13 +23,13 @@ const Card = ({ ad }: { ad: any }) => {
           />
           <div className="flex flex-col justify-between lg:w-full">
             <div className="lg:flex lg:items-center lg:justify-between lg:pr-8">
-              <p className="text-xs font-bold lg:text-2xl">{ad.title}</p>
+              <p className="text-xl font-bold lg:text-2xl">{ad.title}</p>
               <div className="flex items-center gap-2 hidden lg:flex">
                 <Image src={Location} alt="" className="" />
                 <p className="text-xs text-gray-600 lg:text-lg">{ad.city}</p>
               </div>
             </div>
-            <div className="flex flex-col justify-between gap-4">
+            <div className="flex flex-col justify-between lg:gap-4 gap-4 my-4 lg:my-0">
               <div className="flex gap-16">
                 <div className="flex items-center gap-2 lg:gap-4">
                   <Image src={GasPump} alt="" className="w-4" />
@@ -81,10 +81,10 @@ const Card = ({ ad }: { ad: any }) => {
                 <Button
                   text={(ad.discountedPrice ?? ad.price) / 100 + ' €'}
                   style={{
-                    fontSize: '10px',
+                    fontSize: '14px',
                     fontWeight: '700',
-                    width: '70px',
-                    height: '25px',
+                    width: '100px',
+                    height: '30px',
                     borderRadius: '100px',
 
                     display: 'flex',
@@ -94,10 +94,10 @@ const Card = ({ ad }: { ad: any }) => {
                 />
               </div>
               <div className="flex items-center gap-2 cursor-pointer lg:pr-8">
-                <p className="text-[9px] font-semibold lg:text-base">
+                <p className="text-sm font-semibold lg:text-base">
                   View complete offer
                 </p>
-                <Image src={ArrowIcon} alt="" className="w-2.5 lg:w-4" />
+                <Image src={ArrowIcon} alt="" className="w-4 lg:w-4" />
               </div>
             </div>
           </div>
