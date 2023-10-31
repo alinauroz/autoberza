@@ -18,6 +18,9 @@ type FilterArgs = {
 
   take: number;
   skip: number;
+
+  sortBy: string;
+  sortOrder: string;
 };
 export const ads = async (
   _: unknown,
@@ -36,6 +39,9 @@ export const ads = async (
 
     take = 10,
     skip = 0,
+
+    sortBy,
+    sortOrder,
   }: FilterArgs
 ) => {
   try {
@@ -73,6 +79,7 @@ export const ads = async (
     };
     const ads = await prisma.ad.findMany({
       where,
+      ...(sortBy && { orderBy: { [sortBy]: sortOrder || 'desc' } }),
       ...(details
         ? undefined
         : {
@@ -85,7 +92,7 @@ export const ads = async (
     if (details) {
       filteredAds = ads.filter((ad) => {
         for (let field in details) {
-          console.log(field);
+          console.log('Filed', field);
           if (Array.isArray((details as any)[field])) {
             return (
               (details as any)[field].indexOf((ad.details as any)?.[field]) !==

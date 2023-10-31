@@ -42,6 +42,8 @@ const GET_ADS = gql`
     $categories: [String]
     $minPrice: Int
     $maxPrice: Int
+    $sortOrder: String
+    $sortBy: String
   ) {
     ads(
       isApproved: $isApproved
@@ -51,6 +53,8 @@ const GET_ADS = gql`
       categories: $categories
       minPrice: $minPrice
       maxPrice: $maxPrice
+      sortOrder: $sortOrder
+      sortBy: $sortBy
     ) {
       data {
         city
@@ -86,12 +90,21 @@ const SearchPage = () => {
   });
 
   const [normalFilters, detailFilters] = useMemo(() => {
-    const { categories, minPrice, maxPrice, ...detailFilters } = variables;
+    const {
+      categories,
+      minPrice,
+      maxPrice,
+      sortBy,
+      sortOrder,
+      ...detailFilters
+    } = variables;
     return [
       {
         categories,
         minPrice: parseInt(minPrice) * 100,
         maxPrice: parseInt(maxPrice) * 100,
+        sortOrder,
+        sortBy,
       },
       detailFilters,
     ];
@@ -143,7 +156,12 @@ const SearchPage = () => {
         )}
 
         <div className={`w-full ${showFilter ? 'hidden' : ''}`}>
-          <HeroSection setShowFilter={setShowFilter} count={count} />
+          <HeroSection
+            setShowFilter={setShowFilter}
+            count={count}
+            variables={variables}
+            setVariables={setVariables}
+          />
           {adsFetching ? (
             <div className="flex h-72 w-full justify-center items-center">
               <Loading />

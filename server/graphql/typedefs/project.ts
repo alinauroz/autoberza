@@ -57,6 +57,9 @@ const projectTypedefs = `
 
         take: Int,
         skip: Int
+
+        sortBy: String
+        sortOrder: String
       ): AdResponse
       myAds: AdResponse
       adFilters(category: String): AdFilterResponse
