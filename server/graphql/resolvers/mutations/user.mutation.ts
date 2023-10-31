@@ -48,10 +48,14 @@ export const login = async (
   _: unknown,
   { email, password }: LoginUserInput
 ) => {
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.user.findFirst({
+    where: {
+      OR: [{ email }, { phone: email }],
+    },
+  });
   if (!user) {
     return {
-      error: 'Incorrect email or password',
+      error: 'Incorrect email/phone number or password',
     };
   }
   // if (
