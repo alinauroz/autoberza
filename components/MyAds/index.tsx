@@ -8,15 +8,8 @@ import '../../styles/postAd.css';
 import Loading from '../Elements/Loading';
 import moment from 'moment';
 import Link from 'next/link';
-import MyAdCard from './sub/MyAdCard';
 import Image from 'next/image';
-import ToyotaCar from '@/public/assets/common/searchPage/Toyota-Corolla-Altis-Interior-92972_yzntls.webp';
 import Location from '@/public/assets/common/searchPage/locationIcon.svg';
-import GasPump from '@/public/assets/common/searchPage/gasPumpIcon.svg';
-import Calendar from '@/public/assets/common/searchPage/calendarIcon.svg';
-import SpeedMeter from '@/public/assets/common/searchPage/speedMeterIcon.svg';
-import ArrowIcon from '@/public/assets/common/searchPage/ArrowIcon.svg';
-import Button from '@/components/Elements/Button';
 
 const GET_MY_ADS = gql`
   query MyAds {
@@ -68,14 +61,6 @@ function MyAds() {
                     height={130}
                     className="rounded-md lg:w-[400px] h-[120] lg:h-[230px]"
                   />
-                  {/* <div
-                    className="w-[406px] lg:w-[306px]"
-                    style={{
-                      backgroundImage: `url(${ad.photos?.[0]})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                    }}
-                  ></div> */}
                   <div className="flex flex-col justify-between w-full">
                     <div>
                       <div className="flex justify-between">
