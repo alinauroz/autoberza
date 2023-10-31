@@ -1,5 +1,6 @@
 import prisma from '@/prisma/prisma';
 import { IGqlContext } from '@/types';
+import { cityOptions, countryOptions } from '@/utils/options';
 import { Prisma } from '@prisma/client';
 
 type FilterArgs = {
@@ -37,71 +38,81 @@ export const ads = async (
     skip = 0,
   }: FilterArgs
 ) => {
-  console.log('MIN', minPrice, maxPrice);
-  const where = {
-    isApproved,
-    id,
-    ...(dateAfter && {
-      createdOn: {
-        gt: new Date(dateAfter * 1000),
-      },
-    }),
-    ...(categories && {
-      category: { in: categories },
-    }),
-
-    // more filters
-    ...((minPrice || maxPrice) && {
-      OR: [
-        {
-          price: {
-            ...(minPrice && { gte: minPrice }),
-            ...(maxPrice && { lte: maxPrice }),
-          },
+  try {
+    const where = {
+      isApproved,
+      id,
+      ...(dateAfter && {
+        createdOn: {
+          gt: new Date(dateAfter * 1000),
         },
-        {
-          discountedPrice: {
-            ...(minPrice && { gte: minPrice }),
-            ...(maxPrice && { lte: maxPrice }),
+      }),
+      ...(categories && {
+        category: { in: categories },
+      }),
+
+      // more filters
+      ...((minPrice || maxPrice) && {
+        OR: [
+          {
+            price: {
+              ...(minPrice && { gte: minPrice }),
+              ...(maxPrice && { lte: maxPrice }),
+            },
           },
-        },
-      ],
-    }),
-    city,
-    country,
-  };
-  console.log(where);
-  const ads = await prisma.ad.findMany({
-    where,
-    take,
-    skip,
-  });
-
-  const count = await prisma.ad.count({ where });
-
-  let filteredAds = ads;
-  if (details) {
-    filteredAds = ads.filter((ad) => {
-      for (let field in details) {
-        if (Array.isArray((details as any)[field])) {
-          return (
-            (details as any)[field].indexOf((ad.details as any)[field]) !== -1
-          );
-        } else if (
-          (details as { [x: string]: string })[field] !==
-          (ad.details as { [x: string]: string })[field]
-        ) {
-          return false;
-        }
-      }
-      return true;
+          //{
+          //  discountedPrice: {
+          //    ...(minPrice && { gte: minPrice }),
+          //    ...(maxPrice && { lte: maxPrice }),
+          //  },
+          //},
+        ],
+      }),
+      city,
+      country,
+    };
+    const ads = await prisma.ad.findMany({
+      where,
+      ...(details
+        ? undefined
+        : {
+            take,
+            skip,
+          }),
     });
-  }
 
-  return {
-    data: filteredAds,
-    count,
-  };
+    let filteredAds = ads;
+    if (details) {
+      filteredAds = ads.filter((ad) => {
+        for (let field in details) {
+          console.log(field);
+          if (Array.isArray((details as any)[field])) {
+            return (
+              (details as any)[field].indexOf((ad.details as any)?.[field]) !==
+              -1
+            );
+          } else if (
+            (details as { [x: string]: string })[field] !==
+            (ad.details as { [x: string]: string })?.[field]
+          ) {
+            return false;
+          }
+        }
+        return true;
+      });
+    }
+
+    const count = details
+      ? filteredAds.length
+      : await prisma.ad.count({ where });
+
+    return {
+      data: details ? filteredAds.slice(skip, skip + take) : filteredAds,
+      count,
+    };
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const myAds = async (
@@ -124,6 +135,14 @@ export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
     .filter((f: any) => f.advanceFilter);
   const categories = forms.map((form) => form.category);
 
+  const doubleOptions: { [x: string]: string[] } = {};
+
+  countryOptions.forEach((country) => {
+    doubleOptions[country.label] = cityOptions
+      .filter((city) => city.country === country.value)
+      .map((city) => city.label);
+  });
+
   const moreFilters: Prisma.JsonValue = [
     {
       name: 'categories',
@@ -137,6 +156,14 @@ export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
       label: 'Price',
       type: 'minmax',
       addon: '€',
+    },
+    {
+      type: 'doubledropdown',
+      name: 'country',
+      label: 'Country',
+      name2: 'city',
+      label2: 'City',
+      doubleOptions,
     },
   ];
 

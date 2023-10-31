@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React from 'react';
 import DropdwonIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
 import Button from '@/components/Elements/Button';
+import DoubleDropdown from '@/components/Elements/DoubleDropdown';
 
 type ProcessedData = { [x: string]: DynamicFiltersResponse[] };
 
@@ -202,6 +203,26 @@ const FilterComp = ({
                         </div>
                       </div>
                     </div>
+                  );
+                } else if (filterObj.type === 'doubledropdown') {
+                  return (
+                    <DoubleDropdown
+                      DoubleDropdownData={{
+                        ...filterObj,
+                        type: 'DoubleDropdown',
+                      }}
+                      key={elIndex}
+                      inputsStyles={{
+                        boxShadow: 'none',
+                        border: '1px solid black',
+                        borderRadius: '10px',
+                        marginBottom: '10px',
+                      }}
+                      onChange={(key, value) => {
+                        variables[key] = value;
+                        setVariables({ ...variables });
+                      }}
+                    />
                   );
                 }
                 return null;

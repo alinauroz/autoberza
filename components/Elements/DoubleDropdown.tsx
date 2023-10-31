@@ -5,9 +5,18 @@ import { DoubleDropdown } from '@/types';
 interface Props {
   DoubleDropdownData: DoubleDropdown;
   prefill?: any;
+  inputsClass?: string;
+  inputsStyles?: React.CSSProperties;
+  onChange?: (x: string, y: string) => void;
 }
 
-const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData, prefill }) => {
+const DoubleDropdown: React.FC<Props> = ({
+  DoubleDropdownData,
+  prefill,
+  inputsClass = '',
+  inputsStyles = {},
+  onChange,
+}) => {
   const [selectedFirst, setSelectedFirst] = React.useState<LV>();
   const [selectedSecond, setSelectedSecond] = React.useState<LV>();
 
@@ -56,14 +65,24 @@ const DoubleDropdown: React.FC<Props> = ({ DoubleDropdownData, prefill }) => {
         name={DoubleDropdownData.label}
         options={options1}
         selectedLV={selectedFirst}
-        setSelectedLV={setSelectedFirst}
+        setSelectedLV={(option) => {
+          onChange?.(DoubleDropdownData.id, option.value + '');
+          setSelectedFirst(option);
+        }}
+        inputClass={inputsClass}
+        inputStyles={inputsStyles}
       />
       <DropDownMenu
         name={DoubleDropdownData.label2}
         options={options2}
         selectedLV={selectedSecond}
-        setSelectedLV={setSelectedSecond}
+        setSelectedLV={(option) => {
+          onChange?.(DoubleDropdownData.id2, option.value + '');
+          setSelectedSecond(option);
+        }}
         isDisabled={typeof selectedFirst == 'undefined'}
+        inputClass={inputsClass}
+        inputStyles={inputsStyles}
       />
     </>
   );
