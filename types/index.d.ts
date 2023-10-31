@@ -18,6 +18,12 @@ export interface DoubleDropdown {
   name: string;
 }
 
+export interface FilterDoubleDropdown extends DoubleDropdown {
+  type: 'doubledropdown';
+  advanceFilter: boolean;
+  homepageFilter: boolean;
+}
+
 export type DynamicSectionsResponse =
   | {
       type: 'checkbox';
@@ -68,6 +74,7 @@ export type DynamicFiltersResponse =
       name: string;
       name2: string;
       addon: string;
-    };
+    }
+  | FilterDoubleDropdown;
 
 declare module 'graphql-client';

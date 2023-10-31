@@ -16,9 +16,11 @@ interface Props {
   setSelectedLV: (x: LV) => void;
   conatinerClass?: string;
   containerStyles?: React.CSSProperties;
+  inputStyles?: React.CSSProperties;
   name: string;
   img?: string;
   isDisabled?: boolean;
+  inputClass?: string;
 }
 
 const DropDownMenu = ({
@@ -30,6 +32,8 @@ const DropDownMenu = ({
   name,
   img,
   isDisabled = false,
+  inputClass = '',
+  inputStyles = {},
 }: Props) => {
   const [isDDActive, setIsDDActive] = useState(false);
   const [searchStr, setSearchStr] = useState('');
@@ -63,8 +67,9 @@ const DropDownMenu = ({
       }}
     >
       <div
-        className="dd-title"
+        className={`dd-title ${inputClass}`}
         style={{
+          ...inputStyles,
           color: typeof selectedLV?.label === 'undefined' ? '#444' : '#000',
         }}
         onClick={handlerDropdown}
