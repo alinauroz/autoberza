@@ -144,7 +144,18 @@ const FilterComp = ({
                   return (
                     <div key={elIndex} className="py-2 flex items-center gap-3">
                       <div className="flex items-center relative w-full">
-                        <Input />
+                        <Input
+                          onChange={(e) => {
+                            if (e.target.value) {
+                              variables[filterObj.name] = e.target.value;
+                            } else {
+                              if (filterObj.name in variables) {
+                                delete variables[filterObj.name];
+                              }
+                            }
+                            setVariables({ ...variables });
+                          }}
+                        />
                         <div className="absolute right-2 text-sm font-bold">
                           {filterObj.addon}
                         </div>
@@ -156,14 +167,36 @@ const FilterComp = ({
                     <div key={elIndex} className="py-2 flex items-center gap-3">
                       <div className="flex items-center gap-4 relative w-full">
                         <p className="text-sm font-bold">Min</p>
-                        <Input />
+                        <Input
+                          onChange={(e) => {
+                            if (e.target.value) {
+                              variables[filterObj.name] = e.target.value;
+                            } else {
+                              if (filterObj.name in variables) {
+                                delete variables[filterObj.name];
+                              }
+                            }
+                            setVariables({ ...variables });
+                          }}
+                        />
                         <div className="absolute right-2 text-sm font-bold">
                           {filterObj.addon}
                         </div>
                       </div>
                       <div className="flex items-center gap-4 relative w-full">
                         <p className="text-sm font-bold">Max</p>
-                        <Input />
+                        <Input
+                          onChange={(e) => {
+                            if (e.target.value) {
+                              variables[filterObj.name2] = e.target.value;
+                            } else {
+                              if (filterObj.name2 in variables) {
+                                delete variables[filterObj.name2];
+                              }
+                            }
+                            setVariables({ ...variables });
+                          }}
+                        />
                         <div className="absolute right-2 text-sm font-bold">
                           {filterObj.addon}
                         </div>

@@ -15,6 +15,7 @@ interface Props {
   addon?: string;
   disabled?: boolean;
   prefill?: any;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -24,6 +25,7 @@ const Input = ({
   type,
   onFocus,
   onBlur,
+  onChange,
   addon,
   name,
   value,
@@ -47,6 +49,7 @@ const Input = ({
         defaultValue={defaultValue || prefill?.[name || '']}
         required={required}
         disabled={disabled}
+        onChange={onChange}
       />
       {addon && <div className="addon">{addon}</div>}
     </div>

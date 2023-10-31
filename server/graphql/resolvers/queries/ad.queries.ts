@@ -37,7 +37,7 @@ export const ads = async (
     skip = 0,
   }: FilterArgs
 ) => {
-  console.log(categories);
+  console.log('MIN', minPrice, maxPrice);
   const where = {
     isApproved,
     id,
@@ -70,6 +70,7 @@ export const ads = async (
     city,
     country,
   };
+  console.log(where);
   const ads = await prisma.ad.findMany({
     where,
     take,

@@ -11,7 +11,7 @@ import { DynamicFiltersResponse } from '@/types';
 import { gql, useQuery } from 'urql';
 import Loading from '../Elements/Loading';
 
-const take = 1;
+const take = 5;
 
 const data = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
@@ -40,6 +40,8 @@ const GET_ADS = gql`
     $skip: Int
     $details: JSON
     $categories: [String]
+    $minPrice: Int
+    $maxPrice: Int
   ) {
     ads(
       isApproved: $isApproved
@@ -47,6 +49,8 @@ const GET_ADS = gql`
       skip: $skip
       details: $details
       categories: $categories
+      minPrice: $minPrice
+      maxPrice: $maxPrice
     ) {
       data {
         city
@@ -82,8 +86,15 @@ const SearchPage = () => {
   });
 
   const [normalFilters, detailFilters] = useMemo(() => {
-    const { categories, ...detailFilters } = variables;
-    return [{ categories }, detailFilters];
+    const { categories, minPrice, maxPrice, ...detailFilters } = variables;
+    return [
+      {
+        categories,
+        minPrice: parseInt(minPrice) * 100,
+        maxPrice: parseInt(maxPrice) * 100,
+      },
+      detailFilters,
+    ];
   }, [variables]);
 
   const [{ fetching: adsFetching, data: adResponse }] = useQuery({

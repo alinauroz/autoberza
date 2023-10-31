@@ -39,23 +39,23 @@ model Ad {
   id                  String    @id @default(auto()) @map("_id") @db.ObjectId
 
   submittedBy         String
-  isApproved          Boolean   @default(false)
+  isApproved          Boolean?   @default(false)
   subscriptionType    String?
   subscriptionDate    DateTime?
-  title               String
+  title               String?
 
-  price               Int
+  price               Int?
   discountedPrice     Int?
 
-  country             String
-  city                String
-  location            String
+  country             String?
+  city                String?
+  location            String?
   category            String?
   description         String?
 
   photos              String[]
 
-  details             Json
+  details             Json?
 
-  createdOn           DateTime  @default(now())
+  createdOn           DateTime?  @default(now())
 }
