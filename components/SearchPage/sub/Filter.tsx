@@ -151,6 +151,25 @@ const FilterComp = ({
                       </div>
                     </div>
                   );
+                } else if (filterObj.type === 'minmax') {
+                  return (
+                    <div key={elIndex} className="py-2 flex items-center gap-3">
+                      <div className="flex items-center gap-4 relative w-full">
+                        <p className="text-sm font-bold">Min</p>
+                        <Input />
+                        <div className="absolute right-2 text-sm font-bold">
+                          {filterObj.addon}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4 relative w-full">
+                        <p className="text-sm font-bold">Max</p>
+                        <Input />
+                        <div className="absolute right-2 text-sm font-bold">
+                          {filterObj.addon}
+                        </div>
+                      </div>
+                    </div>
+                  );
                 }
                 return null;
               })}

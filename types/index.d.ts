@@ -61,6 +61,13 @@ export type DynamicFiltersResponse =
       section: string;
       options: string[];
       name: string;
+    }
+  | {
+      type: 'minmax';
+      label: string;
+      name: string;
+      name2: string;
+      addon: string;
     };
 
 declare module 'graphql-client';
