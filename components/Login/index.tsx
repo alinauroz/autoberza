@@ -68,7 +68,7 @@ const Login = () => {
           } else {
             Cookies.set('token', data.login.token);
             set('user', data.login.user);
-            router.push('/post-ad');
+            window.location.href = '/';
           }
         });
       } else if (loginMenuIndex === 1) {

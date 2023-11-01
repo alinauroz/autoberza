@@ -7,6 +7,7 @@ import SpeedMeter from '@/public/assets/common/searchPage/speedMeterIcon.svg';
 import ArrowIcon from '@/public/assets/common/searchPage/ArrowIcon.svg';
 import Button from '@/components/Elements/Button';
 import Link from 'next/link';
+import moment from 'moment';
 
 const Card = ({ ad }: { ad: any }) => {
   return (
@@ -34,7 +35,7 @@ const Card = ({ ad }: { ad: any }) => {
                 <div className="flex items-center gap-2 lg:gap-4">
                   <Image src={GasPump} alt="" className="w-4" />
                   <p className="text-xs font-semibold text-gray-800 lg:text-base">
-                    Diesel
+                    {ad?.details?.manufacturer} {ad?.details?.model}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 lg:hidden">
@@ -45,13 +46,13 @@ const Card = ({ ad }: { ad: any }) => {
               <div className="flex items-center gap-2 lg:gap-4">
                 <Image src={Calendar} alt="" className="w-4" />
                 <p className="text-xs font-semibold text-gray-800 lg:text-base">
-                  2006
+                  {ad.details?.year}
                 </p>
               </div>
               <div className="flex items-center gap-2 lg:gap-4">
                 <Image src={SpeedMeter} alt="" className="w-4" />
                 <p className="text-xs font-semibold text-gray-800 lg:text-base">
-                  22,000 km
+                  {moment(new Date(ad.createdOn)).format('DD MMMM YYYY')}
                 </p>
               </div>
             </div>

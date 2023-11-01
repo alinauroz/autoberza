@@ -142,6 +142,7 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
     }
     if (!json.country) {
       toast.error('Country is required');
+      return;
     }
 
     if (prefill) {

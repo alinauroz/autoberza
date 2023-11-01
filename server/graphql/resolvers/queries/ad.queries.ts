@@ -127,7 +127,7 @@ export const myAds = async (
   _2: unknown,
   { user }: IGqlContext
 ) => {
-  const ads = prisma.ad.findMany({ where: { submittedBy: user?.id } });
+  const ads = await prisma.ad.findMany({ where: { submittedBy: user?.id } });
   return {
     data: ads,
   };

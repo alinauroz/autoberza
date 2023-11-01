@@ -53,6 +53,7 @@ export const login = async (
       OR: [{ email }, { phone: email }],
     },
   });
+  console.log('>>', user);
   if (!user) {
     return {
       error: 'Incorrect email/phone number or password',
