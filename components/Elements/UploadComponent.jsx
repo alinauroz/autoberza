@@ -22,6 +22,7 @@ function UploadComponent ({ onUpload }) {
       <div>
         <CloudinaryContext cloudName="dq4anbcep">
             <Button
+                  type="button"
                   text="+Add photos"
                   style={{
                     padding: '10px 30px',
