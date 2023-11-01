@@ -11,7 +11,7 @@ import { DynamicFiltersResponse } from '@/types';
 import { gql, useQuery } from 'urql';
 import Loading from '../Elements/Loading';
 
-const take = 5;
+const take = 4;
 
 const data = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
@@ -113,7 +113,7 @@ const SearchPage = () => {
   const [{ fetching: adsFetching, data: adResponse }] = useQuery({
     query: GET_ADS,
     variables: {
-      //isApproved: true,
+      isApproved: true,
       ...normalFilters,
       details: detailFilters,
       take,

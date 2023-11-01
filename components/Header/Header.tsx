@@ -21,7 +21,9 @@ const Header = ({ style }: Props) => {
     <div className="header" style={style}>
       <div className="logo-panel">
         {false && <Image src={MenuBar} alt="" className="menu" />}
-        <Logo />
+        <Link href={'/'}>
+          <Logo />
+        </Link>
       </div>
       <div className="flex gap-4">
         <div className="text-sm md:text-normal text-white">

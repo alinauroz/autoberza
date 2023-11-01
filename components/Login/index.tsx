@@ -94,16 +94,18 @@ const Login = () => {
           <Header />
         </div>
         <div className="login-content">
-          <div className="hello">
-            <Menu
-              menuItems={['Email', 'Phone']}
-              selected={loginMenuIndex}
-              setSelected={setLoginMenuIndex}
-            />
-          </div>
+          {false && (
+            <div className="hello">
+              <Menu
+                menuItems={['Email', 'Phone']}
+                selected={loginMenuIndex}
+                setSelected={setLoginMenuIndex}
+              />
+            </div>
+          )}
           <Input
             placeholder={`Enter your ${
-              ['Email', 'Phone Number'][loginMenuIndex]
+              ['Email or phone number', 'Phone Number'][loginMenuIndex]
             }`}
             type="text"
             name={['email', 'phoneNo'][loginMenuIndex]}
