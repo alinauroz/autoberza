@@ -62,7 +62,6 @@ const getServerSideProps = async (id: string) => {
   const form = formResponse?.forms?.find(
     (form: IForm) => form.category === ad.category
   );
-  // console.log('Form', form);
   return {
     data: ad,
     form,
