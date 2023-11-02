@@ -10,6 +10,9 @@ import FilterComp from './sub/Filter';
 import { DynamicFiltersResponse } from '@/types';
 import { gql, useQuery } from 'urql';
 import Loading from '../Elements/Loading';
+import { isLoggedIn } from '@/utils/auth';
+import Link from 'next/link';
+import Button from '../Elements/Button';
 
 const take = 4;
 
@@ -132,6 +135,32 @@ const SearchPage = () => {
   useEffect(() => {
     console.log('Variables', variables);
   }, [variables]);
+
+  if (!isLoggedIn()) {
+    return (
+      <div className="post-ad-page-wrapper">
+        <div className="navbar">
+          <Header
+            style={{
+              padding: '20px 35px',
+            }}
+          />
+        </div>
+        <div className="min-h-screen flex justify-center items-center flex-col gap-5">
+          <span>To post an ad, you need an account</span>
+          <span className="flex gap-4">
+            <Link href="/login">
+              <Button text="Login" />
+            </Link>
+            <Link href="/register">
+              <Button text="Sign Up" />
+            </Link>
+          </span>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div>

@@ -28,7 +28,7 @@ const Header = ({ style }: Props) => {
               onClick={() => setShowMenu(!showMenu)}
               src={showMenu ? CancelBtn : MenuBar}
               alt=""
-              className="cursor-pointer lg:hidden"
+              className="cursor-pointer md:hidden"
             />
           </div>
           <div
@@ -37,7 +37,7 @@ const Header = ({ style }: Props) => {
             }`}
           >
             {isLoggedIn() ? (
-              <div className="flex gap-4 text-xl ml-4 font-bold flex-col items-center justify-center">
+              <div className="flex gap-4 text-xl ml-4 font-bold flex-col ">
                 <Link href="/manage-ads">
                   <span className="cursor-pointer mt-4">Manage Ads</span>
                 </Link>
