@@ -83,6 +83,7 @@ const GET_ADS = gql`
 
 const SearchPage = () => {
   const [showFilter, setShowFilter] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
   const [variables, setVariables] = useState<any>({});
   const [page, setPage] = useState(0);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
@@ -135,6 +136,7 @@ const SearchPage = () => {
   return (
     <div>
       <Header />
+
       <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:pt-6 lg:mx-12">
         {fetchingFilters ? (
           <div

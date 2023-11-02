@@ -8,12 +8,12 @@ interface Props {
 
 const Logo = ({ style }: Props) => {
   return (
-    <div className="logo" style={style}>
+    <div className="" style={style}>
       <Image
         src={LogoImg}
         alt=""
-        className="logo-img"
-        style={{ ...style, height: 48, width: 160 }}
+        className="lg:w-[160px] lg:h-[48px] w-[90px]"
+        // style={{ ...style, height: 48, width: 160 }}
       />
     </div>
   );
