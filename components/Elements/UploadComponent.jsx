@@ -5,7 +5,7 @@ import Button from "./Button";
 function UploadComponent ({ onUpload }) {
 
     const uploadWidget = useMemo(() => {
-        return window.cloudinary.createUploadWidget({
+        return window?.cloudinary?.createUploadWidget({
             cloudName: 'dq4anbcep', 
             uploadPreset: 'ml_default',
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
