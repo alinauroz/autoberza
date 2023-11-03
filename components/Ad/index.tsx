@@ -60,7 +60,6 @@ const getServerSideProps = async (id: string) => {
   let ad: any;
   try {
     const response: any = await ssClient.request(GET_AD, { id });
-    console.log('RESPONSE', response);
     ad = response?.ads?.data[0];
     const formResponse: any = await ssClient.request(GET_FORMS);
     form = formResponse?.forms?.find(
