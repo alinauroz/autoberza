@@ -14,8 +14,9 @@ import { isLoggedIn } from '@/utils/auth';
 import Link from 'next/link';
 import Button from '../Elements/Button';
 import usePaginatedQuery from '@/utils/usePaginatedQuery';
+import LoadMore from '../Elements/LoadMore';
 
-const take = 3;
+const take = 2;
 
 const data = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
@@ -121,12 +122,13 @@ const SearchPage = () => {
     fetchMore,
   } = usePaginatedQuery({
     query: GET_ADS,
+    limit: take,
     variables: {
       isApproved: true,
       ...normalFilters,
       details: detailFilters,
-      take,
-      skip: page * take,
+      //take,
+      //skip: page * take,
     },
     toFullPage: (data: any) => {
       const response = {
@@ -211,13 +213,19 @@ const SearchPage = () => {
             variables={variables}
             setVariables={setVariables}
           />
-          {adsFetching ? (
+          {adsFetching && false ? (
             <div className="flex h-72 w-full justify-center items-center">
               <Loading />
             </div>
           ) : (
             ads?.map((ad: any) => <Card key={ad.id} ad={ad} />)
           )}
+          <LoadMore
+            onClick={fetchMore}
+            autoLoadMore={true}
+            loading={adsFetching}
+            moreExist={true}
+          />
           <NextPage
             count={count}
             take={take}

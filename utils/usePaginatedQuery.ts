@@ -38,8 +38,8 @@ function usePaginatedQuery({ query, variables, toFullPage, limit }: any) {
     query,
     variables: {
       ...variables,
-      limit,
-      offset: resultsCache.currentPage * limit,
+      take: limit,
+      skip: resultsCache.currentPage * limit,
     },
   });
 
