@@ -113,9 +113,13 @@ export const ads = async (
       ? filteredAds.length
       : await prisma.ad.count({ where });
 
+    const data = details ? filteredAds.slice(skip, skip + take) : filteredAds;
+    const moreExists = data.length === take;
+
     return {
-      data: details ? filteredAds.slice(skip, skip + take) : filteredAds,
+      data,
       count,
+      moreExists,
     };
   } catch (err) {
     console.log(err);

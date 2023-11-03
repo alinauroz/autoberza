@@ -15,6 +15,7 @@ const GET_MY_ADS = gql`
   query MyAds {
     myAds {
       count
+      moreExists
       data {
         category
         city

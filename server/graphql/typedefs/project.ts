@@ -32,6 +32,7 @@ const projectTypedefs = `
     type AdResponse {
       data: [Ad],
       count: Int,
+      moreExists: Boolean
     }
 
     type AdFilterResponse {

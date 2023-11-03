@@ -82,6 +82,7 @@ const GET_ADS = gql`
         createdOn
       }
       count
+      moreExists
     }
   }
 `;
@@ -135,11 +136,14 @@ const SearchPage = () => {
         ads: {
           data: [],
           count: 0,
+          moreExists: true,
         },
       };
       for (const x in data) {
         response.ads.data = response.ads.data.concat(data[x].ads.data);
         response.ads.count = data[x].ads.count;
+        response.ads.moreExists =
+          data[x].ads.moreExists && response.ads.moreExists;
       }
       return response;
     },
@@ -224,13 +228,7 @@ const SearchPage = () => {
             onClick={fetchMore}
             autoLoadMore={true}
             loading={adsFetching}
-            moreExist={true}
-          />
-          <NextPage
-            count={count}
-            take={take}
-            selected={page}
-            setSelected={setPage}
+            moreExist={adResponse?.ads?.moreExists}
           />
         </div>
       </div>
