@@ -97,12 +97,10 @@ const Header = ({ style }: Props) => {
             )}
           </div>
         </div>
-        {isLoggedIn() ||
-          (true && (
-            <Link href="/post-ad">
-              <ButtonGroup type="button" text="Post an Ad" icon={Dropdown} />
-            </Link>
-          ))}
+
+        <Link href="/post-ad">
+          <ButtonGroup type="button" text="Post an Ad" icon={Dropdown} />
+        </Link>
       </div>
     </div>
   );

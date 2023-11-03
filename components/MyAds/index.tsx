@@ -10,6 +10,8 @@ import moment from 'moment';
 import Link from 'next/link';
 import Image from 'next/image';
 import Location from '@/public/assets/common/searchPage/locationIcon.svg';
+import { isLoggedIn } from '@/utils/auth';
+import Button from '../Elements/Button';
 
 const GET_MY_ADS = gql`
   query MyAds {
@@ -48,6 +50,33 @@ function MyAds() {
   const [{ fetching, data: response }] = useQuery({ query: GET_MY_ADS });
   const [{ fetching: deleting }, deleteAd] = useMutation(DELETE_AD);
   const ads = response?.myAds?.data || [];
+
+  if (!isLoggedIn()) {
+    return (
+      <div className="post-ad-page-wrapper">
+        <div className="navbar">
+          <Header
+            style={{
+              padding: '20px 35px',
+            }}
+          />
+        </div>
+        <div className="min-h-screen flex justify-center items-center flex-col gap-5">
+          <span>To post an ad, you need an account</span>
+          <span className="flex gap-4">
+            <Link href="/login">
+              <Button text="Login" />
+            </Link>
+            <Link href="/register">
+              <Button text="Sign Up" />
+            </Link>
+          </span>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen w-screen">
       <div className="w-screen">
