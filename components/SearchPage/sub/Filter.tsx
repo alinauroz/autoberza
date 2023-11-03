@@ -83,6 +83,7 @@ const FilterComp = ({
               }`}
             >
               <span className="text-md py-2 font-semibold">{fieldTitle}</span>
+
               <Image
                 src={DropdwonIcon}
                 alt=""
@@ -119,37 +120,43 @@ const FilterComp = ({
                 } else if (filterObj.type === 'select') {
                   return (
                     <div key={elIndex}>
-                      {filterObj.options.map((value, yearsIndex) => {
-                        return (
-                          <div
-                            key={yearsIndex}
-                            className="flex items-center gap-2 pt-2"
-                          >
-                            <input
-                              type="checkbox"
-                              className=""
-                              onChange={(e) => {
-                                if (filterObj.name in variables) {
-                                  if (e.target.checked) {
-                                    variables[filterObj.name].push(value);
+                      <p className=" bg-gray-100 mt-[-10px] mb-6 py-1 w-max px-2 rounded-md text-xs text-gray-700 font-semibold">
+                        <a href="">Clear Filter</a>
+                      </p>
+                      <div>
+                        {filterObj.options.map((value, yearsIndex) => {
+                          return (
+                            <div
+                              key={yearsIndex}
+                              className="flex items-center gap-2 pt-2"
+                            >
+                              <input
+                                type="checkbox"
+                                className=""
+                                onChange={(e) => {
+                                  if (filterObj.name in variables) {
+                                    if (e.target.checked) {
+                                      variables[filterObj.name].push(value);
+                                    } else {
+                                      variables[filterObj.name] = variables[
+                                        filterObj.name
+                                      ].filter((v: string) => v !== value);
+                                    }
                                   } else {
-                                    variables[filterObj.name] = variables[
-                                      filterObj.name
-                                    ].filter((v: string) => v !== value);
+                                    variables[filterObj.name] = [value];
                                   }
-                                } else {
-                                  variables[filterObj.name] = [value];
-                                }
-                                if (variables[filterObj.name].length === 0) {
-                                  delete variables[filterObj.name];
-                                }
-                                setVariables({ ...variables });
-                              }}
-                            />
-                            {value}
-                          </div>
-                        );
-                      })}
+                                  if (variables[filterObj.name].length === 0) {
+                                    delete variables[filterObj.name];
+                                  }
+                                  setVariables({ ...variables });
+                                }}
+                              />
+
+                              {value}
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   );
                 } else if (filterObj.type === 'text') {
@@ -176,64 +183,73 @@ const FilterComp = ({
                   );
                 } else if (filterObj.type === 'minmax') {
                   return (
-                    <div key={elIndex} className="py-2 flex items-center gap-3">
-                      <div className="flex items-center gap-4 relative w-full">
-                        <p className="text-sm font-bold">Min</p>
-                        <Input
-                          onChange={(e) => {
-                            if (e.target.value) {
-                              variables[filterObj.name] = e.target.value;
-                            } else {
-                              if (filterObj.name in variables) {
-                                delete variables[filterObj.name];
+                    <div key={elIndex}>
+                      <p className=" bg-gray-100 mt-[-10px] mb-6 py-1 w-max px-2 rounded-md text-xs text-gray-700 font-semibold">
+                        <a href="">Clear Filter</a>
+                      </p>
+                      <div className="py-2 flex items-center gap-3">
+                        <div className="flex items-center gap-4 relative w-full">
+                          <p className="text-sm font-bold">Min</p>
+                          <Input
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                variables[filterObj.name] = e.target.value;
+                              } else {
+                                if (filterObj.name in variables) {
+                                  delete variables[filterObj.name];
+                                }
                               }
-                            }
-                            setVariables({ ...variables });
-                          }}
-                        />
-                        <div className="absolute right-2 text-sm font-bold">
-                          {filterObj.addon}
+                              setVariables({ ...variables });
+                            }}
+                          />
+                          <div className="absolute right-2 text-sm font-bold">
+                            {filterObj.addon}
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-4 relative w-full">
-                        <p className="text-sm font-bold">Max</p>
-                        <Input
-                          onChange={(e) => {
-                            if (e.target.value) {
-                              variables[filterObj.name2] = e.target.value;
-                            } else {
-                              if (filterObj.name2 in variables) {
-                                delete variables[filterObj.name2];
+                        <div className="flex items-center gap-4 relative w-full">
+                          <p className="text-sm font-bold">Max</p>
+                          <Input
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                variables[filterObj.name2] = e.target.value;
+                              } else {
+                                if (filterObj.name2 in variables) {
+                                  delete variables[filterObj.name2];
+                                }
                               }
-                            }
-                            setVariables({ ...variables });
-                          }}
-                        />
-                        <div className="absolute right-2 text-sm font-bold">
-                          {filterObj.addon}
+                              setVariables({ ...variables });
+                            }}
+                          />
+                          <div className="absolute right-2 text-sm font-bold">
+                            {filterObj.addon}
+                          </div>
                         </div>
                       </div>
                     </div>
                   );
                 } else if (filterObj.type === 'doubledropdown') {
                   return (
-                    <DoubleDropdown
-                      DoubleDropdownData={{
-                        ...filterObj,
-                        type: 'DoubleDropdown',
-                      }}
-                      key={elIndex}
-                      inputsStyles={{
-                        boxShadow: 'none',
-                        border: '1px solid black',
-                        borderRadius: '10px',
-                        marginBottom: '10px',
-                      }}
-                      onChange={(key, value) => {
-                        variables[key] = value;
-                        setVariables({ ...variables });
-                      }}
-                    />
+                    <div key={elIndex}>
+                      <p className=" bg-gray-100 mt-[-10px] mb-6 py-1 w-max px-2 rounded-md text-xs text-gray-700 font-semibold">
+                        <a href="">Clear Filter</a>
+                      </p>
+                      <DoubleDropdown
+                        DoubleDropdownData={{
+                          ...filterObj,
+                          type: 'DoubleDropdown',
+                        }}
+                        inputsStyles={{
+                          boxShadow: 'none',
+                          border: '1px solid black',
+                          borderRadius: '10px',
+                          marginBottom: '10px',
+                        }}
+                        onChange={(key, value) => {
+                          variables[key] = value;
+                          setVariables({ ...variables });
+                        }}
+                      />
+                    </div>
                   );
                 }
                 return null;
