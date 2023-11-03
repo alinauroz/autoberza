@@ -59,12 +59,13 @@ const getServerSideProps = async (id: string) => {
   let form: any;
   let ad: any;
   try {
-    const { data: response, error } = await ssClient.query(GET_AD, { id });
+    const response: any = await ssClient.request(GET_AD, { id });
+    console.log('RESPONSE', response);
     ad = response?.ads?.data[0];
-    //const { data: formResponse } = await ssClient.query(GET_FORMS);
-    //form = formResponse?.forms?.find(
-    //  (form: IForm) => form.category === ad.category
-    //);
+    const formResponse: any = await ssClient.request(GET_FORMS);
+    form = formResponse?.forms?.find(
+      (form: IForm) => form.category === ad.category
+    );
     return {
       data: ad || {},
       form: form || {},
