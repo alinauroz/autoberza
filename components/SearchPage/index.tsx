@@ -13,8 +13,9 @@ import Loading from '../Elements/Loading';
 import { isLoggedIn } from '@/utils/auth';
 import Link from 'next/link';
 import Button from '../Elements/Button';
+import usePaginatedQuery from '@/utils/usePaginatedQuery';
 
-const take = 4;
+const take = 3;
 
 const data = [
   { type: 'checkbox', label: 'Airbags', section: 'Security' },
@@ -114,7 +115,11 @@ const SearchPage = () => {
     ];
   }, [variables]);
 
-  const [{ fetching: adsFetching, data: adResponse }] = useQuery({
+  const {
+    fetching: adsFetching,
+    data: adResponse,
+    fetchMore,
+  } = usePaginatedQuery({
     query: GET_ADS,
     variables: {
       isApproved: true,
@@ -122,6 +127,19 @@ const SearchPage = () => {
       details: detailFilters,
       take,
       skip: page * take,
+    },
+    toFullPage: (data: any) => {
+      const response = {
+        ads: {
+          data: [],
+          count: 0,
+        },
+      };
+      for (const x in data) {
+        response.ads.data = response.ads.data.concat(data[x].ads.data);
+        response.ads.count = data[x].ads.count;
+      }
+      return response;
     },
   });
 
