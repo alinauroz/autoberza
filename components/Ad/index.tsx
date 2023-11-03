@@ -56,14 +56,14 @@ export const GET_FORMS = `
 `;
 
 const getServerSideProps = async (id: string) => {
-  const { data: response, error } = await ssClient.query(GET_AD, { id });
-  const ad = response?.ads?.data[0];
+  //const { data: response, error } = await ssClient.query(GET_AD, { id });
+  //const ad = response?.ads?.data[0];
   const { data: formResponse } = await ssClient.query(GET_FORMS);
   const form = formResponse?.forms?.find(
-    (form: IForm) => form.category === ad.category
+    (form: IForm) => form.category === 'Car' //ad.category
   );
   return {
-    data: ad,
+    data: JSON.parse(JSON.stringify({})),
     form,
   };
 };
