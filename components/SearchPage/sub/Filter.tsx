@@ -17,6 +17,31 @@ interface Props {
   variables: any;
 }
 
+const ClearButton = ({
+  name,
+  variables,
+  setVariables,
+}: {
+  name: string;
+  variables: any;
+  setVariables: (x: any) => void;
+}) => {
+  return null;
+  if (name in variables)
+    return (
+      <span
+        className="bg-gray-100 mt-[-10px] my-3 cursor-pointer py-1 w-max px-2 rounded-md text-xs text-gray-700 font-semibold"
+        onClick={() => {
+          delete variables[name];
+          setVariables({ ...variables });
+        }}
+      >
+        Clear Filter
+      </span>
+    );
+  return null;
+};
+
 const FilterComp = ({
   data,
   setShowFilter,
@@ -120,9 +145,11 @@ const FilterComp = ({
                 } else if (filterObj.type === 'select') {
                   return (
                     <div key={elIndex}>
-                      <p className=" bg-gray-100 mt-[-10px] mb-6 py-1 w-max px-2 rounded-md text-xs text-gray-700 font-semibold">
-                        <a href="">Clear Filter</a>
-                      </p>
+                      <ClearButton
+                        variables={variables}
+                        setVariables={setVariables}
+                        name={filterObj.name}
+                      />
                       <div>
                         {filterObj.options.map((value, yearsIndex) => {
                           return (
@@ -184,9 +211,6 @@ const FilterComp = ({
                 } else if (filterObj.type === 'minmax') {
                   return (
                     <div key={elIndex}>
-                      <p className=" bg-gray-100 mt-[-10px] mb-6 py-1 w-max px-2 rounded-md text-xs text-gray-700 font-semibold">
-                        <a href="">Clear Filter</a>
-                      </p>
                       <div className="py-2 flex items-center gap-3">
                         <div className="flex items-center gap-4 relative w-full">
                           <p className="text-sm font-bold">Min</p>
@@ -230,9 +254,6 @@ const FilterComp = ({
                 } else if (filterObj.type === 'doubledropdown') {
                   return (
                     <div key={elIndex}>
-                      <p className=" bg-gray-100 mt-[-10px] mb-6 py-1 w-max px-2 rounded-md text-xs text-gray-700 font-semibold">
-                        <a href="">Clear Filter</a>
-                      </p>
                       <DoubleDropdown
                         DoubleDropdownData={{
                           ...filterObj,

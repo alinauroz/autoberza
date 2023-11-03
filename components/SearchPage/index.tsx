@@ -196,12 +196,19 @@ const SearchPage = () => {
           ) : (
             ads?.map((ad: any) => <Card key={ad.id} ad={ad} />)
           )}
-          <LoadMore
-            onClick={fetchMore}
-            autoLoadMore={true}
-            loading={adsFetching}
-            moreExist={adResponse?.ads?.moreExists}
-          />
+
+          {adResponse?.ads?.moreExists ? (
+            <LoadMore
+              onClick={fetchMore}
+              autoLoadMore={true}
+              loading={adsFetching}
+              moreExist={adResponse?.ads?.moreExists}
+            />
+          ) : (
+            <div className="flex justify-center items-center my-8">
+              <span className="font-bold text-gray-600">No more ads found</span>
+            </div>
+          )}
         </div>
       </div>
       <Footer containerClass={`${showFilter ? 'hidden' : ''}`} />
