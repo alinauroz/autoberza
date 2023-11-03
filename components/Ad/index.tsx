@@ -56,11 +56,13 @@ export const GET_FORMS = `
 `;
 
 const getServerSideProps = async (id: string) => {
+  let form: any;
+  let ad: any;
   try {
     const { data: response, error } = await ssClient.query(GET_AD, { id });
-    const ad = response?.ads?.data[0];
+    ad = response?.ads?.data[0];
     const { data: formResponse } = await ssClient.query(GET_FORMS);
-    const form = formResponse?.forms?.find(
+    form = formResponse?.forms?.find(
       (form: IForm) => form.category === ad.category
     );
     return {
@@ -69,6 +71,8 @@ const getServerSideProps = async (id: string) => {
     };
   } catch (err) {
     console.log('ERROR', err);
+    console.log('FORM', form);
+    console.log('Ad', ad);
     return {
       data: {},
       form: {},
