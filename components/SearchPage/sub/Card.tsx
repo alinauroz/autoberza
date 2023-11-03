@@ -59,7 +59,7 @@ const Card = ({ ad }: { ad: any }) => {
             <div className="flex items-center justify-between">
               <div className="hidden lg:flex gap-2">
                 <Button
-                  text={(ad.discountedPrice ?? ad.price) / 100 + ' €'}
+                  text={(ad.discountedPrice ?? ad.price) + ' €'}
                   style={{
                     fontSize: '16px',
                     fontWeight: '700',
@@ -80,7 +80,7 @@ const Card = ({ ad }: { ad: any }) => {
               </div>
               <div className="lg:hidden">
                 <Button
-                  text={(ad.discountedPrice ?? ad.price) / 100 + ' €'}
+                  text={(ad.discountedPrice ?? ad.price) + ' €'}
                   style={{
                     fontSize: '14px',
                     fontWeight: '700',

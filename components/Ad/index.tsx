@@ -118,7 +118,7 @@ async function Ad({ id }: IProps) {
                     {data.price}€
                   </div>
                   <div className="text-md font-bold ">
-                    {data.discountedPrice / 100}€
+                    {data.discountedPrice}€
                   </div>
                 </div>
               ) : (

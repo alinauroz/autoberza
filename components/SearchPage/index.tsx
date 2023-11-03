@@ -106,8 +106,8 @@ const SearchPage = () => {
     return [
       {
         categories,
-        minPrice: parseInt(minPrice) * 100,
-        maxPrice: parseInt(maxPrice) * 100,
+        minPrice: parseInt(minPrice),
+        maxPrice: parseInt(maxPrice),
         sortOrder,
         sortBy,
       },

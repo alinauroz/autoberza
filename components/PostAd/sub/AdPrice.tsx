@@ -23,7 +23,7 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
               }}
               required
               name="price"
-              defaultValue={prefill?.price ? prefill?.price / 100 + '' : ''}
+              defaultValue={prefill?.price ? prefill?.price + '' : ''}
             />
           </div>
           <div className="price-input">
@@ -36,9 +36,7 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
               }}
               name="discountedPrice"
               defaultValue={
-                prefill?.discountedPrice
-                  ? prefill?.discountedPrice / 100 + ''
-                  : ''
+                prefill?.discountedPrice ? prefill?.discountedPrice + '' : ''
               }
             />
           </div>
