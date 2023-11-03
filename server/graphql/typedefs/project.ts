@@ -41,7 +41,7 @@ const projectTypedefs = `
 
     type Query {
       forms: [Form]
-      users: [User]
+      users(isAdmin: Boolean): [User]
       ads(
         dateAfter: Int
         isApproved: Boolean

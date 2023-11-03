@@ -31,8 +31,8 @@ export interface IUser {
 }
 
 const GET_USERS = gql`
-  query Users {
-    users {
+  query Users($isAdmin: Boolean) {
+    users(isAdmin: $isAdmin) {
       id
       isAdmin
       name
@@ -86,7 +86,8 @@ function StaffBadge() {
 }
 
 function Users() {
-  const [{ fetching, data }] = useQuery({ query: GET_USERS });
+  const [variables, setVariables] = useState<{ isAdmin?: boolean }>({});
+  const [{ fetching, data }] = useQuery({ query: GET_USERS, variables });
   const [{ fetching: updatingAdminStatus }, updateAdminStatus] =
     useMutation(UPDATE_ADMIN_STATUS);
   const [{ fetching: updatingStaffStatus }, updateStaffStatus] =
@@ -101,6 +102,27 @@ function Users() {
   return (
     <>
       <Layout heading="Users">
+        <div className="my-4 flex">
+          <div>
+            <select
+              className="p-2"
+              onChange={(e) => {
+                if (e.target.value === 'all') {
+                  delete variables.isAdmin;
+                  setVariables({ ...variables });
+                } else if (e.target.value === 'true') {
+                  setVariables({ ...variables, isAdmin: true });
+                } else {
+                  setVariables({ ...variables, isAdmin: false });
+                }
+              }}
+            >
+              <option value="all">All</option>
+              <option value="true">Admin</option>
+              <option value="false">Non-admin</option>
+            </select>
+          </div>
+        </div>
         {fetching ? (
           <div className="flex justify-center items-center min-h-screen">
             <Loading />
