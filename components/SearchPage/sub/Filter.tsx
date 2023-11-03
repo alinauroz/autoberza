@@ -2,7 +2,7 @@ import DropDownMenu from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
 import { DynamicFiltersResponse } from '@/types';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import DropdwonIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
 import Button from '@/components/Elements/Button';
 import DoubleDropdown from '@/components/Elements/DoubleDropdown';
@@ -53,6 +53,7 @@ const FilterComp = ({
   const [activeFilterTitles, setActiveFilterTitles] = React.useState<string[]>(
     []
   );
+  const [key, setKey] = useState(0);
 
   React.useEffect(() => {
     const allSections = Array.from(new Set(data.map((e) => e.label)));
@@ -80,6 +81,7 @@ const FilterComp = ({
 
   return (
     <div
+      key={key}
       className={`lg:block lg:w-1/3 sm:w-full sm:absolute lg:mt-1.5 mx-4 lg:mx-0 lg:static top-[68px] ${
         !showFilter ? 'hidden' : ''
       }`}
@@ -96,6 +98,25 @@ const FilterComp = ({
         Filters
         <p className="font-semibold text-2xl text-gray-500">x</p>
       </button>
+      {
+        <div
+          className="bg-white flex items-center justify-between px-4 py-3 cursor-pointer"
+          onClick={() => {
+            setKey(key + 1);
+            setVariables({});
+          }}
+        >
+          <span className="text-md py-2 font-bold ">Filters</span>
+          <span
+            className={
+              'text-md py-2 font-semibold ' +
+              (Object.keys(variables).length > 0 ? '' : 'opacity-30')
+            }
+          >
+            Reset
+          </span>
+        </div>
+      }
       {fieldTitles.map((fieldTitle, i) => {
         const currentSectionElements = processedData[fieldTitle];
         const isFilterActive = activeFilterTitles.includes(fieldTitle);
