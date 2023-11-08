@@ -172,7 +172,7 @@ async function Ad({ id }: IProps) {
           <div className="my-4 flex items-center justify-between gap-2">
             <div className="w-full">
               {/* <a href="https://api.whatsapp.com/send?phone=00923345711646"> */}
-              <a href="https://wa.me/00923345711646?text=Hello%20from%20WhatsApp">
+              <a href={'https://wa.me/' + data?.submittedByUser?.phone}>
                 <button className="btn !bg-[#25d366] hover:!bg-[#20b356] active:!bg-[#1d9f4c] !w-full flex justify-center items-center relative">
                   <span className="flex gap-4 text-white">
                     <Image src={Whatsapp} alt="" className="w-7" />
