@@ -145,6 +145,10 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
       return;
     }
 
+    if (json.discountedPrice && json.discountedPrice > json.price) {
+      return toast.error('Discounted price should be less than price');
+    }
+
     if (prefill) {
       updateAd({
         id: prefill.id,
