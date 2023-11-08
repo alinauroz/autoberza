@@ -22,18 +22,8 @@ const customStyles = {
 interface IModalProps {
   title: string | React.ReactChild;
   isOpen: boolean;
-  header?:
-    | React.ReactNode
-    | React.ReactElement
-    | React.ReactElement[]
-    | string
-    | null;
-  children:
-    | React.ReactNode
-    | React.ReactElement
-    | React.ReactElement[]
-    | string
-    | null;
+  header?: any;
+  children: any;
   onClose: (e?: React.MouseEvent) => void;
 }
 
