@@ -182,7 +182,7 @@ async function Ad({ id }: IProps) {
               </a>
             </div>
             <div className="w-full">
-              <a href="viber://chat?number=00923345711646&text=Hello%20from%20Viber">
+              <a href={'viber://chat?number=' + data?.submittedByUser?.phone}>
                 {/* <a href="viber://pa?chatURI=[00923345711646]&text=[Hello World]"> */}
                 <button className="btn !bg-[#7360f2] hover:!bg-[#614ced] active:!bg-[#513eca] !w-full flex justify-center items-center">
                   <span className="flex gap-4 text-white">
