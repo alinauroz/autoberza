@@ -127,7 +127,7 @@ async function Ad({ id }: IProps) {
                 <div className="text-md font-bold">{data.price}</div>
               )}
             </div>
-            <div className="lg:flex flex lg:justify-between justify-between gap-6 border-b-2 border-gray-300 hidden">
+            <div className="lg:flex flex lg:justify-between justify-between gap-6 border-b-2 border-gray-300 ">
               <p className="text-md font-semibold text-gray-600 mb-2 ">City:</p>
               <span className="text-md font-bold">{data.city}</span>
             </div>
@@ -173,9 +173,13 @@ async function Ad({ id }: IProps) {
             <div className="w-full">
               {/* <a href="https://api.whatsapp.com/send?phone=00923345711646"> */}
               <a href={'https://wa.me/' + data?.submittedByUser?.phone}>
-                <button className="btn !bg-[#25d366] hover:!bg-[#20b356] active:!bg-[#1d9f4c] !w-full flex justify-center items-center relative">
-                  <span className="flex gap-4 text-white">
-                    <Image src={Whatsapp} alt="" className="w-7" />
+                <button className="btn !text-[15px]  !bg-[#25d366] hover:!bg-[#20b356] active:!bg-[#1d9f4c] !w-full relative flex justify-center">
+                  <span className="flex items-center gap-2 xl:gap-4 text-white">
+                    <Image
+                      src={Whatsapp}
+                      alt=""
+                      className="md:w-4 lg:w-5 xl:w-7 w-6"
+                    />
                     WhatsApp
                   </span>
                 </button>
@@ -184,9 +188,13 @@ async function Ad({ id }: IProps) {
             <div className="w-full">
               <a href={'viber://chat?number=' + data?.submittedByUser?.phone}>
                 {/* <a href="viber://pa?chatURI=[00923345711646]&text=[Hello World]"> */}
-                <button className="btn !bg-[#7360f2] hover:!bg-[#614ced] active:!bg-[#513eca] !w-full flex justify-center items-center">
-                  <span className="flex gap-4 text-white">
-                    <Image src={Viber} alt="" className="w-7" />
+                <button className="btn !text-[15px]  !bg-[#7360f2] hover:!bg-[#614ced] active:!bg-[#513eca] !w-full flex justify-center items-center">
+                  <span className="flex items-center gap-2 xl:gap-4 text-white">
+                    <Image
+                      src={Viber}
+                      alt=""
+                      className="md:w-4 lg:w-5 xl:w-7 w-6"
+                    />
                     Viber
                   </span>
                 </button>
