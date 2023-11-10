@@ -80,6 +80,8 @@ const UPDATE_AD = gql`
     $photos: [String]
     $details: JSON
     $description: String
+    $manufacturer: String
+    $model: String
   ) {
     updateAd(
       id: $id
@@ -92,6 +94,8 @@ const UPDATE_AD = gql`
       photos: $photos
       details: $details
       description: $description
+      manufacturer: $manufacturer
+      model: $model
     ) {
       city
       id
@@ -154,6 +158,8 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
         id: prefill.id,
         details: json,
         title: json.title,
+        manufacturer: json.manufacturer,
+        model: json.model,
         price: parseInt(json.price),
         discountedPrice: parseInt(json.discountedPrice),
         country: json.country,
@@ -176,6 +182,10 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
 
         title: json.title,
         price: parseInt(json.price),
+
+        manufacturer: json.manufacturer,
+        model: json.model,
+
         discountedPrice: parseInt(json.discountedPrice),
         country: json.country,
         city: json.city,

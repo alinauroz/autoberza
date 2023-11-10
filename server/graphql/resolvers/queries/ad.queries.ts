@@ -88,11 +88,27 @@ export const ads = async (
           }),
     });
 
+    const result = await prisma.ad.aggregate({
+      _avg: {
+        price: true,
+      },
+      _max: {
+        price: true,
+      },
+      _min: {
+        price: true,
+      },
+      where: {
+        manufacturer: (details as any)?.manufacturer,
+        model: (details as any)?.model,
+      },
+    });
+    console.log('Result', result);
+
     let filteredAds = ads;
     if (details) {
       filteredAds = ads.filter((ad) => {
         for (let field in details) {
-          console.log('Filed', field);
           if (Array.isArray((details as any)[field])) {
             return (
               (details as any)[field].indexOf((ad.details as any)?.[field]) !==
