@@ -301,7 +301,7 @@ async function Ad({ id }: IProps) {
           </div>
         );
       })}
-      <div className="block md:hidden border-t-2 border-gray-200 ">
+      <div className="block md:hidden ">
         <p className="text-lg lg:mb-4 mb-4 mt-4 font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
           Seller
         </p>
