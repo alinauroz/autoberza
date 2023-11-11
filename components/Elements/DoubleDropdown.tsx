@@ -44,8 +44,11 @@ const DoubleDropdown: React.FC<Props> = ({
         )
       );
       setSelectedSecond(
-        options2.find((option) => option.value === DoubleDropdownData.id2)
+        options2.find(
+          (option) => option.value === prefill?.[DoubleDropdownData.id2]
+        )
       );
+      console.log('Prefill', DoubleDropdownData.id2, options2);
     }
   }, [prefill, options1, options2]);
 
