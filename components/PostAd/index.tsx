@@ -34,6 +34,8 @@ const CREATE_AD = gql`
     $details: JSON
     $category: String
     $description: String
+    $manufacturer: String
+    $model: String
   ) {
     createAd(
       title: $title
@@ -46,6 +48,9 @@ const CREATE_AD = gql`
       details: $details
       description: $description
       category: $category
+
+      manufacturer: $manufacturer
+      model: $model
     ) {
       city
       id
@@ -153,12 +158,17 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
       return toast.error('Discounted price should be less than price');
     }
 
+    console.log('CheckIt', {
+      manufacturer: json.manufacturer || json.manufactures,
+      model: json.model,
+    });
+
     if (prefill) {
       updateAd({
         id: prefill.id,
         details: json,
         title: json.title,
-        manufacturer: json.manufacturer,
+        manufacturer: json.manufacturer || json.manufactures,
         model: json.model,
         price: parseInt(json.price),
         discountedPrice: parseInt(json.discountedPrice),
@@ -183,7 +193,7 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
         title: json.title,
         price: parseInt(json.price),
 
-        manufacturer: json.manufacturer,
+        manufacturer: json.manufacturer || json.manufactures,
         model: json.model,
 
         discountedPrice: parseInt(json.discountedPrice),

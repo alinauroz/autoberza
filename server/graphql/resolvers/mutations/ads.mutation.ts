@@ -64,6 +64,12 @@ export const updateAd = isLoggedIn(
       throw new Error('Details can not be null');
     }
 
+    console.log({
+      manufacturer:
+        (details as any)?.manufacturer || (details as any)?.manufactures,
+      model: (details as any)?.model,
+    });
+
     const ad = await prisma.ad.update({
       where: { id },
       data: {
@@ -77,6 +83,9 @@ export const updateAd = isLoggedIn(
         title,
         isApproved,
         category,
+        manufacturer:
+          (details as any)?.manufacturer || (details as any)?.manufactures,
+        model: (details as any)?.model,
       },
     });
 

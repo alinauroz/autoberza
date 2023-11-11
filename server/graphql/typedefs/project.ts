@@ -33,6 +33,9 @@ const projectTypedefs = `
       data: [Ad],
       count: Int,
       moreExists: Boolean
+      min: Int,
+      max: Int,
+      avg: Int
     }
 
     type AdFilterResponse {

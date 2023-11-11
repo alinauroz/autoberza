@@ -99,7 +99,7 @@ export const ads = async (
         price: true,
       },
       where: {
-        manufacturer: (details as any)?.manufacturer,
+        manufacturer: (details as any)?.manufactures,
         model: (details as any)?.model,
       },
     });
@@ -136,6 +136,9 @@ export const ads = async (
       data,
       count,
       moreExists,
+      avg: parseInt((result._avg?.price || 0) + ''),
+      max: parseInt((result._max?.price || 0) + ''),
+      min: parseInt((result._min?.price || 0) + ''),
     };
   } catch (err) {
     console.log(err);
