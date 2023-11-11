@@ -18,6 +18,9 @@ interface IProps {
 export const GET_AD = `
 query Ads($id: String) {
   ads(id: $id) {
+    avg
+    min 
+    max
     data {
     city
     country
@@ -67,6 +70,7 @@ const getServerSideProps = async (id: string) => {
   try {
     const response: any = await ssClient.request(GET_AD, { id });
     ad = response?.ads?.data[0];
+    const stats = response?.ads || {};
     const formResponse: any = await ssClient.request(GET_FORMS);
     form = formResponse?.forms?.find(
       (form: IForm) => form.category === ad.category
@@ -74,6 +78,7 @@ const getServerSideProps = async (id: string) => {
     return {
       data: ad || {},
       form: form || {},
+      stats: stats || {},
     };
   } catch (err) {
     console.log('ERROR', err);
@@ -87,7 +92,7 @@ const getServerSideProps = async (id: string) => {
 };
 
 async function Ad({ id }: IProps) {
-  const { data, form } = await getServerSideProps(id);
+  const { data, form, stats } = await getServerSideProps(id);
   // return null;
 
   const sections = separateSectionFields(form?.fields);
@@ -116,7 +121,7 @@ async function Ad({ id }: IProps) {
             <div className="text-3xl block lg:hidden py-2">
               <CarDescription data={data} />
               <div className="">
-                <MinMaxAvgComponent />
+                <MinMaxAvgComponent stats={stats} />
               </div>
             </div>
             <div className="flex lg:justify-between lg:items-center gap-2 lg:border-b-2 lg:border-gray-300 mb-4">
@@ -216,7 +221,7 @@ async function Ad({ id }: IProps) {
         <div className="hidden lg:block lg:col-span-4 px-20 mb-5">
           <CarDescription data={data} />
           <div className="">
-            <MinMaxAvgComponent />
+            <MinMaxAvgComponent stats={stats} />
           </div>
         </div>
       </div>

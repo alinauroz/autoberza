@@ -88,23 +88,6 @@ export const ads = async (
           }),
     });
 
-    const result = await prisma.ad.aggregate({
-      _avg: {
-        price: true,
-      },
-      _max: {
-        price: true,
-      },
-      _min: {
-        price: true,
-      },
-      where: {
-        manufacturer: (details as any)?.manufactures,
-        model: (details as any)?.model,
-      },
-    });
-    console.log('Result', result);
-
     let filteredAds = ads;
     if (details) {
       filteredAds = ads.filter((ad) => {
@@ -124,6 +107,24 @@ export const ads = async (
         return true;
       });
     }
+
+    const result = await prisma.ad.aggregate({
+      _avg: {
+        price: true,
+      },
+      _max: {
+        price: true,
+      },
+      _min: {
+        price: true,
+      },
+      where: {
+        manufacturer:
+          (details as any)?.manufactures || filteredAds[0]?.manufacturer,
+        model: (details as any)?.model || filteredAds[0]?.model,
+      },
+    });
+    console.log('Result', result);
 
     const count = details
       ? filteredAds.length
