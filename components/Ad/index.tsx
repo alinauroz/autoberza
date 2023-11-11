@@ -111,7 +111,7 @@ async function Ad({ id }: IProps) {
               </div>
             </div>
             <div className="text-3xl block lg:hidden py-2">
-              <CarDescription />
+              <CarDescription data={data} />
             </div>
             <div className="flex lg:justify-between lg:items-center gap-2 lg:border-b-2 lg:border-gray-300 mb-4">
               <p className="text-md font-semibold text-gray-600 mb-2 lg:block hidden">
@@ -208,7 +208,7 @@ async function Ad({ id }: IProps) {
           </div>
         </div>
         <div className="hidden lg:block lg:col-span-4 px-20 mb-5">
-          <CarDescription />
+          <CarDescription data={data} />
         </div>
       </div>
       {Object.keys(sections).map((section) => {
