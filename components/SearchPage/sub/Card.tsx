@@ -57,7 +57,7 @@ const Card = ({ ad }: { ad: any }) => {
               </div>
             </div>
             <div className="flex items-center justify-between">
-              <div className="hidden lg:flex gap-2">
+              <div className="flex lg:flex gap-2">
                 <Button
                   text={(ad.discountedPrice ?? ad.price) + ' €'}
                   style={{
@@ -77,22 +77,6 @@ const Card = ({ ad }: { ad: any }) => {
                     {ad.price} €
                   </span>
                 )}
-              </div>
-              <div className="lg:hidden">
-                <Button
-                  text={(ad.discountedPrice ?? ad.price) + ' €'}
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: '700',
-                    width: '110px',
-                    height: '30px',
-                    borderRadius: '100px',
-
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                />
               </div>
               <div className="flex items-center gap-2 cursor-pointer lg:pr-8">
                 <p className="text-sm font-semibold lg:text-base">
