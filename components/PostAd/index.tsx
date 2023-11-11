@@ -177,7 +177,6 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
         location: json.location,
         photos: json.photos.split('|'),
         description: json.description,
-        category: searchParams.get('category'),
       }).then(({ data, error }) => {
         if (error?.graphQLErrors[0].message) {
           toast.error(error?.graphQLErrors[0].message);
