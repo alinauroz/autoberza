@@ -234,10 +234,33 @@ async function Ad({ id }: IProps) {
             <div className="lg:grid lg:grid-cols-2 lg:gap-x-10 lg:w-[60%]">
               {sections[section].map(
                 (field: { label: string; name: string; type: string }) => {
-                  if (!data?.details[field.name]) {
+                  if (
+                    !data?.details[field.name] &&
+                    typeof data?.details[field.name] !== 'undefined'
+                  ) {
                     return null;
                   }
-                  if (field.type === 'checkbox') {
+                  if (field.type === 'doubledropdown') {
+                    console.log('DoubleDrop', field);
+                    return (
+                      <>
+                        <span
+                          className="my-6 md:my-3 lg:flex flex items-center justify-between border-b-2 text-gray-600"
+                          key={field.name}
+                        >
+                          <p className="font-bold">{field.label}</p>
+                          {data?.details[(field as any).id]}
+                        </span>
+                        <span
+                          className="my-6 md:my-3 lg:flex flex items-center justify-between border-b-2 text-gray-600"
+                          key={field.name}
+                        >
+                          <p className="font-bold">{(field as any).label2}</p>
+                          {data?.details[(field as any).id2]}
+                        </span>
+                      </>
+                    );
+                  } else if (field.type === 'checkbox') {
                     return (
                       <span
                         className="my-6 md:my-3 text-gray-600 flex gap-2"
