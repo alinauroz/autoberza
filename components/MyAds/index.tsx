@@ -112,7 +112,7 @@ function MyAds() {
                         <p className="lg:text-lg font-bold text-xl ">
                           {ad.title}
                         </p>
-                        <div className="flex items-center gap-2 hidden lg:flex">
+                        <div className=" items-center gap-2 hidden lg:flex">
                           <Image src={Location} alt="" className="w-3" />
                           <p className="text-xs font-semibold text-gray-600 lg:text-base">
                             {ad.city}
