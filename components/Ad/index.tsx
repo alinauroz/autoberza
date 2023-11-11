@@ -9,6 +9,7 @@ import Images from './Images';
 import Whatsapp from '@/public/assets/common/whatsappIcon.svg';
 import Viber from '@/public/assets/common/viberIcon.svg';
 import CarDescription from './CarDescription';
+import MinMaxAvgComponent from './AdStat';
 
 interface IProps {
   id: string;
@@ -57,6 +58,8 @@ export const GET_FORMS = `
     }
   }
 `;
+
+const data = [10, 5, 8, 15, 12];
 
 const getServerSideProps = async (id: string) => {
   let form: any;
@@ -112,6 +115,9 @@ async function Ad({ id }: IProps) {
             </div>
             <div className="text-3xl block lg:hidden py-2">
               <CarDescription />
+              <div className="">
+                <MinMaxAvgComponent />
+              </div>
             </div>
             <div className="flex lg:justify-between lg:items-center gap-2 lg:border-b-2 lg:border-gray-300 mb-4">
               <p className="text-md font-semibold text-gray-600 mb-2 lg:block hidden">
@@ -209,6 +215,9 @@ async function Ad({ id }: IProps) {
         </div>
         <div className="hidden lg:block lg:col-span-4 px-20 mb-5">
           <CarDescription />
+          <div className="">
+            <MinMaxAvgComponent />
+          </div>
         </div>
       </div>
       {Object.keys(sections).map((section) => {

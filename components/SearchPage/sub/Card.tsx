@@ -25,7 +25,7 @@ const Card = ({ ad }: { ad: any }) => {
           <div className="flex flex-col justify-between lg:w-full">
             <div className="lg:flex lg:items-center lg:justify-between lg:pr-8">
               <p className="text-xl font-bold lg:text-2xl">{ad.title}</p>
-              <div className="flex items-center gap-2 hidden lg:flex">
+              <div className="md:flex items-center gap-2  hidden">
                 <Image src={Location} alt="" className="" />
                 <p className="text-xs text-gray-600 lg:text-lg">{ad.city}</p>
               </div>
@@ -61,10 +61,10 @@ const Card = ({ ad }: { ad: any }) => {
                 <Button
                   text={(ad.discountedPrice ?? ad.price) + ' €'}
                   style={{
-                    fontSize: '16px',
+                    fontSize: '14px',
                     fontWeight: '700',
-                    width: '120px',
-                    height: '35px',
+                    width: '110px',
+                    height: '30px',
                     borderRadius: '100px',
 
                     display: 'flex',
@@ -84,7 +84,7 @@ const Card = ({ ad }: { ad: any }) => {
                   style={{
                     fontSize: '14px',
                     fontWeight: '700',
-                    width: '100px',
+                    width: '110px',
                     height: '30px',
                     borderRadius: '100px',
 
