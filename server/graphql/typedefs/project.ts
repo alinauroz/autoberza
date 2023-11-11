@@ -90,6 +90,8 @@ const projectTypedefs = `
         details: JSON
         category: String
         description: String
+        manufacturer: String
+        model: String
       ): Ad
       updateAd(
         id: String!
@@ -104,6 +106,8 @@ const projectTypedefs = `
         isApproved: Boolean
         description: String
         category: String
+        manufacturer: String
+        model: String
       ): Ad
       deleteAd(
         id: String!

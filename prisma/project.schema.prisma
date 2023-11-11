@@ -37,6 +37,9 @@ model Ad {
   price               Int?
   discountedPrice     Int?
 
+  manufacturer        String?
+  model               String?
+
   country             String?
   city                String?
   location            String?

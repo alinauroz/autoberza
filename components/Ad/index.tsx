@@ -114,7 +114,7 @@ async function Ad({ id }: IProps) {
               </div>
             </div>
             <div className="text-3xl block lg:hidden py-2">
-              <CarDescription />
+              <CarDescription data={data} />
               <div className="">
                 <MinMaxAvgComponent />
               </div>
@@ -214,7 +214,7 @@ async function Ad({ id }: IProps) {
           </div>
         </div>
         <div className="hidden lg:block lg:col-span-4 px-20 mb-5">
-          <CarDescription />
+          <CarDescription data={data} />
           <div className="">
             <MinMaxAvgComponent />
           </div>
