@@ -56,8 +56,8 @@ const Card = ({ ad }: { ad: any }) => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-between">
-              <div className="flex md:flex md:gap-2 gap-0">
+            <div className="flex items-center justify-between gap-6">
+              <div className="flex md:flex md:flex-row items-center flex-col md:gap-2">
                 <Button
                   text={(ad.discountedPrice ?? ad.price) + ' €'}
                   style={{
@@ -73,12 +73,12 @@ const Card = ({ ad }: { ad: any }) => {
                   }}
                 />
                 {ad.discountedPrice && (
-                  <span className="mx-2 line-through font-bold text-gray-500 mt-2">
-                    {ad.price}€
+                  <span className="mx-2 line-through font-bold text-gray-500 ">
+                    {ad.price} €
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-2 cursor-pointer lg:pr-8">
+              <div className="flex items-center md:gap-2 gap-1 cursor-pointer md:mr-8 mr-2">
                 <p className="text-sm font-semibold lg:text-base">
                   View complete offer
                 </p>
