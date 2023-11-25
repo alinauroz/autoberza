@@ -11,12 +11,12 @@ import Button from '@/components/Elements/Button';
 import useMobileDetect from '@/utils/useMobileDetect';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
-import OurServices from './sub/OurServices';
 
 import carImg1 from '@/public/assets/common/homepage/homepage-car-img1.svg';
 import carImg2 from '@/public/assets/common/homepage/homepage-car-img2.svg';
 import carImg3 from '@/public/assets/common/homepage/homepage-car-img3.svg';
 import carImg4 from '@/public/assets/common/homepage/homepage-car-img4.svg';
+import OurServices from './OurServices';
 
 const tempData = [
   {
