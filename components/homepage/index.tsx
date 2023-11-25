@@ -11,8 +11,6 @@ import Button from '@/components/Elements/Button';
 import useMobileDetect from '@/utils/useMobileDetect';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
-import BikeCardComp from './sub/BikeCardComp ';
-import TransCardComp from './sub/TransCardComp';
 import OurServices from './sub/OurServices';
 
 import carImg1 from '@/public/assets/common/homepage/homepage-car-img1.svg';
@@ -288,8 +286,6 @@ const HomePage = ({ sectionTitle, cardType, vehicles }: Props) => {
             );
           })}
       </div>
-      {/* <BikeCardComp />
-      <TransCardComp /> */}
       <OurServices />
       <Footer />
     </>
