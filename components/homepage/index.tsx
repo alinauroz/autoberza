@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import React from 'react';
 import '@/styles/PostAd.css';
+import homePageImg from '@/public/assets/common/homepage/homepage-img.svg';
 import Location from '@/public/assets/common/homepage/locationIcon-gray.svg';
 import GasPump from '@/public/assets/common/homepage/gasPumpIcon.svg';
 import Calendar from '@/public/assets/common/homepage/calendarIcon.svg';
@@ -177,6 +178,9 @@ const HomePage = ({ sectionTitle, cardType, vehicles }: Props) => {
   return (
     <>
       <Header />
+      <div>
+        <Image src={homePageImg} alt="" className="w-full" />
+      </div>
       <div className="flex items-center justify-between w-11/12 mx-auto py-3">
         <p className="text-2xl font-bold">Featured Car</p>
         <div className="flex items-center gap-2">
@@ -227,7 +231,11 @@ const HomePage = ({ sectionTitle, cardType, vehicles }: Props) => {
                   <div className="relative">
                     <Image src={carImg1} alt="" className="w-full" />
                     <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute bottom-5 right-5 lg:bottom-2 lg:right-3 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
-                      FEATURED <span className="text-lg">{cardDets}</span>
+                      FEATURED
+                      {/* Helping text */}
+                      <span className="text-lg text-gray-800 font-black">
+                        {cardDets}
+                      </span>
                     </button>
                   </div>
                   <div className="flex flex-col justify-between lg:w-full pl-2">
