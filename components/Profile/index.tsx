@@ -13,6 +13,7 @@ import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
 import { useMemo } from 'react';
 import { get, set } from '@/utils/storage';
+import ErrorComponent from '../Elements/Error';
 
 const UPDATE_USER = gql`
   mutation UpdateUser(
@@ -98,6 +99,12 @@ function Profile({}) {
             name="newPassword"
           />
           <Button text="Update Profile" type="submit" loading={fetching} />
+          {(error?.graphQLErrors.length || 0) > 0 && (
+            <ErrorComponent
+              text={error?.graphQLErrors[0].message as string}
+              strong={''}
+            />
+          )}
         </div>
         <Footer />
       </div>
