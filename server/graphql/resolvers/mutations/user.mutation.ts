@@ -23,6 +23,7 @@ import {
 import { getPayload } from '@/server/services/token';
 import { adminOnly } from '../../wrappers';
 import { getRandomNumber } from '@/utils/generator';
+import { IGqlContext } from '@/types';
 
 type RegisterUserInput = Prisma.User & { password: string };
 export const registerUser = async (_: unknown, args: RegisterUserInput) => {
@@ -53,7 +54,6 @@ export const login = async (
       OR: [{ email }, { phone: email }],
     },
   });
-  console.log('>>', user);
   if (!user) {
     return {
       error: 'Incorrect email/phone number or password',
@@ -197,4 +197,34 @@ export const phoneOtpLogin = async (
   } else {
     throw new Error(INCORRECT_OTP);
   }
+};
+
+export const updateUser = async (
+  _: unknown,
+  {
+    email,
+    name,
+    newPassword,
+    currentPassword,
+  }: Prisma.User & { newPassword: string; currentPassword: string },
+  { user }: IGqlContext
+) => {
+  const data: any = { email, name };
+
+  if (newPassword) {
+    const isPasswordCorrect = await bcrypt.compare(
+      currentPassword,
+      user?.pwHash || ''
+    );
+    if (isPasswordCorrect) {
+      data.pwHash = await bcrypt.hash(newPassword, 10);
+    } else {
+      throw new Error('Your current password is incorrect');
+    }
+  }
+
+  return prisma.user.update({
+    where: { id: user?.id },
+    data,
+  });
 };

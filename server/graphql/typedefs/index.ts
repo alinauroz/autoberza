@@ -43,6 +43,13 @@ const typeDefs = gql`
       country: String
       password: String!
     ): User
+    updateUser(
+      name: String
+      email: String
+      phoneNo: String
+      currentPassword: String
+      newPassword: String
+    ): User
     login(email: String!, password: String!): LoginResponse!
     sendResetPasswordLink(email: String!): MessageResponse!
     resetPassword(password: String!, token: String!): StatusResponse!

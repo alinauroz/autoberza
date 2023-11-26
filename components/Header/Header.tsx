@@ -38,6 +38,9 @@ const Header = ({ style }: Props) => {
           >
             {isLoggedIn() ? (
               <div className="flex gap-4 text-xl ml-4 font-bold flex-col ">
+                <Link href="/profile">
+                  <span className="cursor-pointer mt-4">Profile</span>
+                </Link>
                 <Link href="/manage-ads">
                   <span className="cursor-pointer mt-4">Manage Ads</span>
                 </Link>
@@ -72,6 +75,9 @@ const Header = ({ style }: Props) => {
           <div className="p-1.5 md:p-2">
             {loggedIn ? (
               <div className="flex gap-4">
+                <Link href="/profile">
+                  <span className="cursor-pointer mt-4">Profile</span>
+                </Link>
                 <Link href="/manage-ads">
                   <span className="cursor-pointer">Manage Ads</span>
                 </Link>
