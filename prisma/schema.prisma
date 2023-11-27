@@ -60,5 +60,9 @@ model Ad {
 
   details             Json?
 
+  subscriptionPlan        String?
+  subscriptionStartDate   DateTime?
+  subscriptionEndDate     DateTime?
+
   createdOn           DateTime?  @default(now())
 }

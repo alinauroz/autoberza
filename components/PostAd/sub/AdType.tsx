@@ -2,15 +2,18 @@
 import React from 'react';
 import '@/styles/postAd.css';
 import Button from '@/components/Elements/Button';
+import Link from 'next/link';
 
 const cardsData = [
   {
     title: 'FREE',
     amount: 0,
     featureList: ['Standard display of ads'],
+    plan: 'FREE',
   },
   {
     title: 'PROMO 5',
+    plan: 'PROMO-5',
     amount: 10,
     featureList: [
       'Faster sales',
@@ -23,6 +26,7 @@ const cardsData = [
   },
   {
     title: 'PROMO 10',
+    plan: 'PROMO-10',
     amount: 15,
     featureList: [
       'Faster sales',
@@ -35,7 +39,7 @@ const cardsData = [
   },
 ];
 
-const AdType = () => {
+const AdType = ({ id }: { id?: string }) => {
   const [isLeftScrolled, setIsLeftScrolled] = React.useState(false);
 
   return (
@@ -71,7 +75,7 @@ const AdType = () => {
       <div
         className={`ad-types-cards cards-${isLeftScrolled ? 'left' : 'right'}`}
       >
-        {cardsData.map(({ amount, featureList, title }, i) => {
+        {cardsData.map(({ amount, featureList, title, plan }, i) => {
           return (
             <div className="ad-type-card" key={i}>
               <div className="ad-type-card__header">{title}</div>
@@ -88,7 +92,23 @@ const AdType = () => {
                 </div>
               </div>
               <div className="ad-type-card__footer">
-                <Button text="CHOOSE" style={{ padding: '10px 35px' }} />
+                {plan === 'FREE' ? (
+                  <Button
+                    type="button"
+                    text="CHOOSE"
+                    style={{ padding: '10px 35px' }}
+                  />
+                ) : (
+                  <Link
+                    href={`/api/stripe/create-checkout-session?adId=${id}&plan=${plan}`}
+                  >
+                    <Button
+                      type="button"
+                      text="CHOOSE"
+                      style={{ padding: '10px 35px' }}
+                    />
+                  </Link>
+                )}
               </div>
             </div>
           );

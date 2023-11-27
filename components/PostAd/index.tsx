@@ -278,7 +278,6 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
         <Dynamic data={form.fields} prefill={prefill} />
         <AdLocation prefill={prefill} />
         <AdPrice prefill={prefill} />
-        <AdType />
         <Contact creating={creating || updating} />
       </form>
       <Footer />

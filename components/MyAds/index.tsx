@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { gql, useMutation, useQuery } from 'urql';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
@@ -12,6 +12,7 @@ import Image from 'next/image';
 import Location from '@/public/assets/common/searchPage/locationIcon.svg';
 import { isLoggedIn } from '@/utils/auth';
 import Button from '../Elements/Button';
+import AdType from '../PostAd/sub/AdType';
 
 const GET_MY_ADS = gql`
   query MyAds {
@@ -47,6 +48,7 @@ export const DELETE_AD = gql`
 `;
 
 function MyAds() {
+  const [showPromotion, setShowPromotion] = useState(false);
   const [{ fetching, data: response }] = useQuery({ query: GET_MY_ADS });
   const [{ fetching: deleting }, deleteAd] = useMutation(DELETE_AD);
   const ads = response?.myAds?.data || [];
@@ -128,11 +130,23 @@ function MyAds() {
                       <p className="text-md my-6 lg:my-0">{ad.category}</p>
                     </div>
                     <div className="mb-1 flex justify-between w-full lg:mt-0">
-                      <Link href={`/edit-ad?id=${ad.id}`}>
-                        <button className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2">
-                          Edit
+                      <span className="flex gap-4">
+                        <Link href={`/edit-ad?id=${ad.id}`}>
+                          <button className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2">
+                            Edit
+                          </button>
+                        </Link>
+                        <button
+                          onClick={() =>
+                            setShowPromotion(
+                              showPromotion === ad.id ? undefined : ad.id
+                            )
+                          }
+                          className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2"
+                        >
+                          Promote
                         </button>
-                      </Link>
+                      </span>
                       <button
                         className="bg-red-600 hover:bg-red-700 active:bg-red-800 lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2"
                         onClick={() => {
@@ -150,6 +164,11 @@ function MyAds() {
                     </div>
                   </div>
                 </div>
+                {showPromotion === ad.id && (
+                  <div className="p-4">
+                    <AdType id={ad.id} />
+                  </div>
+                )}
               </div>
             ))}
           </div>
