@@ -27,6 +27,8 @@ const projectTypedefs = `
       details: JSON
       createdOn: Date
       category: String
+      subscriptionPlan: String
+      subscriptionEndDate: Date
     }
 
     type AdResponse {

@@ -10,6 +10,8 @@ export interface IAd {
   title: string;
   isApproved: boolean;
   createdOn: string;
+  subscriptionEndDate: Date;
+  subscriptionPlan: string;
 }
 
 const GET_ADS = gql`
@@ -44,6 +46,8 @@ const GET_ADS = gql`
         }
         title
         createdOn
+        subscriptionPlan
+        subscriptionEndDate
       }
     }
   }
@@ -173,7 +177,17 @@ function Ads() {
               <Tr key={ad.id}>
                 <Td>{ad.title}</Td>
                 <Td>{ad.isApproved ? 'Approved' : 'Not Approved'}</Td>
-                <Td>{null}</Td>
+                <Td>
+                  <span className="text-sm">
+                    {ad.subscriptionPlan
+                      ? ad.subscriptionPlan +
+                        ' | ' +
+                        moment(new Date(ad.subscriptionEndDate)).format(
+                          'DD.MM.YYYY hh:mm a'
+                        )
+                      : ''}
+                  </span>
+                </Td>
                 <Td>{moment(new Date(ad.createdOn)).format('DD.MMM.YYYY')}</Td>
                 <Td>
                   <button
