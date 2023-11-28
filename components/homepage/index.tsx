@@ -17,7 +17,8 @@ import carImg1 from '@/public/assets/common/homepage/homepage-car-img1.svg';
 import carImg2 from '@/public/assets/common/homepage/homepage-car-img2.svg';
 import carImg3 from '@/public/assets/common/homepage/homepage-car-img3.svg';
 import carImg4 from '@/public/assets/common/homepage/homepage-car-img4.svg';
-import OurServices from './OurServices';
+import OurServices from './sub/OurServices';
+import HeroSection from './sub/HeroSection';
 
 const tempData = [
   {
@@ -178,8 +179,9 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div>
-        <Image src={homePageImg} alt="" className="w-full" />
+      <div className="relative">
+        <HeroSection />
+        {/* <Image src={homePageImg} alt="" className="w-full" /> */}
       </div>
       <div className="flex items-center justify-between w-11/12 mx-auto py-3">
         <p className="text-2xl font-bold">Featured Car</p>
