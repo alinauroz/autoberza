@@ -60,9 +60,18 @@ const APPROVE = gql`
   }
 `;
 
+const PROMOTE_AD = gql`
+  mutation AdminPromotion($adId: String!, $noOfDays: Int!) {
+    adminPromotion(adId: $adId, noOfDays: $noOfDays) {
+      id
+    }
+  }
+`;
+
 function Ads() {
   const [variables, setVariables] = useState<any>({});
 
+  const [{ fetching: promoting }, promoteAd] = useMutation(PROMOTE_AD);
   const [{ fetching, data }] = useQuery({ query: GET_ADS, variables });
   const [{ fetching: approving }, approve] = useMutation(APPROVE);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
@@ -150,7 +159,19 @@ function Ads() {
                 <Td>{null}</Td>
                 <Td>{moment(new Date(ad.createdOn)).format('DD.MMM.YYYY')}</Td>
                 <Td>
-                  <button className="bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md">
+                  <button
+                    className="bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md"
+                    onClick={() => {
+                      const noOfDays = Number(window.prompt() || '');
+                      if (isNaN(noOfDays)) {
+                        return alert('Error: Enter a number');
+                      }
+                      promoteAd({ adId: ad.id, noOfDays: noOfDays });
+                    }}
+                  >
+                    Promote
+                  </button>
+                  <button className="bg-blue-600 p-1 ml-2 px-2 text-white border-0 font-medium rounded-md">
                     <a href={`/ad?id=${ad.id}`} target="_blank">
                       View
                     </a>

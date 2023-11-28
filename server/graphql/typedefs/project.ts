@@ -70,6 +70,7 @@ const projectTypedefs = `
       homepageAds: JSON
     }
     type Mutation {
+      adminPromotion(adId: String!, noOfDays: Int!): Ad
       createFieldForm (
         category: String!
         fields: JSON!
