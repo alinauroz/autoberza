@@ -34,6 +34,8 @@ const GET_MY_ADS = gql`
         price
         submittedBy
         title
+        subscriptionPlan
+        subscriptionEndDate
       }
     }
   }
@@ -121,6 +123,17 @@ function MyAds() {
                           </p>
                         </div>
                       </div>
+                      <p>
+                        <span className="text-sm">
+                          {ad.subscriptionPlan
+                            ? ad.subscriptionPlan +
+                              ' | Expires on: ' +
+                              moment(new Date(ad.subscriptionEndDate)).format(
+                                'DD.MM.YYYY hh:mm a'
+                              )
+                            : ''}
+                        </span>
+                      </p>
                       <p className="text-gray-600 text-sm">
                         Created on:{' '}
                         {moment(new Date(ad.createdOn)).format('DD MMM YYYY')}
