@@ -3,11 +3,7 @@
 import Image from 'next/image';
 import React from 'react';
 import '@/styles/PostAd.css';
-import homePageImg from '@/public/assets/common/homepage/homepage-img.svg';
-import Location from '@/public/assets/common/homepage/locationIcon-gray.svg';
-import GasPump from '@/public/assets/common/homepage/gasPumpIcon.svg';
-import Calendar from '@/public/assets/common/homepage/calendarIcon.svg';
-import SpeedMeter from '@/public/assets/common/homepage/speedMeterIcon.svg';
+
 import Button from '@/components/Elements/Button';
 import useMobileDetect from '@/utils/useMobileDetect';
 import Header from '../Header/Header';
@@ -19,6 +15,8 @@ import carImg3 from '@/public/assets/common/homepage/homepage-car-img3.svg';
 import carImg4 from '@/public/assets/common/homepage/homepage-car-img4.svg';
 import OurServices from './sub/OurServices';
 import HeroSection from './sub/HeroSection';
+import { gql, useQuery } from 'urql';
+import Promoted from './Promoted';
 
 const tempData = [
   {
@@ -131,6 +129,12 @@ const tempData = [
   },
 ];
 
+const HOMEPAGE_ADS = gql`
+  query Query {
+    homepageAds
+  }
+`;
+
 interface Props {
   sectionTitle?: string;
   cardType?: 'CAR' | 'TRANSPORT' | 'BIKE';
@@ -140,9 +144,16 @@ interface Props {
 const carDetailsResponse = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const HomePage = () => {
+  const [{ fetching, data: homepageAdsResponse }] = useQuery({
+    query: HOMEPAGE_ADS,
+  });
   const [page, setPage] = React.useState(1);
   const [pageSize, setPageSize] = React.useState(4);
   const isMobile = useMobileDetect();
+
+  const homepageAds = homepageAdsResponse?.homepageAds || [];
+
+  console.log('HomepageAds', homepageAds);
 
   React.useEffect(() => {
     setPageSize(isMobile ? 1 : 4);
@@ -183,117 +194,9 @@ const HomePage = () => {
         <HeroSection />
         {/* <Image src={homePageImg} alt="" className="w-full" /> */}
       </div>
-      <div className="flex items-center justify-between w-11/12 mx-auto py-3">
-        <p className="text-2xl font-bold">Featured Car</p>
-        <div className="flex items-center gap-2">
-          <button
-            className="text-5xl flex items-center"
-            onClick={() => {
-              handlePageChange(false);
-            }}
-          >
-            <span
-              className={`transition-all ${
-                isBackwardPossible()
-                  ? 'text-green-600 text-6xl'
-                  : 'text-gray-500'
-              }`}
-            >
-              &#11104;
-            </span>
-          </button>
-          <button
-            className="text-6xl flex items-center "
-            onClick={() => {
-              handlePageChange(true);
-            }}
-          >
-            <span
-              className={`transition-all ${
-                isForwardPossible()
-                  ? 'text-green-600'
-                  : 'text-gray-500 text-5xl'
-              }`}
-            >
-              &#10141;
-            </span>
-          </button>
-        </div>
-      </div>
-      <div className="flex justify-between w-11/12 mx-auto">
-        {carDetailsResponse
-          .slice(...getNewIndices())
-          .map((cardDets, cardInd) => {
-            return (
-              <div
-                key={cardInd}
-                className="bg-white lg:w-max w-full mx-1 rounded-2xl shadow-lg"
-              >
-                <div className="p-3 lg:flex flex flex-col gap-4 ">
-                  <div className="relative">
-                    <Image src={carImg1} alt="" className="w-full" />
-                    <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute bottom-3 right-3 lg:bottom-2 lg:right-2 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
-                      FEATURED
-                      {/* Helping text */}
-                      <span className="px-1 text-sm">{cardDets}</span>
-                    </button>
-                  </div>
-                  <div className="flex flex-col justify-between lg:w-full pl-2">
-                    <p className="text-xl font-bold lg:text-xl lg:mb-5">
-                      Volkswagen - Golf 5 - 2.0 TDI
-                    </p>
-                    <div className="grid grid-cols-2 gap-4 pt-6 pb-4">
-                      <div className="flex items-center gap-2">
-                        <Image src={SpeedMeter} alt="" className="w-5" />
-                        <p className="text-sm text-gray-500 font-bold lg:text-sm">
-                          280,000 km
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Image src={Calendar} alt="" className="w-5" />
-                        <p className="text-sm text-gray-500 font-bold lg:text-sm">
-                          2006
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Image src={GasPump} alt="" className="w-5" />
-                        <p className="text-sm text-gray-500 font-bold lg:text-sm">
-                          Diesel
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Image src={Location} alt="" className="w-5" />
-                        <p className="text-sm text-gray-500 font-bold lg:text-sm">
-                          Podgorica
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between ">
-                      <p className="text-sm text-gray-500 font-bold lg:text-base">
-                        10 min ago
-                      </p>
-                      <div className="flex md:flex md:flex-row items-center flex-col md:gap-2">
-                        <Button
-                          text={3350 + ' €'}
-                          style={{
-                            backgroundColor: 'Transparent',
-                            color: '#00C489',
-                            fontSize: '20px',
-                            fontWeight: '700',
-
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-      </div>
+      {homepageAds?.map(({ name, ads }: any) => (
+        <Promoted key={name} category={name} ads={ads} />
+      ))}
       <OurServices />
       <Footer />
     </>
