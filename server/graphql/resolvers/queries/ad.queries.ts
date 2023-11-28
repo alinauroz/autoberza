@@ -22,6 +22,47 @@ type FilterArgs = {
   sortBy: string;
   sortOrder: string;
 };
+
+export const homepageAds = async () => {
+  const forms = await prisma.formFields.findMany({});
+
+  const getAds = async (category: any) => {
+    let promoted: any = await prisma.ad.findMany({
+      where: {
+        subscriptionEndDate: {
+          gte: new Date(),
+        },
+        category,
+      },
+    });
+    const ids = promoted.map((p: any) => p.id);
+    promoted.forEach((p: any) => {
+      p.isPromoted = true;
+    });
+    if (promoted.length < 20) {
+      const moreAds = await prisma.ad.findMany({
+        where: {
+          category,
+          id: { not: { in: ids } },
+        },
+      });
+      promoted = promoted.concat(moreAds);
+    }
+    return promoted;
+  };
+
+  const adsPromises = forms.map(async (f) => {
+    const ads = await getAds(f.category);
+    return {
+      name: f.category,
+      ads,
+    };
+  });
+
+  const data = await Promise.all(adsPromises);
+  return data;
+};
+
 export const ads = async (
   _: unknown,
   {
