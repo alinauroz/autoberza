@@ -153,8 +153,6 @@ const HomePage = () => {
 
   const homepageAds = homepageAdsResponse?.homepageAds || [];
 
-  console.log('HomepageAds', homepageAds);
-
   React.useEffect(() => {
     setPageSize(isMobile ? 1 : 4);
   }, [isMobile]);

@@ -7,6 +7,7 @@ import Location from '@/public/assets/common/homepage/locationIcon-gray.svg';
 import GasPump from '@/public/assets/common/homepage/gasPumpIcon.svg';
 import Calendar from '@/public/assets/common/homepage/calendarIcon.svg';
 import SpeedMeter from '@/public/assets/common/homepage/speedMeterIcon.svg';
+import moment from 'moment';
 
 function Promoted({ category, ads }: { category: string; ads: any[] }) {
   const [page, setPage] = React.useState(1);
@@ -133,26 +134,28 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                         {cardDets?.details?.year}
                       </p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Image src={GasPump} alt="" className="w-5" />
-                      <p className="text-sm text-gray-500 font-bold lg:text-sm">
-                        Diesel
-                      </p>
-                    </div>
+                    {'fuel' in (cardDets.details || {}) && (
+                      <div className="flex items-center gap-2">
+                        <Image src={GasPump} alt="" className="w-5" />
+                        <p className="text-sm text-gray-500 font-bold lg:text-sm">
+                          {cardDets?.details?.fuel}
+                        </p>
+                      </div>
+                    )}
                     <div className="flex items-center gap-2">
                       <Image src={Location} alt="" className="w-5" />
                       <p className="text-sm text-gray-500 font-bold lg:text-sm">
-                        Podgorica
+                        {cardDets?.details?.city}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between ">
                     <p className="text-sm text-gray-500 font-bold lg:text-base">
-                      10 min ago
+                      {moment(new Date(cardDets?.createdOn || 0)).fromNow()}
                     </p>
                     <div className="flex md:flex md:flex-row items-center flex-col md:gap-2">
                       <Button
-                        text={3350 + ' €'}
+                        text={cardDets?.price?.toLocaleString() + ' €'}
                         style={{
                           backgroundColor: 'Transparent',
                           color: '#00C489',
