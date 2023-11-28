@@ -13,8 +13,14 @@ export interface IAd {
 }
 
 const GET_ADS = gql`
-  query Query($dateAfter: Int, $isApproved: Boolean, $categories: [String]) {
+  query Query(
+    $dateAfter: Int
+    $isApproved: Boolean
+    $categories: [String]
+    $id: String
+  ) {
     ads(
+      id: $id
       dateAfter: $dateAfter
       isApproved: $isApproved
       categories: $categories
@@ -136,6 +142,17 @@ function Ads() {
               return <option key={category}>{category}</option>;
             })}
           </select>
+        </div>
+        <div className="ml-12">
+          <p>Id</p>
+          <input
+            type="text"
+            onChange={(e) =>
+              e.target.value
+                ? setVariables({ ...variables, id: e.target.value })
+                : setVariables({ ...variables, id: undefined })
+            }
+          />
         </div>
       </div>
       {fetching ? (
