@@ -134,7 +134,11 @@ const FilterComp = ({
                 src={DropdwonIcon}
                 alt=""
                 className={`w-[10px] lg:w-[13px] 
-                ${isFilterActive ? 'rotate-180 ' : ''}
+                ${
+                  isFilterActive
+                    ? 'rotate-180 transition-all'
+                    : 'transition-all'
+                }
                 `}
               />
             </div>

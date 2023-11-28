@@ -17,7 +17,8 @@ import carImg1 from '@/public/assets/common/homepage/homepage-car-img1.svg';
 import carImg2 from '@/public/assets/common/homepage/homepage-car-img2.svg';
 import carImg3 from '@/public/assets/common/homepage/homepage-car-img3.svg';
 import carImg4 from '@/public/assets/common/homepage/homepage-car-img4.svg';
-import OurServices from './OurServices';
+import OurServices from './sub/OurServices';
+import HeroSection from './sub/HeroSection';
 
 const tempData = [
   {
@@ -178,8 +179,9 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div>
-        <Image src={homePageImg} alt="" className="w-full" />
+      <div className="relative">
+        <HeroSection />
+        {/* <Image src={homePageImg} alt="" className="w-full" /> */}
       </div>
       <div className="flex items-center justify-between w-11/12 mx-auto py-3">
         <p className="text-2xl font-bold">Featured Car</p>
@@ -230,12 +232,10 @@ const HomePage = () => {
                 <div className="p-3 lg:flex flex flex-col gap-4 ">
                   <div className="relative">
                     <Image src={carImg1} alt="" className="w-full" />
-                    <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute bottom-5 right-5 lg:bottom-2 lg:right-3 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
+                    <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute bottom-3 right-3 lg:bottom-2 lg:right-2 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
                       FEATURED
                       {/* Helping text */}
-                      <span className="text-lg text-gray-800 font-black">
-                        {cardDets}
-                      </span>
+                      <span className="px-1 text-sm">{cardDets}</span>
                     </button>
                   </div>
                   <div className="flex flex-col justify-between lg:w-full pl-2">
