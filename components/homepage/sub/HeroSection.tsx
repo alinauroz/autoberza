@@ -6,7 +6,7 @@ import HeroDetails from './HeroDetails';
 
 const HeroSection = () => {
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative flex items-center justify-center w-full">
       <Image src={homePageImg} alt="" className="w-full" />
       <div className="absolute">
         {/* <div className="absolute lg:top-10 lg:left-10 top-[4%] left-[25%]"> */}
