@@ -56,11 +56,11 @@ const FilterComp = ({
   const [key, setKey] = useState(0);
 
   React.useEffect(() => {
-    const allSections = Array.from(new Set(data.map((e) => e.label)));
+    const allSections = Array.from(new Set(data?.map((e) => e.label)));
     let temp: ProcessedData = {};
 
     allSections.forEach((fieldTitle) => {
-      temp[fieldTitle] = data.filter((d) => d.label === fieldTitle);
+      temp[fieldTitle] = data?.filter((d) => d.label === fieldTitle);
     });
     setProcessedData({ ...temp });
   }, [data]);

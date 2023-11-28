@@ -29,8 +29,8 @@ const data = [
 ];
 
 const GET_FILTERS = gql`
-  query Query {
-    adFilters {
+  query Query($category: String) {
+    adFilters(category: $category) {
       filters
     }
   }
@@ -92,6 +92,9 @@ const SearchPage = () => {
   const [page, setPage] = useState(0);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
     query: GET_FILTERS,
+    variables: {
+      category: variables.categories?.[0],
+    },
   });
 
   const [normalFilters, detailFilters] = useMemo(() => {
@@ -163,7 +166,7 @@ const SearchPage = () => {
       <Header />
 
       <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:pt-6 lg:mx-12">
-        {fetchingFilters ? (
+        {fetchingFilters && false ? (
           <div
             className={`lg:flex justify-center items-center lg:w-1/3 sm:w-full sm:absolute lg:mt-1.5 mx-4 lg:mx-0 lg:static top-[68px] hidden`}
             style={{
