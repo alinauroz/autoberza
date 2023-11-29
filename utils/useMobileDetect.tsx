@@ -5,7 +5,8 @@ const useMobileDetect = (): boolean => {
 
   useEffect(() => {
     const handleResize = () => {
-      const screenWidth = window.innerWidth;
+      const screenWidth = document.documentElement.clientWidth;
+      console.log('InnerWIdth', screenWidth);
       // You can adjust the breakpoint value according to your design
       const isMobileNow = screenWidth < 768;
       setIsMobile(isMobileNow);
@@ -22,7 +23,7 @@ const useMobileDetect = (): boolean => {
       window.removeEventListener('resize', handleResize);
     };
   }, []); // Empty dependency array to run the effect only once on mount
-
+  console.log('UsMobile', isMobile);
   return isMobile;
 };
 

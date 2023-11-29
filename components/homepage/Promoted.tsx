@@ -75,7 +75,7 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
           </button>
         </div>
       </div>
-      <div className="flex justify-between w-11/12 mx-auto md:grid grid-cols-4 gap-4">
+      <div className="flex justify-between w-11/12 mx-auto md:grid md:grid-cols-4 md:gap-4">
         {ads
           .slice(lowerIndex, lowerIndex + pageSize)
           .map((cardDets, cardInd) => {
