@@ -18,116 +18,116 @@ import HeroSection from './sub/HeroSection';
 import { gql, useQuery } from 'urql';
 import Promoted from './Promoted';
 
-const tempData = [
-  {
-    img: carImg1,
-    name: 'Volkswagen - Golf 5 - 2.0 TDI',
-    usage: '280,000 km',
-    year: '2006',
-    fuel: 'Diesel',
-    location: 'Podgorica',
-    added: '10 min ago',
-  },
-  {
-    img: carImg2,
-    name: 'Volkswagen - Golf GTI',
-    usage: '107,000 km',
-    year: '2003',
-    fuel: 'Diesel',
-    location: 'France',
-    added: '30 min ago',
-  },
-  {
-    img: carImg3,
-    name: 'Honda Civic 1.8',
-    usage: '174,000 km',
-    year: '2020',
-    fuel: 'Petrol',
-    location: 'Pakistan',
-    added: '35 min ago',
-  },
-  {
-    img: carImg4,
-    name: 'Volkswagen - Golf 5 - 2.0 TDI',
-    usage: '280,000 km',
-    year: '2006',
-    fuel: 'Diesel',
-    location: 'Podgorica',
-    added: '10 min ago',
-  },
-  {
-    img: carImg1,
-    name: 'Volkswagen - Golf 5 - 2.0 TDI',
-    usage: '280,000 km',
-    year: '2006',
-    fuel: 'Diesel',
-    location: 'Podgorica',
-    added: '10 min ago',
-  },
-  {
-    img: carImg2,
-    name: 'Volkswagen - Golf GTI',
-    usage: '107,000 km',
-    year: '2003',
-    fuel: 'Diesel',
-    location: 'France',
-    added: '30 min ago',
-  },
-  {
-    img: carImg3,
-    name: 'Honda Civic 1.8',
-    usage: '174,000 km',
-    year: '2020',
-    fuel: 'Petrol',
-    location: 'Pakistan',
-    added: '35 min ago',
-  },
-  {
-    img: carImg4,
-    name: 'Volkswagen - Golf 5 - 2.0 TDI',
-    usage: '280,000 km',
-    year: '2006',
-    fuel: 'Diesel',
-    location: 'Podgorica',
-    added: '10 min ago',
-  },
-  {
-    img: carImg1,
-    name: 'Volkswagen - Golf 5 - 2.0 TDI',
-    usage: '280,000 km',
-    year: '2006',
-    fuel: 'Diesel',
-    location: 'Podgorica',
-    added: '10 min ago',
-  },
-  {
-    img: carImg2,
-    name: 'Volkswagen - Golf GTI',
-    usage: '107,000 km',
-    year: '2003',
-    fuel: 'Diesel',
-    location: 'France',
-    added: '30 min ago',
-  },
-  {
-    img: carImg3,
-    name: 'Honda Civic 1.8',
-    usage: '174,000 km',
-    year: '2020',
-    fuel: 'Petrol',
-    location: 'Pakistan',
-    added: '35 min ago',
-  },
-  {
-    img: carImg4,
-    name: 'Volkswagen - Golf 5 - 2.0 TDI',
-    usage: '280,000 km',
-    year: '2006',
-    fuel: 'Diesel',
-    location: 'Podgorica',
-    added: '10 min ago',
-  },
-];
+// const tempData = [
+//   {
+//     img: carImg1,
+//     name: 'Volkswagen - Golf 5 - 2.0 TDI',
+//     usage: '280,000 km',
+//     year: '2006',
+//     fuel: 'Diesel',
+//     location: 'Podgorica',
+//     added: '10 min ago',
+//   },
+//   {
+//     img: carImg2,
+//     name: 'Volkswagen - Golf GTI',
+//     usage: '107,000 km',
+//     year: '2003',
+//     fuel: 'Diesel',
+//     location: 'France',
+//     added: '30 min ago',
+//   },
+//   {
+//     img: carImg3,
+//     name: 'Honda Civic 1.8',
+//     usage: '174,000 km',
+//     year: '2020',
+//     fuel: 'Petrol',
+//     location: 'Pakistan',
+//     added: '35 min ago',
+//   },
+//   {
+//     img: carImg4,
+//     name: 'Volkswagen - Golf 5 - 2.0 TDI',
+//     usage: '280,000 km',
+//     year: '2006',
+//     fuel: 'Diesel',
+//     location: 'Podgorica',
+//     added: '10 min ago',
+//   },
+//   {
+//     img: carImg1,
+//     name: 'Volkswagen - Golf 5 - 2.0 TDI',
+//     usage: '280,000 km',
+//     year: '2006',
+//     fuel: 'Diesel',
+//     location: 'Podgorica',
+//     added: '10 min ago',
+//   },
+//   {
+//     img: carImg2,
+//     name: 'Volkswagen - Golf GTI',
+//     usage: '107,000 km',
+//     year: '2003',
+//     fuel: 'Diesel',
+//     location: 'France',
+//     added: '30 min ago',
+//   },
+//   {
+//     img: carImg3,
+//     name: 'Honda Civic 1.8',
+//     usage: '174,000 km',
+//     year: '2020',
+//     fuel: 'Petrol',
+//     location: 'Pakistan',
+//     added: '35 min ago',
+//   },
+//   {
+//     img: carImg4,
+//     name: 'Volkswagen - Golf 5 - 2.0 TDI',
+//     usage: '280,000 km',
+//     year: '2006',
+//     fuel: 'Diesel',
+//     location: 'Podgorica',
+//     added: '10 min ago',
+//   },
+//   {
+//     img: carImg1,
+//     name: 'Volkswagen - Golf 5 - 2.0 TDI',
+//     usage: '280,000 km',
+//     year: '2006',
+//     fuel: 'Diesel',
+//     location: 'Podgorica',
+//     added: '10 min ago',
+//   },
+//   {
+//     img: carImg2,
+//     name: 'Volkswagen - Golf GTI',
+//     usage: '107,000 km',
+//     year: '2003',
+//     fuel: 'Diesel',
+//     location: 'France',
+//     added: '30 min ago',
+//   },
+//   {
+//     img: carImg3,
+//     name: 'Honda Civic 1.8',
+//     usage: '174,000 km',
+//     year: '2020',
+//     fuel: 'Petrol',
+//     location: 'Pakistan',
+//     added: '35 min ago',
+//   },
+//   {
+//     img: carImg4,
+//     name: 'Volkswagen - Golf 5 - 2.0 TDI',
+//     usage: '280,000 km',
+//     year: '2006',
+//     fuel: 'Diesel',
+//     location: 'Podgorica',
+//     added: '10 min ago',
+//   },
+// ];
 
 const HOMEPAGE_ADS = gql`
   query Query {
@@ -188,10 +188,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div className="relative">
-        <HeroSection />
-        {/* <Image src={homePageImg} alt="" className="w-full" /> */}
-      </div>
+      <HeroSection />
       {homepageAds?.map(({ name, ads }: any) => (
         <Promoted key={name} category={name} ads={ads} />
       ))}

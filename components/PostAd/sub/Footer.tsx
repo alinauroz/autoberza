@@ -44,7 +44,7 @@ const footerMenus = [
   {
     title: 'YOUR AUTODEALER',
     items: [
-      ['Sign in', '#'],
+      // ['Sign in', '#'],
       ['Mobile applications', '#'],
       ['Contact', '#'],
       ['Help', '#'],
@@ -120,8 +120,8 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
           </Link>
         </div>
       </div>
-      <div className="footer-copyright">
-        Copyright 2020-2023 © Autoberza.me All Rights Reserved
+      <div className="bg-black text-white text-center font-semibold pb-5 text-sm italic md:text-base">
+        Copyright 2020-2023 © <a href="#">Autoberza.me</a> All Rights Reserved
       </div>
     </div>
   );

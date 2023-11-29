@@ -5,7 +5,6 @@ import Button from '@/components/Elements/Button';
 const DDCard = () => {
   return (
     <div className="bg-white rounded-md lg:w-[420px] xl:w-[500px] md:w-96 w-48 lg:rounded-xl py-2 md:py-6 lg:py-4 xl:py-12 xl:-ml-32">
-      {/* <div className="bg-white rounded-md lg:w-[500px] w-56 lg:rounded-xl py-3 lg:py-8"> */}
       <p className="text-[10px] md:text-2xl md:pb-3 lg:pb-4 xl:pb-5 lg:text-3xl xl:text-4xl font-semibold text-center ">
         Find your right car
       </p>
@@ -19,7 +18,7 @@ const DDCard = () => {
         </button>
       </div>
       <p className="hidden lg:flex items-center text-gray-700 justify-end font-bold text-lg text-end px-10 pt-5 cursor-pointer">
-        Advance Search <span className="text-2xl px-2 mb-[3px]">&rarr;</span>
+        Advance Search <span className="text-3xl px-2">&rarr;</span>
       </p>
     </div>
   );
