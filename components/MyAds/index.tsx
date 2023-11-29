@@ -149,16 +149,18 @@ function MyAds() {
                             Edit
                           </button>
                         </Link>
-                        <button
-                          onClick={() =>
-                            setShowPromotion(
-                              showPromotion === ad.id ? undefined : ad.id
-                            )
-                          }
-                          className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2"
-                        >
-                          Promote
-                        </button>
+                        {process.env.NEXT_PUBLIC_ENABLE_PROMOTION == '1' && (
+                          <button
+                            onClick={() =>
+                              setShowPromotion(
+                                showPromotion === ad.id ? undefined : ad.id
+                              )
+                            }
+                            className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2"
+                          >
+                            Promote
+                          </button>
+                        )}
                       </span>
                       <button
                         className="bg-red-600 hover:bg-red-700 active:bg-red-800 lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2"
