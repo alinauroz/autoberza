@@ -13,6 +13,7 @@ import Link from 'next/link';
 import Button from '../Elements/Button';
 import usePaginatedQuery from '@/utils/usePaginatedQuery';
 import LoadMore from '../Elements/LoadMore';
+import { useSearchParams } from 'next/navigation';
 
 const take = 2;
 
@@ -97,6 +98,8 @@ const SearchPage = () => {
     },
   });
 
+  const searchParams = useSearchParams();
+
   const [normalFilters, detailFilters] = useMemo(() => {
     const {
       categories,
@@ -160,6 +163,22 @@ const SearchPage = () => {
   useEffect(() => {
     console.log('Variables', variables);
   }, [variables]);
+
+  useEffect(() => {
+    const year = searchParams.get('year');
+    const city = searchParams.get('city');
+    const minPrice = searchParams.get('minPrice');
+    const maxPrice = searchParams.get('maxPrice');
+    const category = searchParams.get('category');
+
+    setVariables({
+      ...(year && { year }),
+      ...(city && { city }),
+      ...(minPrice && { minPrice }),
+      ...(maxPrice && { maxPrice }),
+      ...(category && { categories: [category] }),
+    });
+  }, [searchParams]);
 
   return (
     <div>

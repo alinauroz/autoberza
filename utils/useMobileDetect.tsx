@@ -6,7 +6,6 @@ const useMobileDetect = (): boolean => {
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = document.documentElement.clientWidth;
-      console.log('InnerWIdth', screenWidth);
       // You can adjust the breakpoint value according to your design
       const isMobileNow = screenWidth < 768;
       setIsMobile(isMobileNow);
