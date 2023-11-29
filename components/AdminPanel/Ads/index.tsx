@@ -20,13 +20,18 @@ const GET_ADS = gql`
     $isApproved: Boolean
     $categories: [String]
     $id: String
+    $take: Int
+    $skip: Int
   ) {
     ads(
       id: $id
       dateAfter: $dateAfter
       isApproved: $isApproved
       categories: $categories
+      take: $take
+      skip: $skip
     ) {
+      count
       data {
         city
         country
@@ -78,11 +83,21 @@ const PROMOTE_AD = gql`
   }
 `;
 
+const take = 10;
+
 function Ads() {
   const [variables, setVariables] = useState<any>({});
 
+  const [page, setPage] = useState(0);
   const [{ fetching: promoting }, promoteAd] = useMutation(PROMOTE_AD);
-  const [{ fetching, data }] = useQuery({ query: GET_ADS, variables });
+  const [{ fetching, data }] = useQuery({
+    query: GET_ADS,
+    variables: {
+      ...variables,
+      take,
+      skip: page * take,
+    },
+  });
   const [{ fetching: approving }, approve] = useMutation(APPROVE);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
     query: GET_FILTERS,
@@ -228,6 +243,24 @@ function Ads() {
           })}
         </Table>
       )}
+      <div className="flex gap-2 justify-center items-center my-4">
+        {new Array(Math.ceil((data?.ads?.count || 0) / 10))
+          .fill(0)
+          .map((_, i) => {
+            return (
+              <span
+                key={i}
+                onClick={() => setPage(i)}
+                className={
+                  'p-2 cursor-pointer rounded bg-gray-200 ' +
+                  (page === i ? 'bg-gray-900 text-white font-bold' : '')
+                }
+              >
+                {i + 1}
+              </span>
+            );
+          })}
+      </div>
     </Layout>
   );
 }

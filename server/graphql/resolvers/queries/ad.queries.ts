@@ -32,6 +32,7 @@ export const homepageAds = async () => {
         subscriptionEndDate: {
           gte: new Date(),
         },
+        isApproved: true,
         category,
       },
     });
@@ -43,6 +44,7 @@ export const homepageAds = async () => {
       const moreAds = await prisma.ad.findMany({
         where: {
           category,
+          isApproved: true,
           id: { not: { in: ids } },
         },
       });
