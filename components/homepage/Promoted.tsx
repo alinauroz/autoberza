@@ -86,16 +86,12 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                 <div className="p-3">
                   {
                     <div className="relative">
-                      <div className="h-48 flex justify-center items-center min-w-full overflow-hidden">
-                        <div
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            background: `url(${cardDets.photos[0]})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                          }}
-                        />
+                      <div className="h-48 w-full overflow-hidden">
+                        <img
+                          className="object-cover object-center w-full h-full"
+                          src={cardDets.photos[0]}
+                          alt="Your Image"
+                        ></img>
                       </div>
                       {cardDets?.isPromoted && (
                         <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute bottom-3 right-3 lg:bottom-2 lg:right-2 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
