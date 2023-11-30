@@ -14,7 +14,8 @@
     "schema:generate-file-mac": "cat ./prisma/common.schema.prisma > ./prisma/schema.prisma && tail -n +21 ./prisma/project.schema.prisma >> ./prisma/schema.prisma",
     "schema:generate-file": "npm-run-all schema:generate-file-*",
     "schema:generate-win": "npm run schema:generate-file-windows && npx prisma generate",
-    "schema:generate": "npm run schema:generate-file-mac && npx prisma generate"
+    "schema:generate": "npm run schema:generate-file-mac && npx prisma generate",
+    "extract": "formatjs extract '{app,components}/**/*.{js,ts,tsx}' --format simple --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file lang/en.json --throws"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",
@@ -55,6 +56,7 @@
     "react-hot-toast": "^2.4.1",
     "react-image-gallery": "^1.3.0",
     "react-in-viewport": "^1.0.0-alpha.30",
+    "react-intl": "^6.5.5",
     "react-modal": "^3.16.1",
     "react-responsive-carousel": "^3.2.23",
     "react-slideshow-image": "^4.3.0",
@@ -67,6 +69,7 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
+    "@formatjs/cli": "^6.2.4",
     "@types/bcrypt": "^5.0.0",
     "@types/js-cookie": "^3.0.4",
     "@types/jsonwebtoken": "^9.0.3",
