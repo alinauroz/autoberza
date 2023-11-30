@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 function Layout({
   heading,
@@ -17,7 +18,12 @@ function Layout({
   if (!loggedIn) {
     return (
       <p className="m-12">
-        <Link href="/login">Click here to login To access Admin Panel</Link>
+        <Link href="/login">
+          <FormattedMessage
+            defaultMessage="Click here to login To access Admin Panel"
+            id="layout.login"
+          />
+        </Link>
       </p>
     );
   }
@@ -31,7 +37,9 @@ function Layout({
         type="button"
         className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
-        <span className="sr-only">Open sidebar</span>
+        <span className="sr-only">
+          <FormattedMessage defaultMessage="Open sidebar" id="layout.sidebar" />
+        </span>
         <svg
           className="w-6 h-6"
           aria-hidden="true"
@@ -73,7 +81,7 @@ function Layout({
                   className="flex-1 ml-3 whitespace-nowrap"
                   onClick={() => router.push('/admin?page=forms')}
                 >
-                  Forms
+                  <FormattedMessage defaultMessage="Forms" id="layout.forms" />
                 </span>
               </a>
             </li>
@@ -95,7 +103,7 @@ function Layout({
                   className="flex-1 ml-3 whitespace-nowrap"
                   onClick={() => router.push('/admin?page=users')}
                 >
-                  Users
+                  <FormattedMessage defaultMessage="Users" id="layout.users" />
                 </span>
               </a>
             </li>
@@ -117,7 +125,7 @@ function Layout({
                   className="flex-1 ml-3 whitespace-nowrap"
                   onClick={() => router.push('/admin?page=ads')}
                 >
-                  Ads
+                  <FormattedMessage defaultMessage="Ads" id="layout.ads" />
                 </span>
               </a>
             </li>
@@ -148,7 +156,10 @@ function Layout({
                     window.location.reload();
                   }}
                 >
-                  Log Out
+                  <FormattedMessage
+                    defaultMessage="Log Out"
+                    id="layout.log-out"
+                  />
                 </span>
               </a>
             </li>

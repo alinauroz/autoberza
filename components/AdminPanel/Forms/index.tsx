@@ -8,6 +8,7 @@ import Table, { Td, Th, Tr } from '@/components/Elements/Table';
 import ModalComponent from '@/components/Elements/Modal';
 import moment from 'moment';
 import AddEditForm from './AddEditForm';
+import { FormattedMessage } from 'react-intl';
 
 export interface IForm {
   id: string;
@@ -81,7 +82,7 @@ function Forms() {
             className="ml-2 bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md"
             onClick={() => setShowAdd(true)}
           >
-            + Add Form
+            <FormattedMessage defaultMessage="+ Add Form" id="forms.add" />
           </button>
         </span>
         {fetching ? (
@@ -92,9 +93,21 @@ function Forms() {
           <div>
             <Table className="!text-sm">
               <Tr>
-                <Th>Category</Th>
-                <Th>Fields</Th>
-                <Th>Created On</Th>
+                <Th>
+                  <FormattedMessage
+                    defaultMessage="Category"
+                    id="forms.category"
+                  />
+                </Th>
+                <Th>
+                  <FormattedMessage defaultMessage="Fields" id="forms.fields" />
+                </Th>
+                <Th>
+                  <FormattedMessage
+                    defaultMessage="Created On"
+                    id="forms.created-on"
+                  />
+                </Th>
                 <Th>{null}</Th>
               </Tr>
               {data?.forms?.map((form: IForm) => {
@@ -111,7 +124,10 @@ function Forms() {
                           href={`/post-ad?category=${form.category}`}
                           target="_blank"
                         >
-                          View
+                          <FormattedMessage
+                            defaultMessage="View"
+                            id="forms.view"
+                          />
                         </a>
                       </button>
                       <button
@@ -121,7 +137,10 @@ function Forms() {
                           setEditPrefill(form);
                         }}
                       >
-                        Update
+                        <FormattedMessage
+                          defaultMessage="Update"
+                          id="forms.update"
+                        />
                       </button>
                       <button
                         className="ml-2 bg-red-600 p-1 px-2 text-white border-0 font-medium rounded-md"
@@ -134,7 +153,10 @@ function Forms() {
                             deleteForm({ id: form.id });
                         }}
                       >
-                        Delete
+                        <FormattedMessage
+                          defaultMessage="Delete"
+                          id="forms.delete"
+                        />
                       </button>
                     </Td>
                   </Tr>
@@ -147,7 +169,14 @@ function Forms() {
       <ModalComponent
         isOpen={userDetails}
         title={'User Details'}
-        header={<p className="font-medium text-blue-600">Form Details</p>}
+        header={
+          <p className="font-medium text-blue-600">
+            <FormattedMessage
+              defaultMessage="Form Details"
+              id="forms.details"
+            />
+          </p>
+        }
         onClose={() => setFormDetailsId('')}
       >
         <div
@@ -159,8 +188,8 @@ function Forms() {
         isOpen={showAdd}
         title={'Add Form'}
         header={
-          <p className="font-medium text-blue-600 text-2xl font-medium my-2">
-            Add Form
+          <p className="font-medium text-blue-600 text-2xl my-2">
+            <FormattedMessage defaultMessage="Add Form" id="forms.add-form" />
           </p>
         }
         onClose={() => setShowAdd(false)}
