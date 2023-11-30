@@ -1,3 +1,5 @@
+'use client';
+
 import { ssClient } from '@/utils/urqlClient';
 import React from 'react';
 import { IForm } from '../AdminPanel/Forms';
@@ -10,6 +12,8 @@ import Whatsapp from '@/public/assets/common/whatsappIcon.svg';
 import Viber from '@/public/assets/common/viberIcon.svg';
 import CarDescription from './CarDescription';
 import MinMaxAvgComponent from './AdStat';
+import { useQuery } from 'urql';
+import Loading from '../Elements/Loading';
 
 interface IProps {
   id: string;
@@ -63,7 +67,7 @@ export const GET_FORMS = `
 `;
 
 const data = [10, 5, 8, 15, 12];
-
+/*
 const getServerSideProps = async (id: string) => {
   let form: any;
   let ad: any;
@@ -90,10 +94,29 @@ const getServerSideProps = async (id: string) => {
     };
   }
 };
+*/
 
-async function Ad({ id }: IProps) {
-  const { data, form, stats } = await getServerSideProps(id);
-  // return null;
+function Ad({ id }: IProps) {
+  const [{ fetching: formsFetching, data: formResponse }] = useQuery({
+    query: GET_FORMS,
+  });
+  const [{ fetching: dataFetching, data: adResponse }] = useQuery({
+    query: GET_AD,
+    variables: { id },
+  });
+  const data = adResponse?.ads?.data?.[0];
+  const form = formResponse?.forms?.find(
+    (form: IForm) => form?.category === data?.category
+  );
+  const stats = adResponse?.ads;
+
+  if (formsFetching || dataFetching) {
+    return (
+      <div className="h-48 flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  }
 
   const sections = separateSectionFields(form?.fields);
   return (
