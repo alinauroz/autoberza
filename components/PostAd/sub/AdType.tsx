@@ -3,6 +3,7 @@ import React from 'react';
 import '@/styles/postAd.css';
 import Button from '@/components/Elements/Button';
 import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
 
 const cardsData = [
   {
@@ -46,7 +47,12 @@ const AdType = ({ id }: { id?: string }) => {
     <div className="ad-type-wrapper">
       <div className="ad-type-section-header">
         <div className="post-ad-section-heading">
-          <span>CHOOSE THE TYPE OF AD</span>
+          <span>
+            <FormattedMessage
+              defaultMessage="CHOOSE THE TYPE OF AD"
+              id="adtype.type"
+            />
+          </span>
         </div>
         <div
           className={`ad-cards-scroll-controls scrolled-${

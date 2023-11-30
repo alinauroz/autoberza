@@ -10,6 +10,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
 import { toast } from 'react-hot-toast';
 import { get, set } from '@/utils/storage';
+import { FormattedMessage } from 'react-intl';
 
 const PHONE_OTP_LOGIN = gql`
   mutation Mutation($otp: String, $phoneNo: String) {
@@ -57,9 +58,17 @@ const Index = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="verification">
-          <div className="heading">Otp Verification!</div>
+          <div className="heading">
+            <FormattedMessage
+              defaultMessage="Otp Verification!"
+              id="index.otp-verification"
+            />
+          </div>
           <p className="mb-2">
-            An OTP has been sent to your phone. Enter that OTP here to login
+            <FormattedMessage
+              defaultMessage="An OTP has been sent to your phone. Enter that OTP here to login"
+              id="index.otp"
+            />
           </p>
           <div>
             <input

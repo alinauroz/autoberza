@@ -9,6 +9,7 @@ import Header from '../Header/Header';
 import Input from '../Elements/Input';
 import Button from '../Elements/Button';
 import '@/styles/verification.css';
+import { FormattedMessage } from 'react-intl';
 
 const SEND_VERIFICATION_EMAIL = gql`
   mutation Mutation($email: String!) {
@@ -35,9 +36,17 @@ function ForgotPassword({}) {
           <Header />
         </div>
         <div className="verification">
-          <div className="heading">Forgot Password</div>
+          <div className="heading">
+            <FormattedMessage
+              defaultMessage="Forgot Password"
+              id="forgotpassword.password"
+            />
+          </div>
           <p className="my-2">
-            Enter your email to receive a reset password link.
+            <FormattedMessage
+              defaultMessage="Enter your email to receive a reset password link."
+              id="forgotpassword.email"
+            />
           </p>
           <div>
             <Input

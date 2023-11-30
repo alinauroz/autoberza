@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import dropDownImg from '@/public/assets/common/homepage/dropdownIcon.svg';
 import DropDownMenu from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
+import { FormattedMessage } from 'react-intl';
 
 const DropDown = ({ filters }: { filters: any[] }) => {
   const [city, setCity] = useState<any>();
@@ -82,12 +83,22 @@ const DropDown = ({ filters }: { filters: any[] }) => {
         <div>
           <div className="py-2 flex items-center gap-3">
             <div className="flex items-center gap-4 relative w-full">
-              <p className="text-sm font-bold">Min Price</p>
+              <p className="text-sm font-bold">
+                <FormattedMessage
+                  defaultMessage={'Min Price'}
+                  id="dropdown.min"
+                />
+              </p>
               <Input name="minPrice" type="number" />
               <div className="absolute right-2 text-sm font-bold">€</div>
             </div>
             <div className="flex items-center gap-4 relative w-full">
-              <p className="text-sm font-bold">Max Price</p>
+              <p className="text-sm font-bold">
+                <FormattedMessage
+                  defaultMessage={'Max Price'}
+                  id="dropdown.max"
+                />
+              </p>
               <Input type="number" name="maxPrice" />
               <div className="absolute right-2 text-sm font-bold">€</div>
             </div>

@@ -14,6 +14,7 @@ import Button from '../Elements/Button';
 import usePaginatedQuery from '@/utils/usePaginatedQuery';
 import LoadMore from '../Elements/LoadMore';
 import { useSearchParams } from 'next/navigation';
+import { FormattedMessage } from 'react-intl';
 
 const take = 2;
 
@@ -228,7 +229,12 @@ const SearchPage = () => {
             />
           ) : (
             <div className="flex justify-center items-center my-8">
-              <span className="font-bold text-gray-600">No more ads found</span>
+              <span className="font-bold text-gray-600">
+                <FormattedMessage
+                  defaultMessage="No more ads found"
+                  id="searchpage.no-ads"
+                />
+              </span>
             </div>
           )}
         </div>

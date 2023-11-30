@@ -14,6 +14,7 @@ import CarDescription from './CarDescription';
 import MinMaxAvgComponent from './AdStat';
 import { useQuery } from 'urql';
 import Loading from '../Elements/Loading';
+import { FormattedMessage } from 'react-intl';
 
 interface IProps {
   id: string;
@@ -149,7 +150,7 @@ function Ad({ id }: IProps) {
             </div>
             <div className="flex lg:justify-between lg:items-center gap-2 lg:border-b-2 lg:border-gray-300 mb-4">
               <p className="text-md font-semibold text-gray-600 mb-2 lg:block hidden">
-                Price:
+                <FormattedMessage defaultMessage="Price:" id="ad.price" />
               </p>
 
               {data.discountedPrice ? (
@@ -166,13 +167,15 @@ function Ad({ id }: IProps) {
               )}
             </div>
             <div className="lg:flex flex lg:justify-between justify-between gap-6 border-b-2 border-gray-300 ">
-              <p className="text-md font-semibold text-gray-600 mb-2 ">City:</p>
+              <p className="text-md font-semibold text-gray-600 mb-2 ">
+                <FormattedMessage defaultMessage="City:" id="ad.city" />
+              </p>
               <span className="text-md font-bold">{data.city}</span>
             </div>
           </div>
           <div className="hidden md:block">
             <p className="text-lg lg:mb-4 mb-4 font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
-              Seller
+              <FormattedMessage defaultMessage="Seller" id="ad.seller" />
             </p>
             <p className="font-bold text-xl text-gray-800">
               {data?.submittedByUser?.name}
@@ -202,7 +205,10 @@ function Ad({ id }: IProps) {
                         </defs>
                       </svg>
                     </span>
-                    Call Seller
+                    <FormattedMessage
+                      defaultMessage="Call Seller"
+                      id="ad.call-seller"
+                    />
                   </span>
                 </button>
               </a>
@@ -218,7 +224,10 @@ function Ad({ id }: IProps) {
                         alt=""
                         className="md:w-4 lg:w-5 xl:w-7 w-6"
                       />
-                      WhatsApp
+                      <FormattedMessage
+                        defaultMessage="WhatsApp"
+                        id="ad.whatsapp"
+                      />
                     </span>
                   </button>
                 </a>
@@ -233,7 +242,7 @@ function Ad({ id }: IProps) {
                         alt=""
                         className="md:w-4 lg:w-5 xl:w-7 w-6"
                       />
-                      Viber
+                      <FormattedMessage defaultMessage="Viber" id="ad.viber" />
                     </span>
                   </button>
                 </a>
@@ -326,7 +335,7 @@ function Ad({ id }: IProps) {
       })}
       <div className="block md:hidden ">
         <p className="text-lg lg:mb-4 mb-4 mt-4 font-medium text-[#00C489] border-b-2 border-gray-600 w-max">
-          Seller
+          <FormattedMessage defaultMessage="Seller" id="ad.seller" />
         </p>
         <p className="font-bold text-xl text-gray-800">
           {data?.submittedByUser?.name}
@@ -356,7 +365,11 @@ function Ad({ id }: IProps) {
                     </defs>
                   </svg>
                 </span>
-                Call Seller
+
+                <FormattedMessage
+                  defaultMessage="Call Seller"
+                  id="ad.call-seller"
+                />
               </span>
             </button>
           </a>
@@ -371,7 +384,10 @@ function Ad({ id }: IProps) {
                     alt=""
                     className="md:w-4 lg:w-5 xl:w-7 w-6"
                   />
-                  WhatsApp
+                  <FormattedMessage
+                    defaultMessage="WhatsApp"
+                    id="ad.whatsapp"
+                  />
                 </span>
               </button>
             </a>
@@ -385,7 +401,7 @@ function Ad({ id }: IProps) {
                     alt=""
                     className="md:w-4 lg:w-5 xl:w-7 w-6"
                   />
-                  Viber
+                  <FormattedMessage defaultMessage="Viber" id="ad.viber" />
                 </span>
               </button>
             </a>

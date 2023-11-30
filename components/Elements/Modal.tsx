@@ -50,7 +50,7 @@ function ModalComponent({
           <span className="vertical-align-top">
             <span
               onClick={onClose}
-              className="w-5 h-5 text-white font-medium cursor-pointer inline-block bg-blue-600 rounded-full text-sm flex justify-center items-center"
+              className="w-5 h-5 text-white font-medium cursor-pointer bg-blue-600 rounded-full text-sm flex justify-center items-center"
             >
               ✕
             </span>

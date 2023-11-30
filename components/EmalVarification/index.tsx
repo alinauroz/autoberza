@@ -10,6 +10,7 @@ import Input from '../Elements/Input';
 import Button from '../Elements/Button';
 import '@/styles/verification.css';
 import { useEffect } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const SEND_VERIFICATION_EMAIL = gql`
   mutation SEND_VERIFICATION($email: String!) {
@@ -42,11 +43,19 @@ function Verification({}) {
           <Header />
         </div>
         <div className="verification">
-          <div className="heading">Email Verification!</div>
+          <div className="heading">
+            <FormattedMessage
+              defaultMessage="Email Verification!"
+              id="verification.email"
+            />
+          </div>
           <p className="my-2">
-            A verification email has been sent to your email address. Check your
+            <FormattedMessage
+              defaultMessage="A verification email has been sent to your email address. Check your
             inbox. If you have not received any email, try resending
-            verification email.
+            verification email."
+              id="verification.mail"
+            />
           </p>
           <div>
             <Input

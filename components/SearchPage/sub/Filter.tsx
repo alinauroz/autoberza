@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import DropdwonIcon from '@/public/assets/common/searchPage/dropdownIcon.svg';
 import Button from '@/components/Elements/Button';
 import DoubleDropdown from '@/components/Elements/DoubleDropdown';
+import { FormattedMessage } from 'react-intl';
 
 type ProcessedData = { [x: string]: DynamicFiltersResponse[] };
 
@@ -95,7 +96,7 @@ const FilterComp = ({
           setShowFilter(false);
         }}
       >
-        Filters
+        <FormattedMessage defaultMessage="Filters" id="filter.filters" />
         <p className="font-semibold text-2xl text-gray-500">x</p>
       </button>
       {
@@ -106,14 +107,16 @@ const FilterComp = ({
             setVariables({});
           }}
         >
-          <span className="text-md py-2 font-bold ">Filters</span>
+          <span className="text-md py-2 font-bold ">
+            <FormattedMessage defaultMessage="Filters" id="filter.filters" />
+          </span>
           <span
             className={
               'text-md py-2 font-semibold ' +
               (Object.keys(variables).length > 0 ? '' : 'opacity-30')
             }
           >
-            Reset
+            <FormattedMessage defaultMessage="Reset" id="filter.reset" />
           </span>
         </div>
       }
@@ -238,7 +241,12 @@ const FilterComp = ({
                     <div key={elIndex}>
                       <div className="py-2 flex items-center gap-3">
                         <div className="flex items-center gap-4 relative w-full">
-                          <p className="text-sm font-bold">Min</p>
+                          <p className="text-sm font-bold">
+                            <FormattedMessage
+                              defaultMessage="Min"
+                              id="filter.min"
+                            />
+                          </p>
                           <Input
                             onChange={(e) => {
                               if (e.target.value) {
@@ -256,7 +264,12 @@ const FilterComp = ({
                           </div>
                         </div>
                         <div className="flex items-center gap-4 relative w-full">
-                          <p className="text-sm font-bold">Max</p>
+                          <p className="text-sm font-bold">
+                            <FormattedMessage
+                              defaultMessage="Max"
+                              id="filter.max"
+                            />
+                          </p>
                           <Input
                             onChange={(e) => {
                               if (e.target.value) {
