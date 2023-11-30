@@ -8,6 +8,7 @@ import Calendar from '@/public/assets/common/homepage/calendarIcon.svg';
 import SpeedMeter from '@/public/assets/common/homepage/speedMeterIcon.svg';
 import moment from 'moment';
 import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
 
 function Promoted({ category, ads }: { category: string; ads: any[] }) {
   const [lowerIndex, setLowerIndex] = React.useState(0);
@@ -97,7 +98,10 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                         </div>
                         {cardDets?.isPromoted && (
                           <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute bottom-3 right-3 lg:bottom-2 lg:right-2 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
-                            FEATURED
+                            <FormattedMessage
+                              defaultMessage="FEATURED"
+                              id="promoted.featured"
+                            />
                           </button>
                         )}
                       </div>
