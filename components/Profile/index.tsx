@@ -14,6 +14,7 @@ import '../../styles/postAd.css';
 import { useMemo } from 'react';
 import { get, set } from '@/utils/storage';
 import ErrorComponent from '../Elements/Error';
+import { FormattedMessage } from 'react-intl';
 
 const UPDATE_USER = gql`
   mutation UpdateUser(
@@ -66,7 +67,9 @@ function Profile({}) {
           <Header />
         </div>
         <div className="signup-content">
-          <p className="text-2xl font-bold my-6">Profile</p>
+          <p className="text-2xl font-bold my-6">
+            <FormattedMessage defaultMessage="Profile" id="profile.profile" />
+          </p>
           <Input
             label="Name"
             name="name"
