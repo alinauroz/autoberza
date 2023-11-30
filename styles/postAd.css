@@ -345,14 +345,6 @@
   height: 10px;
   border-radius: 50%;
 }
-.footer-copyright {
-  background-color: black;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  padding-bottom: 20px;
-}
 
 .ad-price {
   width: 90%;

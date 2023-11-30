@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { set } from '@/utils/storage';
 import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
+import { FormattedMessage } from 'react-intl';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -121,16 +122,31 @@ const Login = () => {
           )}
           <div className="tou-check">
             <input type="checkbox" className="checkbox" />
-            <p className="checkbox-text">Keep me signed in</p>
+            <p className="checkbox-text">
+              <FormattedMessage
+                defaultMessage="Keep me signed in"
+                id="login.login"
+              />
+            </p>
           </div>
           <Button text="Login" type="submit" loading={fetching} />
           <p className="forgot-password">
-            <Link href="/forgot-password">Forgot Password?</Link>
+            <Link href="/forgot-password">
+              <FormattedMessage
+                defaultMessage="Forgot Password?"
+                id="login.forgot-password"
+              />
+            </Link>
           </p>
           <p className="account-info">
-            Don&apos;t have an account?{' '}
+            <FormattedMessage
+              defaultMessage="Don't have an account?"
+              id="login.have-account"
+            />{' '}
             <Link href="/register">
-              <span className="login-btn">Sign Up</span>
+              <span className="login-btn">
+                <FormattedMessage defaultMessage="Sign Up" id="login.signup" />
+              </span>
             </Link>
           </p>
         </div>

@@ -13,6 +13,8 @@ import Link from 'next/link';
 import Button from '../Elements/Button';
 import usePaginatedQuery from '@/utils/usePaginatedQuery';
 import LoadMore from '../Elements/LoadMore';
+import { useSearchParams } from 'next/navigation';
+import { FormattedMessage } from 'react-intl';
 
 const take = 2;
 
@@ -29,8 +31,8 @@ const data = [
 ];
 
 const GET_FILTERS = gql`
-  query Query {
-    adFilters {
+  query Query($category: String) {
+    adFilters(category: $category) {
       filters
     }
   }
@@ -92,7 +94,12 @@ const SearchPage = () => {
   const [page, setPage] = useState(0);
   const [{ fetching: fetchingFilters, data: filterResponse }] = useQuery({
     query: GET_FILTERS,
+    variables: {
+      category: variables.categories?.[0],
+    },
   });
+
+  const searchParams = useSearchParams();
 
   const [normalFilters, detailFilters] = useMemo(() => {
     const {
@@ -158,12 +165,28 @@ const SearchPage = () => {
     console.log('Variables', variables);
   }, [variables]);
 
+  useEffect(() => {
+    const year = searchParams.get('year');
+    const city = searchParams.get('city');
+    const minPrice = searchParams.get('minPrice');
+    const maxPrice = searchParams.get('maxPrice');
+    const category = searchParams.get('category');
+
+    setVariables({
+      ...(year && { year }),
+      ...(city && { city }),
+      ...(minPrice && { minPrice }),
+      ...(maxPrice && { maxPrice }),
+      ...(category && { categories: [category] }),
+    });
+  }, [searchParams]);
+
   return (
     <div>
       <Header />
 
       <div className="lg:flex lg:items-start lg:justify-between lg:h-max lg:pt-6 lg:mx-12">
-        {fetchingFilters ? (
+        {fetchingFilters && false ? (
           <div
             className={`lg:flex justify-center items-center lg:w-1/3 sm:w-full sm:absolute lg:mt-1.5 mx-4 lg:mx-0 lg:static top-[68px] hidden`}
             style={{
@@ -206,7 +229,12 @@ const SearchPage = () => {
             />
           ) : (
             <div className="flex justify-center items-center my-8">
-              <span className="font-bold text-gray-600">No more ads found</span>
+              <span className="font-bold text-gray-600">
+                <FormattedMessage
+                  defaultMessage="No more ads found"
+                  id="searchpage.no-ads"
+                />
+              </span>
             </div>
           )}
         </div>

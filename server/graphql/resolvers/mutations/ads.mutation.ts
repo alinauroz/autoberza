@@ -1,6 +1,6 @@
 import { IGqlContext } from '@/types';
 import type * as Prisma from '@prisma/client';
-import { isLoggedIn } from '../../wrappers';
+import { adminOnly, isLoggedIn } from '../../wrappers';
 import prisma from '@/prisma/prisma';
 
 export const createAd = isLoggedIn(
@@ -103,3 +103,15 @@ export const deleteAd = isLoggedIn(
     }
   }
 );
+
+export const adminPromotion = adminOnly(async (_, { adId, noOfDays }) => {
+  return prisma.ad.update({
+    where: { id: adId },
+    data: {
+      subscriptionStartDate: new Date(),
+      subscriptionEndDate: new Date(
+        Date.now() + noOfDays * 24 * 60 * 60 * 1000
+      ),
+    },
+  });
+});

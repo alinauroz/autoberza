@@ -8,6 +8,7 @@ import ArrowIcon from '@/public/assets/common/searchPage/ArrowIcon.svg';
 import Button from '@/components/Elements/Button';
 import Link from 'next/link';
 import moment from 'moment';
+import { FormattedMessage } from 'react-intl';
 
 const Card = ({ ad }: { ad: any }) => {
   return (
@@ -40,7 +41,12 @@ const Card = ({ ad }: { ad: any }) => {
                 </div>
                 <div className="flex items-center gap-2 lg:hidden">
                   <Image src={Location} alt="" className="w-4" />
-                  <p className="text-xs text-gray-600">Podgorica</p>
+                  <p className="text-xs text-gray-600">
+                    <FormattedMessage
+                      defaultMessage="Podgorica"
+                      id="card.location"
+                    />
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-2 lg:gap-4">
@@ -56,8 +62,8 @@ const Card = ({ ad }: { ad: any }) => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-between">
-              <div className="flex lg:flex gap-2">
+            <div className="flex items-center justify-between gap-6">
+              <div className="flex md:flex md:flex-row items-center flex-col md:gap-2">
                 <Button
                   text={(ad.discountedPrice ?? ad.price) + ' €'}
                   style={{
@@ -73,14 +79,17 @@ const Card = ({ ad }: { ad: any }) => {
                   }}
                 />
                 {ad.discountedPrice && (
-                  <span className="mx-2 line-through font-bold text-gray-500 mt-2">
+                  <span className="mx-2 line-through font-bold text-gray-500 ">
                     {ad.price} €
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-2 cursor-pointer lg:pr-8">
+              <div className="flex items-center md:gap-2 gap-1 cursor-pointer md:mr-8 mr-2">
                 <p className="text-sm font-semibold lg:text-base">
-                  View complete offer
+                  <FormattedMessage
+                    defaultMessage="View complete offer"
+                    id="card.offers"
+                  />
                 </p>
                 <Image src={ArrowIcon} alt="" className="w-4 lg:w-4" />
               </div>

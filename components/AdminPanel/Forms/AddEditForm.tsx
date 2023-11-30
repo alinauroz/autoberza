@@ -6,6 +6,7 @@ import fdtojson from '@/utils/fdtojson';
 import Button from '@/components/Elements/Button';
 import { toast } from 'react-hot-toast';
 import { IForm } from '.';
+import { FormattedMessage } from 'react-intl';
 
 const CREATE_FORM = gql`
   mutation CreateFieldForm($category: String!, $fields: JSON!) {
@@ -166,7 +167,9 @@ function AddEditForm({
           required
         />
         <div className="inputs">
-          <label className="label">File</label>
+          <label className="label">
+            <FormattedMessage defaultMessage="File" id="addeditform.file" />
+          </label>
           <input
             className="input-field"
             onChange={handleFileUpload}

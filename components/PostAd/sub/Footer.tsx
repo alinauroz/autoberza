@@ -9,6 +9,7 @@ import Twitter from '@/public/assets/common/twitter.svg';
 import LogoImg from '@/public/assets/common/logo.svg';
 import FooterDropdown from '@/public/assets/common/footerDropdown.svg';
 import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
 
 const footerMenus = [
   {
@@ -44,7 +45,7 @@ const footerMenus = [
   {
     title: 'YOUR AUTODEALER',
     items: [
-      ['Sign in', '#'],
+      // ['Sign in', '#'],
       ['Mobile applications', '#'],
       ['Contact', '#'],
       ['Help', '#'],
@@ -120,8 +121,23 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
           </Link>
         </div>
       </div>
-      <div className="footer-copyright">
-        Copyright 2020-2023 © Autoberza.me All Rights Reserved
+      <div className="bg-black text-white text-center font-semibold pb-5 text-sm italic md:text-base">
+        {' '}
+        <FormattedMessage
+          defaultMessage="Copyright 2020-2023 ©"
+          id="footer.copyright1"
+        />{' '}
+        <a href="#">
+          {' '}
+          <FormattedMessage
+            defaultMessage="Autoberza.me"
+            id="footer.copyright2"
+          />
+        </a>{' '}
+        <FormattedMessage
+          defaultMessage="All Rights Reserved"
+          id="footer.copyright"
+        />
       </div>
     </div>
   );

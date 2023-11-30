@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import LabelledInput from './LabelledInput';
 import Button from '@/components/Elements/Button';
 import { get } from '@/utils/storage';
+import { FormattedMessage } from 'react-intl';
 
 const Contact = ({ creating }: { creating: boolean }) => {
   const user = useMemo(() => {
@@ -12,10 +13,18 @@ const Contact = ({ creating }: { creating: boolean }) => {
     <div className="contact-wrapper">
       <div className="ad-contact-section-header">
         <div className="post-ad-section-heading">
-          <span>CONTACT INFORMATION</span>
+          <span>
+            <FormattedMessage
+              defaultMessage="CONTACT INFORMATION"
+              id="contact.contact-info"
+            />
+          </span>
         </div>
         <p className="text-sm mt-2">
-          Buyers will contact you using this information
+          <FormattedMessage
+            defaultMessage="Buyers will contact you using this information"
+            id="contact.your-info"
+          />
         </p>
       </div>
       <div className="contact">

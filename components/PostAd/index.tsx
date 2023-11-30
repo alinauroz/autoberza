@@ -16,11 +16,12 @@ import { GET_FORMS, IForm } from '../AdminPanel/Forms';
 import Loading from '../Elements/Loading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
-import ChooseCateogry from './sub/ChooseCategory';
+import ChooseCategory from './sub/ChooseCategory';
 import { toast } from 'react-hot-toast';
 import { isLoggedIn } from '@/utils/auth';
 import Link from 'next/link';
 import Button from '../Elements/Button';
+import { FormattedMessage } from 'react-intl';
 
 const CREATE_AD = gql`
   mutation CreateAd(
@@ -224,7 +225,12 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
           />
         </div>
         <div className="min-h-screen flex justify-center items-center flex-col gap-5">
-          <span>To post an ad, you need an account</span>
+          <span>
+            <FormattedMessage
+              defaultMessage="To post an ad, you need an account"
+              id="postad.post-ad"
+            />
+          </span>
           <span className="flex gap-4">
             <Link href="/login">
               <Button text="Login" />
@@ -257,7 +263,7 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
             }}
           />
         </div>
-        <ChooseCateogry categories={categories || []} />
+        <ChooseCategory categories={categories || []} />
         <Footer />
       </div>
     );
@@ -278,7 +284,6 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
         <Dynamic data={form.fields} prefill={prefill} />
         <AdLocation prefill={prefill} />
         <AdPrice prefill={prefill} />
-        <AdType />
         <Contact creating={creating || updating} />
       </form>
       <Footer />

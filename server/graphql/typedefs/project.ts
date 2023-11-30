@@ -27,6 +27,8 @@ const projectTypedefs = `
       details: JSON
       createdOn: Date
       category: String
+      subscriptionPlan: String
+      subscriptionEndDate: Date
     }
 
     type AdResponse {
@@ -67,8 +69,10 @@ const projectTypedefs = `
       ): AdResponse
       myAds: AdResponse
       adFilters(category: String): AdFilterResponse
+      homepageAds: JSON
     }
     type Mutation {
+      adminPromotion(adId: String!, noOfDays: Int!): Ad
       createFieldForm (
         category: String!
         fields: JSON!

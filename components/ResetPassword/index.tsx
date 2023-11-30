@@ -11,6 +11,7 @@ import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import '@/styles/verification.css';
 import { toast } from 'react-hot-toast';
+import { FormattedMessage } from 'react-intl';
 
 const RESET_PASSWORD = gql`
   mutation ResetPassword($password: String!, $token: String!) {
@@ -60,10 +61,18 @@ function ResetPassword({}) {
       <div>
         <form onSubmit={handleSubmit} className="verification">
           <div>
-            <div className="heading">Update Password</div>
+            <div className="heading">
+              <FormattedMessage
+                defaultMessage="Update Password"
+                id="resetpassword.update"
+              />
+            </div>
             <p className="my-2">
-              To update your password, enter your new password and confirm
-              password.
+              <FormattedMessage
+                defaultMessage="To update your password, enter your new password and confirm
+              password."
+                id="resetpassword.new-password"
+              />
             </p>
           </div>
           <div>

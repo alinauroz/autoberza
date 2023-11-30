@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Photos from '@/public/assets/common/photos.svg';
 import TickGood from '@/public/assets/common/tick-good.svg';
 import UploadComponent from '@/components/Elements/UploadComponent';
+import { FormattedMessage } from 'react-intl';
 
 const UploadFile = ({ prefill }: { prefill: any }) => {
   const [links, setLinks] = useState<string[]>(prefill?.photos || []);
@@ -13,7 +14,10 @@ const UploadFile = ({ prefill }: { prefill: any }) => {
         <div className="post-ad-upload-files-wrapper">
           <div className="post-ad-upload-files-wrapper-container my-4">
             <div className="post-ad-upload-files-wrapper-heading">
-              Upload Photos
+              <FormattedMessage
+                defaultMessage="Upload Photos"
+                id="uploadfile.photos"
+              />
             </div>
             <div className="post-ad-upload-files-wrapper-uploading p-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -60,7 +64,10 @@ const UploadFile = ({ prefill }: { prefill: any }) => {
       <div className="post-ad-upload-files-wrapper">
         <div className="post-ad-upload-files-wrapper-container">
           <div className="post-ad-upload-files-wrapper-heading">
-            Upload Photos
+            <FormattedMessage
+              defaultMessage="Upload Photos"
+              id="uploadfile.photos"
+            />
           </div>
           <div className="post-ad-upload-files-wrapper-uploading">
             <div className="photo-adding-button">
@@ -73,26 +80,53 @@ const UploadFile = ({ prefill }: { prefill: any }) => {
                   }}
                 />
                 <input type="hidden" name="photos" value={links.join('|')} />
-                <p className="limit-text">(Max limit 5 MB per image)</p>
+                <p className="limit-text">
+                  <FormattedMessage
+                    defaultMessage="(Max limit 5 MB per image)"
+                    id="uploadfile.photos-size"
+                  />
+                </p>
               </div>
             </div>
             <div className="adding-pictures">
               <div className="adding-pictures-limit">
                 <Image src={TickGood} alt="" className="tick" />
                 <p className="adding-pictures-text">
-                  Adding at least 8 pictures{' '}
+                  <FormattedMessage
+                    defaultMessage="Adding at least 8 pictures"
+                    id="uploadfile.photos-max1"
+                  />{' '}
                   <span className="small-text">
-                    improves the <br></br> chances for a quick sale.
+                    <FormattedMessage
+                      defaultMessage="improves the"
+                      id="uploadfile.photos-max2"
+                    />{' '}
+                    <br></br>
+                    <FormattedMessage
+                      defaultMessage="chances for a quick sale."
+                      id="uploadfile.photos-max"
+                    />
                   </span>
                 </p>
               </div>
               <div className="adding-pictures-limit">
                 <Image src={TickGood} alt="" className="tick" />
                 <p className="adding-pictures-text">
-                  Adding clear Front, Back and Interior pictures{' '}
+                  <FormattedMessage
+                    defaultMessage="Adding clear Front, Back and Interior pictures"
+                    id="uploadfile.your-photos1"
+                  />{' '}
                   <span className="small-text">
-                    of <br></br> your car increases the quality of your Ad and
-                    gets you noticed more.
+                    <FormattedMessage
+                      defaultMessage="of"
+                      id="uploadfile.your-photos2"
+                    />{' '}
+                    <br></br>
+                    <FormattedMessage
+                      defaultMessage="your car increases the quality of your Ad and gets
+                      you noticed more."
+                      id="uploadfile.your-photos"
+                    />
                   </span>
                 </p>
               </div>
@@ -101,9 +135,15 @@ const UploadFile = ({ prefill }: { prefill: any }) => {
               <div className="adding-pictures-limit">
                 <Image src={TickGood} alt="" className="tick" />
                 <p className="adding-pictures-text">
-                  Photos should be{' '}
+                  <FormattedMessage
+                    defaultMessage="Photos should be"
+                    id="uploadfile.photos-format1"
+                  />{' '}
                   <span className="small-text">
-                    in &apos;jpeg, jpg, png, gif&apos; format only.
+                    <FormattedMessage
+                      defaultMessage="in 'jpeg, jpg, png, gif' format only."
+                      id="uploadfile.photos-format"
+                    />
                   </span>
                 </p>
               </div>

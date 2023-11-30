@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
+import { FormattedMessage } from 'react-intl';
 
 const REGISTER = gql`
   mutation RegisterUser(
@@ -85,7 +86,13 @@ const SignUp = () => {
           />
           <Button text="Sign Up" type="submit" loading={fetching} />
           <p className="account-info">
-            Already have an account? <span className="login-btn">Login</span>
+            <FormattedMessage
+              defaultMessage="Already have an account?"
+              id="signup.login-info1"
+            />
+            <span className="login-btn">
+              <FormattedMessage defaultMessage="Login" id="signup.login-info" />
+            </span>
           </p>
         </div>
         <Footer />
