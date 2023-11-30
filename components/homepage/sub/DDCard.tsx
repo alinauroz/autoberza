@@ -22,7 +22,6 @@ const DDCard = () => {
   return (
     <div className="bg-white rounded-md lg:w-[550px] xl:w-[500px] md:w-96 w-[4/6] lg:rounded-xl py-2 md:py-6 lg:py-4 xl:py-12 xl:-ml-32">
       <p className="my-6 md:text-2xl md:pb-3 lg:pb-4 xl:pb-5 lg:text-3xl xl:text-4xl font-semibold text-center ">
-        Find your right car{' '}
         <FormattedMessage
           defaultMessage="Find your right car"
           id="ddcard.car"
