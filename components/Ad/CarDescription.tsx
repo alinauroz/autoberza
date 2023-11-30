@@ -21,7 +21,7 @@ const CarDescription = ({ data }: { data: any }) => {
           <p className="text-xs text-gray-600">
             <FormattedMessage
               defaultMessage="Kilometers"
-              id="cardescription.km"
+              id="cardescription.km1"
             />
           </p>
         </div>
@@ -36,7 +36,7 @@ const CarDescription = ({ data }: { data: any }) => {
           <p className="text-xs text-gray-600">
             <FormattedMessage
               defaultMessage="Cubic Capacity"
-              id="cardescription.cc"
+              id="cardescription.cc1"
             />
           </p>
         </div>
@@ -51,7 +51,7 @@ const CarDescription = ({ data }: { data: any }) => {
           <p className="text-xs text-gray-600">
             <FormattedMessage
               defaultMessage="Horse Power"
-              id="cardescription.hp"
+              id="cardescription.hp1"
             />
           </p>
         </div>

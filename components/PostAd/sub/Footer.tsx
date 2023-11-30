@@ -125,13 +125,13 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
         {' '}
         <FormattedMessage
           defaultMessage="Copyright 2020-2023 ©"
-          id="footer.copyright"
+          id="footer.copyright1"
         />{' '}
         <a href="#">
           {' '}
           <FormattedMessage
             defaultMessage="Autoberza.me"
-            id="footer.copyright"
+            id="footer.copyright2"
           />
         </a>{' '}
         <FormattedMessage

@@ -88,7 +88,7 @@ const SignUp = () => {
           <p className="account-info">
             <FormattedMessage
               defaultMessage="Already have an account?"
-              id="signup.login-info"
+              id="signup.login-info1"
             />
             <span className="login-btn">
               <FormattedMessage defaultMessage="Login" id="signup.login-info" />

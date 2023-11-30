@@ -94,12 +94,12 @@ const UploadFile = ({ prefill }: { prefill: any }) => {
                 <p className="adding-pictures-text">
                   <FormattedMessage
                     defaultMessage="Adding at least 8 pictures"
-                    id="uploadfile.photos-max"
+                    id="uploadfile.photos-max1"
                   />{' '}
                   <span className="small-text">
                     <FormattedMessage
                       defaultMessage="improves the"
-                      id="uploadfile.photos-max"
+                      id="uploadfile.photos-max2"
                     />{' '}
                     <br></br>
                     <FormattedMessage
@@ -114,12 +114,12 @@ const UploadFile = ({ prefill }: { prefill: any }) => {
                 <p className="adding-pictures-text">
                   <FormattedMessage
                     defaultMessage="Adding clear Front, Back and Interior pictures"
-                    id="uploadfile.your-photos"
+                    id="uploadfile.your-photos1"
                   />{' '}
                   <span className="small-text">
                     <FormattedMessage
                       defaultMessage="of"
-                      id="uploadfile.your-photos"
+                      id="uploadfile.your-photos2"
                     />{' '}
                     <br></br>
                     <FormattedMessage
@@ -137,7 +137,7 @@ const UploadFile = ({ prefill }: { prefill: any }) => {
                 <p className="adding-pictures-text">
                   <FormattedMessage
                     defaultMessage="Photos should be"
-                    id="uploadfile.photos-format"
+                    id="uploadfile.photos-format1"
                   />{' '}
                   <span className="small-text">
                     <FormattedMessage

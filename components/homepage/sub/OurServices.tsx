@@ -12,7 +12,7 @@ const OurServices = () => {
         <p className="text-2xl lg:text-4xl font-bold">
           <FormattedMessage
             defaultMessage="What Our Serve For You"
-            id="ourservices.services-heading"
+            id="ourservices.services-heading1"
           />
         </p>
         <p className="text-sm lg:text-lg lg:w-6/12 mx-auto font-semibold mt-2">
@@ -46,7 +46,7 @@ const OurServices = () => {
           <h1 className="text-lg font-bold">
             <FormattedMessage
               defaultMessage="Easy Payment"
-              id="ourservices.services"
+              id="ourservices.services2"
             />
           </h1>
           <p className="text-sm lg:text-base text-gray-600">
@@ -63,7 +63,7 @@ const OurServices = () => {
           <h1 className="text-lg font-bold">
             <FormattedMessage
               defaultMessage="Easy To Use"
-              id="ourservices.services"
+              id="ourservices.services3"
             />
           </h1>
           <p className="text-sm lg:text-base text-gray-600">

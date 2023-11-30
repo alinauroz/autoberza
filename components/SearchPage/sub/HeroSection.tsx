@@ -24,7 +24,10 @@ const HeroSection = ({
         <p className="font-semibold w-1/2 lg:text-3xl lg:w-full">
           <span className="font-bold">
             {count}{' '}
-            <FormattedMessage defaultMessage="ads found" id="herosection.ads" />
+            <FormattedMessage
+              defaultMessage="ads found"
+              id="herosection.ads1"
+            />
           </span>
         </p>
         <div className="lg:hidden">
