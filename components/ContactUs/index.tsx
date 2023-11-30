@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import '@/styles/postAd.css';
+import { FormattedMessage } from 'react-intl';
 
-const ContactUs: React.FC = () => {
+const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,7 +32,10 @@ const ContactUs: React.FC = () => {
         id="contact"
       >
         <header className="text-2xl text-gray-600 font-bold mb-8 text-center">
-          Contact Us
+          <FormattedMessage
+            defaultMessage="Contact Us"
+            id="contactus.contact"
+          />
         </header>
 
         <form
@@ -43,7 +47,7 @@ const ContactUs: React.FC = () => {
               htmlFor="name"
               className="block text-sm font-semibold text-gray-600 mb-2"
             >
-              Name
+              <FormattedMessage defaultMessage="Name" id="contactus.name" />
             </label>
             <input
               type="text"
@@ -61,7 +65,7 @@ const ContactUs: React.FC = () => {
               htmlFor="email"
               className="block text-sm font-semibold text-gray-600 mb-2"
             >
-              Email
+              <FormattedMessage defaultMessage="Email" id="contactus.email" />
             </label>
             <input
               type="email"
@@ -79,7 +83,10 @@ const ContactUs: React.FC = () => {
               htmlFor="message"
               className="block text-sm font-semibold text-gray-600 mb-2"
             >
-              Message
+              <FormattedMessage
+                defaultMessage="Message"
+                id="contactus.message"
+              />
             </label>
             <textarea
               id="message"
@@ -96,7 +103,7 @@ const ContactUs: React.FC = () => {
             type="submit"
             className="bg-[#00c489] text-white px-4 py-2 rounded-md hover:bg-[#36a584]"
           >
-            Submit
+            <FormattedMessage defaultMessage="Submit" id="contactus.submit" />
           </button>
         </form>
       </div>

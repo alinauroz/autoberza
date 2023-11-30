@@ -10,6 +10,7 @@ import { isLoggedIn } from '@/utils/auth';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import CancelBtn from '@/public/assets/common/searchPage/white-cross.svg';
+import { FormattedMessage } from 'react-intl';
 
 interface Props {
   style?: React.CSSProperties;
@@ -39,10 +40,20 @@ const Header = ({ style }: Props) => {
             {isLoggedIn() ? (
               <div className="flex gap-4 text-xl ml-4 font-bold flex-col ">
                 <Link href="/profile">
-                  <span className="cursor-pointer mt-4">Profile</span>
+                  <span className="cursor-pointer mt-4">
+                    <FormattedMessage
+                      defaultMessage="Profile"
+                      id="header.profile"
+                    />
+                  </span>
                 </Link>
                 <Link href="/manage-ads">
-                  <span className="cursor-pointer mt-4">Manage Ads</span>
+                  <span className="cursor-pointer mt-4">
+                    <FormattedMessage
+                      defaultMessage="Manage Ads"
+                      id="header.manage"
+                    />
+                  </span>
                 </Link>
                 <span
                   className="cursor-pointer mt-4"
@@ -51,16 +62,29 @@ const Header = ({ style }: Props) => {
                     window.location.reload();
                   }}
                 >
-                  Log Out
+                  <FormattedMessage
+                    defaultMessage="Log Out"
+                    id="header.logout"
+                  />
                 </span>
               </div>
             ) : (
               <div className="flex gap-4 text-xl ml-4 font-bold flex-col">
                 <span className="cursor-pointer mt-4">
-                  <Link href="/login">Log In</Link>
+                  <Link href="/login">
+                    <FormattedMessage
+                      defaultMessage="Log In"
+                      id="header.login"
+                    />
+                  </Link>
                 </span>
                 <span className="cursor-pointer mt-4">
-                  <Link href="/register">Sign Up</Link>
+                  <Link href="/register">
+                    <FormattedMessage
+                      defaultMessage="Sign Up"
+                      id="header.signup"
+                    />
+                  </Link>
                 </span>
               </div>
             )}
@@ -76,10 +100,20 @@ const Header = ({ style }: Props) => {
             {loggedIn ? (
               <div className="flex gap-4">
                 <Link href="/profile">
-                  <span className="cursor-pointer mt-4">Profile</span>
+                  <span className="cursor-pointer mt-4">
+                    <FormattedMessage
+                      defaultMessage="Profile"
+                      id="header.profile"
+                    />
+                  </span>
                 </Link>
                 <Link href="/manage-ads">
-                  <span className="cursor-pointer">Manage Ads</span>
+                  <span className="cursor-pointer">
+                    <FormattedMessage
+                      defaultMessage="Manage Ads"
+                      id="header.manage"
+                    />
+                  </span>
                 </Link>
                 <span
                   className="cursor-pointer"
@@ -88,16 +122,29 @@ const Header = ({ style }: Props) => {
                     window.location.reload();
                   }}
                 >
-                  Log Out
+                  <FormattedMessage
+                    defaultMessage="Log Out"
+                    id="header.logout"
+                  />
                 </span>
               </div>
             ) : (
               <div className="flex gap-4">
                 <span>
-                  <Link href="/login">Log In</Link>
+                  <Link href="/login">
+                    <FormattedMessage
+                      defaultMessage="Log In"
+                      id="header.login"
+                    />
+                  </Link>
                 </span>
                 <span className="hidden md:flex">
-                  <Link href="/register">Sign Up</Link>
+                  <Link href="/register">
+                    <FormattedMessage
+                      defaultMessage="Sign Up"
+                      id="header.signup"
+                    />
+                  </Link>
                 </span>
               </div>
             )}
