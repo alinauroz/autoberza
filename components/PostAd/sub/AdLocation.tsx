@@ -3,6 +3,7 @@ import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
 import { cityOptions, countryOptions } from '@/utils/options';
 import React, { useEffect, useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const AdLocation = ({ prefill }: { prefill: any }) => {
   const tempCountriesLV: LV[] = countryOptions;
@@ -34,7 +35,12 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
   return (
     <div className="section-conatiner">
       <div className="post-ad-section-heading">
-        <span>AD LOCATION</span>
+        <span>
+          <FormattedMessage
+            defaultMessage={'AD LOCATION'}
+            id="adlocation.location"
+          />
+        </span>
       </div>
 
       <div className="ad-locations">

@@ -13,6 +13,7 @@ import Location from '@/public/assets/common/searchPage/locationIcon.svg';
 import { isLoggedIn } from '@/utils/auth';
 import Button from '../Elements/Button';
 import AdType from '../PostAd/sub/AdType';
+import { FormattedMessage } from 'react-intl';
 
 const GET_MY_ADS = gql`
   query MyAds {
@@ -66,7 +67,12 @@ function MyAds() {
           />
         </div>
         <div className="min-h-screen flex justify-center items-center flex-col gap-5">
-          <span>To post an ad, you need an account</span>
+          <span>
+            <FormattedMessage
+              defaultMessage="To post an ad, you need an account"
+              id="myads.account"
+            />
+          </span>
           <span className="flex gap-4">
             <Link href="/login">
               <Button text="Login" />
@@ -87,7 +93,9 @@ function MyAds() {
         <Header />
       </div>
       <div className="w-11/12 mx-auto my-12 ">
-        <p className="text-2xl font-bold mb-2">Your Ads</p>
+        <p className="text-2xl font-bold mb-2">
+          <FormattedMessage defaultMessage="Your Ads" id="myads.your-ads" />
+        </p>
         {fetching ? (
           <div className="h-96 w-full flex justify-center items-center">
             <Loading />
@@ -95,7 +103,10 @@ function MyAds() {
         ) : ads.length === 0 ? (
           <div className="h-96 flex justify-center items-center">
             <span className="font-bold text-gray-600">
-              You have not posted any ad
+              <FormattedMessage
+                defaultMessage="You have not posted any ad"
+                id="myads.not-posted"
+              />
             </span>
           </div>
         ) : (
@@ -135,7 +146,10 @@ function MyAds() {
                         </span>
                       </p>
                       <p className="text-gray-600 text-sm">
-                        Created on:{' '}
+                        <FormattedMessage
+                          defaultMessage="Created on:"
+                          id="myads.created-on"
+                        />{' '}
                         {moment(new Date(ad.createdOn)).format('DD MMM YYYY')}
                       </p>
                     </div>
@@ -146,7 +160,10 @@ function MyAds() {
                       <span className="flex gap-4">
                         <Link href={`/edit-ad?id=${ad.id}`}>
                           <button className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2">
-                            Edit
+                            <FormattedMessage
+                              defaultMessage="Edit"
+                              id="myads.edit"
+                            />
                           </button>
                         </Link>
                         {process.env.NEXT_PUBLIC_ENABLE_PROMOTION == '1' && (
@@ -158,7 +175,10 @@ function MyAds() {
                             }
                             className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-8 py-2"
                           >
-                            Promote
+                            <FormattedMessage
+                              defaultMessage="Promote"
+                              id="myads.promote"
+                            />
                           </button>
                         )}
                       </span>

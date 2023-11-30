@@ -2,13 +2,19 @@
 import React from 'react';
 import DropDownMenu from '@/components/Elements/UCDropdown';
 import Input from '@/components/Elements/Input';
+import { FormattedMessage } from 'react-intl';
 
 const AdPrice = ({ prefill }: { prefill: any }) => {
   return (
     <div className="ad-price-section-wrapper">
       <div className="ad-type-section-header">
         <div className="post-ad-section-heading">
-          <span>PRICE DESCRIPTION & REPLACEMENT</span>
+          <span>
+            <FormattedMessage
+              defaultMessage="PRICE DESCRIPTION & REPLACEMENT"
+              id="adprice.price"
+            />
+          </span>
         </div>
       </div>
       <div className="ad-price">
@@ -69,7 +75,11 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
         </div>
         <div className="price-description-detail">
           <p className="price-description-detail-heading">
-            Ad Description <span className="steric">*</span>
+            <FormattedMessage
+              defaultMessage="Ad Description"
+              id="adprice.description"
+            />{' '}
+            <span className="steric">*</span>
           </p>
           <textarea
             name="description"
