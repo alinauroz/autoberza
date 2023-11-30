@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import CancelBtn from '@/public/assets/common/searchPage/white-cross.svg';
 import { FormattedMessage } from 'react-intl';
+import LangSwitch from '../Elements/LangSwitch';
 
 interface Props {
   style?: React.CSSProperties;
@@ -39,6 +40,7 @@ const Header = ({ style }: Props) => {
           >
             {isLoggedIn() ? (
               <div className="flex gap-4 text-xl ml-4 font-bold flex-col ">
+                <LangSwitch />
                 <Link href="/profile">
                   <span className="cursor-pointer mt-4">
                     <FormattedMessage
@@ -70,6 +72,7 @@ const Header = ({ style }: Props) => {
               </div>
             ) : (
               <div className="flex gap-4 text-xl ml-4 font-bold flex-col">
+                <LangSwitch />
                 <span className="cursor-pointer mt-4">
                   <Link href="/login">
                     <FormattedMessage
@@ -99,6 +102,7 @@ const Header = ({ style }: Props) => {
           <div className="p-1.5 md:p-2">
             {loggedIn ? (
               <div className="flex gap-4">
+                <LangSwitch />
                 <Link href="/profile">
                   <span className="cursor-pointer mt-4">
                     <FormattedMessage
@@ -130,6 +134,7 @@ const Header = ({ style }: Props) => {
               </div>
             ) : (
               <div className="flex gap-4">
+                <LangSwitch />
                 <span>
                   <Link href="/login">
                     <FormattedMessage
