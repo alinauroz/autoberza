@@ -49,6 +49,7 @@ function AddEditForm({
           const field = {
             type: 'checkbox',
             label: row['Name'],
+            labelMn: row['NameMn'],
             section: row['Section'],
             name: row['Id'],
             advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
@@ -61,6 +62,7 @@ function AddEditForm({
           const field = {
             type: 'select',
             label: row['Name'],
+            labelMn: row['NameMn'],
             section: row['Section'],
             options: row['Options'].split(';'),
             name: row['Id'],
@@ -87,6 +89,8 @@ function AddEditForm({
 
             label: row['Name'].split(';')[0],
             label2: row['Name'].split(';')[1],
+            labelMn1: row['NameMn'].split(';')[0],
+            labelMn2: row['NameMn'].split(';')[1],
             id: row['Id'].split(';')[0],
             id2: row['Id'].split(';')[1],
             doubleOptions,
@@ -102,8 +106,10 @@ function AddEditForm({
           const field = {
             type: 'text',
             label: row['Name'],
+            labelMn: row['NameMn'],
             section: row['Section'],
             placeholder: row['Placeholder'],
+            placeholderMn: row['PlaceholderMn'],
             addon: row['Addon'],
             name: row['Id'],
             advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
