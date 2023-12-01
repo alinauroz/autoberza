@@ -140,7 +140,7 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
   );
 
   React.useEffect(() => {
-    document.title = 'Post Ads';
+    document.title = 'Add an Ad';
   }, []);
 
   const categories = forms?.forms?.map((f: IForm) => ({ text: f.category }));

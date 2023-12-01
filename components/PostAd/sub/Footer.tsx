@@ -15,44 +15,43 @@ const footerMenus = [
   {
     title: 'VEHICLE CATEGORIES',
     items: [
-      ['Automobiles', '#'],
-      ['Motorcycles and bicycles', '#'],
-      ['Transport vehicles', '#'],
-      ['Agricultural vehicles', '#'],
-      ['Working machines', '#'],
-      ['Nautical', '#'],
-      ['Other categories', '#'],
-      ['Parts and equipment', '#'],
-      ['Service and services', '#'],
-      ['Add an ad', '#'],
+      { text: 'Automobiles', link: 'home-page' },
+      { text: 'Motorcycles and bicycles', link: 'home-page' },
+      { text: 'Transport vehicles', link: 'home-page' },
+      { text: 'Agricultural vehicles', link: 'home-page' },
+      { text: 'Working machines', link: 'home-page' },
+      { text: 'Nautical', link: 'home-page' },
+      { text: 'Other categories', link: 'home-page' },
+      { text: 'Parts and equipment', link: 'home-page' },
+      { text: 'Service and services', link: 'home-page' },
+      { text: 'Add an ad', link: 'post-ad?category=Bike#' },
     ],
   },
   {
     title: 'NAVIGATION',
     items: [
-      ['Shops', '#'],
-      ['Auto parts', '#'],
-      ['Car salons', '#'],
-      ['Auto waste', '#'],
-      ['Directory', '#'],
-      ['Vehicle insurance', '#'],
-      ['Auto news', '#'],
-      ['SMS ads', '#'],
-      ['Marketing', '#'],
-      ['Site map', '#'],
+      { text: 'Shops', link: '#' },
+      { text: 'Auto parts', link: '#' },
+      { text: 'Car salons', link: '#' },
+      { text: 'Auto waste', link: '#' },
+      { text: 'Directory', link: '#' },
+      { text: 'Vehicle insurance', link: '#' },
+      { text: 'Auto news', link: '#' },
+      { text: 'SMS ads', link: '#' },
+      { text: 'Marketing', link: '#' },
+      { text: 'Site map', link: '#' },
     ],
   },
   {
     title: 'YOUR AUTODEALER',
     items: [
-      // ['Sign in', '#'],
-      ['Mobile applications', '#'],
-      ['Contact', '#'],
-      ['Help', '#'],
-      ['Terms of use', '#'],
-      ['Privacy policy', '#'],
-      ['Consumer rights', '#'],
-      ['Safe trade', '#'],
+      { text: 'Mobile applications', link: '#' },
+      { text: 'Contact', link: 'contact-us' },
+      { text: 'Help', link: '#' },
+      { text: 'Terms of use', link: 'terms-conditions' },
+      { text: 'Privacy policy', link: 'privacy-policy' },
+      { text: 'Consumer rights', link: '#' },
+      { text: 'Safe trade', link: '#' },
     ],
   },
 ];
@@ -83,7 +82,7 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
               <div key={index} className="nav-container">
                 <div className="list-heading">{footerMenu.title}</div>
                 <div className="list-items">
-                  {footerMenu.items.map(([text, link], index) => {
+                  {footerMenu.items.map(({ text, link }, index) => {
                     return (
                       <div
                         key={index}
@@ -127,7 +126,7 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
           defaultMessage="Copyright 2020-2023 ©"
           id="footer.copyright1"
         />{' '}
-        <a href="#">
+        <a href="home-page">
           {' '}
           <FormattedMessage
             defaultMessage="Autoberza.me"
