@@ -10,7 +10,7 @@ import { isLoggedIn } from '@/utils/auth';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import CancelBtn from '@/public/assets/common/searchPage/white-cross.svg';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import LangSwitch from '../Elements/LangSwitch';
 import LanguageIcon from '@/public/assets/common/language.svg';
 
@@ -20,6 +20,7 @@ interface Props {
 
 const Header = ({ style }: Props) => {
   const [showMenu, setShowMenu] = React.useState(false);
+  const intl = useIntl();
   const loggedIn = isLoggedIn();
   const [selectedLanguage, setSelectedLanguage] = React.useState(
     Cookies.get('locale')
@@ -217,7 +218,14 @@ const Header = ({ style }: Props) => {
         </div>
 
         <Link href="/post-ad">
-          <ButtonGroup type="button" text="Post an Ad" icon={Dropdown} />
+          <ButtonGroup
+            type="button"
+            text={intl.formatMessage({
+              defaultMessage: 'Post an Ad',
+              id: 'header.header-ad',
+            })}
+            icon={Dropdown}
+          />
         </Link>
       </div>
     </div>
