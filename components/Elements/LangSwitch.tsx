@@ -35,7 +35,7 @@ function LangSwitch({}) {
         className={` text-white text-sm font-semibold md:p-1.5 p-1 md:rounded-md rounded inline-flex gap-2 items-center`}
       >
         <Image src={LanguageIcon} alt="" className="w-5" />
-        {selectedLanguage === 'en' ? 'En' : 'Cnr'}
+        {selectedLanguage === 'en' ? 'En' : 'Mr'}
       </button>
       <div
         onClick={(e) => {
@@ -58,7 +58,7 @@ function LangSwitch({}) {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            handleLanguageChange('cnr');
+            handleLanguageChange('mr');
           }}
           className="block px-4 py-2 text-white hover:text-gray-300 w-full text-left"
         >
