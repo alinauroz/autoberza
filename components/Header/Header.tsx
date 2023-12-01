@@ -184,7 +184,7 @@ const Header = ({ style }: Props) => {
             className={` text-white text-sm font-semibold md:p-1.5 p-1 md:rounded-md rounded inline-flex gap-2 items-center`}
           >
             <Image src={LanguageIcon} alt="" className="w-6" />
-            {selectedLanguage === 'en' ? 'En' : 'Mn'}
+            {selectedLanguage === 'en' ? 'En' : 'Cnr'}
           </button>
           <div
             onClick={(e) => {
@@ -207,11 +207,11 @@ const Header = ({ style }: Props) => {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                handleLanguageChange('mn');
+                handleLanguageChange('cnr');
               }}
               className="block px-4 py-2 text-sm text-white hover:text-gray-300 w-full text-left"
             >
-              Mongolian
+              Montenegrin
             </button>
           </div>
         </div>
