@@ -1,4 +1,5 @@
 import prisma from '@/prisma/prisma';
+import translateFields from '@/server/utils/translateFields';
 import { IGqlContext } from '@/types';
 import { cityOptions, countryOptions } from '@/utils/options';
 import { Prisma } from '@prisma/client';
@@ -214,20 +215,7 @@ export const adFilters = async (
     .filter((f: any) => f.advanceFilter);
 
   if (locale === 'mr') {
-    fields.forEach((field: any) => {
-      if (field.label && field.labelMn) {
-        field.label = field.labelMn;
-      }
-      if (field.label1 && field.labelMn1) {
-        field.label1 = field.labelMn1;
-      }
-      if (field.label2 && field.labelMn2) {
-        field.label2 = field.labelMn2;
-      }
-      if (field.placeholder && field.placeholderMn) {
-        field.placeholder = field.placeholderMn;
-      }
-    });
+    translateFields(fields);
   }
 
   const categories = forms.map((form) => form.category);
