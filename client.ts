@@ -8,6 +8,7 @@ const client = new Client({
   fetchOptions: {
     headers: {
       Authorization: `bearer ${Cookies.get('token')}`,
+      locale: Cookies.get('locale') || '',
     },
   },
 });

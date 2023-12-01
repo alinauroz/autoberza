@@ -16,6 +16,7 @@ const handler = startServerAndCreateNextHandler<NextRequest>(server, {
     let user;
     let isAdmin = false;
     const [, token] = req.headers.get('authorization')?.split(' ') || [];
+    const locale = req.headers.get('locale') || 'mr';
     if (token) {
       const { id } = getPayload({ token });
       if (id) {
@@ -23,7 +24,7 @@ const handler = startServerAndCreateNextHandler<NextRequest>(server, {
         isAdmin = user?.isAdmin || user?.email === process.env.ADMIN_EMAIL;
       }
     }
-    return { user, isAdmin };
+    return { user, isAdmin, locale };
   },
 });
 

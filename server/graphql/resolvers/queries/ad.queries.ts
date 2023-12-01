@@ -201,13 +201,35 @@ export const myAds = async (
 };
 
 type AdFilterArgs = { category: string };
-export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
+export const adFilters = async (
+  _1: unknown,
+  { category }: AdFilterArgs,
+  { locale }: IGqlContext
+) => {
   let forms = await prisma.formFields.findMany({});
   const fields = forms
     .filter((f) => (category ? f.category === category : true))
     .map((form) => form.fields)
     .flat()
     .filter((f: any) => f.advanceFilter);
+
+  if (locale === 'mr') {
+    fields.forEach((field: any) => {
+      if (field.label && field.labelMn) {
+        field.label = field.labelMn;
+      }
+      if (field.label1 && field.labelMn1) {
+        field.label1 = field.labelMn1;
+      }
+      if (field.label2 && field.labelMn2) {
+        field.label2 = field.labelMn2;
+      }
+      if (field.placeholder && field.placeholderMn) {
+        field.placeholder = field.placeholderMn;
+      }
+    });
+  }
+
   const categories = forms.map((form) => form.category);
 
   const doubleOptions: { [x: string]: string[] } = {};
@@ -243,6 +265,6 @@ export const adFilters = async (_1: unknown, { category }: AdFilterArgs) => {
   ];
 
   return {
-    filters: moreFilters.concat(fields.slice(0, 10)),
+    filters: moreFilters.concat(fields.slice(0, 20)),
   };
 };
