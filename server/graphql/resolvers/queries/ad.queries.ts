@@ -221,11 +221,21 @@ export const adFilters = async (
   { locale }: IGqlContext
 ) => {
   let forms = await prisma.formFields.findMany({});
-  const fields = forms
+  let fields = forms
     .filter((f) => (category ? f.category === category : true))
     .map((form) => form.fields)
     .flat()
     .filter((f: any) => f.advanceFilter);
+
+  const fieldNameSet = new Set();
+
+  fields = fields.filter((field: any) => {
+    if (fieldNameSet.has(field.name)) {
+      return false;
+    }
+    fieldNameSet.add(field.name);
+    return true;
+  });
 
   if (locale === 'mr') {
     translateFields(fields);
