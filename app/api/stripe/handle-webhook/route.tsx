@@ -32,8 +32,9 @@ export async function POST(req: NextRequest) {
   const planDays = {
     'PROMO-5': 5,
     'PROMO-10': 10,
+    'PROMO-HOME-5': 5,
+    'PROMO-HOME-10': 10,
   };
-  console.log('Type', event.type);
   if (event.type === 'checkout.session.completed') {
     const { metadata } = event.data.object as any;
     await prisma.ad.update({
@@ -49,6 +50,8 @@ export async function POST(req: NextRequest) {
               60 *
               1000
         ),
+        homepagePromoted:
+          metadata.plan === 'PROMO-HOME-5' || metadata.plan === 'PROMO-HOME-10',
       },
     });
     return NextResponse.json({ message: 'Handled' });

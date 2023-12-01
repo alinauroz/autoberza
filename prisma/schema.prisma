@@ -63,6 +63,7 @@ model Ad {
   subscriptionPlan        String?
   subscriptionStartDate   DateTime?
   subscriptionEndDate     DateTime?
+  homepagePromoted        Boolean @default(false)
 
   createdOn           DateTime?  @default(now())
 }
