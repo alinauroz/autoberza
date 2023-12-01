@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
-import '@/styles/PostAd.css';
+import '@/styles/postAd.css';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import { FormattedMessage } from 'react-intl';

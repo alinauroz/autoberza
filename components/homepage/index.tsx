@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
-import '@/styles/PostAd.css';
+import '@/styles/postAd.css';
 
 import useMobileDetect from '@/utils/useMobileDetect';
 import Header from '../Header/Header';
