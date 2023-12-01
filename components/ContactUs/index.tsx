@@ -39,7 +39,9 @@ const ContactUs = () => {
         </header>
 
         <form
-          action="https://formsubmit.co/alinauroze1@gmail.com"
+          action={
+            'https://formsubmit.co/' + process.env.NEXT_PUBLIC_CONTACT_EMAIL
+          }
           method="POST"
         >
           <div className="mb-4">

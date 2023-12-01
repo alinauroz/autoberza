@@ -18,7 +18,7 @@ const HeroSection = () => {
         objectPosition="top right"
       />
       <div
-        className="bg-white relative z-40 my-10"
+        className="bg-white relative my-10"
         style={{
           background: `url(${homePageImg?.src})`,
           backgroundSize: 'cover',
