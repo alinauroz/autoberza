@@ -139,6 +139,10 @@ const PostAd = ({ prefill }: { prefill?: any }) => {
       f.category === prefill?.category
   );
 
+  React.useEffect(() => {
+    document.title = 'Post Ads';
+  }, []);
+
   const categories = forms?.forms?.map((f: IForm) => ({ text: f.category }));
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

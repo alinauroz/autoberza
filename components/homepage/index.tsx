@@ -20,6 +20,9 @@ const HOMEPAGE_ADS = gql`
 `;
 
 const HomePage = () => {
+  React.useEffect(() => {
+    document.title = 'Home Page';
+  }, []);
   const [{ fetching, data: homepageAdsResponse }] = useQuery({
     query: HOMEPAGE_ADS,
   });

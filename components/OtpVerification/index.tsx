@@ -30,6 +30,9 @@ const PHONE_OTP_LOGIN = gql`
 `;
 
 const Index = () => {
+  React.useEffect(() => {
+    document.title = 'Otp Verification';
+  }, []);
   const [{ fetching }, login] = useMutation(PHONE_OTP_LOGIN);
   const searchParams = useSearchParams();
   const router = useRouter();

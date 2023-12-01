@@ -98,6 +98,9 @@ const getServerSideProps = async (id: string) => {
 */
 
 function Ad({ id }: IProps) {
+  React.useEffect(() => {
+    document.title = 'Ad';
+  }, []);
   const [{ fetching: formsFetching, data: formResponse }] = useQuery({
     query: GET_FORMS,
   });

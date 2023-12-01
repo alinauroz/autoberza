@@ -27,6 +27,10 @@ function ResetPassword({}) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  React.useEffect(() => {
+    document.title = 'Reset Password';
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
