@@ -117,7 +117,7 @@ export const ads = async (
     };
 
     let promoted: any = [];
-    if (skip === 0) {
+    if (skip === 0 && typeof id === 'undefined') {
       const promotedResponse = await prisma.ad.findMany({
         where: {
           ...where,
@@ -181,9 +181,9 @@ export const ads = async (
       },
     });
 
-    const count = details
-      ? filteredAds.length
-      : await prisma.ad.count({ where });
+    const count =
+      (details ? filteredAds.length : await prisma.ad.count({ where })) +
+      promoted.length;
 
     const data = promoted.concat(
       details ? filteredAds.slice(skip, skip + take) : filteredAds
