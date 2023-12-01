@@ -12,6 +12,7 @@ import Link from 'next/link';
 import CancelBtn from '@/public/assets/common/searchPage/white-cross.svg';
 import { FormattedMessage } from 'react-intl';
 import LangSwitch from '../Elements/LangSwitch';
+import LanguageIcon from '@/public/assets/common/language.svg';
 
 interface Props {
   style?: React.CSSProperties;
@@ -20,6 +21,23 @@ interface Props {
 const Header = ({ style }: Props) => {
   const [showMenu, setShowMenu] = React.useState(false);
   const loggedIn = isLoggedIn();
+  const [selectedLanguage, setSelectedLanguage] = React.useState(
+    Cookies.get('locale')
+  );
+  const [showLanguages, setShowLanguages] = React.useState(false);
+
+  React.useEffect(() => {
+    const hide = () => setShowLanguages(false);
+    window.addEventListener('click', hide);
+    return () => window.removeEventListener('click', hide);
+  }, []);
+
+  const handleLanguageChange = (language: string) => {
+    setSelectedLanguage(language);
+    Cookies.set('locale', language);
+    setShowLanguages(false);
+    window.location.reload();
+  };
 
   return (
     <div className="header" style={style}>
@@ -153,6 +171,48 @@ const Header = ({ style }: Props) => {
                 </span>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Language DD */}
+        <div className="relative flex items-center md:hidden mr-2">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowLanguages(!showLanguages);
+            }}
+            className={` text-white text-sm font-semibold md:p-1.5 p-1 md:rounded-md rounded inline-flex gap-2 items-center`}
+          >
+            <Image src={LanguageIcon} alt="" className="w-6" />
+            {selectedLanguage === 'en' ? 'En' : 'Cnr'}
+          </button>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowLanguages(!showLanguages);
+            }}
+            className={`absolute z-40 top-8 left-0 mt-2 bg-black rounded overflow-hidden ${
+              !showLanguages ? 'hidden' : 'block'
+            }`}
+          >
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleLanguageChange('en');
+              }}
+              className="block px-4 py-2 text-sm text-white hover:text-gray-300 border-b border-gray-800 w-full text-left"
+            >
+              English
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleLanguageChange('cnr');
+              }}
+              className="block px-4 py-2 text-sm text-white hover:text-gray-300 w-full text-left"
+            >
+              Montenegrin
+            </button>
           </div>
         </div>
 

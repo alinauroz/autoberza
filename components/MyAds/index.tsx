@@ -51,6 +51,9 @@ export const DELETE_AD = gql`
 `;
 
 function MyAds() {
+  React.useEffect(() => {
+    document.title = 'My Ads';
+  }, []);
   const [showPromotion, setShowPromotion] = useState(false);
   const [{ fetching, data: response }] = useQuery({ query: GET_MY_ADS });
   const [{ fetching: deleting }, deleteAd] = useMutation(DELETE_AD);

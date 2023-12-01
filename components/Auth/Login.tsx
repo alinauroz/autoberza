@@ -2,6 +2,9 @@ import React from 'react';
 import AuthInput from './Elements/Input';
 
 function Login() {
+  React.useEffect(() => {
+    document.title = 'Login';
+  }, []);
   return (
     <div className="w-4/5 mx-auto">
       <form>

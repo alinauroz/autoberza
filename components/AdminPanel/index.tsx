@@ -7,6 +7,9 @@ import Users from './Users';
 import Ads from './Ads';
 
 function AdminPanel() {
+  React.useEffect(() => {
+    document.title = 'Admin Panel';
+  }, []);
   const searchParams = useSearchParams();
 
   const page = searchParams.get('page');

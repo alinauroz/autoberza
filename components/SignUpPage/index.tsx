@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import '../../styles/signUp.css';
 // import InputGroup from "../Elements/InputGroup";
 import Button from '../Elements/Button';
@@ -35,6 +35,10 @@ const REGISTER = gql`
 `;
 
 const SignUp = () => {
+  React.useEffect(() => {
+    document.title = 'Sign Up';
+  }, []);
+
   const router = useRouter();
   const [{ fetching }, registerUser] = useMutation(REGISTER);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

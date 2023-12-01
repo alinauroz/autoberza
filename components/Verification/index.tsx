@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import { SUCCESS } from '@/constants';
 import gql from 'graphql-tag';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -16,6 +16,10 @@ const VERIFY_EMAIL = gql`
 `;
 
 function Verification({}) {
+  React.useEffect(() => {
+    document.title = 'Verification';
+  }, []);
+
   const [{ fetching, data }, verifyEmail] = useMutation(VERIFY_EMAIL);
   const searchParams = useSearchParams();
   const router = useRouter();

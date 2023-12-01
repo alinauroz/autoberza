@@ -44,6 +44,9 @@ const PHONE_LOGIN = gql`
 `;
 
 const Login = () => {
+  React.useEffect(() => {
+    document.title = 'Login';
+  }, []);
   const [{ fetching: emailFetching, error, data }, login] = useMutation(LOGIN);
   const [{ fetching: phoneFetching }, sendOtp] = useMutation(PHONE_LOGIN);
 

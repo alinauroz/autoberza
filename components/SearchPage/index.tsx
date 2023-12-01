@@ -100,6 +100,10 @@ const SearchPage = () => {
     },
   });
 
+  React.useEffect(() => {
+    document.title = 'Search Ads';
+  }, []);
+
   const searchParams = useSearchParams();
 
   const [normalFilters, detailFilters] = useMemo(() => {

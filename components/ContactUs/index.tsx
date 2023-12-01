@@ -7,6 +7,9 @@ import '@/styles/postAd.css';
 import { FormattedMessage } from 'react-intl';
 
 const ContactUs = () => {
+  React.useEffect(() => {
+    document.title = 'Contact Us';
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',

@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import fdtojson from '@/utils/fdtojson';
 import gql from 'graphql-tag';
 import { useSearchParams } from 'next/navigation';
@@ -21,6 +21,9 @@ const SEND_VERIFICATION_EMAIL = gql`
 `;
 
 function Verification({}) {
+  React.useEffect(() => {
+    document.title = 'Email Verification';
+  }, []);
   const searchParams = useSearchParams();
   const [{ fetching }, send] = useMutation(SEND_VERIFICATION_EMAIL);
 

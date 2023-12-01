@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import '../../styles/signUp.css';
 // import InputGroup from "../Elements/InputGroup";
 import Button from '../Elements/Button';
@@ -41,6 +41,10 @@ function Profile({}) {
   const [{ fetching, error }, updateUser] = useMutation(UPDATE_USER);
   const user = useMemo(() => {
     return get('user');
+  }, []);
+
+  React.useEffect(() => {
+    document.title = 'Profile';
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

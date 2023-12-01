@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import fdtojson from '@/utils/fdtojson';
 import gql from 'graphql-tag';
 import { useSearchParams } from 'next/navigation';
@@ -20,6 +20,9 @@ const SEND_VERIFICATION_EMAIL = gql`
 `;
 
 function ForgotPassword({}) {
+  React.useEffect(() => {
+    document.title = 'Forgot Password';
+  }, []);
   const searchParams = useSearchParams();
   const [{ fetching }, send] = useMutation(SEND_VERIFICATION_EMAIL);
 
