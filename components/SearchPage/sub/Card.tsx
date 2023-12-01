@@ -16,13 +16,22 @@ const Card = ({ ad }: { ad: any }) => {
       <div className="bg-white mx-4 mt-4 rounded-md ">
         <div className="p-2 lg:flex flex flex-col lg:flex-row gap-4 lg:h-[246px]">
           <div
-            className="w-full lg:w-[506px] lg:h-[225px] h-[250px] rounded-md lg:rounded-none"
+            className="w-full lg:w-[506px] lg:h-[225px] h-[250px] rounded-md lg:rounded-none relative"
             style={{
               background: `url(${ad.photos?.[0]})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
-          />
+          >
+            {ad.isPromoted && (
+              <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute top-1.5 h-7 right-3 lg:bottom-2 lg:right-2 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
+                <FormattedMessage
+                  defaultMessage="FEATURED"
+                  id="promoted.featured"
+                />
+              </button>
+            )}
+          </div>
           <div className="flex flex-col justify-between lg:w-full">
             <div className="lg:flex lg:items-center lg:justify-between lg:pr-8">
               <p className="text-xl font-bold lg:text-2xl">{ad.title}</p>

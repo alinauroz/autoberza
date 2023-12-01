@@ -29,6 +29,7 @@ const projectTypedefs = `
       category: String
       subscriptionPlan: String
       subscriptionEndDate: Date
+      isPromoted: Boolean
     }
 
     type AdResponse {

@@ -62,6 +62,7 @@ const GET_ADS = gql`
       sortBy: $sortBy
     ) {
       data {
+        isPromoted
         city
         country
         details

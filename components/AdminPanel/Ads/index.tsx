@@ -231,8 +231,8 @@ function Ads() {
                 <Td>{ad.isApproved ? 'Approved' : 'Not Approved'}</Td>
                 <Td>
                   <span className="text-sm">
-                    {ad.subscriptionPlan
-                      ? ad.subscriptionPlan +
+                    {ad.subscriptionPlan || ad.subscriptionEndDate
+                      ? (ad.subscriptionPlan || 'Admin') +
                         ' | ' +
                         moment(new Date(ad.subscriptionEndDate)).format(
                           'DD.MM.YYYY hh:mm a'

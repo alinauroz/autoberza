@@ -89,7 +89,7 @@ export const ads = async (
   }: FilterArgs
 ) => {
   try {
-    const where = {
+    const where: any = {
       isApproved,
       id,
       ...(dateAfter && {
@@ -110,17 +110,25 @@ export const ads = async (
               ...(maxPrice && { lte: maxPrice }),
             },
           },
-          //{
-          //  discountedPrice: {
-          //    ...(minPrice && { gte: minPrice }),
-          //    ...(maxPrice && { lte: maxPrice }),
-          //  },
-          //},
         ],
       }),
       city,
       country,
     };
+
+    const promotedResponse = await prisma.ad.findMany({
+      where: {
+        ...where,
+        subscriptionEndDate: { gte: new Date() },
+      },
+    });
+    const promoted: any = promotedResponse.map((p) => ({
+      ...p,
+      isPromoted: true,
+    }));
+
+    where.id = { not: { in: promoted.map((p: any) => p.id) } };
+
     const ads = await prisma.ad.findMany({
       where,
       ...(sortBy && { orderBy: { [sortBy]: sortOrder || 'desc' } }),
@@ -168,13 +176,14 @@ export const ads = async (
         model: (details as any)?.model || filteredAds[0]?.model,
       },
     });
-    console.log('Result', result);
 
     const count = details
       ? filteredAds.length
       : await prisma.ad.count({ where });
 
-    const data = details ? filteredAds.slice(skip, skip + take) : filteredAds;
+    const data = promoted.concat(
+      details ? filteredAds.slice(skip, skip + take) : filteredAds
+    );
     const moreExists = data.length === take;
 
     return {
