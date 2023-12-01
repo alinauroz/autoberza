@@ -116,18 +116,22 @@ export const ads = async (
       country,
     };
 
-    const promotedResponse = await prisma.ad.findMany({
-      where: {
-        ...where,
-        subscriptionEndDate: { gte: new Date() },
-      },
-    });
-    const promoted: any = promotedResponse.map((p) => ({
-      ...p,
-      isPromoted: true,
-    }));
+    let promoted: any = [];
+    if (skip === 0) {
+      const promotedResponse = await prisma.ad.findMany({
+        where: {
+          ...where,
+          subscriptionEndDate: { gte: new Date() },
+        },
+        take: 4,
+      });
+      promoted = promotedResponse.map((p) => ({
+        ...p,
+        isPromoted: true,
+      }));
 
-    where.id = { not: { in: promoted.map((p: any) => p.id) } };
+      where.id = { not: { in: promoted.map((p: any) => p.id) } };
+    }
 
     const ads = await prisma.ad.findMany({
       where,
@@ -184,7 +188,7 @@ export const ads = async (
     const data = promoted.concat(
       details ? filteredAds.slice(skip, skip + take) : filteredAds
     );
-    const moreExists = data.length === take;
+    const moreExists = data.length - promoted.length === take;
 
     return {
       data,
