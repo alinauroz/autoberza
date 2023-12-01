@@ -17,7 +17,7 @@ const TermsConditions = () => {
         <header className="text-3xl font-bold mb-4">
           <FormattedMessage
             defaultMessage="Terms & Conditions"
-            id="termsconditions.terms-conditions"
+            id="termsconditions.terms-conditions1"
           />
         </header>
         <section className="mb-6">
@@ -39,13 +39,13 @@ const TermsConditions = () => {
           <h2 className="text-2xl font-semibold mb-2">
             <FormattedMessage
               defaultMessage="Our Terms & Conditions "
-              id="termsconditions.terms-conditions"
+              id="termsconditions.terms-conditions2"
             />
           </h2>
           <p className="text-gray-700">
             <FormattedMessage
               defaultMessage="Terms and Conditions agreements are also known as Terms of Service or Terms of Use agreements. These terms are interchangeable, practically speaking. More rarely, it may be called something like an End User Services Agreement (EUSA)."
-              id="termsconditions.terms-conditions-list"
+              id="termsconditions.terms-conditions-list3"
             />
           </p>
         </section>

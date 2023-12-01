@@ -17,7 +17,7 @@ const PrivacyPolicy = () => {
         <header className="text-3xl font-bold mb-4">
           <FormattedMessage
             defaultMessage="Privacy Policy"
-            id="privacypolicy.privacy-policy"
+            id="privacypolicy.privacy-policy1"
           />
         </header>
         <section className="mb-6">
@@ -41,7 +41,7 @@ const PrivacyPolicy = () => {
           <h2 className="text-2xl font-semibold mb-2">
             <FormattedMessage
               defaultMessage="Our Privacy Policy"
-              id="privacypolicy.privacy-policy"
+              id="privacypolicy.privacy-policy2"
             />
           </h2>
           <p className="text-gray-700">
@@ -54,31 +54,31 @@ const PrivacyPolicy = () => {
             <li>
               <FormattedMessage
                 defaultMessage="Privacy Agreement"
-                id="privacypolicy.privacy-policy-list"
+                id="privacypolicy.privacy-policy-list3"
               />
             </li>
             <li>
               <FormattedMessage
                 defaultMessage="Privacy Clause"
-                id="privacypolicy.privacy-policy-list"
+                id="privacypolicy.privacy-policy-list4"
               />
             </li>
             <li>
               <FormattedMessage
                 defaultMessage="Privacy Notice"
-                id="privacypolicy.privacy-policy-list"
+                id="privacypolicy.privacy-policy-list5"
               />
             </li>
             <li>
               <FormattedMessage
-                defaultMessage="Privacy Pagee"
-                id="privacypolicy.privacy-policy-list"
+                defaultMessage="Privacy Page"
+                id="privacypolicy.privacy-policy-list8"
               />
             </li>
             <li>
               <FormattedMessage
                 defaultMessage="Privacy Policy Statement"
-                id="privacypolicy.privacy-policy-list"
+                id="privacypolicy.privacy-policy-list7"
               />
             </li>
           </ul>

@@ -3,12 +3,14 @@ import React, { useMemo, useState } from 'react';
 import dropDownImg from '@/public/assets/common/homepage/dropdownIcon.svg';
 import DropDownMenu from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const DropDown = ({ filters }: { filters: any[] }) => {
   const [city, setCity] = useState<any>();
   const [category, setCategory] = useState<any>();
   const [year, setYear] = useState<any>();
+
+  const intl = useIntl();
 
   const { cityOptions, categoryOptions, yearOptions } = useMemo(() => {
     const countryOptions = filters.find((f) => f.name === 'country');
@@ -30,7 +32,7 @@ const DropDown = ({ filters }: { filters: any[] }) => {
     <div className="">
       <div className="px-5 lg:px-10 py-[3px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
         <DropDownMenu
-          name="City"
+          name={intl.formatMessage({ defaultMessage: 'City', id: 'ddm.city' })}
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
@@ -47,7 +49,10 @@ const DropDown = ({ filters }: { filters: any[] }) => {
       </div>
       <div className="px-5 lg:px-10 py-[3px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
         <DropDownMenu
-          name="Category"
+          name={intl.formatMessage({
+            defaultMessage: 'Category',
+            id: 'ddm.category',
+          })}
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
@@ -64,7 +69,7 @@ const DropDown = ({ filters }: { filters: any[] }) => {
       </div>
       <div className="px-5 lg:px-10 py-[3px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
         <DropDownMenu
-          name="Year"
+          name={intl.formatMessage({ defaultMessage: 'Year', id: 'ddm.year' })}
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
