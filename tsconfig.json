@@ -29,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/OtpVerification",
-    "app/otp-verification"
+    "app/otp-verification",
+    "server/utils/2checkout.js"
   ],
   "exclude": ["node_modules"]
 }
