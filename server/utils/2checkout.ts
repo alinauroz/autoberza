@@ -1,3 +1,5 @@
+import prisma from '@/prisma/prisma';
+
 const Twocheckout = require('../lib/2checkout-node-sdk/twocheckout');
 const config = {
   sellerId: '254771199649',
@@ -12,7 +14,7 @@ const buyLinkParams = {
   prod: 'abc100',
   //price: 1,
   tpl: 'default',
-  //qty: 1,
+  qty: 1,
   type: 'PRODUCT',
   tangible: 0,
   'return-url': 'https://google.com?q=' + Date.now(),
@@ -28,11 +30,16 @@ const buyLinkParams = {
   //dynamic: 1,
 };
 
-const getLink = async () => {
+export const getLink = async ({ adId }: { adId: string }) => {
   try {
     let result = await tco.generateBuyLinkSignature(buyLinkParams);
     let finalParams = JSON.parse(JSON.stringify(buyLinkParams));
     finalParams.signature = result.signature;
+
+    await prisma.ad.update({
+      where: { id: adId },
+      data: { coSignature: result.signature as string },
+    });
 
     const params = new URLSearchParams(finalParams);
     const str = params.toString();
@@ -42,5 +49,3 @@ const getLink = async () => {
     console.error(error);
   }
 };
-
-getLink().then((d) => console.log(d));

@@ -106,7 +106,7 @@ const AdType = ({ id }: { id?: string }) => {
                   />
                 ) : (
                   <Link
-                    href={`/api/stripe/create-checkout-session?adId=${id}&plan=${plan}`}
+                    href={`/api/2co/create-checkout-session?adId=${id}&plan=${plan}`}
                   >
                     <Button
                       type="button"

@@ -54,6 +54,7 @@ model Ad {
   subscriptionStartDate   DateTime?
   subscriptionEndDate     DateTime?
   homepagePromoted        Boolean @default(false)
+  coSignature            String?
 
   createdOn           DateTime?  @default(now())
 }

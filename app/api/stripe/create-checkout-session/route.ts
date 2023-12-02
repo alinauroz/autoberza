@@ -2,7 +2,11 @@ import { getRequestOrigin } from '@/server/utils/get-request-origin';
 import stripe from '@/server/utils/stripe';
 import { NextRequest, NextResponse } from 'next/server';
 
-type PROMO_OPTIONS = 'PROMO-5' | 'PROMO-10' | 'PROMO-HOME-5' | 'PROMO-HOME-10';
+export type PROMO_OPTIONS =
+  | 'PROMO-5'
+  | 'PROMO-10'
+  | 'PROMO-HOME-5'
+  | 'PROMO-HOME-10';
 
 export async function GET(request: NextRequest, response: NextResponse) {
   const origin = getRequestOrigin(request);
