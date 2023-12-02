@@ -18,7 +18,7 @@ const buyLinkParams = {
   type: 'PRODUCT',
   tangible: 0,
   'return-url': 'https://google.com?q=' + Date.now(),
-  'return-type': 'link',
+  'return-type': 'redirect',
   //expiration: 60 * 1000,
   //"order-ext-ref": "CustOrd100",
   'item-ext-ref': `{"id": "abc1234"}`,
@@ -32,6 +32,9 @@ const buyLinkParams = {
 
 export const getLink = async ({ adId }: { adId: string }) => {
   try {
+    buyLinkParams[
+      'return-url'
+    ] = `https://3195-2400-adc7-93a-cf00-45ec-236a-ca65-9896.ngrok-free.app/api/handle-payment?adId=${adId}`;
     let result = await tco.generateBuyLinkSignature(buyLinkParams);
     let finalParams = JSON.parse(JSON.stringify(buyLinkParams));
     finalParams.signature = result.signature;
