@@ -6,7 +6,7 @@ import prisma from '@/prisma/prisma';
 export async function GET(request: NextRequest, response: NextResponse) {
   const origin = getRequestOrigin(request);
   const adId = request.nextUrl.searchParams.get('adId') as string;
-  const plan: any = 'PROMO-5';
+  const plan: any = request.nextUrl.searchParams.get('plan') as string;
   const planDays = {
     'PROMO-5': 5,
     'PROMO-10': 10,
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     },
   });
 
-  const redirectUrl = `${process.env.APP_URL}/ad/${adId}`;
+  const redirectUrl = `${process.env.APP_URL}/ad/${adId}?promotion=success`;
   const res = NextResponse.redirect(redirectUrl as string, {
     status: 302,
   });

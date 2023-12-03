@@ -9,8 +9,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
   const plan = request.nextUrl.searchParams.get('plan') as PROMO_OPTIONS;
   const adId = request.nextUrl.searchParams.get('adId') as string;
 
-  const redirectUrl = await getLink({ adId });
-  console.log('Redirect Url', redirectUrl);
+  const redirectUrl = await getLink({ adId, plan });
   const res = NextResponse.redirect(redirectUrl as string, {
     status: 302,
   });
