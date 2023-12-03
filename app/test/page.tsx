@@ -26,11 +26,10 @@ function Test() {
   useEffect(() => {
     const handleCircleClick = (event: any) => {
       const circleId = event.target.id;
-      console.log(`Circle with ID ${circleId} clicked!`);
+      alert(`Clicked on seat no: ${circleId}!`);
     };
 
     const circles = document.querySelectorAll('circle');
-    console.log('CIRCLE', circles.length);
     const p = document.getElementById('1P-1-27');
     console.log('>>P', p);
     circles.forEach((circle) => {

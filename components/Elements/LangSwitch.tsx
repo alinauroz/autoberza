@@ -35,7 +35,7 @@ function LangSwitch({}) {
         className={` text-white text-sm font-semibold md:p-1.5 p-1 md:rounded-md rounded inline-flex gap-2 items-center`}
       >
         <Image src={LanguageIcon} alt="" className="w-5" />
-        {selectedLanguage === 'en' ? 'En' : 'Mr'}
+        {selectedLanguage === 'en' ? 'En' : 'Mn'}
       </button>
       <div
         onClick={(e) => {
