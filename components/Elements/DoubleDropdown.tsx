@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import DropDownMenu, { LV } from './Dropdown';
 import { DoubleDropdown } from '@/types';
+import Cookies from 'js-cookie';
 
 interface Props {
   DoubleDropdownData: DoubleDropdown;
@@ -21,19 +22,28 @@ const DoubleDropdown: React.FC<Props> = ({
   const [selectedSecond, setSelectedSecond] = React.useState<LV>();
 
   const options1 = React.useMemo(() => {
-    return Object.keys(DoubleDropdownData.doubleOptions).map((e) => ({
-      label: e,
+    const locale = Cookies.get('locale');
+    const optionsMn = Object.keys(
+      (DoubleDropdownData as any).doubleOptionsMn || {}
+    );
+    return Object.keys(DoubleDropdownData.doubleOptions).map((e, i) => ({
+      label: optionsMn[i] && locale === 'mr' ? optionsMn[i] : e,
       value: e,
     }));
   }, [DoubleDropdownData]);
 
   const options2 = React.useMemo(() => {
     if (typeof selectedFirst == 'undefined') return [];
-
-    return DoubleDropdownData.doubleOptions[selectedFirst.value].map((e) => ({
-      label: e,
-      value: e,
-    }));
+    const optionsMn = (DoubleDropdownData as any).doubleOptionsMn[
+      selectedFirst.label as string
+    ];
+    const locale = Cookies.get('locale');
+    return DoubleDropdownData.doubleOptions[selectedFirst.value].map(
+      (e, i) => ({
+        label: locale === 'mr' && optionsMn?.[i] ? optionsMn[i] : e,
+        value: e,
+      })
+    );
   }, [selectedFirst]);
 
   useEffect(() => {

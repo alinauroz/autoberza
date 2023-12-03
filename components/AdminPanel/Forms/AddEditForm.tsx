@@ -65,6 +65,7 @@ function AddEditForm({
             labelMn: row['NameMn'],
             section: row['Section'],
             options: row['Options'].split(';'),
+            optionsMn: row['OptionsMn'].split(';'),
             name: row['Id'],
             advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
             homepageFilter: row['HomepageFilter'].toLowerCase() === 'yes',
@@ -74,6 +75,7 @@ function AddEditForm({
         }
         case 'DoubleDropdown': {
           const doubleOptions: { [x: string]: string[] } = {};
+          const doubleOptionsMn: { [x: string]: string[] } = {};
 
           row['Options'].split(';').forEach((option: string) => {
             const [a, b] = option.split(':');
@@ -83,6 +85,16 @@ function AddEditForm({
               doubleOptions[a] = [b];
             }
           });
+          if (row['OptionsMn']) {
+            row['OptionsMn'].split(';').forEach((option: string) => {
+              const [a, b] = option.split(':');
+              if (doubleOptionsMn[a]) {
+                doubleOptionsMn[a].push(b);
+              } else {
+                doubleOptionsMn[a] = [b];
+              }
+            });
+          }
 
           const field = {
             type: 'doubledropdown',
@@ -94,6 +106,7 @@ function AddEditForm({
             id: row['Id'].split(';')[0],
             id2: row['Id'].split(';')[1],
             doubleOptions,
+            doubleOptionsMn,
             advanceFilter: row['AdvanceFilter'].toLowerCase() === 'yes',
             homepageFilter: row['HomepageFilter'].toLowerCase() === 'yes',
 

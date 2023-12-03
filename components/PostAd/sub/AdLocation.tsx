@@ -3,10 +3,11 @@ import DropDownMenu, { LV } from '@/components/Elements/Dropdown';
 import Input from '@/components/Elements/Input';
 import { cityOptions, countryOptions } from '@/utils/options';
 import React, { useEffect, useMemo } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const AdLocation = ({ prefill }: { prefill: any }) => {
   const tempCountriesLV: LV[] = countryOptions;
+  const intl = useIntl();
 
   const tempLocationsLV: LV[] = [
     { value: 'loc1', label: 'Locaitons 1 Option' },
@@ -45,7 +46,10 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
 
       <div className="ad-locations">
         <DropDownMenu
-          name="Country"
+          name={intl.formatMessage({
+            defaultMessage: 'Country',
+            id: 'adlocation.country',
+          })}
           options={tempCountriesLV}
           selectedLV={country}
           setSelectedLV={setCountry}
@@ -53,7 +57,10 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
         <input type="hidden" value={country?.value} name="country" />
         <input type="hidden" value={city?.value} name="city" />
         <DropDownMenu
-          name="City"
+          name={intl.formatMessage({
+            defaultMessage: 'City',
+            id: 'adlocation.city',
+          })}
           options={tempGradsLV}
           selectedLV={city}
           setSelectedLV={setCity}

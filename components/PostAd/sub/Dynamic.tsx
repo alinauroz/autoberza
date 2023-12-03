@@ -8,6 +8,7 @@ import '@/styles/postAd.css';
 import Input from '@/components/Elements/Input';
 import UCDropdown from '@/components/Elements/UCDropdown';
 import DoubleDropdown from '@/components/Elements/DoubleDropdown';
+import Cookies from 'js-cookie';
 
 interface Props {
   data: DynamicSectionsResponse[];
@@ -100,9 +101,12 @@ const Dynamic: React.FC<Props> = ({ data, prefill }) => {
                       </div>
                     );
                   } else if (el.type === 'select') {
-                    const options = el.options.map((e) => ({
+                    const optionsMn = (el as any).optionsMn;
+                    const locale = Cookies.get('locale');
+                    const options = el.options.map((e, i) => ({
                       value: e,
-                      label: e,
+                      label:
+                        locale === 'mr' && optionsMn?.[i] ? optionsMn?.[i] : e,
                     }));
                     return (
                       <UCDropdown
