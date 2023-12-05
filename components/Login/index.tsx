@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { set } from '@/utils/storage';
 import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -91,6 +91,8 @@ const Login = () => {
     }
   };
 
+  const intl = useIntl();
+
   return (
     <form onSubmit={handleLogin}>
       <div className="login">
@@ -117,10 +119,19 @@ const Login = () => {
           />
           {isEmail && (
             <Input
-              placeholder="Enter your password"
-              type="password"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Enter your password',
+                id: 'login.password',
+              })}
+              type={intl.formatMessage({
+                defaultMessage: 'password',
+                id: 'login.password',
+              })}
               required
-              name="password"
+              name={intl.formatMessage({
+                defaultMessage: 'password',
+                id: 'login.password',
+              })}
             />
           )}
           <div className="tou-check">
@@ -132,7 +143,14 @@ const Login = () => {
               />
             </p>
           </div>
-          <Button text="Login" type="submit" loading={fetching} />
+          <Button
+            text={intl.formatMessage({
+              defaultMessage: 'Login',
+              id: 'login.login',
+            })}
+            type="submit"
+            loading={fetching}
+          />
           <p className="forgot-password">
             <Link href="/forgot-password">
               <FormattedMessage

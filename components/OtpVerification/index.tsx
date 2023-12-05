@@ -10,7 +10,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
 import { toast } from 'react-hot-toast';
 import { get, set } from '@/utils/storage';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const PHONE_OTP_LOGIN = gql`
   mutation Mutation($otp: String, $phoneNo: String) {
@@ -54,6 +54,8 @@ const Index = () => {
     });
   };
 
+  const intl = useIntl();
+
   return (
     <div className="container-verification">
       <div className="header">
@@ -75,14 +77,39 @@ const Index = () => {
           </p>
           <div>
             <input
-              type="hidden"
+              type={intl.formatMessage({
+                defaultMessage: 'hidden',
+                id: 'index.hidden',
+              })}
               value={searchParams.get('phoneNo') || ''}
-              name="phoneNo"
+              name={intl.formatMessage({
+                defaultMessage: 'phoneNo',
+                id: 'index.phone',
+              })}
             />
-            <Input placeholder="Enter your OTP code" type="number" name="otp" />
+            <Input
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Enter your OTP code',
+                id: 'index.otp-code',
+              })}
+              type={intl.formatMessage({
+                defaultMessage: 'number',
+                id: 'index.number',
+              })}
+              name={intl.formatMessage({
+                defaultMessage: 'otp',
+                id: 'index.otp',
+              })}
+            />
           </div>
           <div className="verification-btn">
-            <Button text="Submit" loading={fetching} />
+            <Button
+              text={intl.formatMessage({
+                defaultMessage: 'Submit',
+                id: 'index.submit',
+              })}
+              loading={fetching}
+            />
           </div>
         </div>
       </form>

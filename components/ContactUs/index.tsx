@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import '@/styles/postAd.css';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const ContactUs = () => {
   React.useEffect(() => {
@@ -15,6 +15,8 @@ const ContactUs = () => {
     email: '',
     message: '',
   });
+
+  const intl = useIntl();
 
   useEffect(() => {
     document.title = 'Contact Us';
@@ -49,15 +51,27 @@ const ContactUs = () => {
         >
           <div className="mb-4">
             <label
-              htmlFor="name"
+              htmlFor={intl.formatMessage({
+                defaultMessage: 'name',
+                id: 'contactus.name',
+              })}
               className="block text-sm font-semibold text-gray-600 mb-2"
             >
               <FormattedMessage defaultMessage="Name" id="contactus.name" />
             </label>
             <input
-              type="text"
-              id="name"
-              name="name"
+              type={intl.formatMessage({
+                defaultMessage: 'text',
+                id: 'contactus.text',
+              })}
+              id={intl.formatMessage({
+                defaultMessage: 'name',
+                id: 'contactus.name',
+              })}
+              name={intl.formatMessage({
+                defaultMessage: 'name',
+                id: 'contactus.name',
+              })}
               value={formData.name}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-[#36a584]"
@@ -67,15 +81,27 @@ const ContactUs = () => {
 
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'contactus.email',
+              })}
               className="block text-sm font-semibold text-gray-600 mb-2"
             >
               <FormattedMessage defaultMessage="Email" id="contactus.email" />
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
+              type={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'contactus.email',
+              })}
+              id={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'contactus.email',
+              })}
+              name={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'contactus.email',
+              })}
               value={formData.email}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-[#36a584]"
@@ -85,7 +111,10 @@ const ContactUs = () => {
 
           <div className="mb-4">
             <label
-              htmlFor="message"
+              htmlFor={intl.formatMessage({
+                defaultMessage: 'message',
+                id: 'contactus.message',
+              })}
               className="block text-sm font-semibold text-gray-600 mb-2"
             >
               <FormattedMessage
@@ -94,8 +123,14 @@ const ContactUs = () => {
               />
             </label>
             <textarea
-              id="message"
-              name="message"
+              id={intl.formatMessage({
+                defaultMessage: 'message',
+                id: 'contactus.message',
+              })}
+              name={intl.formatMessage({
+                defaultMessage: 'message',
+                id: 'contactus.message',
+              })}
               value={formData.message}
               onChange={handleChange}
               rows={4}

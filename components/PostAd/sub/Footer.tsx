@@ -22,7 +22,10 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
   const footerMenus = useMemo(
     () => [
       {
-        title: 'VEHICLE CATEGORIES',
+        title: intl.formatMessage({
+          defaultMessage: 'VEHICLE CATEGORIES',
+          id: 'footer.vehicle-category',
+        }),
         items: [
           {
             text: intl.formatMessage({
@@ -97,7 +100,10 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
         ],
       },
       {
-        title: 'NAVIGATION',
+        title: intl.formatMessage({
+          defaultMessage: 'NAVIGATION',
+          id: 'footer.navigation',
+        }),
         items: [
           {
             text: intl.formatMessage({
@@ -172,7 +178,10 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
         ],
       },
       {
-        title: 'YOUR AUTODEALER',
+        title: intl.formatMessage({
+          defaultMessage: 'YOUR AUTODEALER',
+          id: 'footer.auto-dealer',
+        }),
         items: [
           {
             text: intl.formatMessage({
