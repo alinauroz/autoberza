@@ -14,7 +14,7 @@ import '../../styles/postAd.css';
 import { useMemo } from 'react';
 import { get, set } from '@/utils/storage';
 import ErrorComponent from '../Elements/Error';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const UPDATE_USER = gql`
   mutation UpdateUser(
@@ -47,6 +47,8 @@ function Profile({}) {
     document.title = 'Profile';
   }, []);
 
+  const intl = useIntl();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = fdtojson(new FormData(e.target as HTMLFormElement));
@@ -75,37 +77,95 @@ function Profile({}) {
             <FormattedMessage defaultMessage="Profile" id="profile.profile" />
           </p>
           <Input
-            label="Name"
-            name="name"
-            placeholder="Enter your full name"
+            label={intl.formatMessage({
+              defaultMessage: 'Name',
+              id: 'profile.name',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'Name',
+              id: 'profile.name',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter your full name',
+              id: 'profile.name',
+            })}
             defaultValue={user?.name}
           />
           <Input
-            label="Email"
-            name="email"
-            type="email"
+            label={intl.formatMessage({
+              defaultMessage: 'Email',
+              id: 'profile.email',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'email',
+              id: 'profile.email',
+            })}
+            type={intl.formatMessage({
+              defaultMessage: 'email',
+              id: 'profile.email',
+            })}
             placeholder="Enter your email id"
             defaultValue={user?.email}
           />
           <Input
-            label="Mobile"
-            name="phone"
-            placeholder="+382 Enter your mobile number"
+            label={intl.formatMessage({
+              defaultMessage: 'Mobile',
+              id: 'profile.mobile',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'phone',
+              id: 'profile.phone',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: '+382 Enter your mobile number',
+              id: 'profile.mobile-number',
+            })}
             defaultValue={user?.phone}
           />
           <Input
-            label="Current Password"
-            placeholder="Enter current password"
-            type="password"
-            name="currentPassword"
+            label={intl.formatMessage({
+              defaultMessage: 'Current Password',
+              id: 'profile.curr-password',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter current password',
+              id: 'profile.curr-password',
+            })}
+            type={intl.formatMessage({
+              defaultMessage: 'password',
+              id: 'profile.curr-password',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'currentPassword',
+              id: 'profile.curr-password',
+            })}
           />
           <Input
-            label="New Password"
-            placeholder="Enter new password"
-            type="password"
-            name="newPassword"
+            label={intl.formatMessage({
+              defaultMessage: 'New Password',
+              id: 'profile.new-password',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter new password',
+              id: 'profile.new-password',
+            })}
+            type={intl.formatMessage({
+              defaultMessage: 'password',
+              id: 'profile.new-password',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'newPassword',
+              id: 'profile.new-password',
+            })}
           />
-          <Button text="Update Profile" type="submit" loading={fetching} />
+          <Button
+            text={intl.formatMessage({
+              defaultMessage: 'Update Profile',
+              id: 'profile.label-name',
+            })}
+            type="submit"
+            loading={fetching}
+          />
           {(error?.graphQLErrors.length || 0) > 0 && (
             <ErrorComponent
               text={error?.graphQLErrors[0].message as string}

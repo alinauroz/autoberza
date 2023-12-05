@@ -9,7 +9,7 @@ import Header from '../Header/Header';
 import Input from '../Elements/Input';
 import Button from '../Elements/Button';
 import '@/styles/verification.css';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const SEND_VERIFICATION_EMAIL = gql`
   mutation Mutation($email: String!) {
@@ -25,6 +25,8 @@ function ForgotPassword({}) {
   }, []);
   const searchParams = useSearchParams();
   const [{ fetching }, send] = useMutation(SEND_VERIFICATION_EMAIL);
+
+  const intl = useIntl();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,14 +55,30 @@ function ForgotPassword({}) {
           </p>
           <div>
             <Input
-              placeholder="Enter your email"
-              name="email"
-              type="email"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Enter your email',
+                id: 'forgotpassword.email',
+              })}
+              name={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'forgotpassword.email',
+              })}
+              type={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'forgotpassword.email',
+              })}
               defaultValue={searchParams.get('email') as string}
             />
           </div>
           <div className="verification-btn">
-            <Button text="Send" type="submit" loading={fetching} />
+            <Button
+              text={intl.formatMessage({
+                defaultMessage: 'Send',
+                id: 'forgotpassword.send',
+              })}
+              type="submit"
+              loading={fetching}
+            />
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import Input from '@/components/Elements/Input';
 import UCDropdown from '@/components/Elements/UCDropdown';
 import DoubleDropdown from '@/components/Elements/DoubleDropdown';
 import Cookies from 'js-cookie';
+import { useIntl } from 'react-intl';
 
 interface Props {
   data: DynamicSectionsResponse[];
@@ -36,6 +37,8 @@ const Dynamic: React.FC<Props> = ({ data, prefill }) => {
 
   if (!processedData) return;
 
+  const intl = useIntl();
+
   return (
     <>
       <div className="dynamic-part-wrapper">
@@ -58,8 +61,14 @@ const Dynamic: React.FC<Props> = ({ data, prefill }) => {
                 {isBasicSection && (
                   <div className="md:col-span-4">
                     <Input
-                      placeholder="Title"
-                      name="title"
+                      placeholder={intl.formatMessage({
+                        defaultMessage: 'Title',
+                        id: 'dynamic.title',
+                      })}
+                      name={intl.formatMessage({
+                        defaultMessage: 'title',
+                        id: 'dynamic.title',
+                      })}
                       required
                       style={{
                         height: '65px',

@@ -10,7 +10,7 @@ import Input from '../Elements/Input';
 import Button from '../Elements/Button';
 import '@/styles/verification.css';
 import { useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const SEND_VERIFICATION_EMAIL = gql`
   mutation SEND_VERIFICATION($email: String!) {
@@ -32,6 +32,8 @@ function Verification({}) {
     const { email } = fdtojson(new FormData(e.target as HTMLFormElement));
     send({ email }).then(() => toast.success('Verification email sent'));
   };
+
+  const intl = useIntl();
 
   useEffect(() => {
     if (searchParams.get('email')) {
@@ -62,14 +64,30 @@ function Verification({}) {
           </p>
           <div>
             <Input
-              placeholder="Enter your email"
-              name="email"
-              type="email"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Enter your email',
+                id: 'verification.email',
+              })}
+              name={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'verification.email',
+              })}
+              type={intl.formatMessage({
+                defaultMessage: 'email',
+                id: 'verification.email',
+              })}
               defaultValue={searchParams.get('email') as string}
             />
           </div>
           <div className="verification-btn">
-            <Button text="Send Again" type="submit" loading={fetching} />
+            <Button
+              text={intl.formatMessage({
+                defaultMessage: 'Send Again',
+                id: 'verification.send-again',
+              })}
+              type="submit"
+              loading={fetching}
+            />
           </div>
         </div>
       </div>

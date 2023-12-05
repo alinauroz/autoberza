@@ -2,7 +2,9 @@
 import React from 'react';
 import DropDownMenu from '@/components/Elements/UCDropdown';
 import Input from '@/components/Elements/Input';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+
+const intl = useIntl();
 
 const AdPrice = ({ prefill }: { prefill: any }) => {
   return (
@@ -21,26 +23,38 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
         <div className="ad-price-section-pricing">
           <div className="price-input">
             <Input
-              placeholder="Price"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Price',
+                id: 'adprice.price',
+              })}
               style={{
                 borderRadius: '15px',
                 border: 'none',
                 boxShadow: '0px 0 4px 2px #00000017',
               }}
               required
-              name="price"
+              name={intl.formatMessage({
+                defaultMessage: 'price',
+                id: 'adprice.price',
+              })}
               defaultValue={prefill?.price ? prefill?.price + '' : ''}
             />
           </div>
           <div className="price-input">
             <Input
-              placeholder="Discounted Price"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Discounted Price',
+                id: 'adprice.discounted-price',
+              })}
               style={{
                 borderRadius: '15px',
                 border: 'none',
                 boxShadow: '0px 0 4px 2px #00000017',
               }}
-              name="discountedPrice"
+              name={intl.formatMessage({
+                defaultMessage: 'discountedPrice',
+                id: 'adprice.discounted-price',
+              })}
               defaultValue={
                 prefill?.discountedPrice ? prefill?.discountedPrice + '' : ''
               }
@@ -51,10 +65,46 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
               <div className="ad-price-section-pricing-type">
                 <DropDownMenu
                   options={[
-                    { value: 'tempId1', label: 'Cash' },
-                    { value: 'tempId1', label: 'Credit Card' },
-                    { value: 'tempId1', label: 'Easypaisa' },
-                    { value: 'tempId1', label: 'Raast' },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId1',
+                        id: 'adprice.temp-id-1',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Cash',
+                        id: 'adprice.cash',
+                      }),
+                    },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId1',
+                        id: 'adprice.temp-id-1',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Credit Card',
+                        id: 'adprice.credit',
+                      }),
+                    },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId1',
+                        id: 'adprice.temp-id-1',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Easypaisa',
+                        id: 'adprice.easypaisa',
+                      }),
+                    },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId1',
+                        id: 'adprice.temp-id-1',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Raast',
+                        id: 'adprice.raast',
+                      }),
+                    },
                   ]}
                   name="Price type"
                 />
@@ -62,12 +112,51 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
               <div className="ad-price-section-pricing-type">
                 <DropDownMenu
                   options={[
-                    { value: 'tempId2', label: 'Here is the replacement-1' },
-                    { value: 'tempId2', label: 'Here is the replacement-2' },
-                    { value: 'tempId2', label: 'Here is the replacement-3' },
-                    { value: 'tempId2', label: 'Here is the replacement-4' },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId2',
+                        id: 'adprice.temp-id-2',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Here is the replacement-1',
+                        id: 'adprice.replacement-1',
+                      }),
+                    },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId2',
+                        id: 'adprice.temp-id-2',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Here is the replacement-2',
+                        id: 'adprice.replacement-1',
+                      }),
+                    },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId2',
+                        id: 'adprice.temp-id-2',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Here is the replacement-3',
+                        id: 'adprice.replacement-1',
+                      }),
+                    },
+                    {
+                      value: intl.formatMessage({
+                        defaultMessage: 'tempId2',
+                        id: 'adprice.temp-id-2',
+                      }),
+                      label: intl.formatMessage({
+                        defaultMessage: 'Here is the replacement-4',
+                        id: 'adprice.replacement-1',
+                      }),
+                    },
                   ]}
-                  name="Replacement"
+                  name={intl.formatMessage({
+                    defaultMessage: 'Replacement',
+                    id: 'adprice.replacement',
+                  })}
                 />
               </div>
             </>
@@ -82,7 +171,10 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
             <span className="steric">*</span>
           </p>
           <textarea
-            name="description"
+            name={intl.formatMessage({
+              defaultMessage: 'description',
+              id: 'adprice.description',
+            })}
             className="price-description-detail-text"
             defaultValue={prefill?.description}
           />

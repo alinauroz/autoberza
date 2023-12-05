@@ -3,45 +3,59 @@ import React from 'react';
 import '@/styles/postAd.css';
 import Button from '@/components/Elements/Button';
 import Link from 'next/link';
-import { FormattedMessage } from 'react-intl';
-
-const cardsData = [
-  {
-    title: 'FREE',
-    amount: 0,
-    featureList: ['Standard display of ads'],
-    plan: 'FREE',
-  },
-  {
-    title: 'PROMO 5',
-    plan: 'PROMO-5',
-    amount: 10,
-    featureList: [
-      'Faster sales',
-      'Always before FREE',
-      'Marked as PAID AD',
-      <>
-        Duration of <span style={{ color: '#00C489' }}>5 days</span>
-      </>,
-    ],
-  },
-  {
-    title: 'PROMO 10',
-    plan: 'PROMO-10',
-    amount: 15,
-    featureList: [
-      'Faster sales',
-      'Always before FREE',
-      'Marked as PAID AD',
-      <>
-        Duration of <span style={{ color: '#00C489' }}>10 days</span>
-      </>,
-    ],
-  },
-];
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const AdType = ({ id }: { id?: string }) => {
   const [isLeftScrolled, setIsLeftScrolled] = React.useState(false);
+
+  const intl = useIntl();
+
+  const cardsData = [
+    {
+      title: intl.formatMessage({ defaultMessage: 'FREE', id: 'adtype.free' }),
+      amount: 0,
+      featureList: ['Standard display of ads'],
+      plan: intl.formatMessage({ defaultMessage: 'FREE', id: 'adtype.free' }),
+    },
+    {
+      title: intl.formatMessage({
+        defaultMessage: 'PROMO 5',
+        id: 'adtype.promo-5',
+      }),
+      plan: intl.formatMessage({
+        defaultMessage: 'PROMO-5',
+        id: 'adtype.promo-5',
+      }),
+      amount: 10,
+      featureList: [
+        'Faster sales',
+        'Always before FREE',
+        'Marked as PAID AD',
+        <>
+          Duration of <span style={{ color: '#00C489' }}>5 days</span>
+        </>,
+      ],
+    },
+    {
+      title: intl.formatMessage({
+        defaultMessage: 'PROMO 10',
+        id: 'adtype.promo-10',
+      }),
+      plan: intl.formatMessage({
+        defaultMessage: 'PROMO-10',
+        id: 'adtype.promo-10',
+      }),
+      amount: 15,
+      featureList: [
+        'Faster sales',
+        'Always before FREE',
+        'Marked as PAID AD',
+        <>
+          Duration of <span style={{ color: '#00C489' }}>10 days</span>
+        </>,
+      ],
+    },
+  ];
 
   return (
     <div className="ad-type-wrapper">

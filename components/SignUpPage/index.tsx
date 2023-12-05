@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const REGISTER = gql`
   mutation RegisterUser(
@@ -33,6 +33,8 @@ const REGISTER = gql`
     }
   }
 `;
+
+const intl = useIntl();
 
 const SignUp = () => {
   React.useEffect(() => {
@@ -70,25 +72,78 @@ const SignUp = () => {
           <Header />
         </div>
         <div className="signup-content">
-          <Input label="Name" name="name" placeholder="Enter your full name" />
           <Input
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Enter your email id"
+            label={intl.formatMessage({
+              defaultMessage: 'Name',
+              id: 'signup.name',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'name',
+              id: 'signup.name',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter your full name',
+              id: 'signup.name',
+            })}
           />
           <Input
-            label="Mobile"
-            name="phone"
-            placeholder="+382 Enter your mobile number"
+            label={intl.formatMessage({
+              defaultMessage: 'Email',
+              id: 'signup.email',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'email',
+              id: 'signup.email',
+            })}
+            type={intl.formatMessage({
+              defaultMessage: 'email',
+              id: 'signup.email',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter your email id',
+              id: 'signup.email',
+            })}
           />
           <Input
-            label="Password"
-            placeholder="Enter your password"
-            type="password"
-            name="password"
+            label={intl.formatMessage({
+              defaultMessage: 'Mobile',
+              id: 'signup.mobile',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'phone',
+              id: 'signup.phone',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: '+382 Enter your mobile number',
+              id: 'signup.number',
+            })}
           />
-          <Button text="Sign Up" type="submit" loading={fetching} />
+          <Input
+            label={intl.formatMessage({
+              defaultMessage: 'Password',
+              id: 'signup.password',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter your password',
+              id: 'signup.password',
+            })}
+            type={intl.formatMessage({
+              defaultMessage: 'password',
+              id: 'signup.password',
+            })}
+            name={intl.formatMessage({
+              defaultMessage: 'password',
+              id: 'signup.password',
+            })}
+          />
+          <Button
+            text={intl.formatMessage({
+              defaultMessage: 'Sign Up',
+              id: 'signup.signup',
+            })}
+            type="submit"
+            loading={fetching}
+          />
           <p className="account-info">
             <FormattedMessage
               defaultMessage="Already have an account?"
