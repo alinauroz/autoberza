@@ -78,6 +78,8 @@
     "@types/validator": "^13.11.2",
     "encoding": "^0.1.13",
     "lint-staged": "^14.0.1",
-    "prisma": "^5.3.1"
+    "prisma": "^5.3.1",
+    "date-format": "^3.0.0",
+    "got": "^11.8.2"
   }
 }
