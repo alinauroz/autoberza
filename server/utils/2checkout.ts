@@ -1,6 +1,6 @@
 import prisma from '@/prisma/prisma';
 
-const Twocheckout = require('../lib/2checkout-node-sdk/twocheckout');
+const Twocheckout = require('../lib/2co/twocheckout');
 
 const sellerId = process.env.CO_SELLER_ID;
 const secretKey = process.env.CO_SECRET;
