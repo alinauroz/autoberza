@@ -10,7 +10,7 @@ import Input from '../Elements/Input';
 import Button from '../Elements/Button';
 import '@/styles/verification.css';
 import { useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const SEND_VERIFICATION_EMAIL = gql`
   mutation SEND_VERIFICATION($email: String!) {
@@ -21,6 +21,7 @@ const SEND_VERIFICATION_EMAIL = gql`
 `;
 
 function Verification({}) {
+  const intl = useIntl();
   React.useEffect(() => {
     document.title = 'Email Verification';
   }, []);
@@ -62,14 +63,24 @@ function Verification({}) {
           </p>
           <div>
             <Input
-              placeholder="Enter your email"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Enter your email',
+                id: 'new-verification.enter-ur-email',
+              })}
               name="email"
               type="email"
               defaultValue={searchParams.get('email') as string}
             />
           </div>
           <div className="verification-btn">
-            <Button text="Send Again" type="submit" loading={fetching} />
+            <Button
+              text={intl.formatMessage({
+                defaultMessage: 'Send Again',
+                id: 'new-verification.send-again',
+              })}
+              type="submit"
+              loading={fetching}
+            />
           </div>
         </div>
       </div>

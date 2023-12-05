@@ -56,17 +56,74 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
         items: [
           {
             text: intl.formatMessage({
-              defaultMessage: 'Mobile applications',
-              id: 'footer.mobile-application',
+              defaultMessage: 'Shops',
+              id: 'footer.shops',
             }),
             link: '#',
           },
-          { text: 'Contact', link: 'contact-us' },
-          { text: 'Help', link: '#' },
-          { text: 'Terms of use', link: 'terms-conditions' },
-          { text: 'Privacy policy', link: 'privacy-policy' },
-          { text: 'Consumer rights', link: '#' },
-          { text: 'Safe trade', link: '#' },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto parts',
+              id: 'footer.auto-parts',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Car salons',
+              id: 'footer.car-salon',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto waste',
+              id: 'footer.auto-waste',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Directory',
+              id: 'footer.directory',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Vehicle insurance',
+              id: 'footer.vehible-insurance',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto news',
+              id: 'footer.auto-news',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'SMS ads',
+              id: 'footer.sms-ads',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Marketing',
+              id: 'footer.marketing',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Site map',
+              id: 'footer.site-map',
+            }),
+            link: '#',
+          },
         ],
       },
     ],

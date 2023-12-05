@@ -14,7 +14,7 @@ import '../../styles/postAd.css';
 import { useMemo } from 'react';
 import { get, set } from '@/utils/storage';
 import ErrorComponent from '../Elements/Error';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const UPDATE_USER = gql`
   mutation UpdateUser(
@@ -39,6 +39,7 @@ const UPDATE_USER = gql`
 
 function Profile({}) {
   const [{ fetching, error }, updateUser] = useMutation(UPDATE_USER);
+  const intl = useIntl();
   const user = useMemo(() => {
     return get('user');
   }, []);
@@ -77,35 +78,69 @@ function Profile({}) {
           <Input
             label="Name"
             name="name"
-            placeholder="Enter your full name"
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter your full name',
+              id: 'profile.name',
+            })}
             defaultValue={user?.name}
           />
           <Input
-            label="Email"
+            label={intl.formatMessage({
+              defaultMessage: 'Email',
+              id: 'profile.email',
+            })}
             name="email"
             type="email"
-            placeholder="Enter your email id"
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter your email id',
+              id: 'profile.enter-ur-email',
+            })}
             defaultValue={user?.email}
           />
           <Input
-            label="Mobile"
+            label={intl.formatMessage({
+              defaultMessage: 'Mobile',
+              id: 'profile.mobile-no',
+            })}
             name="phone"
-            placeholder="+382 Enter your mobile number"
+            placeholder={intl.formatMessage({
+              defaultMessage: '+382 Enter your mobile number',
+              id: 'profile.phone-no',
+            })}
             defaultValue={user?.phone}
           />
           <Input
-            label="Current Password"
-            placeholder="Enter current password"
+            label={intl.formatMessage({
+              defaultMessage: 'Current Password',
+              id: 'profile.current-password',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter current password',
+              id: 'profile.enter-current-password',
+            })}
             type="password"
             name="currentPassword"
           />
           <Input
-            label="New Password"
-            placeholder="Enter new password"
+            label={intl.formatMessage({
+              defaultMessage: 'New Password',
+              id: 'profile.new-password',
+            })}
+            placeholder={intl.formatMessage({
+              defaultMessage: 'Enter new password',
+              id: 'profile.enter-new-password',
+            })}
             type="password"
             name="newPassword"
           />
-          <Button text="Update Profile" type="submit" loading={fetching} />
+          <Button
+            text={intl.formatMessage({
+              defaultMessage: 'Update Profile',
+              id: 'profile.update-profile-button',
+            })}
+            type="submit"
+            loading={fetching}
+          />
           {(error?.graphQLErrors.length || 0) > 0 && (
             <ErrorComponent
               text={error?.graphQLErrors[0].message as string}
