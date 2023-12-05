@@ -15,7 +15,7 @@ const cardsData = [
   {
     title: 'PROMO 5',
     plan: 'PROMO-5',
-    amount: 10,
+    amount: process.env.NEXT_PUBLIC_PRICE_5_DAY || 10,
     featureList: [
       'Faster sales',
       'Always before FREE',
@@ -28,7 +28,7 @@ const cardsData = [
   {
     title: 'PROMO 10',
     plan: 'PROMO-10',
-    amount: 15,
+    amount: process.env.NEXT_PUBLIC_PRICE_10_DAY || 15,
     featureList: [
       'Faster sales',
       'Always before FREE',
