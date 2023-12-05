@@ -24,31 +24,151 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
       {
         title: 'VEHICLE CATEGORIES',
         items: [
-          { text: 'Automobiles', link: 'home-page' },
-          { text: 'Motorcycles and bicycles', link: 'home-page' },
-          { text: 'Transport vehicles', link: 'home-page' },
-          { text: 'Agricultural vehicles', link: 'home-page' },
-          { text: 'Working machines', link: 'home-page' },
-          { text: 'Nautical', link: 'home-page' },
-          { text: 'Other categories', link: 'home-page' },
-          { text: 'Parts and equipment', link: 'home-page' },
-          { text: 'Service and services', link: 'home-page' },
-          { text: 'Add an ad', link: 'post-ad?category=Bike#' },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Automobiles',
+              id: 'footer.automobiles',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Motorcycles and bicycles',
+              id: 'footer.motorcycles-bicycles',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Transport vehicles',
+              id: 'footer.transport-vehicles',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Agricultural vehicles',
+              id: 'footer.agricultural-vehicles',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Working machines',
+              id: 'footer.working-machines',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Nautical',
+              id: 'footer.mobile-application',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Other categories',
+              id: 'footer.other-categories',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Parts and equipment',
+              id: 'footer.mobile-parts-equipment',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Service and services',
+              id: 'footer.services',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Add an ad',
+              id: 'footer.ad',
+            }),
+            link: 'post-ad?category=Bike#',
+          },
         ],
       },
       {
         title: 'NAVIGATION',
         items: [
-          { text: 'Shops', link: '#' },
-          { text: 'Auto parts', link: '#' },
-          { text: 'Car salons', link: '#' },
-          { text: 'Auto waste', link: '#' },
-          { text: 'Directory', link: '#' },
-          { text: 'Vehicle insurance', link: '#' },
-          { text: 'Auto news', link: '#' },
-          { text: 'SMS ads', link: '#' },
-          { text: 'Marketing', link: '#' },
-          { text: 'Site map', link: '#' },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Shops',
+              id: 'footer.shops',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto parts',
+              id: 'footer.auto-parts',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Car salons',
+              id: 'footer.car-salon',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto waste',
+              id: 'footer.auto-waste',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Directory',
+              id: 'footer.directory',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Vehicle insurance',
+              id: 'footer.vehible-insurance',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto news',
+              id: 'footer.auto-news',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'SMS ads',
+              id: 'footer.sms-ads',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Marketing',
+              id: 'footer.marketing',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Site map',
+              id: 'footer.site-map',
+            }),
+            link: '#',
+          },
         ],
       },
       {
@@ -61,12 +181,48 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
             }),
             link: '#',
           },
-          { text: 'Contact', link: 'contact-us' },
-          { text: 'Help', link: '#' },
-          { text: 'Terms of use', link: 'terms-conditions' },
-          { text: 'Privacy policy', link: 'privacy-policy' },
-          { text: 'Consumer rights', link: '#' },
-          { text: 'Safe trade', link: '#' },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Contact',
+              id: 'footer.contact',
+            }),
+            link: 'contact-us',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Help',
+              id: 'footer.help',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Terms of use',
+              id: 'footer.terms-conditions',
+            }),
+            link: 'terms-conditions',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Privacy policy',
+              id: 'footer.privacy-policy',
+            }),
+            link: 'privacy-policy',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Consumer rights',
+              id: 'footer.customer-rights',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Safe trade',
+              id: 'footer.safe-trade',
+            }),
+            link: '#',
+          },
         ],
       },
     ],
