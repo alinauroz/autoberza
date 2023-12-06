@@ -51,7 +51,7 @@ export const getLink = async ({
     };
 
     if (plan in prods) {
-      //  buyLinkParams["prod"] = prods[plan];
+      buyLinkParams['prod'] = prods[plan];
     }
 
     buyLinkParams[
