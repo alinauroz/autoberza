@@ -25,7 +25,7 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
             <Input
               placeholder={intl.formatMessage({
                 defaultMessage: 'Price',
-                id: 'adprice.price',
+                id: 'adprice.price-2',
               })}
               style={{
                 borderRadius: '15px',
@@ -123,7 +123,7 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
                       }),
                       label: intl.formatMessage({
                         defaultMessage: 'Here is the replacement-2',
-                        id: 'adprice.replacement-1',
+                        id: 'adprice.replacement-2',
                       }),
                     },
                     {
@@ -133,7 +133,7 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
                       }),
                       label: intl.formatMessage({
                         defaultMessage: 'Here is the replacement-3',
-                        id: 'adprice.replacement-1',
+                        id: 'adprice.replacement-5',
                       }),
                     },
                     {
@@ -143,7 +143,7 @@ const AdPrice = ({ prefill }: { prefill: any }) => {
                       }),
                       label: intl.formatMessage({
                         defaultMessage: 'Here is the replacement-4',
-                        id: 'adprice.replacement-1',
+                        id: 'adprice.replacement-3',
                       }),
                     },
                   ]}

@@ -39,7 +39,7 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
         <span>
           <FormattedMessage
             defaultMessage={'AD LOCATION'}
-            id="adlocation.location"
+            id="adlocation.location-2"
           />
         </span>
       </div>

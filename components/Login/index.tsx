@@ -140,7 +140,7 @@ const Login = () => {
           <Button
             text={intl.formatMessage({
               defaultMessage: 'Login',
-              id: 'login.login',
+              id: 'login.login-button',
             })}
             type="submit"
             loading={fetching}

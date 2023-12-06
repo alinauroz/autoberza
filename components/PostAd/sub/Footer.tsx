@@ -37,56 +37,56 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
           {
             text: intl.formatMessage({
               defaultMessage: 'Motorcycles and bicycles',
-              id: 'footer.home-page',
+              id: 'footer.home-page-2',
             }),
             link: 'home-page',
           },
           {
             text: intl.formatMessage({
               defaultMessage: 'Transport vehicles',
-              id: 'footer.home-page',
+              id: 'footer.home-page-3',
             }),
             link: 'home-page',
           },
           {
             text: intl.formatMessage({
               defaultMessage: 'Agricultural vehicles',
-              id: 'footer.home-page',
+              id: 'footer.home-page-4',
             }),
             link: 'home-page',
           },
           {
             text: intl.formatMessage({
               defaultMessage: 'Working machines',
-              id: 'footer.home-page',
+              id: 'footer.home-page-5',
             }),
             link: 'home-page',
           },
           {
             text: intl.formatMessage({
               defaultMessage: 'Nautical',
-              id: 'footer.home-page',
+              id: 'footer.home-page-6',
             }),
             link: 'home-page',
           },
           {
             text: intl.formatMessage({
               defaultMessage: 'Other categories',
-              id: 'footer.home-page',
+              id: 'footer.home-page-7',
             }),
             link: 'home-page',
           },
           {
             text: intl.formatMessage({
               defaultMessage: 'Parts and equipment',
-              id: 'footer.home-page',
+              id: 'footer.home-page-8',
             }),
             link: 'home-page',
           },
           {
             text: intl.formatMessage({
               defaultMessage: 'Service and services',
-              id: 'footer.home-page',
+              id: 'footer.home-page-9',
             }),
             link: 'home-page',
           },

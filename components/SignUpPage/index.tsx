@@ -79,7 +79,7 @@ const SignUp = () => {
             })}
             placeholder={intl.formatMessage({
               defaultMessage: 'Enter your full name',
-              id: 'signup.name',
+              id: 'signup.name-enter',
             })}
             name="name"
           />
@@ -90,7 +90,7 @@ const SignUp = () => {
             })}
             placeholder={intl.formatMessage({
               defaultMessage: 'Enter your email id',
-              id: 'signup.email',
+              id: 'signup.email-enter',
             })}
             name="email"
             type="email"
@@ -113,7 +113,7 @@ const SignUp = () => {
             })}
             placeholder={intl.formatMessage({
               defaultMessage: 'Enter your password',
-              id: 'signup.password',
+              id: 'signup.password-enter',
             })}
             type="password"
             name="password"

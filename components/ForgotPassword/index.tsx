@@ -57,7 +57,7 @@ function ForgotPassword({}) {
             <Input
               placeholder={intl.formatMessage({
                 defaultMessage: 'Enter your email',
-                id: 'forgotpassword.email',
+                id: 'forgotpassword.email-enter',
               })}
               name="email"
               type="email"

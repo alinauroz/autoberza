@@ -77,7 +77,7 @@ function ResetPassword({}) {
               <FormattedMessage
                 defaultMessage="To update your password, enter your new password and confirm
               password."
-                id="resetpassword.new-password"
+                id="resetpassword.new-password-message-2"
               />
             </p>
           </div>
@@ -104,7 +104,7 @@ function ResetPassword({}) {
             <Button
               text={intl.formatMessage({
                 defaultMessage: 'Update',
-                id: 'resetpassword.update',
+                id: 'resetpassword.update-button',
               })}
               type="submit"
               loading={fetching}
