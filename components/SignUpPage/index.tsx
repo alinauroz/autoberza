@@ -34,9 +34,9 @@ const REGISTER = gql`
   }
 `;
 
-const intl = useIntl();
-
 const SignUp = () => {
+  const intl = useIntl();
+
   React.useEffect(() => {
     document.title = 'Sign Up';
   }, []);

@@ -43,9 +43,9 @@ const PHONE_LOGIN = gql`
   }
 `;
 
-const intl = useIntl();
-
 const Login = () => {
+  const intl = useIntl();
+
   React.useEffect(() => {
     document.title = 'Login';
   }, []);

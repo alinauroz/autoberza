@@ -21,7 +21,7 @@ export const getLink = async ({
     };
 
     const buyLinkParams = {
-      prod: 'abc100',
+      prod: 'promotion5',
       //price: 1,
       tpl: 'default',
       qty: 1,
