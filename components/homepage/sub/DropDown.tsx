@@ -10,6 +10,8 @@ const DropDown = ({ filters }: { filters: any[] }) => {
   const [category, setCategory] = useState<any>();
   const [year, setYear] = useState<any>();
 
+  const intl = useIntl();
+
   const { cityOptions, categoryOptions, yearOptions } = useMemo(() => {
     const countryOptions = filters.find((f) => f.name === 'country');
     const categories =
@@ -30,7 +32,7 @@ const DropDown = ({ filters }: { filters: any[] }) => {
     <div className="">
       <div className="px-5 lg:px-10 py-[3px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
         <DropDownMenu
-          name="City"
+          name={intl.formatMessage({ defaultMessage: 'City', id: 'dd.city-1' })}
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
@@ -47,7 +49,10 @@ const DropDown = ({ filters }: { filters: any[] }) => {
       </div>
       <div className="px-5 lg:px-10 py-[3px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
         <DropDownMenu
-          name="Category"
+          name={intl.formatMessage({
+            defaultMessage: 'Category',
+            id: 'dd.category-1',
+          })}
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
@@ -64,7 +69,7 @@ const DropDown = ({ filters }: { filters: any[] }) => {
       </div>
       <div className="px-5 lg:px-10 py-[3px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
         <DropDownMenu
-          name="Year"
+          name={intl.formatMessage({ defaultMessage: 'Year', id: 'dd.year-1' })}
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',

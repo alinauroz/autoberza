@@ -234,5 +234,8 @@
   "forgotpassword.email-enter": "Unesite svoj e-mail",
   "adprice.discounted-price": "Snizena cena",
   "login.login-button": "Prijava",
-  "login.password": "Unesite svoju šifru"
+  "login.password": "Unesite svoju šifru",
+  "dd.category-1": "Kategorija",
+  "dd.city-1": "Grad",
+  "dd.year-1": "Godina"
 }
