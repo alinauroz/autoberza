@@ -53,7 +53,7 @@ const Header = ({ style }: Props) => {
             />
           </div>
           <div
-            className={`bg-black text-white left-0 p-5 top-[53px] h-full w-full z-10 ${
+            className={`bg-black text-white left-0 p-5 top-[53px] h-full w-full z-50 ${
               !showMenu ? 'hidden' : 'fixed'
             }`}
           >

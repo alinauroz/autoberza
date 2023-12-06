@@ -9,6 +9,8 @@ import SpeedMeter from '@/public/assets/common/homepage/speedMeterIcon.svg';
 import moment from 'moment';
 import Link from 'next/link';
 import { FormattedMessage } from 'react-intl';
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
 
 function Promoted({ category, ads }: { category: string; ads: any[] }) {
   const [lowerIndex, setLowerIndex] = React.useState(0);
@@ -86,15 +88,23 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                   key={cardInd}
                   className="bg-white w-full mx-1 rounded-2xl shadow-lg"
                 >
-                  <div className="p-3">
+                  <div className="p-3 w-full">
                     {
                       <div className="relative">
-                        <div className="h-48 w-full overflow-hidden">
-                          <img
-                            className="object-cover object-center w-full h-full"
-                            src={cardDets.photos[0]}
-                            alt="Your Image"
-                          ></img>
+                        <div className="md:h-48 md:w-full max-w-[300px] md:max-w-full m-auto overflow-hidden">
+                          <Slide
+                            autoplay={false}
+                            arrows={false}
+                            canSwipe={true}
+                          >
+                            <div className="h-min md:h-48 w-full">
+                              <img
+                                className="object-cover object-center bg-contain bg-center bg-no-repeat w-full md:h-48"
+                                src={cardDets.photos[0]}
+                                alt="Your Image"
+                              ></img>
+                            </div>
+                          </Slide>
                         </div>
                         {cardDets?.isPromoted && (
                           <button className="bg-[#FF7C7C] hover:bg-[#ff7171] absolute bottom-3 right-3 lg:bottom-2 lg:right-2 rounded-full px-3 py-1.5 text-white text-[10px] font-bold">
