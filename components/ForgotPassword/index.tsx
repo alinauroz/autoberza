@@ -9,7 +9,7 @@ import Header from '../Header/Header';
 import Input from '../Elements/Input';
 import Button from '../Elements/Button';
 import '@/styles/verification.css';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const SEND_VERIFICATION_EMAIL = gql`
   mutation Mutation($email: String!) {
@@ -18,6 +18,8 @@ const SEND_VERIFICATION_EMAIL = gql`
     }
   }
 `;
+
+const intl = useIntl();
 
 function ForgotPassword({}) {
   React.useEffect(() => {
@@ -53,14 +55,24 @@ function ForgotPassword({}) {
           </p>
           <div>
             <Input
-              placeholder="Enter your email"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Enter your email',
+                id: 'forgotpassword.email',
+              })}
               name="email"
               type="email"
               defaultValue={searchParams.get('email') as string}
             />
           </div>
           <div className="verification-btn">
-            <Button text="Send" type="submit" loading={fetching} />
+            <Button
+              text={intl.formatMessage({
+                defaultMessage: 'Send',
+                id: 'forgotpassword.send',
+              })}
+              type="submit"
+              loading={fetching}
+            />
           </div>
         </div>
       </div>

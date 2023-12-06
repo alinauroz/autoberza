@@ -22,37 +22,166 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
   const footerMenus = useMemo(
     () => [
       {
-        title: 'VEHICLE CATEGORIES',
+        title: intl.formatMessage({
+          defaultMessage: 'VEHICLE CATEGORIES',
+          id: 'footer.categories',
+        }),
         items: [
-          { text: 'Automobiles', link: 'home-page' },
-          { text: 'Motorcycles and bicycles', link: 'home-page' },
-          { text: 'Transport vehicles', link: 'home-page' },
-          { text: 'Agricultural vehicles', link: 'home-page' },
-          { text: 'Working machines', link: 'home-page' },
-          { text: 'Nautical', link: 'home-page' },
-          { text: 'Other categories', link: 'home-page' },
-          { text: 'Parts and equipment', link: 'home-page' },
-          { text: 'Service and services', link: 'home-page' },
-          { text: 'Add an ad', link: 'post-ad?category=Bike#' },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Automobiles',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Motorcycles and bicycles',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Transport vehicles',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Agricultural vehicles',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Working machines',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Nautical',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Other categories',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Parts and equipment',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Service and services',
+              id: 'footer.home-page',
+            }),
+            link: 'home-page',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Add an ad',
+              id: 'footer.post-ad?category=Bike#',
+            }),
+            link: 'post-ad?category=Bike#',
+          },
         ],
       },
       {
-        title: 'NAVIGATION',
+        title: intl.formatMessage({
+          defaultMessage: 'NAVIGATION',
+          id: 'footer.navigation',
+        }),
         items: [
-          { text: 'Shops', link: '#' },
-          { text: 'Auto parts', link: '#' },
-          { text: 'Car salons', link: '#' },
-          { text: 'Auto waste', link: '#' },
-          { text: 'Directory', link: '#' },
-          { text: 'Vehicle insurance', link: '#' },
-          { text: 'Auto news', link: '#' },
-          { text: 'SMS ads', link: '#' },
-          { text: 'Marketing', link: '#' },
-          { text: 'Site map', link: '#' },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Shops',
+              id: 'footer.shops',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto parts',
+              id: 'footer.auto-parts',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Car salons',
+              id: 'footer.car-salons',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto waste',
+              id: 'footer.auto-waste',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Directory',
+              id: 'footer.directory',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Vehicle insurance',
+              id: 'footer.vehicle-insurance',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Auto news',
+              id: 'footer. auto-news',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'SMS ads',
+              id: 'footer.sms-ads',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Marketing',
+              id: 'footer.marketing',
+            }),
+            link: '#',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Site map',
+              id: 'footer.site-map',
+            }),
+            link: '#',
+          },
         ],
       },
       {
-        title: 'YOUR AUTODEALER',
+        title: intl.formatMessage({
+          defaultMessage: 'YOUR AUTODEALER',
+          id: 'footer.autodealer',
+        }),
         items: [
           {
             text: intl.formatMessage({

@@ -67,7 +67,10 @@ const AdLocation = ({ prefill }: { prefill: any }) => {
         />
         {false && (
           <Input
-            placeholder="Location"
+            placeholder={intl.formatMessage({
+              defaultMessage: '"Location"',
+              id: 'adlocation.location',
+            })}
             name="location"
             required
             style={{

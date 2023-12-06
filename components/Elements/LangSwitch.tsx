@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
 import LanguageIcon from '@/public/assets/common/language.svg';
+import { FormattedMessage } from 'react-intl';
 
 function LangSwitch({}) {
   const handleChange = (lang: string) => {
@@ -53,7 +54,10 @@ function LangSwitch({}) {
           }}
           className="block px-4 py-2 text-white hover:text-gray-300 border-b border-gray-800 w-full text-left"
         >
-          English
+          <FormattedMessage
+            defaultMessage="English"
+            id="handlelanguagechange.english"
+          />
         </button>
         <button
           onClick={(e) => {
@@ -62,7 +66,10 @@ function LangSwitch({}) {
           }}
           className="block px-4 py-2 text-white hover:text-gray-300 w-full text-left"
         >
-          Montenegrin
+          <FormattedMessage
+            defaultMessage="Montenegrin"
+            id="handlelanguagechange.montenegrin"
+          />
         </button>
       </div>
     </div>

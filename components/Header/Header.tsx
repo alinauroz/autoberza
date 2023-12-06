@@ -203,7 +203,7 @@ const Header = ({ style }: Props) => {
               }}
               className="block px-4 py-2 text-sm text-white hover:text-gray-300 border-b border-gray-800 w-full text-left"
             >
-              English
+              <FormattedMessage defaultMessage="English" id="header.english" />
             </button>
             <button
               onClick={(e) => {
@@ -212,7 +212,10 @@ const Header = ({ style }: Props) => {
               }}
               className="block px-4 py-2 text-sm text-white hover:text-gray-300 w-full text-left"
             >
-              Montenegrin
+              <FormattedMessage
+                defaultMessage="Montenegrin"
+                id="header.montenegrin"
+              />
             </button>
           </div>
         </div>
