@@ -97,13 +97,15 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                             arrows={false}
                             canSwipe={true}
                           >
-                            <div className="h-min md:h-48 w-full">
-                              <img
-                                className="object-cover object-center bg-contain bg-center bg-no-repeat w-full md:h-48"
-                                src={cardDets.photos[0]}
-                                alt="Your Image"
-                              ></img>
-                            </div>
+                            {cardDets?.photos?.map((photo: string) => (
+                              <div className="h-min md:h-48 w-full" key={photo}>
+                                <img
+                                  className="object-cover object-center bg-contain bg-center bg-no-repeat w-full md:h-48"
+                                  src={photo}
+                                  alt="Your Image"
+                                ></img>
+                              </div>
+                            ))}
                           </Slide>
                         </div>
                         {cardDets?.isPromoted && (
