@@ -21,7 +21,6 @@ const SEND_VERIFICATION_EMAIL = gql`
 `;
 
 function Verification({}) {
-  const intl = useIntl();
   React.useEffect(() => {
     document.title = 'Email Verification';
   }, []);
@@ -39,6 +38,8 @@ function Verification({}) {
       send({ email: searchParams.get('email') });
     }
   }, [searchParams]);
+
+  const intl = useIntl();
 
   return (
     <form onSubmit={handleSubmit}>

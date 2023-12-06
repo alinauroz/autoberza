@@ -10,7 +10,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import fdtojson from '@/utils/fdtojson';
 import { toast } from 'react-hot-toast';
 import { get, set } from '@/utils/storage';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const PHONE_OTP_LOGIN = gql`
   mutation Mutation($otp: String, $phoneNo: String) {
@@ -28,6 +28,8 @@ const PHONE_OTP_LOGIN = gql`
     }
   }
 `;
+
+const intl = useIntl();
 
 const Index = () => {
   React.useEffect(() => {
@@ -79,10 +81,23 @@ const Index = () => {
               value={searchParams.get('phoneNo') || ''}
               name="phoneNo"
             />
-            <Input placeholder="Enter your OTP code" type="number" name="otp" />
+            <Input
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Enter your OTP code',
+                id: 'index.otp-code',
+              })}
+              type="number"
+              name="otp"
+            />
           </div>
           <div className="verification-btn">
-            <Button text="Submit" loading={fetching} />
+            <Button
+              text={intl.formatMessage({
+                defaultMessage: 'Submit',
+                id: 'index.submit',
+              })}
+              loading={fetching}
+            />
           </div>
         </div>
       </form>

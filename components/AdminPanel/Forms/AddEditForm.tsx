@@ -6,7 +6,7 @@ import fdtojson from '@/utils/fdtojson';
 import Button from '@/components/Elements/Button';
 import { toast } from 'react-hot-toast';
 import { IForm } from '.';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const CREATE_FORM = gql`
   mutation CreateFieldForm($category: String!, $fields: JSON!) {
@@ -175,13 +175,18 @@ function AddEditForm({
     }
   };
 
+  const intl = useIntl();
+
   return (
     <div className="w-full">
       <form onSubmit={handleSubmit}>
         <Input
           name="category"
           label="Category"
-          placeholder="Category"
+          placeholder={intl.formatMessage({
+            defaultMessage: 'Category',
+            id: 'addeditform.category',
+          })}
           defaultValue={prefill?.category}
           required
         />

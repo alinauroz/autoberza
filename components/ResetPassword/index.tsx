@@ -11,7 +11,7 @@ import Header from '../Header/Header';
 import Footer from '../PostAd/sub/Footer';
 import '@/styles/verification.css';
 import { toast } from 'react-hot-toast';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const RESET_PASSWORD = gql`
   mutation ResetPassword($password: String!, $token: String!) {
@@ -57,6 +57,8 @@ function ResetPassword({}) {
     }
   };
 
+  const intl = useIntl();
+
   return (
     <div className="container-verification">
       <div className="header">
@@ -80,16 +82,33 @@ function ResetPassword({}) {
             </p>
           </div>
           <div>
-            <Input placeholder="New Password" name="password" type="password" />
+            <Input
+              placeholder={intl.formatMessage({
+                defaultMessage: 'New Password',
+                id: 'resetpassword.new-password',
+              })}
+              name="password"
+              type="password"
+            />
             <div className="my-2" />
             <Input
-              placeholder="Confirm Password"
+              placeholder={intl.formatMessage({
+                defaultMessage: 'Confirm Password',
+                id: 'resetpassword.confirm-password',
+              })}
               name="confirmPassword"
               type="password"
             />
           </div>
           <div className="verification-btn">
-            <Button text="Update" type="submit" loading={fetching} />
+            <Button
+              text={intl.formatMessage({
+                defaultMessage: 'Update',
+                id: 'resetpassword.update',
+              })}
+              type="submit"
+              loading={fetching}
+            />
           </div>
         </form>
       </div>
