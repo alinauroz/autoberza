@@ -237,5 +237,15 @@
   "login.password": "Unesite svoju šifru",
   "dd.category-1": "Kategorija",
   "dd.city-1": "Grad",
-  "dd.year-1": "Godina"
+  "dd.year-1": "Godina",
+  "promo-10-f-1": "Brža prodaja vozila.",
+  "promo-10-f-2": "Plaćena reklama.",
+  "promo-10-f-3": "U trajanju od",
+  "promo-10-f-4": "10 dana.",
+  "promo-5-f-1": "Brža prodaja vozila.",
+  "promo-5-f-2": "Plaćena reklama.",
+  "promo-5-f-3": "U trajanju od",
+  "promo-5-f-4": "15 dana.",
+  "adtype.free": "BESPLATNO",
+  "adtype.free-f-1": "standardan prikaz oglasa"
 }

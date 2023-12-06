@@ -1,47 +1,78 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import '@/styles/postAd.css';
 import Button from '@/components/Elements/Button';
 import Link from 'next/link';
-import { FormattedMessage } from 'react-intl';
-
-const cardsData = [
-  {
-    title: 'FREE',
-    amount: 0,
-    featureList: ['Standard display of ads'],
-    plan: 'FREE',
-  },
-  {
-    title: 'PROMO 5',
-    plan: 'PROMO-5',
-    amount: process.env.NEXT_PUBLIC_PRICE_5_DAY || 10,
-    featureList: [
-      'Faster sales',
-      'Always before FREE',
-      'Marked as PAID AD',
-      <>
-        Duration of <span style={{ color: '#00C489' }}>5 days</span>
-      </>,
-    ],
-  },
-  {
-    title: 'PROMO 10',
-    plan: 'PROMO-10',
-    amount: process.env.NEXT_PUBLIC_PRICE_10_DAY || 15,
-    featureList: [
-      'Faster sales',
-      'Always before FREE',
-      'Marked as PAID AD',
-      <>
-        Duration of <span style={{ color: '#00C489' }}>10 days</span>
-      </>,
-    ],
-  },
-];
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const AdType = ({ id }: { id?: string }) => {
   const [isLeftScrolled, setIsLeftScrolled] = React.useState(false);
+  const intl = useIntl();
+  const cardsData = useMemo(
+    () => [
+      {
+        title: intl.formatMessage({
+          defaultMessage: 'FREE',
+          id: 'adtype.free',
+        }),
+        amount: 0,
+        featureList: [
+          intl.formatMessage({
+            defaultMessage: 'Standard display of ads',
+            id: 'adtype.free-f-1',
+          }),
+        ],
+        plan: 'FREE',
+      },
+      {
+        title: 'PROMO 5',
+        plan: 'PROMO-5',
+        amount: process.env.NEXT_PUBLIC_PRICE_5_DAY || 10,
+        featureList: [
+          intl.formatMessage({
+            defaultMessage: 'Faster sales',
+            id: 'promo-5-f-1',
+          }),
+          intl.formatMessage({
+            defaultMessage: 'Always before FREE',
+            id: 'promo-5-f-2',
+          }),
+          intl.formatMessage({
+            defaultMessage: 'Marked as PAID AD',
+            id: 'promo-5-f-3',
+          }),
+          intl.formatMessage({
+            defaultMessage: 'Duration of 5 days',
+            id: 'promo-5-f-4',
+          }),
+        ],
+      },
+      {
+        title: 'PROMO 10',
+        plan: 'PROMO-10',
+        amount: process.env.NEXT_PUBLIC_PRICE_10_DAY || 15,
+        featureList: [
+          intl.formatMessage({
+            id: 'promo-10-f-1',
+            defaultMessage: 'Faster sales',
+          }),
+          intl.formatMessage({
+            id: 'promo-10-f-2',
+            defaultMessage: 'Always before FREE',
+          }),
+          intl.formatMessage({
+            id: 'promo-10-f-3',
+            defaultMessage: 'Marked as PAID AD',
+          }),
+          intl.formatMessage({
+            id: 'promo-10-f-4',
+            defaultMessage: 'Duration of 10 days',
+          }),
+        ],
+      },
+    ],
+    [intl]
+  );
 
   return (
     <div className="ad-type-wrapper">
