@@ -57,7 +57,6 @@ export const getLink = async ({
     buyLinkParams[
       'return-url'
     ] = `https://google.com/api/handle-payment?adId=${adId}&plan=${plan}`;
-    console.log('HELLO 2');
     let result = await tco.generateBuyLinkSignature(buyLinkParams);
     let finalParams = JSON.parse(JSON.stringify(buyLinkParams));
     finalParams.signature = result.signature;

@@ -19,9 +19,8 @@ const SEND_VERIFICATION_EMAIL = gql`
   }
 `;
 
-const intl = useIntl();
-
 function ForgotPassword({}) {
+  const intl = useIntl();
   React.useEffect(() => {
     document.title = 'Forgot Password';
   }, []);

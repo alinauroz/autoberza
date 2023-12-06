@@ -29,9 +29,8 @@ const PHONE_OTP_LOGIN = gql`
   }
 `;
 
-const intl = useIntl();
-
 const Index = () => {
+  const intl = useIntl();
   React.useEffect(() => {
     document.title = 'Otp Verification';
   }, []);

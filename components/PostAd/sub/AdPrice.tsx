@@ -4,9 +4,8 @@ import DropDownMenu from '@/components/Elements/UCDropdown';
 import Input from '@/components/Elements/Input';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-const intl = useIntl();
-
 const AdPrice = ({ prefill }: { prefill: any }) => {
+  const intl = useIntl();
   return (
     <div className="ad-price-section-wrapper">
       <div className="ad-type-section-header">
