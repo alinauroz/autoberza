@@ -34,8 +34,8 @@ const DoubleDropdown: React.FC<Props> = ({
 
   const options2 = React.useMemo(() => {
     if (typeof selectedFirst == 'undefined') return [];
-    const optionsMn = (DoubleDropdownData as any).doubleOptionsMn[
-      selectedFirst.label as string
+    const optionsMn = (DoubleDropdownData as any).doubleOptionsMn?.[
+      selectedFirst?.label as string
     ];
     const locale = Cookies.get('locale');
     return DoubleDropdownData.doubleOptions[selectedFirst.value].map(

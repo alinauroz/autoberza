@@ -7,15 +7,18 @@ import Loading from '@/components/Elements/Loading';
 import { FormattedMessage } from 'react-intl';
 
 const GET_FILTERS = gql`
-  query Query {
-    adFilters {
+  query Query($category: String) {
+    adFilters(category: $category) {
       filters
     }
   }
 `;
 
 const DDCard = () => {
-  const [{ fetching, data }] = useQuery({ query: GET_FILTERS });
+  const [{ fetching, data }] = useQuery({
+    query: GET_FILTERS,
+    variables: { category: 'Car' },
+  });
 
   const filters = data?.adFilters?.filters || [];
 

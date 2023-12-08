@@ -176,6 +176,9 @@ const SearchPage = () => {
     const minPrice = searchParams.get('minPrice');
     const maxPrice = searchParams.get('maxPrice');
     const category = searchParams.get('category');
+    const manufactures = searchParams.get('manufactures');
+    const model = searchParams.get('model');
+    const fuel = searchParams.get('fuel');
 
     setVariables({
       ...(year && { year }),
@@ -183,6 +186,9 @@ const SearchPage = () => {
       ...(minPrice && { minPrice }),
       ...(maxPrice && { maxPrice }),
       ...(category && { categories: [category] }),
+      ...(manufactures && { manufactures }),
+      ...(model && { model }),
+      ...(fuel && { fuel }),
     });
   }, [searchParams]);
 
