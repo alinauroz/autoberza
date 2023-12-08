@@ -11,6 +11,11 @@ import Link from 'next/link';
 import { FormattedMessage } from 'react-intl';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
+import Cookies from 'js-cookie';
+
+if (Cookies.get('locale') === 'mr') {
+  require('moment/locale/me');
+}
 
 function Promoted({ category, ads }: { category: string; ads: any[] }) {
   const [lowerIndex, setLowerIndex] = React.useState(0);
@@ -158,7 +163,9 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                       </div>
                       <div className="flex items-center justify-between ">
                         <p className="text-sm text-gray-500 font-bold lg:text-base">
-                          {moment(new Date(cardDets?.createdOn || 0)).fromNow()}
+                          {moment(new Date(cardDets?.createdOn || 0))
+                            .lang('ur')
+                            .fromNow()}
                         </p>
                         <div className="flex md:flex md:flex-row items-center flex-col md:gap-2">
                           <Button
