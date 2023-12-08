@@ -25,7 +25,7 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
   };
 
   React.useEffect(() => {
-    setPageSize(isMobile ? 1 : 4);
+    setPageSize(isMobile ? ads.length : 4);
     setLowerIndex(0);
   }, [isMobile]);
 
@@ -77,7 +77,8 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
           </button>
         </div>
       </div>
-      <div className="flex justify-between w-11/12 mx-auto md:grid md:grid-cols-4 md:gap-4">
+      <div className="flex flex-row gap-4 flex-nowrap md:w-11/12 md:mx-auto md:grid md:grid-cols-4 md:overflow-hidden overflow-auto">
+        {/* <div className="flex justify-between w-11/12 mx-auto md:grid md:grid-cols-4 md:gap-4"> */}
         {ads
           .slice(lowerIndex, lowerIndex + pageSize)
           .map((cardDets, cardInd) => {
