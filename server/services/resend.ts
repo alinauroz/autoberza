@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 
-interface ISendMailArgs {
+export interface ISendMailArgs {
   to: string;
   from: string;
   subject: string;
