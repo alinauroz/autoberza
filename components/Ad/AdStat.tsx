@@ -19,7 +19,7 @@ const MinMaxAvgComponent = ({ stats }: { stats: any }) => {
             />
           </p>
           <div className="flex items-center bg-gray-200 px-2 rounded font-bold">
-            {stats.min}
+            {stats?.min}
             <p>€</p>
           </div>
         </div>
@@ -31,7 +31,7 @@ const MinMaxAvgComponent = ({ stats }: { stats: any }) => {
             />
           </p>
           <div className="flex items-center bg-gray-200 px-2 rounded font-bold">
-            {stats.max}
+            {stats?.max}
             <p>€</p>
           </div>
         </div>
@@ -43,7 +43,7 @@ const MinMaxAvgComponent = ({ stats }: { stats: any }) => {
             />
           </p>
           <div className="flex items-center bg-gray-200 px-2 rounded font-bold">
-            {stats.avg}
+            {stats?.avg}
             <p>€</p>
           </div>
         </div>

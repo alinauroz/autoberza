@@ -197,7 +197,14 @@ function MyAds() {
                           }
                         }}
                       >
-                        {deleting ? '...' : 'Delete'}
+                        {deleting ? (
+                          '...'
+                        ) : (
+                          <FormattedMessage
+                            defaultMessage="Delete"
+                            id="myads.delete"
+                          />
+                        )}
                       </button>
                     </div>
                   </div>
