@@ -180,76 +180,55 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
       {
         title: intl.formatMessage({
           defaultMessage: 'YOUR AUTODEALER',
-          id: 'footer.autodealer',
+          id: 'footer.auto-dealer',
         }),
         items: [
           {
             text: intl.formatMessage({
-              defaultMessage: 'Shops',
-              id: 'footer.shops',
+              defaultMessage: 'Mobile applications',
+              id: 'footer.mobile-application',
             }),
             link: '#',
           },
           {
             text: intl.formatMessage({
-              defaultMessage: 'Auto parts',
-              id: 'footer.auto-parts',
+              defaultMessage: 'Contact',
+              id: 'footer.contact',
+            }),
+            link: 'contact-us',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Help',
+              id: 'footer.help',
             }),
             link: '#',
           },
           {
             text: intl.formatMessage({
-              defaultMessage: 'Car salons',
-              id: 'footer.car-salon',
+              defaultMessage: 'Terms of use',
+              id: 'footer.terms-conditions',
+            }),
+            link: 'terms-conditions',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Privacy policy',
+              id: 'footer.privacy-policy',
+            }),
+            link: 'privacy-policy',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Consumer rights',
+              id: 'footer.customer-rights',
             }),
             link: '#',
           },
           {
             text: intl.formatMessage({
-              defaultMessage: 'Auto waste',
-              id: 'footer.auto-waste',
-            }),
-            link: '#',
-          },
-          {
-            text: intl.formatMessage({
-              defaultMessage: 'Directory',
-              id: 'footer.directory',
-            }),
-            link: '#',
-          },
-          {
-            text: intl.formatMessage({
-              defaultMessage: 'Vehicle insurance',
-              id: 'footer.vehible-insurance',
-            }),
-            link: '#',
-          },
-          {
-            text: intl.formatMessage({
-              defaultMessage: 'Auto news',
-              id: 'footer.auto-news',
-            }),
-            link: '#',
-          },
-          {
-            text: intl.formatMessage({
-              defaultMessage: 'SMS ads',
-              id: 'footer.sms-ads',
-            }),
-            link: '#',
-          },
-          {
-            text: intl.formatMessage({
-              defaultMessage: 'Marketing',
-              id: 'footer.marketing',
-            }),
-            link: '#',
-          },
-          {
-            text: intl.formatMessage({
-              defaultMessage: 'Site map',
-              id: 'footer.site-map',
+              defaultMessage: 'Safe trade',
+              id: 'footer.safe-trade',
             }),
             link: '#',
           },
