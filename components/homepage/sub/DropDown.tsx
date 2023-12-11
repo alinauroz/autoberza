@@ -33,7 +33,7 @@ const DropDown = ({ filters }: { filters: any[] }) => {
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
-            borderRadius: '10px',
+            borderRadius: '0',
             marginBottom: '10px',
           }}
           options={cityOptions}
@@ -50,7 +50,7 @@ const DropDown = ({ filters }: { filters: any[] }) => {
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
-            borderRadius: '10px',
+            borderRadius: '0',
             marginBottom: '10px',
           }}
           options={categoryOptions}
@@ -61,13 +61,13 @@ const DropDown = ({ filters }: { filters: any[] }) => {
         />
         <input type="hidden" value={category?.value} name="category" />
       </div>
-      <div className="px-5 lg:px-10 py-[3px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
+      <div className="px-5 lg:px-10 py-[10px] md:py-1 lg:py-1.5 xl:py-2 w-full flex items-center relative">
         <DropDownMenu
           name="Year"
           inputStyles={{
             boxShadow: 'none',
             border: '1px solid black',
-            borderRadius: '10px',
+            borderRadius: '0',
             marginBottom: '10px',
           }}
           options={yearOptions}
@@ -83,12 +83,20 @@ const DropDown = ({ filters }: { filters: any[] }) => {
           <div className="py-2 flex items-center gap-3">
             <div className="flex items-center gap-4 relative w-full">
               <p className="text-sm font-bold">Min Price</p>
-              <Input name="minPrice" type="number" />
+              <Input
+                name="minPrice"
+                type="number"
+                style={{ borderRadius: '0', padding: '10px' }}
+              />
               <div className="absolute right-2 text-sm font-bold">€</div>
             </div>
             <div className="flex items-center gap-4 relative w-full">
               <p className="text-sm font-bold">Max Price</p>
-              <Input type="number" name="maxPrice" />
+              <Input
+                type="number"
+                name="maxPrice"
+                style={{ borderRadius: '0', padding: '10px' }}
+              />
               <div className="absolute right-2 text-sm font-bold">€</div>
             </div>
           </div>

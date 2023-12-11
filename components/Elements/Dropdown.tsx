@@ -67,7 +67,7 @@ const DropDownMenu = ({
       }}
     >
       <div
-        className={`dd-title ${inputClass}`}
+        className={`dd-title !h-[55px] ${inputClass}`}
         style={{
           ...inputStyles,
           color: typeof selectedLV?.label === 'undefined' ? '#444' : '#000',
