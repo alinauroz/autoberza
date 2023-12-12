@@ -110,18 +110,23 @@ const AdType = ({ id }: { id?: string }) => {
       </div>
 
       <div
-        className={`ad-types-cards cards-${isLeftScrolled ? 'left' : 'right'}`}
+        className={`ad-types-cards w-full md:w-full gap-2 md:gap-5 cards-${
+          isLeftScrolled ? 'left' : 'right'
+        }`}
       >
         {cardsData.map(({ amount, featureList, title, plan }, i) => {
           return (
-            <div className="ad-type-card" key={i}>
-              <div className="ad-type-card__header">{title}</div>
+            <div className="ad-type-card " key={i}>
+              <div className="ad-type-card__header ">{title}</div>
               <div className="ad-type-card__body">
                 <div className="ad-type-card__body__amount">€ {amount}</div>
                 <div className="ad-type-card__body__features">
                   {featureList.map((item, itemIndex) => {
                     return (
-                      <div className="feature-item" key={itemIndex}>
+                      <div
+                        className="feature-item text-xs md:font-bold md:text-base"
+                        key={itemIndex}
+                      >
                         {item}
                       </div>
                     );
@@ -133,7 +138,7 @@ const AdType = ({ id }: { id?: string }) => {
                   <Button
                     type="button"
                     text="CHOOSE"
-                    style={{ padding: '10px 35px' }}
+                    style={{ padding: '10px 20px', fontSize: '12px' }}
                   />
                 ) : (
                   <Link
@@ -142,7 +147,7 @@ const AdType = ({ id }: { id?: string }) => {
                     <Button
                       type="button"
                       text="CHOOSE"
-                      style={{ padding: '10px 35px' }}
+                      style={{ padding: '10px 20px', fontSize: '12px' }}
                     />
                   </Link>
                 )}
