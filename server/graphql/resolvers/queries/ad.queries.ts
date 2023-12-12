@@ -148,7 +148,21 @@ export const ads = async (
     if (details) {
       filteredAds = ads.filter((ad) => {
         for (let field in details) {
-          if (Array.isArray((details as any)[field])) {
+          if (
+            (details as any).minKm &&
+            typeof (ad.details as any)?.mileage !== 'undefined'
+          ) {
+            return (
+              parseInt((ad.details as any)?.mileage) >= (details as any).minKm
+            );
+          } else if (
+            (details as any).maxKm &&
+            typeof (ad.details as any)?.mileage !== 'undefined'
+          ) {
+            return (
+              parseInt((ad.details as any)?.mileage) <= (details as any).maxKm
+            );
+          } else if (Array.isArray((details as any)[field])) {
             return (
               (details as any)[field].indexOf((ad.details as any)?.[field]) !==
               -1
