@@ -179,6 +179,8 @@ const SearchPage = () => {
     const manufactures = searchParams.get('manufactures');
     const model = searchParams.get('model');
     const fuel = searchParams.get('fuel');
+    const minKm = searchParams.get('minKm');
+    const maxKm = searchParams.get('maxKm');
 
     setVariables({
       ...(year && { year }),
@@ -189,6 +191,8 @@ const SearchPage = () => {
       ...(manufactures && { manufactures }),
       ...(model && { model }),
       ...(fuel && { fuel }),
+      ...(minKm && { minKm }),
+      ...(maxKm && { maxKm }),
     });
   }, [searchParams]);
 
