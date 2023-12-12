@@ -91,7 +91,7 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
               <Link href={`/ad/${cardDets?.id}`} key={cardInd}>
                 <div
                   key={cardInd}
-                  className="bg-white ml-3 rounded-lg shadow-lg"
+                  className="bg-white ml-3 rounded-lg shadow-lg w-[75vw] md:w-auto"
                 >
                   <div className="p-3 w-full">
                     {
