@@ -13,7 +13,7 @@ import Location from '@/public/assets/common/searchPage/locationIcon.svg';
 import { isLoggedIn } from '@/utils/auth';
 import Button from '../Elements/Button';
 import AdType from '../PostAd/sub/AdType';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const GET_MY_ADS = gql`
   query MyAds {
@@ -54,6 +54,7 @@ function MyAds() {
   React.useEffect(() => {
     document.title = 'My Ads';
   }, []);
+  const intl = useIntl();
   const [showPromotion, setShowPromotion] = useState(false);
   const [{ fetching, data: response }] = useQuery({ query: GET_MY_ADS });
   const [{ fetching: deleting }, deleteAd] = useMutation(DELETE_AD);
@@ -197,7 +198,12 @@ function MyAds() {
                           }
                         }}
                       >
-                        {deleting ? '...' : 'Delete'}
+                        {deleting
+                          ? '...'
+                          : intl.formatMessage({
+                              defaultMessage: 'Delete',
+                              id: 'forms.delete',
+                            })}
                       </button>
                     </div>
                   </div>
