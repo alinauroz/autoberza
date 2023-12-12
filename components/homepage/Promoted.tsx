@@ -37,10 +37,10 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
 
   return (
     <>
-      <div className="flex items-center justify-between w-11/12 mx-auto py-3">
+      <div className="flex items-center justify-between w-11/12 mx-auto py-4">
         <p className="text-2xl font-bold">{category}</p>
         <div
-          className="flex items-center gap-2 "
+          className="md:flex items-center gap-2 hidden"
           style={{
             minHeight: '60px',
           }}
@@ -83,8 +83,7 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
           </button>
         </div>
       </div>
-      <div className="flex flex-row gap-4 flex-nowrap md:w-11/12 md:mx-auto md:grid md:grid-cols-4 md:overflow-hidden overflow-auto">
-        {/* <div className="flex justify-between w-11/12 mx-auto md:grid md:grid-cols-4 md:gap-4"> */}
+      <div className="flex flex-row flex-nowrap md:w-11/12 md:mx-auto md:grid md:grid-cols-4 md:overflow-hidden overflow-auto">
         {ads
           .slice(lowerIndex, lowerIndex + pageSize)
           .map((cardDets, cardInd) => {
@@ -92,12 +91,12 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
               <Link href={`/ad/${cardDets?.id}`} key={cardInd}>
                 <div
                   key={cardInd}
-                  className="bg-white w-full mx-1 rounded-2xl shadow-lg"
+                  className="bg-white ml-3 rounded-lg shadow-lg"
                 >
                   <div className="p-3 w-full">
                     {
                       <div className="relative">
-                        <div className="md:h-48 md:w-full max-w-[300px] md:max-w-full m-auto overflow-hidden">
+                        <div className="md:h-48 md:w-full max-w-[230px] md:max-w-full m-auto overflow-hidden">
                           <Slide
                             autoplay={false}
                             arrows={false}
@@ -125,7 +124,7 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                       </div>
                     }
                     <div className="flex flex-col justify-between lg:w-full pl-2">
-                      <p className="text-xl font-bold lg:text-xl lg:mb-2 mt-4">
+                      <p className="text-base font-bold lg:text-lg lg:mb-2 mt-4">
                         {cardDets.title}
                       </p>
                       <div className="grid grid-cols-2 gap-4 pt-6 pb-4">
@@ -173,7 +172,7 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                             style={{
                               backgroundColor: 'Transparent',
                               color: '#00C489',
-                              fontSize: '20px',
+                              fontSize: '18px',
                               fontWeight: '700',
 
                               display: 'flex',

@@ -23,8 +23,8 @@ const DDCard = () => {
   const filters = data?.adFilters?.filters || [];
 
   return (
-    <div className="bg-white rounded-md lg:w-[550px] xl:w-[500px] md:w-96 w-[4/6] lg:rounded-xl py-2 md:py-6 lg:py-4 xl:py-12 xl:-ml-32">
-      <p className="my-6 md:text-2xl md:pb-3 lg:pb-4 xl:pb-5 lg:text-3xl xl:text-4xl font-semibold text-center ">
+    <div className="bg-white rounded-md lg:w-[550px] xl:w-[500px] md:w-96 w-[4/6] lg:rounded-xl pt-4 pb-6 md:py-6 lg:py-4 xl:py-12 xl:-ml-32">
+      <p className="my-6 md:text-2xl md:pb-3 lg:pb-4 xl:pb-5 text-2xl lg:text-3xl xl:text-4xl font-semibold text-center ">
         <FormattedMessage
           defaultMessage="Find your right car"
           id="ddcard.car"
@@ -39,7 +39,7 @@ const DDCard = () => {
           <DropDown filters={filters} />
         )}
         <div className="flex items-center justify-between w-[80%] md:w-[90%] pt-[3px] md:pt-5 lg:w-full mx-auto ">
-          <p className="md:text-lg text-gray-500 font-semibold lg:hidden">
+          <p className="md:text-lg text-gray-700 font-bold bg-gray-300 py-1 px-2 rounded-md lg:hidden">
             <Link href="/search">
               <FormattedMessage
                 defaultMessage="Advance Search"
@@ -52,8 +52,8 @@ const DDCard = () => {
           </button>
         </div>
       </form>
-      <Link href="/search">
-        <p className="hidden lg:flex items-center text-gray-700 justify-end font-bold text-lg text-end px-10 pt-5 cursor-pointer">
+      <Link href="/search" className="flex justify-end mx-10">
+        <p className="hidden lg:flex items-center justify-center bg-gray-300 w-max font-bold text-xl pl-5 pr-3 rounded-md  py-2 mt-5 cursor-pointer">
           <FormattedMessage
             defaultMessage="Advance Search"
             id="ddcard.advance-search"
