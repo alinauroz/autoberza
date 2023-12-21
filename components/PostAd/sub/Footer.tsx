@@ -220,6 +220,20 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
           },
           {
             text: intl.formatMessage({
+              defaultMessage: 'Delivery policy',
+              id: 'deliverypolicy.delivery-policy',
+            }),
+            link: 'delivery',
+          },
+          {
+            text: intl.formatMessage({
+              defaultMessage: 'Refund policy',
+              id: 'refundpolicy.refund-policy',
+            }),
+            link: 'refund',
+          },
+          {
+            text: intl.formatMessage({
               defaultMessage: 'Consumer rights',
               id: 'footer.customer-rights',
             }),
