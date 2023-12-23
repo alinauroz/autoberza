@@ -262,6 +262,11 @@ function Ads() {
                       <FormattedMessage defaultMessage="View" id="ads.view" />
                     </a>
                   </button>
+                  <button className="bg-blue-600 p-1 ml-2 px-2 text-white border-0 font-medium rounded-md">
+                    <a href={`/edit-ad?id=${ad.id}`} target="_blank">
+                      Update
+                    </a>
+                  </button>
                   <button
                     className="ml-2 bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md"
                     onClick={() => {

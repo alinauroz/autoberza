@@ -137,7 +137,10 @@ const AdType = ({ id }: { id?: string }) => {
                 {plan === 'FREE' ? (
                   <Button
                     type="button"
-                    text="CHOOSE"
+                    text={intl.formatMessage({
+                      defaultMessage: 'CHOOSE',
+                      id: 'adtype.choose',
+                    })}
                     style={{ padding: '10px 20px', fontSize: '12px' }}
                   />
                 ) : (
