@@ -228,7 +228,7 @@ const Footer = ({ containerClass }: { containerClass?: string }) => {
           {
             text: intl.formatMessage({
               defaultMessage: 'Refund policy',
-              id: 'refundpolicy.refund-policy',
+              id: 'refundpolicy.refund-policy-1',
             }),
             link: 'refund',
           },

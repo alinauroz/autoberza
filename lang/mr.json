@@ -262,5 +262,7 @@
   "footer.privacy-policy": "Politika privatnosti",
   "footer.safe-trade": "Siguran trgovinski promet",
   "footer.terms-conditions": "Uslovi korišćenja",
-  "adtype.choose": "Izaberi"
+  "adtype.choose": "Izaberi",
+  "ad.mark-sold": "Prodato",
+  "ad.mark-unsold": "Neprodato"
 }
