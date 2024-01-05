@@ -105,7 +105,7 @@ function Promoted({ category, ads }: { category: string; ads: any[] }) {
                             {cardDets?.photos?.map((photo: string) => (
                               <div className="h-min md:h-48 w-full" key={photo}>
                                 <img
-                                  className="object-cover object-center bg-contain bg-center bg-no-repeat w-full md:h-48"
+                                  className="object-cover object-center bg-contain bg-center bg-no-repeat w-full h-36 md:h-48"
                                   src={photo}
                                   alt="Your Image"
                                 ></img>
