@@ -30,6 +30,7 @@ const projectTypedefs = `
       subscriptionPlan: String
       subscriptionEndDate: Date
       isPromoted: Boolean
+      sold: Boolean
     }
 
     type AdResponse {
@@ -116,6 +117,7 @@ const projectTypedefs = `
         category: String
         manufacturer: String
         model: String
+        sold: Boolean
       ): Ad
       deleteAd(
         id: String!

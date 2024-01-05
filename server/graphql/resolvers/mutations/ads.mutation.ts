@@ -58,21 +58,17 @@ export const updateAd = isLoggedIn(
       title,
       isApproved,
       category,
+      sold,
     }: Prisma.Ad
   ) => {
     if (details === null) {
       throw new Error('Details can not be null');
     }
 
-    console.log({
-      manufacturer:
-        (details as any)?.manufacturer || (details as any)?.manufactures,
-      model: (details as any)?.model,
-    });
-
     const ad = await prisma.ad.update({
       where: { id },
       data: {
+        sold,
         country,
         city,
         location,
