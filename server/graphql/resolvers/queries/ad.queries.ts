@@ -30,7 +30,6 @@ export const homepageAds = async () => {
   const getAds = async (category: any) => {
     let promoted: any = await prisma.ad.findMany({
       where: {
-        sold: false,
         subscriptionEndDate: {
           gte: new Date(),
         },
@@ -45,7 +44,6 @@ export const homepageAds = async () => {
     if (promoted.length < 20) {
       const moreAds = await prisma.ad.findMany({
         where: {
-          sold: false,
           category,
           isApproved: true,
           id: { not: { in: ids } },
@@ -92,7 +90,7 @@ export const ads = async (
 ) => {
   try {
     const where: any = {
-      sold: false,
+      sold: { not: true },
       isApproved,
       id,
       ...(dateAfter && {
@@ -124,7 +122,6 @@ export const ads = async (
       const promotedResponse = await prisma.ad.findMany({
         where: {
           ...where,
-          sold: false,
           subscriptionEndDate: { gte: new Date() },
         },
         take: 4,
