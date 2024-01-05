@@ -21,6 +21,7 @@ const GET_MY_ADS = gql`
       count
       moreExists
       data {
+        sold
         category
         city
         country
@@ -50,6 +51,15 @@ export const DELETE_AD = gql`
   }
 `;
 
+const UPDATE_AD = gql`
+  mutation UpdateAd($id: String!, $sold: Boolean) {
+    updateAd(id: $id, sold: $sold) {
+      id
+      sold
+    }
+  }
+`;
+
 function MyAds() {
   React.useEffect(() => {
     document.title = 'My Ads';
@@ -59,6 +69,7 @@ function MyAds() {
   const [{ fetching, data: response }] = useQuery({ query: GET_MY_ADS });
   const [{ fetching: deleting }, deleteAd] = useMutation(DELETE_AD);
   const ads = response?.myAds?.data || [];
+  const [{ fetching: markingSold }, markSold] = useMutation(UPDATE_AD);
 
   if (!isLoggedIn()) {
     return (
@@ -170,6 +181,26 @@ function MyAds() {
                             />
                           </button>
                         </Link>
+                        {
+                          <button
+                            onClick={() => {
+                              markSold({ id: ad.id, sold: !ad.sold });
+                            }}
+                            className="bg-[#00C489] hover:bg-[#02b57f] active:bg-[#009669] lg:px-8 lg:py-2 text-white lg:text-sm lg:font-semibold rounded-full text-xs px-4 py-1"
+                          >
+                            {ad?.sold ? (
+                              <FormattedMessage
+                                defaultMessage={'Mark Unsold'}
+                                id="ad.mark-unsold"
+                              />
+                            ) : (
+                              <FormattedMessage
+                                defaultMessage={'Mark Sold'}
+                                id="ad.mark-sold"
+                              />
+                            )}
+                          </button>
+                        }
                         {process.env.NEXT_PUBLIC_ENABLE_PROMOTION == '1' && (
                           <button
                             onClick={() =>
