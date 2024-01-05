@@ -151,7 +151,7 @@ const AdType = ({ id }: { id?: string }) => {
                       type="button"
                       text={intl.formatMessage({
                         defaultMessage: 'CHOOSE',
-                        id: 'choose.message',
+                        id: 'adtype.choose',
                       })}
                       style={{ padding: '10px 20px', fontSize: '12px' }}
                     />
