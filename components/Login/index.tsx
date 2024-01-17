@@ -6,7 +6,7 @@ import Button from '../Elements/Button';
 import Header from '../Header/Header';
 import Input from '../Elements/Input';
 import Menu from '../Elements/Menu';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 const Login = () => {
   const [loginMenuIndex, setLoginMenuIndex] = useState(0);
@@ -54,6 +54,8 @@ const Login = () => {
         <a href="#">Help!</a>
       </div>
 
+      <input type="button" onClick={() => signOut()} value={'Sign Out'} />
+
       <form action="http://localhost:3000/api/auth/signin/google" method="POST">
         <input
           type="hidden"
@@ -62,13 +64,6 @@ const Login = () => {
         />
         <input type="hidden" name="callbackUrl" value="http://localhost:3000" />
         <button type="submit" className="button" style={{}}>
-          <img
-            loading="lazy"
-            height="24"
-            width="24"
-            id="provider-logo"
-            src="https://authjs.dev/img/providers/google.svg"
-          />
           <img
             loading="lazy"
             height="24"
