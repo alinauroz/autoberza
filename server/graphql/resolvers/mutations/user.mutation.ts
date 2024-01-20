@@ -185,3 +185,7 @@ export const phoneOtpLogin = async (
     throw new Error(INCORRECT_OTP);
   }
 };
+
+export const deleteUser = adminOnly(async (_: unknown, { id }) => {
+  return prisma.user.delete({ where: { id } });
+});
