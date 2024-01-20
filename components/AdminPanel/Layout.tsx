@@ -1,5 +1,6 @@
 import { isLoggedIn } from '@/utils/auth';
 import Cookies from 'js-cookie';
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -151,7 +152,8 @@ function Layout({
                 </svg>
                 <span
                   className="flex-1 ml-3 whitespace-nowrap"
-                  onClick={() => {
+                  onClick={async () => {
+                    await signOut();
                     Cookies.remove('token');
                     window.location.reload();
                   }}

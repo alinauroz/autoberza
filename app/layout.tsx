@@ -28,8 +28,10 @@ export default function RootLayout({
     if (!token) {
       fetch('/api/token').then((data) => {
         data.json().then((d) => {
-          Cookies.set('token', d.token);
-          window.location.reload();
+          if (d.token) {
+            Cookies.set('token', d.token);
+            window.location.reload();
+          }
         });
       });
     }

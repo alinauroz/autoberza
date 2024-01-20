@@ -13,6 +13,7 @@ import CancelBtn from '@/public/assets/common/searchPage/white-cross.svg';
 import { FormattedMessage, useIntl } from 'react-intl';
 import LangSwitch from '../Elements/LangSwitch';
 import LanguageIcon from '@/public/assets/common/language.svg';
+import { signOut } from 'next-auth/react';
 
 interface Props {
   style?: React.CSSProperties;
@@ -78,7 +79,8 @@ const Header = ({ style }: Props) => {
                 </Link>
                 <span
                   className="cursor-pointer mt-4"
-                  onClick={() => {
+                  onClick={async () => {
+                    await signOut();
                     Cookies.remove('token');
                     window.location.reload();
                   }}
@@ -140,7 +142,8 @@ const Header = ({ style }: Props) => {
                 </Link>
                 <span
                   className="cursor-pointer"
-                  onClick={() => {
+                  onClick={async () => {
+                    await signOut();
                     Cookies.remove('token');
                     window.location.reload();
                   }}
