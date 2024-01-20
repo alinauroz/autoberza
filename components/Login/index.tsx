@@ -7,18 +7,10 @@ import Header from '../Header/Header';
 import Input from '../Elements/Input';
 import Menu from '../Elements/Menu';
 import { signIn, signOut } from 'next-auth/react';
+import SocialLogin from './Social';
 
 const Login = () => {
   const [loginMenuIndex, setLoginMenuIndex] = useState(0);
-  const [csrf, setCsrf] = useState();
-
-  useEffect(() => {
-    fetch('/api/auth/csrf').then((d) => {
-      d.json().then((r) => {
-        setCsrf(r.csrfToken);
-      });
-    });
-  }, []);
 
   const isEmail = React.useMemo(() => {
     return loginMenuIndex == 0;
@@ -64,31 +56,7 @@ const Login = () => {
           <a href="#">Help!</a>
         </div>
       </form>
-      <div className="h-96">
-        <input type="button" onClick={() => signIn()} value="Sign In" />
-        <input type="button" onClick={() => signOut()} value={'Sign Out'} />
-      </div>
-      <form action="http://localhost:3000/api/auth/signin/google" method="POST">
-        <input type="hidden" name="csrfToken" value={csrf} />
-        <input type="hidden" name="callbackUrl" value="/" />
-        <button type="submit" className="button">
-          <img
-            loading="lazy"
-            height="24"
-            width="24"
-            id="provider-logo"
-            src="https://authjs.dev/img/providers/google.svg"
-          />
-          <img
-            loading="lazy"
-            height="24"
-            width="24"
-            id="provider-logo-dark"
-            src="https://authjs.dev/img/providers/google.svg"
-          />
-          <span>Sign in with Google</span>
-        </button>
-      </form>
+      <SocialLogin />
     </>
   );
 };
