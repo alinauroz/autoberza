@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
 import { FormattedMessage, useIntl } from 'react-intl';
+import LoginOption from '../Elements/LoginOption';
 
 const REGISTER = gql`
   mutation RegisterUser(
@@ -126,12 +127,16 @@ const SignUp = () => {
             type="submit"
             loading={fetching}
           />
+          <LoginOption
+            googleText="Sign up with Google"
+            facebookText="Sign up with FaceBook"
+          />
           <p className="account-info">
             <FormattedMessage
               defaultMessage="Already have an account?"
               id="signup.login-info1"
             />
-            <span className="login-btn">
+            <span className="login-btn ml-2">
               <FormattedMessage defaultMessage="Login" id="signup.login-info" />
             </span>
           </p>
