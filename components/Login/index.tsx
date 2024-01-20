@@ -158,7 +158,7 @@ const Login = () => {
           </p>
           <LoginOption
             googleText="Sign in with Google"
-            facebookText="Sign in with FaceBook"
+            facebookText="Sign in with Facebook"
           />
           <p className="account-info">
             <FormattedMessage
