@@ -16,6 +16,7 @@ import { set } from '@/utils/storage';
 import Footer from '../PostAd/sub/Footer';
 import '../../styles/postAd.css';
 import { FormattedMessage, useIntl } from 'react-intl';
+import LoginOption from '../Elements/LoginOption';
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -155,13 +156,17 @@ const Login = () => {
               />
             </Link>
           </p>
+          <LoginOption
+            googleText="Sign in with Google"
+            facebookText="Sign in with FaceBook"
+          />
           <p className="account-info">
             <FormattedMessage
               defaultMessage="Don't have an account?"
               id="login.have-account"
             />{' '}
             <Link href="/register">
-              <span className="login-btn">
+              <span className="login-btn ml-2">
                 <FormattedMessage defaultMessage="Sign Up" id="login.signup" />
               </span>
             </Link>
