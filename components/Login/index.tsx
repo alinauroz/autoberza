@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/login.css';
 import Button from '../Elements/Button';
 import Header from '../Header/Header';
@@ -42,6 +42,8 @@ const PHONE_LOGIN = gql`
     }
   }
 `;
+import { signIn, signOut } from 'next-auth/react';
+import SocialLogin from './Social';
 
 const Login = () => {
   const intl = useIntl();

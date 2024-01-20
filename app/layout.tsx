@@ -9,6 +9,9 @@ import { IntlProvider } from 'react-intl';
 import en from '../lang/en.json';
 import fr from '../lang/fr.json';
 import mr from '../lang/mr.json';
+import { SessionProvider } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -20,6 +23,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const locale = (Cookies.get('locale') || 'mr') as 'mr' | 'en';
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      fetch('/api/token').then((data) => {
+        data.json().then((d) => {
+          Cookies.set('token', d.token);
+          window.location.reload();
+        });
+      });
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -31,10 +46,12 @@ export default function RootLayout({
       <body className={inter.className}>
         {
           <IntlProvider locale={locale} messages={messages[locale]}>
-            <Provider value={client}>
-              {children}
-              <Toaster />
-            </Provider>
+            <SessionProvider>
+              <Provider value={client}>
+                {children}
+                <Toaster />
+              </Provider>
+            </SessionProvider>
           </IntlProvider>
         }
       </body>
