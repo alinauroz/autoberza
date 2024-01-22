@@ -21,8 +21,10 @@ export const send = async ({ to, subject, text }: ISendMailArgs) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
+    console.log('>>', info);
     return info;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
