@@ -5,9 +5,9 @@ import {
 } from '@/constants';
 import getDomain from '../utils/getDomain';
 import { generateToken } from './token';
-import { send } from './resend';
+import { send } from './gmail';
 
-export const sendForgetPasswordEmail = (email: string) => {
+export const sendForgetPasswordEmail = async (email: string) => {
   const text = `
         Hi, click here ${getDomain()}/reset-password?token=${generateToken({
           tokenFor: TOKEN_FOR_RESETTING_PASSWORD,
@@ -15,7 +15,7 @@ export const sendForgetPasswordEmail = (email: string) => {
         })}
         to reset password
     `;
-  send({
+  await send({
     to: email,
     from: process.env.FROM_EMAIL as string,
     subject: RESET_PASSWORD,
