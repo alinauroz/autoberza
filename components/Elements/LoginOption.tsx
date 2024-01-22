@@ -24,7 +24,7 @@ const LoginOption = ({
 
   return (
     <div className="grid lg:grid-cols-2 justify-between gap-2 py-5 w-full ">
-      <form action="/api/auth/signin/google" method="POST">
+      <form action="/api/auth/signin/facebook" method="POST">
         <input type="hidden" name="csrfToken" value={csrf} />
         <input type="hidden" name="callbackUrl" value="/" />
         <button
@@ -40,7 +40,7 @@ const LoginOption = ({
           </p>
         </button>
       </form>
-      <form action="/api/auth/signin/facebook" method="POST">
+      <form action="/api/auth/signin/google" method="POST">
         <input type="hidden" name="csrfToken" value={csrf} />
         <input type="hidden" name="callbackUrl" value="/" />
         <button

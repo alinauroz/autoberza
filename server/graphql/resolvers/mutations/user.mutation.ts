@@ -228,3 +228,7 @@ export const updateUser = async (
     data,
   });
 };
+
+export const deleteUser = adminOnly(async (_: unknown, { id }) => {
+  return prisma.user.delete({ where: { id } });
+});

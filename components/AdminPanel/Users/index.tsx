@@ -8,6 +8,14 @@ import Table, { Td, Th, Tr } from '@/components/Elements/Table';
 import ModalComponent from '@/components/Elements/Modal';
 import { FormattedMessage } from 'react-intl';
 
+const DELETE_USER = gql`
+  mutation Mutation($id: String!) {
+    deleteUser(id: $id) {
+      id
+    }
+  }
+`;
+
 export interface IUser {
   chatId?: number;
   cover?: string;
@@ -93,6 +101,7 @@ function Users() {
     useMutation(UPDATE_ADMIN_STATUS);
   const [{ fetching: updatingStaffStatus }, updateStaffStatus] =
     useMutation(UPDATE_STAFF_STATUS);
+  const [{ fetching: deleting }, deleteUser] = useMutation(DELETE_USER);
 
   const [userDetailsId, setUserDetailsId] = useState('');
 
@@ -170,6 +179,26 @@ function Users() {
                           defaultMessage="View"
                           id="users.view"
                         />
+                      </button>
+                      <button
+                        className="ml-2 bg-blue-600 p-1 px-2 text-white border-0 font-medium rounded-md"
+                        onClick={() => {
+                          if (
+                            window.confirm(
+                              'Are you sure you want to delete this user'
+                            )
+                          )
+                            deleteUser({ id: user.id });
+                        }}
+                      >
+                        {deleting ? (
+                          '...'
+                        ) : (
+                          <FormattedMessage
+                            defaultMessage="Delete"
+                            id="users.delete"
+                          />
+                        )}
                       </button>
                     </Td>
                   </Tr>
