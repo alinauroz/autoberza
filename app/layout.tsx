@@ -13,6 +13,7 @@ import { SessionProvider } from 'next-auth/react';
 import { getServerSession } from 'next-auth';
 import { useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { set } from '@/utils/storage';
 
 const inter = Inter({ subsets: ['latin'] });
 const messages = { en, fr, mr };
@@ -30,6 +31,7 @@ export default function RootLayout({
         data.json().then((d) => {
           if (d.token) {
             Cookies.set('token', d.token);
+            set('user', d.user);
             window.location.reload();
           }
         });
