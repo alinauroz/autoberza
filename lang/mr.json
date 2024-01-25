@@ -108,7 +108,6 @@
   "myads.your-ads": "Vaši oglasi",
   "nextpage.last": "Poslednja",
   "nextpage.next": "Sledeća",
-  "ourservices.buy-sell": "Top prodaja i kupovina automobila",
   "ourservices.description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, laudantium? Nostrum, corporis. Quaerat, explicabo numquam consequatur, nesciunt expedita dolorem.",
   "ourservices.services-heading1": "Šta vam pružamo",
   "ourservices.services-subheading": "Pružamo vam mnogo najboljih usluga i ostvarićete najbolje benefite ovde",
@@ -264,5 +263,11 @@
   "footer.terms-conditions": "Uslovi korišćenja",
   "adtype.choose": "Izaberi",
   "ad.mark-sold": "Prodato",
-  "ad.mark-unsold": "Neprodato"
+  "ad.mark-unsold": "Neprodato",
+  "ourservices.buy-sell": "Top prodaja i kupovina automobila",
+  "ourservices.description-1": "Dobrodošli na našu platformu posvećenu vrhunskoj prodaji i kupovini automobila! Ovdje se susrijeću strastveni vozači i prodavci, stvarajući idealno mjesto za najbolje poslovne prilike. Pregledajte našu raznovrsnu ponudu vozila i pronađite savršen auto koji odgovara vašim potrebama ili brzo i jednostavno postavite svoj oglas kako biste privukli prave kupce.",
+  "ourservices.description-2": "Postavite svoj automobil u prvi plan na našoj platformi, gdje se ističe svaki model kao pravo dostignuće. Nudimo vam jednostavan način da predstavite sve karakteristike vašeg vozila putem atraktivnih oglasa. Bilo da je riječ o performansama, stilu ili inovativnim funkcijama, ovo je mesto gdje kupci dolaze kako bi pronašli vrhunske automobile. Iskoristite priliku da vaša prodaja bude primijećena - jer svaki automobil zaslužuje da zablista.",
+  "ourservices.description-3": "Otkrijte svijet jednostavnog oglašavanja i pretrage automobila na našoj platformi. Sa intuitivnim dizajnom i korisničkim interfejsom, korišćenje naše usluge postaje pravo zadovoljstvo. Bez nepotrebnih komplikacija, brzo postavite svoj oglas ili pronađite automobil iz snova u samo nekoliko koraka. Uživajte u iskustvu bez gubitka vremena, jer vjerujemo da je pronalaženje ili prodaja automobila moguća bez stresa.",
+  "ourservices.sales": "Istaknite Vaš Automobil, ubrzajte prodaju",
+  "ourservices.usage": "Jednostavno korišćenje"
 }
