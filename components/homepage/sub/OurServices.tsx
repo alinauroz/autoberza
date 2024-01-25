@@ -28,16 +28,14 @@ const OurServices = () => {
           <Image src={LikeImg} alt="" className="w-8" />
           <h1 className="text-lg font-bold">
             <FormattedMessage
-              defaultMessage="Top Buy & Sell Car"
+              defaultMessage="Top selling and buying cars"
               id="ourservices.buy-sell"
             />
           </h1>
           <p className="text-sm lg:text-base text-gray-600">
             <FormattedMessage
-              defaultMessage="Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Consequuntur, laudantium? Nostrum, corporis. Quaerat, explicabo
-            numquam consequatur, nesciunt expedita dolorem."
-              id="ourservices.description"
+              defaultMessage="Welcome to our platform dedicated to the ultimate sale and purchase of cars! Here, passionate drivers and salespeople meet, creating an ideal place for the best business opportunities. Browse our wide range of vehicles and find the perfect car to suit your needs, or post your ad quickly and easily to attract the right buyers."
+              id="ourservices.description-1"
             />
           </p>
         </div>
@@ -45,16 +43,15 @@ const OurServices = () => {
           <Image src={CreditCardImg} alt="" className="w-8" />
           <h1 className="text-lg font-bold">
             <FormattedMessage
-              defaultMessage="Easy Payment"
-              id="ourservices.services2"
+              defaultMessage="Highlight your car, speed up sales
+              "
+              id="ourservices.sales"
             />
           </h1>
           <p className="text-sm lg:text-base text-gray-600">
             <FormattedMessage
-              defaultMessage="Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Consequuntur, laudantium? Nostrum, corporis. Quaerat, explicabo
-            numquam consequatur, nesciunt expedita dolorem."
-              id="ourservices.description"
+              defaultMessage="Put your car in the foreground on our platform, where each model stands out as a real achievement. We offer you a simple way to present all the features of your vehicle through attractive ads. Whether it's performance, style or innovative features, this is where buyers come to find the ultimate cars. Take the opportunity to get your sale noticed - because every car deserves to shine."
+              id="ourservices.description-2"
             />
           </p>
         </div>
@@ -63,15 +60,13 @@ const OurServices = () => {
           <h1 className="text-lg font-bold">
             <FormattedMessage
               defaultMessage="Easy To Use"
-              id="ourservices.services3"
+              id="ourservices.usage"
             />
           </h1>
           <p className="text-sm lg:text-base text-gray-600">
             <FormattedMessage
-              defaultMessage="Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Consequuntur, laudantium? Nostrum, corporis. Quaerat, explicabo
-            numquam consequatur, nesciunt expedita dolorem."
-              id="ourservices.description"
+              defaultMessage="Discover the world of simple car advertising and search on our platform. With an intuitive design and user interface, using our service becomes a real pleasure. Without unnecessary complications, quickly place your ad or find the car of your dreams in just a few steps. Enjoy the experience without wasting time, because we believe that finding or selling a car is possible without stress."
+              id="ourservices.description-3"
             />
           </p>
         </div>
