@@ -31,8 +31,14 @@ export default function RootLayout({
         data.json().then((d) => {
           if (d.token) {
             Cookies.set('token', d.token);
+            console.log('User', d.user);
             set('user', d.user);
-            window.location.reload();
+
+            if (d.user?.phone) {
+              window.location.reload();
+            } else {
+              window.location.href = '/profile';
+            }
           }
         });
       });
