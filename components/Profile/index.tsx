@@ -20,12 +20,14 @@ const UPDATE_USER = gql`
   mutation UpdateUser(
     $name: String
     $email: String
+    $phone: String
     $currentPassword: String
     $newPassword: String
   ) {
     updateUser(
       name: $name
       email: $email
+      phone: $phone
       currentPassword: $currentPassword
       newPassword: $newPassword
     ) {
@@ -62,6 +64,7 @@ function Profile({}) {
         email: data.updateUser.email,
         phone: data.updatedUser.phone,
       });
+      window.location.reload();
     });
   };
 
@@ -71,6 +74,15 @@ function Profile({}) {
         <div className="header">
           <Header />
         </div>
+        {user?.phone ? null : (
+          <div className="bg-yellow-200 border-l-4 border-yellow-500 p-4">
+            <FormattedMessage
+              id="warning.message"
+              defaultMessage="Your phone number is missing. Add it now so buyers can contact you."
+            />
+          </div>
+        )}
+
         <div className="signup-content">
           <p className="text-2xl font-bold my-6">
             <FormattedMessage defaultMessage="Profile" id="profile.profile" />

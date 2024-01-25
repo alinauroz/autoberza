@@ -206,10 +206,13 @@ export const updateUser = async (
     name,
     newPassword,
     currentPassword,
+    phone,
   }: Prisma.User & { newPassword: string; currentPassword: string },
   { user }: IGqlContext
 ) => {
-  const data: any = { email, name };
+  const data: any = { email, name, phone };
+
+  console.log('Phone', phone);
 
   if (newPassword) {
     const isPasswordCorrect = await bcrypt.compare(
