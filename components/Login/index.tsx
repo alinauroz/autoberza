@@ -74,6 +74,9 @@ const Login = () => {
         login({ email, password }).then(({ data }) => {
           if (data.login.error) {
             toast.error(data.login.error);
+            if (data.login.error.indexOf('not verified') > -1) {
+              router.push('/email-verification?email=' + email);
+            }
           } else {
             Cookies.set('token', data.login.token);
             set('user', data.login.user);

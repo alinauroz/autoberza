@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import Forms from './Forms';
 import { useSearchParams } from 'next/navigation';
 import Users from './Users';
 import Ads from './Ads';
+import { get } from '@/utils/storage';
 
 function AdminPanel() {
   React.useEffect(() => {
@@ -13,6 +14,13 @@ function AdminPanel() {
   const searchParams = useSearchParams();
 
   const page = searchParams.get('page');
+  const user = useMemo(() => {
+    return get('user');
+  }, []);
+
+  if (!user.isAdmin) {
+    return 'You are not admin';
+  }
 
   if (page === 'users') {
     return <Users />;

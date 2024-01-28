@@ -76,7 +76,7 @@ function Verification({}) {
           <div className="verification-btn">
             <Button
               text={intl.formatMessage({
-                defaultMessage: 'Send Again',
+                defaultMessage: 'Send',
                 id: 'new-verification.send-again',
               })}
               type="submit"

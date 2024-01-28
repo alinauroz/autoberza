@@ -190,7 +190,7 @@
   "myads.promote": "Promote",
   "myads.your-ads": "Your Ads",
   "new-verification.enter-ur-email": "Enter your email",
-  "new-verification.send-again": "Send Again",
+  "new-verification.send-again": "Send",
   "nextpage.last": "Last",
   "nextpage.next": "Next",
   "ourservices.buy-sell": "Top selling and buying cars",
@@ -283,5 +283,5 @@
   "users.user-details": "User Details",
   "users.view": "View",
   "verification.email": "Email Verification!",
-  "verification.mail": "A verification email has been sent to your email address. Check your inbox. If you have not received any email, try resending verification email."
+  "verification.mail": "Enter your email to receive confirmation link"
 }
