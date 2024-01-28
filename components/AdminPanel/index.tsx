@@ -18,7 +18,9 @@ function AdminPanel() {
     return get('user');
   }, []);
 
-  if (!user.isAdmin) {
+  console.log(user);
+
+  if (!user?.isAdmin) {
     return 'You are not admin';
   }
 
