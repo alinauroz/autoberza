@@ -17,7 +17,7 @@ const GET_FILTERS = gql`
 const DDCard = () => {
   const [{ fetching, data }] = useQuery({
     query: GET_FILTERS,
-    variables: { category: 'Car' },
+    variables: { category: 'Automobili' },
   });
 
   const filters = data?.adFilters?.filters || [];
